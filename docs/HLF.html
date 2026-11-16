@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>康宝莱 (NYSE: HLF) 深度商业研究报告：全球体重管理与营养品龙头向个性化健康与直销数字化变革的价值重估</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#060B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            herbalgreen: {
+              400: '#4ADE80',
+              500: '#10B981',
+              600: '#059669',
+              700: '#047857',
+            },
+            herbalorange: {
+              400: '#FB923C',
+              500: '#F97316',
+              600: '#EA580C',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.26) 0%, rgba(249, 115, 22, 0.10) 100%);
+      border-left: 3px solid #10B981;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-herbalgreen-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-herbalgreen-500 via-herbalorange-500 to-sky-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-herbalgreen-500 to-herbalorange-500 flex items-center justify-center font-extrabold text-white shadow text-xs">
+        HLF
+      </div>
+      <div>
+        <div class="text-[11px] text-herbalgreen-400 font-semibold tracking-wider uppercase">NYSE: HLF · HERBALIFE</div>
+        <div class="text-sm font-bold leading-tight">康宝莱深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">HLF 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构（营养品 + 俱乐部模式）</a></li>
+          <li><a href="#sec-comm" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 直销数字化与经销商生态变革</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 全球供应链与品牌护城河</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务现金流与债务优化模型</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球大健康与消费品投资研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY26E / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-herbalgreen-500 to-herbalorange-500 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-herbalgreen-500/30">
+            HLF
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-herbalgreen-400 bg-herbalgreen-500/15 px-2 py-0.5 rounded">NYSE: HLF · HERBALIFE</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">康宝莱深度研究报告</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球体重管理与营养品龙头 · 经销商社群俱乐部模式 × 数字化供应链变革
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY26E 营收共识</span>
+          <span class="font-mono font-bold text-white">~$5.1B <span class="text-herbalgreen-400">(稳定回升)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">全球服务经销商 (Distributors)</span>
+          <span class="font-mono font-bold text-herbalorange-400">300万+ <span class="text-slate-400">(遍布90+国)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">估值锚 (Non-GAAP P/E)</span>
+          <span class="font-mono font-bold text-amber-400">~8.5x (高自由现金流)</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-herbalgreen-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构（营养品 + 俱乐部）</span>
+          </a>
+          <a href="#sec-comm" data-target="sec-comm" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>直销数字化与经销商生态变革</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>全球供应链与品牌护城河</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务现金流与债务优化模型</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-herbalgreen-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-herbalgreen-600 hover:bg-herbalgreen-700 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400 font-bold border border-herbalgreen-500/30">评级：买入 / 全球体重管理与直销数字化转型先锋</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 盈利企稳与债务去杠杆修复周期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NYSE: HLF</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#0D281F] to-[#2E1005] text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景 康宝莱绿橙矩阵纹理 -->
+          <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#10B981 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-herbalgreen-500/20 border border-herbalgreen-400/40 text-herbalgreen-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-herbalgreen-400 animate-pulse"></span>
+              <span>CORE THESIS · 超过 40 年全球直销网络底蕴 × 营养俱乐部社群私域转化 × 数字化供应链与成本结构优化</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              康宝莱 (NYSE: HLF) 深度研究报告：全球体重管理与营养品龙头向个性化健康与直销数字化变革的价值重估
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              作为全球领先的健康与保健公司，康宝莱（Herbalife）凭借覆盖 90 多个国家和地区的强大直销分销网络与 <strong class="text-herbalgreen-400">营养俱乐部（Nutrition Clubs）社群模式</strong>，在体重管理、靶向营养与运动营养领域构筑了极深的行业护城河。
+              面对全球消费市场的数字化转型，公司通过 <strong class="text-white">全面推进数字化工具升级、供应链精细化管理以及债务结构优化</strong>，盈利能力正实现逐季修复，当前估值展现出极具吸引力的安全边际与现金回报潜力。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">独一无二的营养俱乐部社群</div>
+                <div class="text-white font-semibold">以“教练+社群”为核心的强粘性服务模式，复购率与客户生命周期价值远超传统电商货架模式</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">直销数字化与全渠道变革</div>
+                <div class="text-herbalgreen-400 font-semibold">全面上线经销商数字化管理与线上订货平台，打通私域流量与全球供应链协同效率</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">高自由现金流与债务压降</div>
+                <div class="text-herbalorange-400 font-semibold">稳健的经营性现金流持续用于偿还债务与优化资本结构，估值具备强修复弹性</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2026E 全年总营收共识</span>
+              <span class="p-1.5 rounded-lg bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~$5.1B</span>
+              <span class="text-xs font-bold text-herbalgreen-600 dark:text-herbalgreen-400 bg-herbalgreen-500/15 px-2 py-0.5 rounded">企稳回升</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              核心体重管理与蛋白奶昔产品线需求稳健，新兴市场与亚太地区带动收入实现温和增长。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>全球独立经销商与服务商</span>
+              <span class="p-1.5 rounded-lg bg-herbalorange-500/15 text-herbalorange-600 dark:text-herbalorange-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">300万+</span>
+              <span class="text-xs font-bold text-herbalorange-600 dark:text-herbalorange-400 bg-herbalorange-500/15 px-2 py-0.5 rounded">覆盖 90+ 国家</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              遍布全球的直销创业者网络，构筑了高粘性的终端消费者健康指导与产品分发壁垒。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>综合毛利率 (Gross Margin)</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~77%</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">行业领先高毛利</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              “种子到餐桌”垂直一体化供应链保障高产品附加值，定价能力强，毛利率长期保持在 75%–78% 行业高位。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>自由现金流与债务偿还</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">&gt;$350M</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">去杠杆持续推进</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              强劲的现金流优先用于优化债务结构与降低净杠杆率，大幅提升了公司的财务安全边际。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-herbalgreen-600 dark:text-herbalgreen-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：体重管理核心压舱石 + 靶向营养与运动营养多元拓展</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">FY2026E 总营收 ~$5.1B · 全球美洲、亚太与 EMEA 多元化布局</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2022–FY2027E 全球各大区域营收贡献演进（$十亿）</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">美洲大本营稳健盘整，亚太与 EMEA 市场成为支撑全球业务韧性的新兴增长点</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-herbalgreen-600 dark:text-herbalgreen-400 shadow-sm transition">视图A：区域营收演进</button>
+                <button onclick="switchBizChart('split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：产品矩阵拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">核心产品矩阵与商业模式洞察</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">体重管理（Weight Management）核心基石</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      以 Formula 1 营养蛋白奶昔为代表的代餐产品占公司总收入近 65%，凭借出色的营养配比与科学减重效果，在全球数百万消费者中享有极高心智。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-herbalorange-500/15 text-herbalorange-600 dark:text-herbalorange-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">靶向营养与运动营养（Targeted & Sports Nutrition）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      涵盖心脏健康、消化健康、免疫力调节、骨骼关节及 Herbalife24 运动营养系列，满足消费者向日常健康保养与健身塑形升级的多元化需求。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">营养俱乐部（Nutrition Clubs）社群零售网络</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      独立经销商在全球建立数万家线下营养俱乐部，将产品销售与社交、健康咨询、体重打卡深度融合，极大增强了终端客户的粘性与复购率。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">全球业务韧性</span>
+              <span class="font-bold text-herbalgreen-600 dark:text-herbalgreen-400">拉美、亚太与 EMEA 市场展现蓬勃增长活力</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 四大核心区域与市场矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- 区域 1：北美市场 (North America) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-herbalgreen-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400 text-xs font-bold">核心成熟市场 · 占比 ~32%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$1.6B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">1. 北美大本营（美国与加拿大）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                康宝莱发源地与成熟运作区，经销商体系完善，高端靶向营养与运动营养渗透率持续提升。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-herbalgreen-600 dark:text-herbalgreen-400 font-semibold">
+              客单价高 · 盈利能力稳健
+            </div>
+          </div>
+
+          <!-- 区域 2：拉美市场 (Latin America) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-herbalorange-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-herbalorange-500/15 text-herbalorange-600 dark:text-herbalorange-400 text-xs font-bold">高活跃度 · 占比 ~24%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$1.2B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 拉丁美洲与墨西哥</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                营养俱乐部模式的全球发源地与实验田，墨西哥及巴西市场拥有极高密度的独立经销商与社群用户。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-herbalorange-600 dark:text-herbalorange-400 font-semibold">
+              俱乐部模式成熟 · 用户粘性极强
+            </div>
+          </div>
+
+          <!-- 区域 3：亚太市场 (Asia Pacific) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sky-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-sky-500/15 text-sky-600 dark:text-sky-400 text-xs font-bold">高成长引擎 · 占比 ~23%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$1.2B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 亚太地区（含中国、印度、东南亚）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                印度和东南亚市场近年实现爆发式增长，中国市场合规转型后稳步推进“线上+线下”健康社群服务。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold">
+              人口红利显著 · 数字化渗透率提升
+            </div>
+          </div>
+
+          <!-- 区域 4：EMEA 欧洲中东非洲 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">均衡布局 · 占比 ~21%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$1.1B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 欧洲、中东与非洲 (EMEA)</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                横跨数十个国家的多元文化市场，凭借高品质的科学背书与运动营养产品赢得欧洲高净值健康消费人群。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              高端消费客群稳定 · 品牌美誉度高
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 直销数字化与经销商生态变革 (Digital Transformation)
+      ========================================================= -->
+      <section id="sec-comm" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-herbalorange-600 dark:text-herbalorange-400">Section 02 · Direct Selling Digitalization & Distributor Ecosystem</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 直销数字化与经销商生态变革：从传统人际推销到现代数字社群赋能</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">数字化转型成效显现 · 赋能 300 万+ 独立创业者降本增效</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大数字化转型支柱 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">经销商专属数字化工作台与订货系统</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                全面升级全球经销商移动端 APP 与后台管理系统，实现客户关系管理 (CRM)、订单追踪、积分奖励与业绩结算的一站式线上化，大幅降低运营门槛。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-herbalorange-500/15 text-herbalorange-600 dark:text-herbalorange-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">线上营养俱乐部与“云教练”健康打卡生态</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                打破纯线下空间限制，将线下营养俱乐部与线上小程序、社交媒体打卡相结合，实现消费者体重管理数据化、膳食记录可视化与教练远程实时指导。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">AI 驱动的个性化营养方案与健康评估工具</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                引入智能问卷与健康评估算法，根据消费者的生活方式、身体成分与营养诉求，精准生成千人千面的膳食补充与体重管理组合方案。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">合规治理与扁平化激励机制保障长期健康</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                持续优化全球直销合规风控体系，打击过度承诺与违规宣传，将业务重心全面回归产品真实功效与长期健康社群服务。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：数字化转型带来的商业价值卡片 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">数字化变革如何重塑康宝莱的商业增长飞轮？</h3>
+            <div class="space-y-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                  <span>传统直销痛点（展业效率受限·信息不对称）</span>
+                  <span class="text-slate-500 font-mono">重人工 · 低透明度</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  早期依赖线下会议与人际圈层拓展，新人上手周期长，供应链物流与终端库存管理存在滞后。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-herbalgreen-500/10 border border-herbalgreen-500/30">
+                <div class="flex justify-between font-bold text-herbalgreen-600 dark:text-herbalgreen-400 mb-1">
+                  <span>数字赋能阶段（降本增效·高复购私域闭环）</span>
+                  <span class="font-mono">高效率 · 粘性倍增</span>
+                </div>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+                  通过数字化工具实现全球库存实时可视、订单秒级响应，年轻一代经销商和消费者线上转化率大幅提升，带动长期客户留存率显著改善。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 全球供应链与品牌护城河 (Global Supply Chain & Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-herbalgreen-600 dark:text-herbalgreen-400">Section 03 · Global Supply Chain & Brand Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 全球供应链与品牌护城河：“种子到餐桌”垂直一体化质量闭环</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：宽护城河 (Wide Moat · 全球顶尖的营养品制造与科研背书)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大护城河解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“种子到餐桌”（Seed to Feed）全产业链质量追溯</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                从优质大豆种植基地、原料萃取、配方研发到自有生产基地与全球物流，每一个环节均严格遵循国际最高质量标准（cGMP），确保每一罐营养蛋白奶昔的安全纯净。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-herbalorange-500/15 text-herbalorange-600 dark:text-herbalorange-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">诺贝尔奖得主领衔的科学顾问委员会与研发实力</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                汇聚全球顶尖营养学、医学与运动科学专家（包括诺贝尔奖得主路易斯·伊格纳罗博士等），持续推出符合前沿科学的营养补充剂配方，构筑强有力的专业背书。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全球顶级体育赞助与健康生活方式心智</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                长期作为全球数以百计的顶级体育俱乐部、奥运代表队及传奇球星（如克里斯蒂亚诺·罗纳尔多 C罗）的官方营养赞助商，将品牌与极致运动表现深度绑定。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">40余年沉淀的全球合规与直销网络信任壁垒</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                历经几十年的全球市场洗礼与监管合规考验，康宝莱在全球 90 多个国家建立起符合当地法律法规的成熟直销牌照与运营体系，新进入者极难在短期内复制。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">全球体重管理与营养品行业五维竞争力雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">康宝莱 (HLF) vs 传统膳食补充剂品牌 vs 直销竞争对手</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务现金流与债务优化模型 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 04 · Financial Health & Debt Optimization</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务现金流与债务优化模型：高毛利支撑下的持续去杠杆与现金回报</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">稳健的自由现金流 · 积极偿还到期债务与优化资本结构</span>
+        </div>
+
+        <!-- 1. 财务健康度四大指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-herbalgreen-600 dark:text-herbalgreen-400 uppercase">Gross Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~77%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              强大的品牌议价能力与垂直供应链确保毛利率常年维持在 75%-78% 的卓越区间。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-herbalorange-600 dark:text-herbalorange-400 uppercase">Operating Cash Flow</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">&gt;$400M</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              产品高复购率与健康的营运资金管理带来充沛的年度经营性现金流。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase">Debt Deleveraging</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">稳步推进</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              管理层将富余现金流优先用于偿还债务与 refinancing，净杠杆率逐年显著下降。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Valuation P/E</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~8.5x</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              相比同业消费品龙头显著低估，具备极高安全边际与估值修复潜力。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 财务与毛利率演进图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 营业收入走势与综合毛利率稳健轨迹</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">展示康宝莱在克服宏观波动与通胀周期后，盈利质量企稳回升与供应链降本增效的成效</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-herbalgreen-600 dark:text-herbalgreen-400 bg-herbalgreen-500/10 px-2.5 py-1 rounded">毛利率长期稳定在 76%–78%</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-herbalgreen-600 dark:text-herbalgreen-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与核心风险应对</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：高分红潜力与低估值困境反转标的，把握现金流修复波段</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-herbalgreen-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-herbalgreen-600 dark:text-herbalgreen-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：12x – 14x Non-GAAP P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>全球大健康消费需求超预期复苏，亚太与拉美新兴市场增速加快，数字化转型全面推升经销商展业效率，债务去杠杆超预期完成。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-herbalgreen-600 dark:text-herbalgreen-400">
+              潜在上行空间：+40% 至 +60%（业绩增长与估值双击）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sky-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-sky-500/15 text-sky-600 dark:text-sky-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-sky-600 dark:text-sky-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：9x – 11x Non-GAAP P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>FY26E 营收稳定在 ~$5.1B 左右，毛利率保持 77% 高位，自由现金流持续用于稳步压降债务，估值随盈利修复向历史均值回归。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-sky-600 dark:text-sky-400">
+              潜在上行空间：+20% 至 +35%（稳健现金流驱动）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-slate-500/15 text-slate-600 dark:text-slate-300 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-slate-600 dark:text-slate-300">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：6x – 7x Non-GAAP P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>全球宏观经济增速放缓压制可选消费，直销行业监管环境趋严或经销商拓展速度不及预期，债务展期成本有所上升。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300">
+              潜在下行风险：有限（低估值与强现金流提供安全垫）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构应对策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 宏观经济波动与全球消费力复苏不及预期</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">高通胀与居民可支配收入波动对保健品可选消费的压制</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                体重管理与营养补充剂属于中高端可选消费，若全球主要经济体消费意愿疲软，可能对短期单客客单价和产品复购频次产生扰动。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 直销行业监管政策及合规风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">全球各主要国家针对直销模式与奖金制度的合规监管变化</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                作为跨国直销企业，康宝莱在不同司法辖区面临复杂的法律合规要求，任何监管政策的收紧均可能对当地市场拓展节奏造成影响。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 债务杠杆与宏观利率环境波动风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">高利率环境下存量债务的再融资成本与利息支出压力</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                尽管公司持续推进去杠杆，但若全球宏观利率长期保持高位，利息费用仍会阶段性侵蚀部分归母净利润，需密切关注债务到期结构。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 汇率波动与新兴市场通胀风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">美元汇率强势对海外营收折算及跨国利润汇回的扰动</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                康宝莱超 60% 营收来自北美以外地区，若美元兑拉美货币、欧元或亚太货币出现剧烈波动，报表端可能产生一定的汇兑损益。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-herbalgreen-500/15 text-herbalgreen-600 dark:text-herbalgreen-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），用高频财务与运营指标动态追踪康宝莱的困境反转质量：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="hlf-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#10B981] focus:ring-herbalgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 全球净销售额同比增速是否恢复至正增长区间</span>
+                  <span class="text-[11px] font-mono text-herbalgreen-600 dark:text-herbalgreen-400 font-semibold shrink-0">营收回暖锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  重点追踪北美大本营与亚太/拉美新兴市场的季度本地货币销售额变动，确认核心需求企稳。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="hlf-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#10B981] focus:ring-herbalgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 综合毛利率是否稳固维持在 76%–78% 高位</span>
+                  <span class="text-[11px] font-mono text-herbalorange-600 dark:text-herbalorange-400 font-semibold shrink-0">盈利能力核心锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查供应链成本控制与产品定价策略对冲通胀压力的成效，确保高毛利优势不受侵蚀。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="hlf-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#10B981] focus:ring-herbalgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 独立经销商（Distributors）活跃度与数量变动趋势</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">渠道生态健康度</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪全球活跃经销商数量及营养俱乐部开店数量，评估数字化工具对展业效率的实际提升。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="hlf-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#10B981] focus:ring-herbalgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 经营性现金流与净债务杠杆率（Net Debt / EBITDA）压降进度</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">财务安全边际锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查季度自由现金流生成情况及债务偿还进度，评估资本结构优化对估值修复的催化作用。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="hlf-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#10B981] focus:ring-herbalgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 数字化工具渗透率与线上订货比例提升幅度</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">数字化转型指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪新一代数字化工作台与客户管理系统在核心市场的普及率及对订单处理效率的优化。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="hlf-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#10B981] focus:ring-herbalgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. 新兴靶向与运动营养系列产品（如 Herbalife24）收入占比</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">产品结构升级锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  评估公司在核心代餐之外向高端靶向营养及年轻运动人群拓展的多元化增长动能。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>康宝莱 (NYSE: HLF) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：历史披露财报及 2026 年 11 月市场一致预期 (FY26E / FY27E)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告、全球大健康与直销行业调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的 FY2026E/FY2027E 营收预测、毛利率展望、债务去杠杆进度及三情景估值模型均基于特定行业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-herbalgreen-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-herbalgreen-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'hlf_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 5. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2022–FY2027E 全球各大区域营收贡献演进（堆叠柱状图）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              label: '北美市场 (North America)',
+              data: [1.7, 1.6, 1.6, 1.6, 1.6, 1.7],
+              backgroundColor: '#10B981',
+              borderRadius: 3,
+            },
+            {
+              label: '拉丁美洲 (Latin America)',
+              data: [1.4, 1.3, 1.2, 1.2, 1.2, 1.3],
+              backgroundColor: '#F97316',
+              borderRadius: 3,
+            },
+            {
+              label: '亚太地区 (Asia Pacific)',
+              data: [1.3, 1.2, 1.1, 1.2, 1.2, 1.3],
+              backgroundColor: '#0EA5E9',
+              borderRadius: 3,
+            },
+            {
+              label: '欧洲中东非洲 (EMEA)',
+              data: [1.2, 1.1, 1.1, 1.1, 1.1, 1.2],
+              backgroundColor: '#6366F1',
+              borderRadius: 3,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 7,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：FY2026E 产品矩阵拆解（横向柱状图）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '体重管理 (Weight Management - 代餐奶昔等)',
+            '靶向营养 (Targeted Nutrition - 保健与免疫)',
+            '运动营养 (Sports Nutrition - Herbalife24)',
+            '能量饮料及其他配件 (Energy & Others)'
+          ],
+          datasets: [
+            {
+              label: 'FY2026E 产品线营收贡献 ($十亿)',
+              data: [3.3, 1.1, 0.5, 0.2],
+              backgroundColor: [
+                '#10B981',
+                '#F97316',
+                '#0EA5E9',
+                '#6366F1'
+              ],
+              borderRadius: 6,
+              barThickness: 28
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `营收规模: $${ctx.parsed.x}B (占总营收 ${(ctx.parsed.x / 5.1 * 100).toFixed(1)}%)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 4,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-herbalgreen-600 dark:text-herbalgreen-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022–FY2027E 全球各大区域营收贡献演进（$十亿）';
+        subEl.textContent = '美洲大本营稳健盘整，亚太与 EMEA 市场成为支撑全球业务韧性的新兴增长点';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-herbalgreen-600 dark:text-herbalgreen-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2026E 核心产品线营收拆解（总计 ~$5.1B）';
+        subEl.textContent = '体重管理代餐产品占据绝对核心，靶向营养与运动营养提供第二增长曲线';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '营养俱乐部社群私域服务粘性',
+            '全球垂直一体化供应链质量闭环',
+            '科学背书与诺贝尔奖顾问团科研实力',
+            '全球 90+ 国合规直销牌照与网络',
+            '长期复购率与终端抗周期能力'
+          ],
+          datasets: [
+            {
+              label: '康宝莱 (HLF)',
+              data: [9.7, 9.6, 9.2, 9.5, 9.4],
+              borderColor: '#10B981',
+              backgroundColor: 'rgba(16, 185, 129, 0.24)',
+              pointBackgroundColor: '#10B981',
+              borderWidth: 2.5
+            },
+            {
+              label: '传统膳食补充剂品牌 (货架零售)',
+              data: [6.5, 8.0, 7.5, 6.0, 6.8],
+              borderColor: '#0EA5E9',
+              backgroundColor: 'rgba(14, 165, 233, 0.14)',
+              pointBackgroundColor: '#0EA5E9',
+              borderWidth: 1.8
+            },
+            {
+              label: '其他传统直销同业竞争对手',
+              data: [7.8, 7.5, 7.0, 8.5, 7.2],
+              borderColor: '#F97316',
+              backgroundColor: 'rgba(249, 115, 22, 0.10)',
+              pointBackgroundColor: '#F97316',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '综合毛利率 (%)',
+              data: [76.8, 76.2, 77.1, 77.5, 77.8, 78.1],
+              backgroundColor: 'rgba(16, 185, 129, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '营业收入 ($十亿)',
+              data: [5.2, 5.1, 5.0, 5.0, 5.1, 5.3],
+              borderColor: '#F97316',
+              backgroundColor: '#F97316',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.datasetIndex === 0 ? ctx.parsed.y + '%' : '$' + ctx.parsed.y + 'B'}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 70,
+              max: 85,
+              grid: { color: colors.grid },
+              ticks: { color: '#10B981', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 3,
+              max: 7,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F97316', font: { size: 11, weight: '600' }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

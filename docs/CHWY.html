@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chewy (NYSE: CHWY) 深度研究报告：从宠物电商消费基本盘到 Autoship 订阅飞轮与宠物医疗生态（Chewy Vet Care）高毛利重估</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#060B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            chwyblue: {
+              400: '#60A5FA',
+              500: '#1C49C2',
+              600: '#143696',
+            },
+            accent: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(28, 73, 194, 0.30) 0%, rgba(96, 165, 250, 0.08) 100%);
+      border-left: 3px solid #60A5FA;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-chwyblue-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-chwyblue-500 via-sky-400 to-amber-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-chwyblue-500 to-chwyblue-600 flex items-center justify-center font-extrabold text-white shadow text-xs">
+        CHWY
+      </div>
+      <div>
+        <div class="text-[11px] text-chwyblue-400 font-semibold tracking-wider uppercase">NYSE: CHWY · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">Chewy 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">CHWY 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构（Autoship + 零售）</a></li>
+          <li><a href="#sec-vet" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 宠物医疗生态（Health & Vet Care）</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 客户服务壁垒与供应链护城河</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务盈利质量与现金流估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>北美消费与互联网生态研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY26 / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-chwyblue-500 to-chwyblue-600 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-chwyblue-500/30">
+            CHWY
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-chwyblue-400 bg-chwyblue-500/15 px-2 py-0.5 rounded">NYSE: CHWY</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">Chewy 深度研究报告</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          Autoship 订阅复购飞轮 · 宠物医药处方与线下 Vet Care 诊所高毛利进化
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY26E 营收共识</span>
+          <span class="font-mono font-bold text-white">~$12.8B <span class="text-chwyblue-400">(+8.0%)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">Autoship 营收占比</span>
+          <span class="font-mono font-bold text-amber-400">~79.5% <span class="text-slate-400">(SaaS级粘性)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">估值锚 (EV/Adj. EBITDA)</span>
+          <span class="font-mono font-bold text-chwyblue-400">~18.5x (医疗溢价)</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-chwyblue-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构（Autoship 飞轮）</span>
+          </a>
+          <a href="#sec-vet" data-target="sec-vet" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>宠物医疗与线下诊所生态</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>客户口碑与履约物流护城河</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与利润率扩张模型</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-chwyblue-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-chwyblue-500 hover:bg-chwyblue-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400 font-bold border border-chwyblue-500/30">评级：增持 / 消费韧性与宠物医疗高毛利重估核心标的</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 活跃客户恢复净增与利润率加速扩张周期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NYSE: CHWY</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#0E1E4A] to-[#0A1433] text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景 Chewy 品牌蓝矩阵纹理 -->
+          <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#60A5FA 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-chwyblue-500/20 border border-chwyblue-400/40 text-chwyblue-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-chwyblue-400 animate-pulse"></span>
+              <span>CORE THESIS · Autoship 79.5% 订阅护城河 × 宠物在线药房龙头 × Chewy Vet Care 线下诊所一体化闭环</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              Chewy (NYSE: CHWY) 深度研究报告：从宠物电商消费基本盘到 Autoship 订阅飞轮与宠物医疗生态（Chewy Vet Care）高毛利重估
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              作为北美最大的垂直宠物电商及全渠道健康生态平台，Chewy 凭借 <strong class="text-chwyblue-400">近 80% 的 Autoship 自动订阅复购占比</strong> 构筑了媲美 SaaS 企业的高度可预测收入流。
+              随着活跃客户数重回净增长轨道，以及 <strong class="text-white">Chewy Pharmacy（处方药房）、自有品牌（Private Label）、广告变现与线下 Chewy Vet Care 兽医诊所</strong> 的全面放量，公司正完成从“低毛利宠物干粮搬运商”向“高利润率综合宠物健康生态巨头”的华丽转身，Adjusted EBITDA 利润率持续攀升。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">类 SaaS 订阅现金流（Autoship）</div>
+                <div class="text-white font-semibold">近 80% 营收来自周期性自动订购，抗宏观波动能力极强，单客年支出（NSPAC）超 $585</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">医疗与诊所生态破局（Vet Care）</div>
+                <div class="text-chwyblue-400 font-semibold">线上药房 + 宠物保险 + 线下兽医诊所，全方位切入美国 $400B+ 宠物医疗高毛利蓝海</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">自动化履约中心释放盈利杠杆</div>
+                <div class="text-amber-400 font-semibold">全自动化仓库占比提升显著压降单包裹履约成本，毛利率稳步迈向 30%+ 区间</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2026E 全年总营收</span>
+              <span class="p-1.5 rounded-lg bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$12.8B</span>
+              <span class="text-xs font-bold text-chwyblue-600 dark:text-chwyblue-400 bg-chwyblue-500/15 px-2 py-0.5 rounded">+8.0% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              伴随疫后宠物领养潮去库存彻底结束，活跃用户数恢复正增长，营收增速重返稳健扩张通道。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Autoship 订阅营收占比</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">79.5%</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">历史新高</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              宠物主粮、猫砂及慢性病处方药高频刚需属性极强，自动订阅锁死用户长期生命周期价值（LTV）。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>单客年均净销售额 (NSPAC)</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$588</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">+6.2% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              随着老客留存年份增加及高客单价医疗处方渗透率提升，单客钱包份额持续稳步向上突破。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>综合毛利率 (Gross Margin)</span>
+              <span class="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">29.8%</span>
+              <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">+110 bps YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              高毛利医疗药房、赞助广告变现与自有品牌比例提高，推动整体毛利率逼近 30% 战略大关。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-chwyblue-600 dark:text-chwyblue-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：Autoship 订阅复购引擎（79.5%）+ 多元高毛利矩阵</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">FY2026E 总营收 ~$12.8B · 高度可预测的消费订阅模式</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2022–FY2027E 营收结构演进（Autoship vs 非订阅）</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">Autoship 订阅收入占比从 70% 一路攀升至近 80%，构成坚不可摧的基本盘</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-chwyblue-600 dark:text-chwyblue-400 shadow-sm transition">视图A：订阅营收演进</button>
+                <button onclick="switchBizChart('split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：业务品类拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业模式核心飞轮拆解</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Autoship 自动周期购（核心现金流底座）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      用户设置主粮、零食、猫砂及日常保健品的定期自动配送，享受首单折扣与长期免邮，大幅降低客户流失率（Churn Rate），大幅减少单客二次获客营销费用。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">消费品（Consumables）抗周期韧性</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      约 85% 营收来自宠物食品、保健品与医疗处方药等非可选消费品（Non-discretionary），即便在通胀压力下，宠物主仍优先保障“毛孩子”口粮与健康支出。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Sponsored Ads 站内零售媒体广告变现</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      效仿亚马逊零售广告体系，向玛氏、雀巢普瑞纳、希尔思等宠物品牌商开放站内搜索与展示广告位，毛利率高达 70%+，成为利润率跃升的纯增量引擎。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">国际化扩张新增长极</span>
+              <span class="font-bold text-chwyblue-600 dark:text-chwyblue-400">加拿大市场稳健起量，复制美国成功模型</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 四大核心业务与增长引擎矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- 板块 1：主粮与日常消费品 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-chwyblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400 text-xs font-bold">压舱石 · 营收占比 ~70%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">高频刚需</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">1. 宠物主粮与日常消耗品</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                涵盖猫狗干粮、湿粮、处方粮及猫砂等重货高频品类。重货配送门槛高，Chewy 凭借专属物流体系解决用户搬运痛点，留存率极高。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-chwyblue-600 dark:text-chwyblue-400 font-semibold">
+              重货配送经济性壁垒 · 复购周期 3-5 周
+            </div>
+          </div>
+
+          <!-- 板块 2：宠物医疗与处方药房 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amber-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">高毛利引擎 · 增速最快</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Chewy Health</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 宠物药房与保健处方生态</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                全美最大的在线宠物药房，覆盖驱虫药、慢性病处方药及定制复方药。全美超 2.5 万家合作兽医诊所接入其电子处方审批系统（Practice Hub）。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold">
+              毛利率显著高于传统零售 · 慢性病终身锁定
+            </div>
+          </div>
+
+          <!-- 板块 3：自有品牌（Private Label） -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">毛利扩张器 · 差异化品牌</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">独家产品矩阵</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 自有品牌矩阵 (Frisco / American Journey)</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                孵化出 Frisco（日用品/玩具）、American Journey（高端天然粮）及 Vibeful（保健品）等自有品牌，毛利率较第三方品牌高出 700–1,000 个基点。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              毛利增厚 +700~1000 bps · 供应链自主可控
+            </div>
+          </div>
+
+          <!-- 板块 4：硬货与零售媒体广告 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">高纯利增量 · 平台变现</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Ads & 硬货</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 站内广告服务与宠物用品硬货</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                提供玩具、窝垫、智能喂食器等硬货（Hardgoods），并向品牌商出售站内赞助广告位（Sponsored Ads），广告收入正朝占总营收 1%–3% 的高利润目标迈进。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              零售媒体高毛利变现 · 提升整体 EBITDA 率
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 宠物医疗与线下诊所生态闭环 (Chewy Health & Vet Care)
+      ========================================================= -->
+      <section id="sec-vet" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Chewy Health & Vet Care Ecosystem</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 宠物医疗与线下诊所生态（Chewy Vet Care）：打开百亿级高毛利第二增长曲线</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">核心破局：线上问诊 + 药房 + 保险 + 线下连锁兽医诊所</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：宠物健康生态四大模块 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Chewy Vet Care 线下连锁兽医诊所</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在佛罗里达、科罗拉多、佐治亚等核心州加速开设直营线下兽医诊所。通过全新设计的数字化诊所体验与透明定价，直接捕获线下的体检、疫苗、外科手术与急诊高客单收入。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“线下看病 + 线上 Autoship 取药”协同闭环</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                线下 Vet Care 诊所不仅自身盈利可观，更充当强力的“线下拉新前置仓”——约 40%+ 的诊所新客此前并非 Chewy 线上用户，就诊后自然转化为长期购买处方粮与药物的线上忠实会员。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Connect with a Vet 24/7 在线远程问诊</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Autoship 订阅用户可免费享受持证兽医的 7×24 小时在线视频与图文咨询服务，大幅提升宠物主对平台的依赖度，并在问诊后直接一键下单处方保健品。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">CarePlus 宠物健康保险与医疗金融</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                携手 Trupanion 与 Lemonade 推出 CarePlus 定制宠物保险计划，报销范围涵盖处方药与兽医诊疗，降低宠物主大额医疗支付顾虑，进一步拉高平台总消费额。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：医疗生态经济效益对比卡片 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">传统电商单客 vs 医疗生态全渠道用户价值对比</h3>
+            <div class="space-y-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                  <span>单一主粮/用品零售用户</span>
+                  <span class="text-slate-500 font-mono">毛利率 ~26%–28%</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  仅购买日常干粮与猫砂，虽然复购频率稳定，但标准品价格透明度高，盈利空间受重货物流成本制约。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-chwyblue-500/10 border border-chwyblue-500/30">
+                <div class="flex justify-between font-bold text-chwyblue-600 dark:text-chwyblue-400 mb-1">
+                  <span>叠加药房 / 保险 / Vet Care 诊所用户</span>
+                  <span class="font-mono">毛利率 35%–45%+ · LTV 翻倍</span>
+                </div>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+                  医疗消费具有极强的刚性与专业信任壁垒。一旦宠物在 Chewy 建立完整健康档案，单客生命周期总消费额（LTV）可提升 2 倍以上，且留存率接近 95%。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 客户服务壁垒与供应链护城河 (Customer & Logistics Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-chwyblue-600 dark:text-chwyblue-400">Section 03 · Customer Experience & Logistics Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 客户口碑与供应链护城河：极致人性化服务 + 全自动化重货履约网络</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：宽护城河 (Wide Moat · 情感连接与重货供应链双壁垒)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大护城河解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“惊艳级”客户情感连接与极高 NPS 口碑</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                以手绘宠物肖像画、节日手写贺卡以及在宠物离世时主动退还未使用主粮并赠送慰问鲜花的极致同理心服务闻名全美，在社交媒体形成天然裂变传播与极高净推荐值（NPS）。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全自动化重货履约中心（Automated FC）</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在全美布局十余座大型区域配送中心，其中新一代高度自动化仓库比例持续提升。针对 30–50 磅大袋狗粮与猫砂优化机器人分拣与装箱，单件履约成本大幅下降 20%+。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">80%+ 订单次日达覆盖能力</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                依托贴近人口密集区的仓储网络，全美超过 80% 的订单可实现次日送达（1-2 Day Delivery），配送时效直接比肩 Amazon Prime，彻底消除了垂直电商的物流短板。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全美处方药牌照与冷链合规壁垒</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                持有全美 50 个州的药房执业许可及温控药品冷链配送能力，新进入者面临漫长的合规审批周期与兽医处方验真网络建设门槛。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">北美宠物零售与平台五维护城河雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Chewy (CHWY) vs Petco (WOOF) vs Amazon Pets（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康与利润率扩张模型 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Margin Expansion</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与利润率扩张模型：毛利率迈向 30% 与自由现金流强劲释放</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">零有息负债净现金资产负债表 · 开启大规模股票回购</span>
+        </div>
+
+        <!-- 1. 财务健康度四大指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-chwyblue-600 dark:text-chwyblue-400 uppercase">Gross Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">29.8%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              受益于处方药房扩容、站内广告高纯利变现以及供应链自动化降本，毛利率连续多年稳步上台阶。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase">Adj. EBITDA Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">6.2%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              Adjusted EBITDA 利润率持续扩张（长期目标 10%+），营收增长带来的运营杠杆在盈利端充分体现。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Free Cash Flow</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~$520M</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              轻资产化运营与负营运资本（Negative Working Capital）特性使得自由现金流转化率高达 80%+。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase">Share Buyback & Cash</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">净现金</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              资产负债表几乎无长期债务，公司积极执行股票回购计划并逐步消化大股东 BC Partners 减持压力。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 财务与利润率双轴演进图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 营收规模与 Adjusted EBITDA 利润率持续攀升曲线</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">展示 Chewy 从早期“规模优先微利”向“高毛利医疗与广告驱动盈利爆发”的清晰财务轨迹</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-chwyblue-600 dark:text-chwyblue-400 bg-chwyblue-500/10 px-2.5 py-1 rounded">长期目标 Adj. EBITDA 率 10%</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-chwyblue-600 dark:text-chwyblue-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与核心风险应对</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：逢回调布局高粘性订阅消费与宠物医疗转型龙头</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-chwyblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-chwyblue-600 dark:text-chwyblue-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：22x – 25x EV/EBITDA</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>活跃客户数恢复 3%–5% 稳健增长，Chewy Vet Care 线下诊所单店模型验证成功并加速开店，赞助广告与药房推动毛利率突破 31%。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-chwyblue-600 dark:text-chwyblue-400">
+              潜在上行空间：+35% 至 +45%（医疗科技多重溢价）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amber-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-amber-600 dark:text-amber-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：18x – 20x EV/EBITDA</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>FY26E 营收如期实现 ~$12.8B 共识，Autoship 占比维持 79% 以上，NSPAC 稳步增长至 $588+，EBITDA 利润率稳步提升。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-amber-600 dark:text-amber-400">
+              潜在上行空间：+15% 至 +25%（盈利增长与回购驱动）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-slate-500/15 text-slate-600 dark:text-slate-300 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-slate-600 dark:text-slate-300">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：13x – 15x EV/EBITDA</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>美国消费环境承压导致宠物主降级购买平价主粮，亚马逊与沃尔玛加大宠物补贴力度，活跃用户数再次陷入停滞。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300">
+              潜在下行回撤：-15% 至 -20%（高比例订阅现金流托底）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构应对策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 零售巨头（Amazon / Walmart）竞争加剧风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">全品类电商巨头在标准宠物食品上的价格战</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                Amazon 同样拥有 Subscribe & Save 订阅功能，而 Walmart 拥有庞大的线下门店网络。Chewy 必须持续依赖高粘性处方药与极致的专科客服保持差异化。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 线下兽医诊所扩张的资本开支与人才瓶颈</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">全美持证兽医紧缺可能限制 Vet Care 开店速度</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                北美兽医行业长期面临执业医师供给不足的问题，若薪酬成本上涨或新店爬坡周期长于预期，短期内可能对运营费用率（OpEx）造成一定压力。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 美国新增宠物领养数量增速趋于常态化</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">行业总量增速回归温和，更依赖单客钱包份额提升</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                经历疫情期间的历史级领养热潮后，美国家庭宠物渗透率已处高位（~66%），未来营收增长将更多依赖消费升级与存量客户向医疗服务转化。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 大股东 BC Partners 减持带来的二级市场供给</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">私募大股东周期性出售股份造成短期股价压制</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                控股股东 BC Partners 仍在逐步退出周期中，虽然公司通过定向股票回购主动承接了大部分卖压，但阶段性配售公告仍可能引发短线波动。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-chwyblue-500/15 text-chwyblue-600 dark:text-chwyblue-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），用高频运营指标动态验证宠物消费韧性与医疗生态进展：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="chwy-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#1C49C2] focus:ring-chwyblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 活跃客户数（Active Customers）是否维持季度环比净增</span>
+                  <span class="text-[11px] font-mono text-chwyblue-600 dark:text-chwyblue-400 font-semibold shrink-0">增长拐点核心锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  重点追踪活跃买家总数（约 2,000 万+）是否持续保持正增长，验证新客获取与老客留存平衡已彻底修复。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="chwy-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#1C49C2] focus:ring-chwyblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. Autoship 自动订购占总净销售额比例是否稳居 79%+</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">收入能见度锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  确认订阅业务增速持续跑赢整体营收增速，锁定未来四个季度的高度可预测经常性收入。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="chwy-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#1C49C2] focus:ring-chwyblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 单客年均净销售额（NSPAC）同比增长趋势</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">钱包份额指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查 NSPAC 是否保持中个位数（+5%~7%）稳健增长，体现处方药、保健品与自有品牌的交叉销售成效。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="chwy-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#1C49C2] focus:ring-chwyblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. Chewy Vet Care 线下诊所新增门店数与单店爬坡表现</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">医疗生态里程碑</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监测每季度新开直营兽医诊所数量，以及诊所客流向线上药房与 Autoship 用户的转化率数据。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="chwy-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#1C49C2] focus:ring-chwyblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 综合毛利率突破 30% 及站内广告（Sponsored Ads）贡献</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">利润率扩张锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪广告变现与自动化履约中心对毛利率和 Adjusted EBITDA 利润率的持续增厚幅度。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="chwy-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#1C49C2] focus:ring-chwyblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. 自由现金流（FCF）产出与股票回购执行节奏</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">股东回报指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  确认每季度正向 FCF 足以覆盖大股东配售回购并持续缩减总股本，提升每股收益（EPS）含金量。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>Chewy (NYSE: CHWY) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2025 财报及 2026 年 11 月市场一致预期 (FY26 / FY27E)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告、北美宠物消费与医疗行业调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的 FY2026E/FY2027E 营收预测、毛利率与 Adjusted EBITDA 展望、Chewy Vet Care 扩张假设及三情景估值模型均基于特定消费假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-chwyblue-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-chwyblue-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'chwy_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 5. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2022–FY2027E 订阅营收演进（堆叠柱状图）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              label: 'Autoship 自动订阅营收 ($B)',
+              data: [7.4, 8.5, 9.2, 9.4, 10.2, 11.2],
+              backgroundColor: '#1C49C2',
+              borderRadius: 4,
+            },
+            {
+              label: '非订阅单次购买营收 ($B)',
+              data: [2.7, 2.6, 2.6, 2.5, 2.6, 2.7],
+              backgroundColor: '#F59E0B',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 16,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：业务品类营收拆解（横向柱状图）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '宠物主粮与日常消耗品 (Consumables)',
+            '宠物医药处方与保健品 (Chewy Health)',
+            '宠物硬货与智能用品 (Hardgoods)',
+            '线下兽医诊所与保险 (Vet Care & CarePlus)',
+            '站内零售媒体广告变现 (Sponsored Ads)'
+          ],
+          datasets: [
+            {
+              label: 'FY2026E 业务板块营收贡献 ($B)',
+              data: [8.8, 2.1, 1.3, 0.35, 0.25],
+              backgroundColor: [
+                '#1C49C2',
+                '#F59E0B',
+                '#60A5FA',
+                '#06B6D4',
+                '#10B981'
+              ],
+              borderRadius: 6,
+              barThickness: 26
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `营收规模: $${ctx.parsed.x}B (占总营收 ${(ctx.parsed.x / 12.8 * 100).toFixed(1)}%)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 10,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-chwyblue-600 dark:text-chwyblue-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022–FY2027E 营收结构演进（Autoship vs 非订阅）';
+        subEl.textContent = 'Autoship 订阅收入占比从 70% 一路攀升至近 80%，构成坚不可摧的基本盘';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-chwyblue-600 dark:text-chwyblue-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2026E 核心业务品类营收贡献拆解（总计 ~$12.8B）';
+        subEl.textContent = '高频主粮构成绝对基石，药房与高毛利新兴服务驱动整体利润跃升';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '周期自动订阅复购锁客 (Autoship)',
+            '宠物处方药房与兽医网络合规壁垒',
+            '客户情感连接与极高 NPS 品牌口碑',
+            '重货自动化履约中心与次日达物流',
+            '线下兽医诊所与线上生态协同闭环'
+          ],
+          datasets: [
+            {
+              label: 'Chewy (CHWY)',
+              data: [9.7, 9.5, 9.6, 9.1, 8.9],
+              borderColor: '#1C49C2',
+              backgroundColor: 'rgba(28, 73, 194, 0.24)',
+              pointBackgroundColor: '#60A5FA',
+              borderWidth: 2.5
+            },
+            {
+              label: 'Amazon Pets (全品类巨头)',
+              data: [8.2, 6.5, 7.2, 9.8, 5.0],
+              borderColor: '#F59E0B',
+              backgroundColor: 'rgba(245, 158, 11, 0.12)',
+              pointBackgroundColor: '#F59E0B',
+              borderWidth: 1.8
+            },
+            {
+              label: 'Petco (WOOF · 传统线下宠物店)',
+              data: [6.0, 7.8, 7.4, 6.5, 8.5],
+              borderColor: '#10B981',
+              backgroundColor: 'rgba(16, 185, 129, 0.12)',
+              pointBackgroundColor: '#10B981',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年净销售额 ($B)',
+              data: [10.1, 11.1, 11.8, 11.9, 12.8, 13.9],
+              backgroundColor: 'rgba(28, 73, 194, 0.88)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'Adjusted EBITDA 利润率 (%)',
+              data: [3.0, 3.3, 4.8, 5.5, 6.2, 7.1],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 16,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 10,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

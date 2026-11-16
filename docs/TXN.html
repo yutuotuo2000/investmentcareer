@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>德州仪器 Texas Instruments (NASDAQ: TXN) 深度研究报告：模拟芯片之王、12英寸制造战略与工业汽车周期复苏</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+                    mono: ['JetBrains Mono', 'monospace'],
+                },
+                colors: {
+                    navy: {
+                        950: '#070B14',
+                        900: '#0F172A',
+                        800: '#1E293B',
+                        700: '#334155',
+                    },
+                    txnred: {
+                        400: '#F87171',
+                        500: '#CC0000',
+                        600: '#990000',
+                    },
+                    accent: {
+                        500: '#2563EB',
+                        600: '#1D4ED8',
+                    },
+                    teal: {
+                        500: '#0D9488',
+                        600: '#0F766E',
+                    }
+                }
+            }
+        }
+    }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+        @media print {
+            #sidebar, #mobile-header, #theme-toggle-btn, .no-print { display: none !important; }
+            main { margin-left: 0 !important; padding: 0 !important; }
+            section { break-inside: avoid; }
+        }
+
+        .report-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(90deg, rgba(204, 0, 0, 0.22) 0%, rgba(37, 99, 235, 0.08) 100%);
+            border-left: 3px solid #CC0000;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-txnred-500 selection:text-white transition-colors duration-200">
+
+    <!-- 顶部全局阅读进度条 -->
+    <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+        <div id="reading-progress" class="h-full bg-gradient-to-r from-txnred-500 via-accent-500 to-teal-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- 移动端顶部导航栏 -->
+    <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+        <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-txnred-500 to-txnred-600 flex items-center justify-center font-extrabold text-white shadow">
+                TI
+            </div>
+            <div>
+                <div class="text-[11px] text-txnred-400 font-semibold tracking-wider uppercase">NASDAQ: TXN · Equity Research</div>
+                <div class="text-sm font-bold leading-tight">德州仪器 TXN 深度研究报告</div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+                <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </button>
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 移动端抽屉菜单 -->
+    <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+        <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+        <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <span class="font-bold text-white text-base">TXN 研报目录导航</span>
+                    <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <ul class="mt-4 space-y-1.5 text-sm">
+                    <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+                    <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构与模拟芯片霸主地位</a></li>
+                    <li><a href="#sec-cap" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 12英寸晶圆厂战略与自由现金流拐点</a></li>
+                    <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 竞争格局与同行对标</a></li>
+                    <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+                    <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+                    <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+                </ul>
+            </div>
+            <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <p>全球半导体与模拟芯片研究组</p>
+                <p class="mt-1">数据基准：2026年11月 (FY26 / FY27E)</p>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 桌面端左侧固定侧边导航栏 -->
+    <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+        <div>
+            <!-- 品牌头部 -->
+            <div class="p-5 border-b border-slate-800/80">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-txnred-500 to-txnred-600 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-txnred-500/25">
+                        TXN
+                    </div>
+                    <div>
+                        <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-txnred-400 bg-txnred-500/15 px-2 py-0.5 rounded">NASDAQ: TXN</span>
+                        <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">德州仪器深度研报</h2>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                    全球模拟芯片与嵌入式处理器霸主 · 12英寸制造自主化战略引领者
+                </p>
+            </div>
+
+            <!-- 实时股票快照徽章 -->
+            <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">FY2025/26 营收恢复</span>
+                    <span class="font-mono font-bold text-white">$17.5B - $18.2B</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">模拟芯片市场份额</span>
+                    <span class="font-mono font-bold text-txnred-400">~19% (全球绝对龙头)</span>
+                </div>
+                <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+                    <span class="text-slate-400">12英寸产能占比</span>
+                    <span class="font-mono font-bold text-teal-400">向 60%+ 迈进 (长期成本优势)</span>
+                </div>
+            </div>
+
+            <!-- 导航目录 -->
+            <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+                <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+                <nav id="desktop-nav" class="space-y-1 text-[13px]">
+                    <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-txnred-400 mr-2">00</span>执行摘要与核心指标</span>
+                    </a>
+                    <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构与模拟芯片霸主地位</span>
+                    </a>
+                    <a href="#sec-cap" data-target="sec-cap" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>12英寸晶圆厂战略与自由现金流拐点</span>
+                    </a>
+                    <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>竞争格局与同行对标</span>
+                    </a>
+                    <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+                    </a>
+                    <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+                    </a>
+                    <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- 底部工具栏 -->
+        <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-slate-400">阅读模式切换</span>
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+                    <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-3.5 h-3.5 text-txnred-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="dark:hidden">深色护眼模式</span>
+                    <span class="hidden dark:inline">机构亮色模式</span>
+                </button>
+            </div>
+            <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-txnred-500 hover:bg-txnred-600 text-white text-xs font-extrabold transition shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                <span>打印 / 导出 PDF 研报</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+            <!-- =========================================================
+            00. 封面与执行摘要
+            ========================================================= -->
+            <section id="sec-exec" class="scroll-mt-20">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-txnred-500/15 text-txnred-600 dark:text-txnred-400 font-bold border border-txnred-500/30">评级：审慎买入 / 周期底部长线配置</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 工业汽车去库存尾声与产能自由现金流拐点</span>
+                    </div>
+                    <div class="flex items-center space-x-3 font-mono">
+                        <span>覆盖时间：2026年11月</span>
+                        <span>NASDAQ: TXN</span>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+                    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#F87171 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-txnred-500/20 border border-txnred-500/40 text-txnred-400 text-xs font-semibold mb-4">
+                            <span class="w-2 h-2 rounded-full bg-txnred-400 animate-pulse"></span>
+                            <span>CORE THESIS · 全球模拟芯片绝对霸主：穿越景气度周期的 12英寸晶圆厂制造自主化与长期自由现金流复苏</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+                            德州仪器 Texas Instruments (NASDAQ: TXN) 深度研究报告：模拟芯片之王、12英寸制造战略与工业汽车周期复苏
+                        </h1>
+                        <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+                            德州仪器（TI）作为全球模拟芯片（Analog）与嵌入式处理器（Embedded Processing）的绝对龙头，占据近 <strong>19%</strong> 的全球市场份额。经历过去两年的工业与汽车市场去库存筑底后，TI 正迎来需求温和复苏。
+                            公司坚定执行长达数年的 <strong class="text-txnred-400">12英寸晶圆厂资本开支（Capex）战略</strong>，尽管短期内压制了自由现金流（FCF），但随着资本开支高峰接近尾声、内部制造比例持续提升，未来每个芯片的制造成本将显着下降，为其构筑起长达数十年、任何竞争对手难以复制的结构性成本护城河。
+                        </p>
+
+                        <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">模拟芯片龙头地位</div>
+                                <div class="text-white font-semibold">全球市占率近 19%，产品品类超 8 万种，直接直销模式（Direct Sales）构建极高粘性</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">12英寸制造红利释放</div>
+                                <div class="text-txnred-400 font-semibold">12英寸晶圆芯片成本比传统 8英寸降低约 40%，长期毛利率弹性空间巨大</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">工业与汽车库存出清</div>
+                                <div class="text-teal-400 font-semibold">渠道库存恢复健康，汽车与工业需求在周期底部企稳回升</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4个核心 KPI 卡片 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>全球模拟芯片市占率</span>
+                            <span class="p-1.5 rounded-lg bg-txnred-500/15 text-txnred-600 dark:text-txnred-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~19%</span>
+                            <span class="text-xs font-bold text-txnred-600 dark:text-txnred-400 bg-txnred-500/15 px-2 py-0.5 rounded">全球绝对第一</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            凭借庞大的产品组合与直销体系，稳居全球模拟及嵌入式处理芯片龙头宝座。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>模拟芯片营收占比</span>
+                            <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~75% - 80%</span>
+                            <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">核心业务支柱</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            包含信号链（Signal Chain）与电源管理（Power Management），广泛服务于工业和汽车。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>长期毛利率目标</span>
+                            <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">60% – 65%</span>
+                            <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">12英寸降本驱动</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            随着 12英寸晶圆厂产能利用率爬坡，长期毛利率潜力随制造成本下降而显著释放。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>工业与汽车下游占比</span>
+                            <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">&gt;70%</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">长寿命高门槛</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            高度聚焦工业自动化、新能源车及车载电子，客户黏性极高，生命周期可达数十年。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            01. 业务架构与模拟芯片霸主地位
+            ========================================================= -->
+            <section id="sec-biz" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-txnred-600 dark:text-txnred-400">Section 01 · Business Architecture & Analog Leadership</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务架构与模拟芯片霸主地位：超 8 万种产品与直销模式</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">模拟芯片全球市占率 ~19% · 工业汽车占收超 70%</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 分部营收演进与模拟芯片核心地位</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">经历库存调整后稳健回升，模拟与嵌入式处理器双轮驱动</p>
+                            </div>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="bizArchitectureChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">三大核心业务支柱与渠道变革</h3>
+                            <ul class="space-y-4 text-sm">
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-txnred-500/15 text-txnred-600 dark:text-txnred-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">模拟芯片（Analog：电源管理与信号链）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            贡献公司近 80% 的营收。电源管理芯片（PMIC）与信号链产品处理现实世界的真实物理信号，拥有超 8 万种丰富规格。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">嵌入式处理器（Embedded Processing）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            包含微控制器（MCU）和数字信号处理器（DSP），广泛应用于汽车电子、工厂自动化和物联网设备。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">直销模式转型（Direct Sales & TI.com）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            取消传统大型分销商代理，转为线上 TI.com 直销与全球直销团队，虽然在转型期造成短暂阵痛，但长期大幅拉近了与终端客户的距离并提升了利润留存。
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-500 dark:text-slate-400">核心竞争优势</span>
+                            <span class="font-bold text-txnred-600 dark:text-txnred-400">海量产品库 · 长期生命周期 · 直销高黏性</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            02. 12英寸晶圆厂战略与自由现金流拐点
+            ========================================================= -->
+            <section id="sec-cap" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · 300mm Fab Strategy & FCF Inflection</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 12英寸晶圆厂战略与自由现金流拐点：长线制造壁垒的构筑</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">12英寸芯片成本降低 ~40% · 资本开支高峰逐步过去</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">1. 为什么坚决推行 12英寸（300mm）晶圆厂战略？</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                传统模拟芯片大多年使用老旧的 8英寸（200mm）晶圆生产。而德州仪器逆势大举投资建设大型 12英寸晶圆厂（如 RFAB1、RFAB2、LFAB、SM1 等）。<strong>12英寸晶圆的面积是 8英寸的 2.25 倍，单颗芯片制造成本可降低约 40%</strong>。在规模量产后，这将形成竞争对手望尘莫及的成本护城河。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">2. 短期阵痛：资本开支（Capex）高峰与自由现金流压制</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                过去几年中，大规模的厂房建设与设备购置使 TI 的资本开支占营收比例飙升至 20%–30% 高位，导致自由现金流（FCF）阶段性承压。然而，随着全球工厂基建陆续竣工投产，资本开支强度已开始触顶回落，为未来的自由现金流爆发奠定基础。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">3. 制造自主化与地缘供应链安全</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                通过在美国本土及全球建立高度可控的自有制造产能（Internal Manufacturing），TI 实现了对供应链、产品质量和交货周期的绝对掌控，有效规避了纯代工模式在行业景气波动时的产能挤兑风险。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">资本开支占比与自由现金流复苏轨迹</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Capex 见顶回落将驱动 FCF 在 FY27 迎来强劲反弹</p>
+                        <div class="relative h-72 w-full">
+                            <canvas id="capexChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            03. 竞争格局与同行对标
+            ========================================================= -->
+            <section id="sec-comp" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-txnred-600 dark:text-txnred-400">Section 03 · Competitive Landscape & Peer Benchmarking</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 竞争格局与同行对标：模拟芯片双雄与差异化竞争策略</h2>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                                    <th class="py-4 px-5 min-w-[180px]">竞争厂商与核心阵营</th>
+                                    <th class="py-4 px-4 min-w-[140px]">模拟芯片全球市占率</th>
+                                    <th class="py-4 px-4 min-w-[140px]">制造模式策略</th>
+                                    <th class="py-4 px-4 min-w-[120px]">工业与汽车聚焦度</th>
+                                    <th class="py-4 px-5 min-w-[240px]">核心竞争优势与战略评估</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm">
+                                <tr class="bg-txnred-500/5 dark:bg-txnred-500/10 font-medium">
+                                    <td class="py-4 px-5">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-0.5 rounded bg-txnred-500 text-white text-[10px] font-extrabold">行业龙头</span>
+                                            <span class="font-bold text-slate-900 dark:text-white">德州仪器 TXN</span>
+                                        </div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">电源管理 / 信号链 / 嵌入式</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold text-txnred-600 dark:text-txnred-400">~19% (全球第一)</td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">重资产 IDM + 12英寸厂自主制造</td>
+                                    <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">&gt;70% 高度聚焦</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>规模与成本之王：</strong>通过大规模自建 12英寸晶圆厂追求极致制造成本，直销体系构建强大客户黏性。
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/45 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">亚德诺半导体 ADI</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">高性能模拟 / 数据转换器 (ADC/DAC)</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">~12% - 13% (全球第二)</td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">混合 IDM + 灵活代工合作</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">工业与通信占比极高</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>高端应用专家：</strong>在高性能数据转换器、国防航天及高端工业仪器领域拥有极强的技术壁垒与定价权。
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/45 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">英飞凌 / 意法半导体 / NXP</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">汽车电子与功率半导体巨头</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-500 dark:text-slate-400">汽车功率与MCU领先</td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">IDM 模式 (车规级认证深厚)</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">高度集中于汽车与功率</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>车规功率强者：</strong>在车载功率器件（IGBT/SiC）与车身域控 MCU 上具备极强优势，与 TI 在部分汽车模拟领域形成竞争。
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            04. 财务健康与估值体系
+            ========================================================= -->
+            <section id="sec-fin" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与估值体系：穿越周期的稳健资产负债表与股东回报</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">连续多年稳定分红 · 优质资产负债表</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-txnred-600 dark:text-txnred-400 uppercase">Gross Margin</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">55% – 60%</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            受工厂初期折旧与产能利用率爬坡影响略有波动，长期随着 12英寸厂放量将向 60%+ 稳步回升。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Free Cash Flow</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">周期筑底回升</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            伴随 Capex 高峰逐步过去与工业汽车库存出清，自由现金流即将在 FY26/27 迎来显著的向上拐点。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Dividend Yield</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">稳定且高回馈</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            德州仪器历来以慷慨的股东现金回报著称，长期的股息增长记录为投资者提供坚实的防御安全垫。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase">Balance Sheet</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">投资级 A 级</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            资产负债结构稳健，流动性充裕，具备强大的抗风险能力与跨周期持续投资底气。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 营收恢复与自由现金流拐点预测</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">工业与汽车周期触底回升，Capex 下降驱动 FCF 开启新一轮扩张周期</p>
+                        </div>
+                    </div>
+                    <div class="relative h-72 w-full">
+                        <canvas id="valEvolutionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            05. 投资决策与风险配置
+            ========================================================= -->
+            <section id="sec-inv" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-txnred-600 dark:text-txnred-400">Section 05 · Investment Decision & Risk Framework</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与长线配置策略</h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-txnred-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-txnred-500/15 text-txnred-600 dark:text-txnred-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                                <span class="font-mono text-xs font-bold text-txnred-600 dark:text-txnred-400">概率：30%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">工业汽车需求强劲反弹</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>全球工业自动化与新能源车需求超预期爆发，渠道库存彻底出清并引发补库潮，12英寸厂产能迅速爬坡，毛利率与 FCF 强势大增。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-txnred-600 dark:text-txnred-400">
+                            潜在上行空间：+30% 至 +40%
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">基准情景 (Base Case)</span>
+                                <span class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">概率：50%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">温和复苏与自由现金流改善</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>工业和汽车需求呈现温和、渐进式复苏，Capex 峰值回落，自由现金流稳步改善，估值随业绩回暖合理修复。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-teal-600 dark:text-teal-400">
+                            潜在收益率：+15% 至 +25%（含稳定股息）
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">宏观持续低迷与产能过剩</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>宏观经济复苏乏力导致工业和汽车需求长期低迷，新建 12英寸厂面临阶段性产能闲置，折旧压力拖累毛利率。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+                            潜在下行回撤：-10% 至 -15%（高股息提供防守底线）
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+                    <h3 class="text-base font-bold text-txnred-400 mb-4 flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>机构级资产配置建议</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <div class="font-bold text-white mb-1">1. 周期底部左侧配置良机</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                作为模拟芯片全球王者，当前正处于工业汽车库存去化尾声与 FCF 拐点前夜，适合长线左侧布局。
+                            </p>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <div class="font-bold text-txnred-400 mb-1">2. 追踪 12英寸厂产能利用率</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                密切关注后续财报中 12英寸晶圆厂的产能爬坡进度与毛利率边际改善情况。
+                            </p>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <div class="font-bold text-teal-400 mb-1">3. 工业与汽车终端订单信号</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                监控全球汽车电子与工业自动化客户的库存天数与补库意愿，作为判断行业景气反转的领先指标。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            06. 季度跟踪 KPI 核查清单
+            ========================================================= -->
+            <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Tracking KPIs</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+                    </div>
+                    <div class="flex items-center space-x-2 no-print">
+                        <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-txnred-500/15 text-txnred-600 dark:text-txnred-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+                        <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        点击勾选机构季报追踪已验证达标的核心指标（状态自动本地保存），动态校准投资逻辑：
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#CC0000] focus:ring-txnred-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">1. 工业与汽车终端市场订单环比回暖</span>
+                                    <span class="text-[11px] font-mono text-txnred-600 dark:text-txnred-400 font-semibold shrink-0">需求复苏信号</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    跟踪工业和汽车两大核心终端市场的营收占比及客户订单取消率是否持续下降。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#CC0000] focus:ring-txnred-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">2. 资本开支（Capex）占营收比例见顶回落</span>
+                                    <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">FCF 拐点指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    核查 Capex 峰值是否过去，验证自由现金流由负转正或加速增长的趋势。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#CC0000] focus:ring-txnred-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">3. 毛利率（Gross Margin）触底并向 60% 稳步回升</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">成本结构改善</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    监控 12英寸晶圆厂产能利用率提升对毛利率带来的边际改善效应。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#CC0000] focus:ring-txnred-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">4. 渠道与客户库存天数恢复至正常健康水平</span>
+                                    <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">库存健康度</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    跟踪内部及渠道库存（Days of Inventory）是否回到 90-110 天的歷史健康区间。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#CC0000] focus:ring-txnred-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">5. 模拟芯片全球市占率维持或进一步扩大</span>
+                                    <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">龙头地位指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    评估公司在行业周期波动中对竞争对手的份额挤压或稳固能力。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#CC0000] focus:ring-txnred-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">6. 股东现金回报与股息连增记录延续</span>
+                                    <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">股东回报指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    监控每股分红派发及股份回购执行力度，确保长期股东价值兑现。
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            免责声明页脚
+            ========================================================= -->
+            <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+                    <span>德州仪器 Texas Instruments (NASDAQ: TXN) 深度商业与投资价值分析报告 · 机构研究版</span>
+                    <span>数据基准：FY2025/26 财报及 2026 年 11 月市场一致预期</span>
+                </div>
+                <p class="leading-relaxed">
+                    <strong>免责声明：</strong>本深度研究报告基于德州仪器公开财务报告、最新季度财报及市场公开信息整理生成，旨在提供结构化的产业分析与估值研究框架。报告中涉及的营收预期、资本开支、毛利率及情景模拟均为基于公开数据的客观分析，不构成任何具体的证券买卖建议或投资承诺。投资者在做出投资决策前应进行独立尽职调查。
+                </p>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- 交互与图表脚本 -->
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            updateChartsTheme();
+        }
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+            let currentId = 'sec-exec';
+            sections.forEach(sec => {
+                const top = sec.offsetTop - 160;
+                if (scrollTop >= top) {
+                    currentId = sec.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const numSpan = link.querySelector('span span');
+                if (numSpan) {
+                    numSpan.classList.remove('text-txnred-400');
+                    numSpan.classList.add('text-slate-500');
+                }
+                if (link.dataset.target === currentId) {
+                    link.classList.add('active');
+                    if (numSpan) {
+                        numSpan.classList.remove('text-slate-500');
+                        numSpan.classList.add('text-txnred-400');
+                    }
+                }
+            });
+        });
+
+        const KPI_STORAGE_KEY = 'txn_research_kpi_state_v1';
+
+        function loadKpiChecklist() {
+            try {
+                const saved = localStorage.getItem(KPI_STORAGE_KEY);
+                if (saved) {
+                    const stateMap = JSON.parse(saved);
+                    document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+                        if (typeof stateMap[cb.id] === 'boolean') {
+                            cb.checked = stateMap[cb.id];
+                        }
+                    });
+                }
+            } catch (e) {}
+            updateKpiChecklist();
+        }
+
+        function updateKpiChecklist() {
+            const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+            const total = checkboxes.length;
+            let checkedCount = 0;
+            const stateMap = {};
+
+            checkboxes.forEach(cb => {
+                stateMap[cb.id] = cb.checked;
+                if (cb.checked) checkedCount++;
+            });
+
+            const pct = Math.round((checkedCount / total) * 100);
+            document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+            try {
+                localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+            } catch (e) {}
+        }
+
+        function resetKpiChecklist() {
+            document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            updateKpiChecklist();
+        }
+
+        let bizChartInstance = null;
+        let capexChartInstance = null;
+        let valEvolutionChartInstance = null;
+
+        function getChartColors() {
+            const isDark = document.documentElement.classList.contains('dark');
+            return {
+                text: isDark ? '#CBD5E1' : '#475569',
+                grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)'
+            };
+        }
+
+        function initBizChart() {
+            const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+            const colors = getChartColors();
+
+            if (bizChartInstance) bizChartInstance.destroy();
+            bizChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+                    datasets: [
+                        {
+                            label: '模拟芯片 (Analog)',
+                            data: [14.1, 13.2, 13.8, 14.9, 16.5],
+                            backgroundColor: '#CC0000',
+                            borderRadius: 4,
+                        },
+                        {
+                            label: '嵌入式处理器 (Embedded Processing)',
+                            data: [3.4, 2.8, 2.9, 3.2, 3.6],
+                            backgroundColor: '#2563EB',
+                            borderRadius: 4,
+                        },
+                        {
+                            label: '其他 (Other)',
+                            data: [0.8, 0.5, 0.5, 0.5, 0.6],
+                            backgroundColor: '#0D9488',
+                            borderRadius: 4,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                        },
+                        y: {
+                            stacked: true,
+                            max: 22,
+                            grid: { color: colors.grid },
+                            ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initCapexChart() {
+            const ctx = document.getElementById('capexChart').getContext('2d');
+            const colors = getChartColors();
+
+            if (capexChartInstance) capexChartInstance.destroy();
+            capexChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: '资本开支 Capex ($B)',
+                            data: [5.1, 4.8, 4.2, 3.8, 3.2],
+                            backgroundColor: 'rgba(204, 0, 0, 0.85)',
+                            borderRadius: 5,
+                            barThickness: 24,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'line',
+                            label: '自由现金流 FCF ($B)',
+                            data: [1.3, 2.1, 3.5, 4.8, 6.2],
+                            borderColor: '#0D9488',
+                            backgroundColor: '#0D9488',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            tension: 0.25,
+                            yAxisID: 'y'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            max: 8,
+                            grid: { color: colors.grid },
+                            ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initValEvolutionChart() {
+            const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+            const colors = getChartColors();
+
+            if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+            valEvolutionChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: '全年总营收 ($B)',
+                            data: [18.3, 16.5, 17.5, 18.6, 20.7],
+                            backgroundColor: 'rgba(204, 0, 0, 0.85)',
+                            borderRadius: 5,
+                            barThickness: 24,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'bar',
+                            label: '全年净利润 ($B)',
+                            data: [6.0, 4.9, 5.2, 5.8, 6.9],
+                            backgroundColor: 'rgba(37, 99, 235, 0.85)',
+                            borderRadius: 5,
+                            barThickness: 24,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'line',
+                            label: '毛利率 Gross Margin (%)',
+                            data: [62.5, 59.8, 58.5, 60.2, 62.0],
+                            borderColor: '#0D9488',
+                            backgroundColor: '#0D9488',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            tension: 0.25,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            max: 25,
+                            grid: { color: colors.grid },
+                            ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            min: 45,
+                            max: 75,
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#0D9488', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartsTheme() {
+            initBizChart();
+            initCapexChart();
+            initValEvolutionChart();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadKpiChecklist();
+            initBizChart();
+            initCapexChart();
+            initValEvolutionChart();
+        });
+    </script>
+</body>
+</html>

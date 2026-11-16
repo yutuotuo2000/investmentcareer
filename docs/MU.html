@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>美光科技 Micron Technology (NASDAQ: MU) 深度研究报告：从周期性内存制造到 AI 时代 HBM 与高带宽存储核心基石</title>
+ <!-- Tailwind CSS -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ <!-- Chart.js -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <!-- Google Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+ tailwind.config = {
+ darkMode: 'class',
+ theme: {
+ extend: {
+ fontFamily: {
+ sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+ mono: ['JetBrains Mono', 'monospace'],
+ },
+ colors: {
+ navy: {
+ 950: '#070B14',
+ 900: '#0F172A',
+ 800: '#1E293B',
+ 700: '#334155',
+ },
+ mucyan: {
+ 400: '#38BDF8',
+ 500: '#0284C7',
+ 600: '#0369A1',
+ },
+ accent: {
+ 500: '#6366F1',
+ 600: '#4F46E5',
+ },
+ teal: {
+ 500: '#06B6D4',
+ 600: '#0891B2',
+ }
+ }
+ }
+ }
+ }
+ </script>
+
+ <style>
+ ::-webkit-scrollbar { width: 6px; height: 6px; }
+ ::-webkit-scrollbar-track { background: transparent; }
+ ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 3px; }
+ .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+ @media print {
+ #sidebar, #mobile-header, #theme-toggle-btn, .no-print { display: none !important; }
+ main { margin-left: 0 !important; padding: 0 !important; }
+ section { break-inside: avoid; }
+ }
+
+ .report-card { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+ .report-card:hover { transform: translateY(-2px); }
+
+ .nav-link.active {
+ background: linear-gradient(90deg, rgba(2, 132, 199, 0.22) 0%, rgba(6, 182, 212, 0.06) 100%);
+ border-left: 3px solid #0284C7;
+ color: #FFFFFF;
+ font-weight: 600;
+ }
+ </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-mucyan-500 selection:text-white transition-colors duration-200">
+
+ <!-- 阅读进度条 -->
+ <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+ <div id="reading-progress" class="h-full bg-gradient-to-r from-mucyan-500 via-teal-400 to-indigo-500 w-0 transition-all duration-150"></div>
+ </div>
+
+ <!-- 移动端顶部导航 -->
+ <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+ <div class="flex items-center space-x-2.5">
+ <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-mucyan-500 to-mucyan-600 flex items-center justify-center font-extrabold text-navy-950 shadow">
+ MU
+ </div>
+ <div>
+ <div class="text-[11px] text-mucyan-400 font-semibold tracking-wider uppercase">NASDAQ: MU · Equity Research</div>
+ <div class="text-sm font-bold leading-tight">美光科技 Micron 深度研究报告</div>
+ </div>
+ </div>
+ <div class="flex items-center space-x-2">
+ <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300">
+ <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ </button>
+ <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+ </button>
+ </div>
+ </header>
+
+ <!-- 移动端抽屉菜单 -->
+ <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+ <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+ <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+ <div>
+ <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+ <span class="font-bold text-white text-base">MU 研报目录导航</span>
+ <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ </button>
+ </div>
+ <ul class="mt-4 space-y-1.5 text-sm">
+ <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+ <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+ <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+ <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+ <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值重置</a></li>
+ <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+ <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+ </ul>
+ </div>
+ <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+ <p>全球半导体与存储研究组</p>
+ <p class="mt-1">数据基准：2026年11月 (FY26 / FY27E)</p>
+ </div>
+ </nav>
+ </div>
+
+ <!-- 桌面端左侧固定侧边导航 -->
+ <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+ <div>
+ <div class="p-5 border-b border-slate-800/80">
+ <div class="flex items-center space-x-3">
+ <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-mucyan-500 to-mucyan-600 flex items-center justify-center text-navy-950 font-extrabold text-base shadow-lg shadow-mucyan-500/25">
+ MU
+ </div>
+ <div>
+ <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-mucyan-400 bg-mucyan-500/15 px-2 py-0.5 rounded">NASDAQ: MU</span>
+ <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">美光科技深度研报</h2>
+ </div>
+ </div>
+ <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+ HBM 与高带宽存储霸主 · AI 服务器端到端存储核心基础设施
+ </p>
+ </div>
+
+ <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">FY26 全年营收</span>
+ <span class="font-mono font-bold text-white">$133.2B <span class="text-mucyan-400">(+256%)</span></span>
+ </div>
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">FQ1'27 营收指引</span>
+ <span class="font-mono font-bold text-teal-400">~$61.5B <span class="text-slate-400">(±$1.5B)</span></span>
+ </div>
+ <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+ <span class="text-slate-400">毛利率 (Non-GAAP)</span>
+ <span class="font-mono font-bold text-mucyan-400">~86.8% - 87.0%</span>
+ </div>
+ </div>
+
+ <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+ <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+ <nav id="desktop-nav" class="space-y-1 text-[13px]">
+ <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-mucyan-400 mr-2">00</span>执行摘要与核心指标</span>
+ </a>
+ <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+ </a>
+ <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+ </a>
+ <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+ </a>
+ <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+ </a>
+ <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+ </a>
+ <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+ </a>
+ </nav>
+ </div>
+ </div>
+
+ <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+ <div class="flex items-center justify-between">
+ <span class="text-xs text-slate-400">阅读模式切换</span>
+ <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+ <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ <svg class="w-3.5 h-3.5 text-mucyan-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <span class="dark:hidden">深色护眼模式</span>
+ <span class="hidden dark:inline">机构亮色模式</span>
+ </button>
+ </div>
+ <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-mucyan-500 hover:bg-mucyan-600 text-navy-950 text-xs font-extrabold transition shadow-sm">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+ <span>打印 / 导出 PDF 研报</span>
+ </button>
+ </div>
+ </aside>
+
+ <!-- 主内容区 -->
+ <main class="lg:ml-[280px] min-h-screen">
+ <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+ <!-- 00. Hero 封面区 -->
+ <section id="sec-exec" class="scroll-mt-20">
+ <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+ <div class="flex flex-wrap items-center gap-2">
+ <span class="px-2.5 py-1 rounded-md bg-mucyan-500/15 text-mucyan-600 dark:text-mucyan-400 font-bold border border-mucyan-500/30">评级：强烈买入 / 核心存储标的</span>
+ <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：HBM4 & AI 服务器超级内存红利</span>
+ </div>
+ <div class="flex items-center space-x-3 font-mono">
+ <span>覆盖时间：2026年11月</span>
+ <span>NASDAQ: MU</span>
+ </div>
+ </div>
+
+ <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+ <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#38BDF8 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+ <div class="relative z-10">
+ <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-mucyan-500/20 border border-mucyan-500/40 text-mucyan-400 text-xs font-semibold mb-4">
+ <span class="w-2 h-2 rounded-full bg-mucyan-400 animate-pulse"></span>
+ <span>CORE THESIS · AI 驱动 HBM 与数据中心存储供不应求，FY26 净利润狂飙至 $85B 构筑超强现金牛</span>
+ </div>
+ <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+ 美光科技 Micron Technology (NASDAQ: MU) 深度研究报告：从周期性内存制造到 AI 时代 HBM 与高带宽存储核心基石
+ </h1>
+ <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+ 美光科技已彻底打破传统存储周期股宿命，跨越成为<strong class="text-white">人工智能大模型与高带宽存储（HBM/DDR5/企业级 SSD）绝对核心基石</strong>。FY2026 全年营收飙升至 <strong class="text-mucyan-400">$133.2B (+256% YoY)</strong>，GAAP 净利润高达 <strong class="text-white">$85.0B</strong>，全年经营现金流突破 <strong class="text-teal-400">$89.7B</strong>。
+ 随着 2026 年底 HBM4 进度超预期、FQ1'27 营收指引强劲触及 <strong class="text-mucyan-400">~$61.5B</strong> 且毛利率稳守 <strong class="text-emerald-400">~87%</strong>，公司估值在爆发式盈利下迎来强力价值重估。
+ </p>
+
+ <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">HBM 与数据中心 SSD 爆发</div>
+ <div class="text-white font-semibold">Q4 数据中心 SSD 单季营收突破 $10B，HBM3e/HBM4 订单排满至 2027 年</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">盈利与现金流极度恐怖</div>
+ <div class="text-mucyan-400 font-semibold">FY26 自由现金流高达 $62.3B，净现金与资产负债表极度健全</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">远期指引超预期</div>
+ <div class="text-teal-400 font-semibold">FQ1'27 营收指引 $61.5B 远超市场一致预期，毛利率 Non-GAAP 达 86.25%</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- 4个核心 KPI 卡片 -->
+ <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>FY2026 全年总营收</span>
+ <span class="p-1.5 rounded-lg bg-mucyan-500/15 text-mucyan-600 dark:text-mucyan-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$133.2B</span>
+ <span class="text-xs font-bold text-mucyan-600 dark:text-mucyan-400 bg-mucyan-500/15 px-2 py-0.5 rounded">+256% YoY</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ AI 服务器对高带宽内存（HBM）与大容量企业级 SSD 的强劲刚需驱动业绩创下历史纪录。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>FY2026 净利润 (GAAP)</span>
+ <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$85.0B</span>
+ <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">EPS $74.33</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 全年经营现金流高达 $89.7B，Non-GAAP 毛利率飙升至 86.8% 历史极高水平。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>FQ1'27 季度营收指引</span>
+ <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$61.5B</span>
+ <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">±$1.5B</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 环比持续加速增长，Non-GAAP 毛利率指引 ~86.25%，EPS 指引 $38.15。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>资本开支与自由现金流</span>
+ <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$62.3B</span>
+ <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded">全年调整后 FCF</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 全年资本开支 $27.4B 聚焦 HBM 与先进晶圆产能，自由现金流充沛，资产负债表极度稳健。
+ </p>
+ </div>
+ </div>
+ </section>
+
+ <!-- 一、业务与收入架构 -->
+ <section id="sec-biz" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-mucyan-600 dark:text-mucyan-400">Section 01 · Business & Revenue Architecture</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：从标准内存周期股到 AI 高带宽存储新巨头</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">FY2026 总营收 $133.2B · DRAM 占比 ~76%</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+ <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2023–FY2027E 营收与 DRAM / NAND 结构演进</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">DRAM 收入突破 $100B，云内存与企业级 SSD 成为核心增长引擎</p>
+ </div>
+ <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+ <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-mucyan-600 dark:text-mucyan-400 shadow-sm transition">视图A：年度营收演进</button>
+ <button onclick="switchBizChart('product_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：产品与业务部门拆解</button>
+ </div>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="bizArchitectureChart"></canvas>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">存储架构三大结构性转变</h3>
+ <ul class="space-y-4 text-sm">
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-mucyan-500/15 text-mucyan-600 dark:text-mucyan-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">DRAM 占比过半且 HBM 供不应求</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ FY26 DRAM 营收达 <strong>$100.7B（占比 76%）</strong>，HBM3e 及超前量产的 HBM4 产能已被 AI 芯片巨头全部锁定，定价权显著增强。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">数据中心 SSD 单季突破 $10B</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 随着 AI 集群对海量非结构化训练数据吞吐量的极端要求，企业级高密度 SSD（如 6600 ION）在 Q4 贡献近 $10B 营收，占 NAND 总收入超三分之二。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">云内存与移动终端利润率双高</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 云内存业务（CMBU）与移动客户端（MCBU）毛利率均触及 <strong>~90%</strong> 极端高位，产品组合结构发生质的飞跃。
+ </p>
+ </div>
+ </li>
+ </ul>
+ </div>
+ <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+ <span class="text-slate-500 dark:text-slate-400">核心代际驱动</span>
+ <span class="font-bold text-mucyan-600 dark:text-mucyan-400">HBM4 量产推进与 1-gamma 节点</span>
+ </div>
+ </div>
+ </div>
+
+ <!-- 五大业务分部矩阵 -->
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+ <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-mucyan-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <div class="flex items-center space-x-2">
+ <span class="px-2.5 py-1 rounded-md bg-mucyan-500/15 text-mucyan-600 dark:text-mucyan-400 text-xs font-bold">核心支柱 · DRAM 占 76%</span>
+ <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">营收 $100.7B</span>
+ </div>
+ <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">同比增长 +252% YoY</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 动态随机存取内存（DRAM：包含 HBM3e / HBM4 / DDR5）</h3>
+ <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+ <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+ <div class="font-bold text-slate-900 dark:text-white mb-1">HBM 与服务器高带宽内存</div>
+ <p class="leading-relaxed">
+ HBM 增速显著快于传统 DRAM，良率与产品性能迅速成熟，并与各大顶级 AI 处理器厂商深度绑定，订单能见度延伸至 2027 年。
+ </p>
+ </div>
+ <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+ <div class="font-bold text-slate-900 dark:text-white mb-1">DDR5 高速 RDIMM</div>
+ <p class="leading-relaxed">
+ 推出行业领先的 512GB 超高密度 DDR5 模块（速度达 9,200 MT/s），完美匹配下一代服务器对单路内存容量的严苛需求。
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-accent-500/10 text-accent-600 dark:text-accent-400 text-xs font-bold">NAND 占比 24%</span>
+ <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$31.8B</span>
+ </div>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">2. NAND 闪存与企业级 SSD</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 营收同比增长 +274%。数据中心 SSD 单季飙升至近 $10B，占 NAND 总收入超三分之二，稳居全球企业级存储领头羊。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+ 数据中心 SSD 单季破 $10B · 高密度 NAND
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">CMBU 云内存业务</span>
+ <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">占比 ~30%</span>
+ </div>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 云内存业务部门 (CMBU)</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 专为 hyperscale 云服务商打造的高性能内存与存储解决方案，Q4 贡献创纪录的巨额营收，部门毛利率高达 <strong>90%</strong>。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+ CMBU 部门毛利率高达 90%
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">MCBU 移动与客户端</span>
+ <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">占比 ~24%</span>
+ </div>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 移动与客户端业务 (MCBU)</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 向旗舰智能手机出货 6 通道 1-gamma LPDDR5X，并获得各大顶尖手机厂商 AI 端侧设计定点，毛利率同步维持在 90% 极高位。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+ 旗舰手机端侧 AI LPDDR5X
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-400 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-slate-500/10 text-slate-600 dark:text-slate-300 text-xs font-bold">汽车与嵌入式</span>
+ <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">稳健增长</span>
+ </div>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">5. 汽车与嵌入式业务 (ABU)</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 车规级内存与工业物联网嵌入式存储解决方案持续放量，为美光提供高粘性、高毛利的多元化多元分散现金流支撑。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+ 车规级车联网与工业 IoT
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- 二、行业地位与四重核心护城河 -->
+ <section id="sec-moat" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：先进制程与 HBM 技术筑起高墙</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球三大存储巨头之一，HBM 核心供应商)</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-mucyan-500/15 text-mucyan-600 dark:text-mucyan-400 flex items-center justify-center font-bold text-sm">01</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">HBM3e / HBM4 技术提前量产先发优势</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 美光成功在 AI 浪潮中实现 HBM3e 的大规模批量出货，并积极推进 HBM4/HBM4E 的先进封装与 1-gamma 节点量产，成功抢占 GPU 巨头算力集群的存储配额。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">02</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">1-gamma 极紫外 (EUV) 先进制造节点</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 率先在业界大规模部署 1-gamma 节点与 EUV 光刻技术，使得单位晶圆的位密度（Bit Density）与能效比大幅领先传统制程，从物理层降低制造成本。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">三大寡头垄断的产能与定价纪律</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 全球 DRAM 市场长期呈现美光、三星、SK海力士三强鼎立格局。美光通过严谨的资本开支纪律和高价值产品结构转型，彻底告别过去恶性的价格战周期。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">企业级高密度 SSD 生态深度绑定</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 凭借 6600 ION 等划时代企业级 SSD 产品连续多年摘得市场份额桂冠，在超大规模数据中心非结构化存储中构筑了极高的客户粘性与转换成本。
+ </p>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">存储半导体五维护城河量化雷达图</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">美光 (MU) vs 三星/海力士双雄 vs 传统利基存储厂商（满分 10 分）</p>
+ <div class="relative h-72 w-full">
+ <canvas id="moatRadarChart"></canvas>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- 三、同行竞争格局横向对比 -->
+ <section id="sec-comp" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-mucyan-600 dark:text-mucyan-400">Section 03 · Global Competitive Landscape</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：HBM 三强争霸，美光盈利弹性领先</h2>
+ </div>
+ <div class="flex flex-wrap gap-1.5 text-xs no-print">
+ <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-mucyan-500 text-navy-950 shadow-sm transition">全部阵营</button>
+ <button onclick="filterCompetitors('memory')" data-filter="memory" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">全球存储巨头对手</button>
+ <button onclick="filterCompetitors('logic')" data-filter="logic" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">计算与代工核心生态</button>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+ <div class="overflow-x-auto">
+ <table class="w-full text-left border-collapse">
+ <thead>
+ <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+ <th class="py-4 px-5 min-w-[180px]">竞争厂商与核心代表</th>
+ <th class="py-4 px-4 min-w-[130px]">HBM 技术进度</th>
+ <th class="py-4 px-4 min-w-[140px]">制程与工艺节点</th>
+ <th class="py-4 px-4 min-w-[135px]">AI 存储市场地位</th>
+ <th class="py-4 px-4 min-w-[115px]">毛利率水平</th>
+ <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞合关系评估</th>
+ </tr>
+ </thead>
+ <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+ <tr data-category="core" class="bg-mucyan-500/5 dark:bg-mucyan-500/10 font-medium">
+ <td class="py-4 px-5">
+ <div class="flex items-center space-x-2">
+ <span class="px-2 py-0.5 rounded bg-mucyan-500 text-navy-950 text-[10px] font-extrabold">核心标的</span>
+ <span class="font-bold text-slate-900 dark:text-white">美光科技 (MU)</span>
+ </div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">HBM3e / HBM4 / 1-gamma</div>
+ </td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">HBM3e 批量出货 · HBM4 领先</span>
+ </td>
+ <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">1-gamma EUV 量产部署</td>
+ <td class="py-4 px-4 font-bold text-mucyan-600 dark:text-mucyan-400">AI 服务器高带宽首选</td>
+ <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~86.8% (Non-GAAP)</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>极致盈利爆发：</strong>凭借 HBM 与企业级 SSD 的强劲定价权，毛利率位居传统存储厂之首，财务弹性极大。
+ </td>
+ </tr>
+
+ <tr data-category="memory" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">SK 海力士 (SK Hynix)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">HBM3e / HBM4 领头羊</div>
+ </td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-mucyan-500/15 text-mucyan-700 dark:text-mucyan-400">HBM 市场份额第一</span>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">先进 MR-MUF 封装领先</td>
+ <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">NVIDIA 主要 HBM 供应商</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~65% - 72%</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>先发优势明显：</strong>最早绑定英伟达 Hopper/Blackwell 架构，但面临美光在产能和制程上的强力追赶。
+ </td>
+ </tr>
+
+ <tr data-category="memory" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">三星电子 (Samsung Electronics)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">DRAM / NAND 双料全球第一</div>
+ </td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">HBM3e 认证爬坡追赶中</span>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">1a / 1b / 1c 制程全面布局</td>
+ <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">综合存储体量全球最大</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~38% - 45%</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>体量庞大但 HBM 验证滞后：</strong>尽管总体市占率最高，但在 AI 专用 HBM 供应链的导入进度上曾阶段性落后于美光与海力士。
+ </td>
+ </tr>
+
+ <tr data-category="logic" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">台积电 (TSMC) / 算力生态伙伴</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">CoWoS 封装与逻辑晶圆协同</div>
+ </td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-700 dark:text-indigo-400">底层封装协同 (CoWoS-L)</span>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">N3 / N2 逻辑制程垄断</td>
+ <td class="py-4 px-4 font-semibold text-indigo-600 dark:text-indigo-400">AI 芯片底层代工霸主</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~53% - 56%</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>紧密同盟：</strong>美光的 HBM 必须与台积电的先进封装（CoWoS）及英伟达/AMD 的计算 GPU 实现完美的物理协同。
+ </td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base">全球存储半导体主要厂商营业利润率（Operating Margin）对比</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">美光在 AI 存储浪潮下运营利润率飙升至行业前列，展现出极强的经营杠杆红利</p>
+ </div>
+ <span class="text-xs font-semibold text-mucyan-600 dark:text-mucyan-400 bg-mucyan-500/15 px-2.5 py-1 rounded">高价值 HBM 组合推高盈利天花板</span>
+ </div>
+ <div class="relative h-60 w-full">
+ <canvas id="compMarginChart"></canvas>
+ </div>
+ </div>
+ </section>
+
+ <!-- 四、财务健康度与估值体系解析 -->
+ <section id="sec-fin" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与估值体系：千亿营收与百亿现金流重塑估值逻辑</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">FY26 营收 $133.2B · 净现金状态极其充裕</span>
+ </div>
+
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-mucyan-600 dark:text-mucyan-400 uppercase">Gross Margin</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">86.8% – 87.0%</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ Q4 GAAP 毛利率达到 86.8%，Non-GAAP 稳居 87.0%，创下公司历史最高盈利纪录。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">GAAP Net Income</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$85.0B</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 全年 GAAP 净利润高达 $84.97B（稀释 EPS $74.33），盈利规模较上年实现爆发式跃升。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Operating Cash Flow</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$89.7B</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 全年经营现金流高达 $89.68B，占总营收近 67%，自由现金流（调整后）达 $62.31B。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase">Capex Investment</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$27.4B / 年</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 全年净资本开支 $27.37B，精准投入 HBM 扩产与 1-gamma 晶圆厂建设，为未来成长奠定基础。
+ </p>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2023–FY2027E 营收与净利润爆发趋势演进图</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">从周期低谷到 AI 浪潮下的超级盈利收割期，美光财务基本面发生结构性蜕变</p>
+ </div>
+ <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">FQ1'27 指引营收 ~$61.5B 续创历史新高</span>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="valEvolutionChart"></canvas>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">HBM 供不应求</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>HBM 产能排期锁定：</strong>美光 2027 日历年度 HBM 产能已基本售罄，客户需求远超供给。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>极高的现金回报能力：</strong>全年 623 亿美元自由现金流使公司资产负债表从净债务转为充沛净现金状态。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>服务器存储价值量倍增：</strong>AI 伺服器对 DRAM 的容量消耗是传统服务器的数倍，推动 ASP 持续上行。</span></li>
+ </ul>
+ </div>
+
+ <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">周期波动隐忧</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>周期性固有担忧：</strong>历史经验表明存储芯片具备强周期性，市场对高点盈利持续性存有戒心。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>大规模 CapEx 带来的折旧压力：</strong>270 亿美元以上的年度资本开支未来将带来庞大的厂房及设备折旧。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>同行产能释放竞争：</strong>随着三星和海力士 HBM 产能陆续落地，2028 年后市场可能面临局部供需再平衡。</span></li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <!-- 五、投资决策与风险配置框架 -->
+ <section id="sec-inv" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-mucyan-600 dark:text-mucyan-400">Section 05 · Investment Decision & Risk Allocation</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与存储周期风控</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：AI 硬件存储高弹性核心标的</span>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-mucyan-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-mucyan-500/15 text-mucyan-600 dark:text-mucyan-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+ <span class="font-mono text-xs font-bold text-mucyan-600 dark:text-mucyan-400">概率：35%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">HBM4 超预期放量 & 毛利稳固</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>AI 大模型持续向推理与多模态深化，HBM 价格坚挺且 HBM4 溢价超预期，Non-GAAP 毛利率全年维持 85% 以上，自由现金流突破 750 亿美元。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-mucyan-600 dark:text-mucyan-400">
+ 潜在上行空间：+35% 至 +50%
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-accent-500/15 text-accent-600 dark:text-accent-400 text-xs font-bold">基准情景 (Base Case)</span>
+ <span class="font-mono text-xs font-bold text-accent-600 dark:text-accent-400">概率：50%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">业绩兑现 FY27 强劲共识</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>FQ1'27 $61.5B 指引顺利达成，服务器存储需求稳健增长，HBM 订单如期交付，毛利率维持在 82%–85% 区间，估值与盈利同步匹配。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-accent-600 dark:text-accent-400">
+ 潜在上行空间：+15% 至 +25%
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+ <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：15%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">下游 CapEx 疲软 & 价格松动</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>云厂商 AI 投资回报率不及预期削减资本开支，传统消费电子复苏停滞，存储产品价格出现阶段性波动回落。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+ 潜在下行回撤：-15% 至 -25%
+ </div>
+ </div>
+ </div>
+
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构风控策略</h3>
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 存储行业周期性波动风险</span>
+ <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">宏观经济周期波动引发的存储需求阶段性过剩</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 存储芯片历史上存在明显的产能周期，若未来整体供给增速超过需求增速，可能导致 ASP（平均售价）面临周期性回调压力。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · HBM 产能与良率竞争风险</span>
+ <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">竞争对手产能释放与 HBM 良率爬坡竞争</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 三星与SK海力士同样在积极扩充 HBM 产能，若后续产能集中释放过快，可能对高毛利带来一定边际挤压。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 巨额资本开支折旧风险</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">每年超过 270 亿美元 CapEx 带来的固定资产折旧</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 大规模晶圆厂与先进封装产线投资将导致未来折旧费用显著上升，对运营效率与成本管控提出极高要求。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 地缘政治与供应链合规风险</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">全球半导体供应链地缘政治与贸易合规审查</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 美光在全球多地拥有制造与封装基地，跨国贸易政策变动或半导体出口管制可能对特定区域出货造成合规扰动。
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+ <h3 class="text-base font-bold text-mucyan-400 mb-4 flex items-center space-x-2">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ <span>机构级投资组合仓位配置建议</span>
+ </h3>
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-white mb-1">1. 高弹性 AI 存储超配标的</div>
+ <p class="text-slate-300 leading-relaxed">
+ 作为 AI 硬件中不可或缺的带宽与存储天花板，建议在科技成长组合中给予超配地位，分享 HBM 渗透率陡峭上升红利。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-mucyan-400 mb-1">2. 动态观察毛利率及指引</div>
+ <p class="text-slate-300 leading-relaxed">
+ 密切追踪每季 Non-GAAP 毛利率是否维持在 85% 左右高位，以及云内存与企业级 SSD 的订单交付节奏。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-teal-400 mb-1">3. 产业链协同对冲配置</div>
+ <p class="text-slate-300 leading-relaxed">
+ 可与上游算力芯片（如英伟达）及代工巨头（台积电）形成组合配置，分散单一子板块波动风险。
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- 六、季度基本面跟踪 KPI 交互式核查清单 -->
+ <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+ </div>
+ <div class="flex items-center space-x-2 no-print">
+ <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-mucyan-500/15 text-mucyan-600 dark:text-mucyan-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+ <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+ 点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），动态校准美光科技的成长周期与基本面健康度：
+ </p>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-mucyan-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">1. HBM3e 份额维持与 HBM4 进度超预期</span>
+ <span class="text-[11px] font-mono text-mucyan-600 dark:text-mucyan-400 font-semibold shrink-0">核心代际锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 跟踪美光在各大 AI 算力芯片厂商新一代 GPU 供应链中的 HBM 份额与 HBM4 样品送样及量产交付进度。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-mucyan-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">2. 数据中心企业级 SSD 单季营收规模超 $10B</span>
+ <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">NAND 增长引擎</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 监测高密度企业级 SSD（如 6600 ION）在云厂商数据中心的大规模部署渗透率与单季营收贡献是否稳中有升。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-mucyan-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">3. Non-GAAP 综合毛利率稳守 85%–87% 区间</span>
+ <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">定价权晴雨表</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 核查高价值 HBM 与先进 DDR5 占比提升背景下，公司维持超高毛利率与抵御成本波动的定价权。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-mucyan-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">4. 1-gamma 节点 EUV 产能爬坡与良率良性</span>
+ <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">制程成本优势</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 跟踪美光最新 1-gamma 制程转换进度及单位晶圆成本持续优化的季度财报表述。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-mucyan-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">5. 资本开支（Capex）节奏与自由现金流生成</span>
+ <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">财务安全垫</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 评估每年 270 亿+ 美元净资本开支与自由现金流的动态平衡，确保资产负债表维持净现金状况。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-mucyan-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">6. 手机终端 AI (LPDDR5X) 与汽车嵌入式需求</span>
+ <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">多元分散引擎</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 监测移动客户端（MCBU）与汽车嵌入式（ABU）业务在 AI 手机换机潮与智能车规级市场的出货稳健度。
+ </p>
+ </div>
+ </label>
+ </div>
+ </div>
+ </section>
+
+ <!-- 页脚免责声明 -->
+ <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+ <span>美光科技 Micron Technology (NASDAQ: MU) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+ <span>数据基准：FY2026 财报及 2026 年 11 月市场一致预期</span>
+ </div>
+ <p class="leading-relaxed">
+ <strong>免责声明：</strong>本深度研究报告基于美光科技公开财务报告、存储半导体行业调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的财务预测、三情景估值模型及概率分布均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。
+ </p>
+ </footer>
+
+ </div>
+ </main>
+
+ <!-- 交互脚本与图表初始化 -->
+ <script>
+ function toggleTheme() {
+ const html = document.documentElement;
+ html.classList.toggle('dark');
+ updateChartsTheme();
+ }
+
+ function toggleMobileMenu() {
+ const drawer = document.getElementById('mobile-drawer');
+ drawer.classList.toggle('hidden');
+ }
+
+ const sections = document.querySelectorAll('section[id]');
+ const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+ window.addEventListener('scroll', () => {
+ const scrollTop = window.scrollY;
+ const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+ const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+ document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+ let currentId = 'sec-exec';
+ sections.forEach(sec => {
+ const top = sec.offsetTop - 160;
+ if (scrollTop >= top) {
+ currentId = sec.getAttribute('id');
+ }
+ });
+
+ navLinks.forEach(link => {
+ link.classList.remove('active');
+ const numSpan = link.querySelector('span span');
+ if (numSpan) {
+ numSpan.classList.remove('text-mucyan-400');
+ numSpan.classList.add('text-slate-500');
+ }
+ if (link.dataset.target === currentId) {
+ link.classList.add('active');
+ if (numSpan) {
+ numSpan.classList.remove('text-slate-500');
+ numSpan.classList.add('text-mucyan-400');
+ }
+ }
+ });
+ });
+
+ function filterCompetitors(category) {
+ document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+ if (btn.dataset.filter === category) {
+ btn.classList.add('bg-mucyan-500', 'text-navy-950', 'font-semibold', 'shadow-sm');
+ btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+ } else {
+ btn.classList.remove('bg-mucyan-500', 'text-navy-950', 'font-semibold', 'shadow-sm');
+ btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+ }
+ });
+
+ const rows = document.querySelectorAll('#comp-table-body tr');
+ rows.forEach(row => {
+ const rowCat = row.dataset.category;
+ if (category === 'all' || rowCat === 'core' || rowCat === category) {
+ row.style.display = '';
+ } else {
+ row.style.display = 'none';
+ }
+ });
+ }
+
+ const KPI_STORAGE_KEY = 'micron_research_kpi_state_v1';
+
+ function loadKpiChecklist() {
+ try {
+ const saved = localStorage.getItem(KPI_STORAGE_KEY);
+ if (saved) {
+ const stateMap = JSON.parse(saved);
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ if (typeof stateMap[cb.id] === 'boolean') {
+ cb.checked = stateMap[cb.id];
+ }
+ });
+ }
+ } catch (e) {}
+ updateKpiChecklist();
+ }
+
+ function updateKpiChecklist() {
+ const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+ const total = checkboxes.length;
+ let checkedCount = 0;
+ const stateMap = {};
+
+ checkboxes.forEach(cb => {
+ stateMap[cb.id] = cb.checked;
+ if (cb.checked) checkedCount++;
+ });
+
+ const pct = Math.round((checkedCount / total) * 100);
+ document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+ try {
+ localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+ } catch (e) {}
+ }
+
+ function resetKpiChecklist() {
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ cb.checked = false;
+ });
+ updateKpiChecklist();
+ }
+
+ let bizChartInstance = null;
+ let radarChartInstance = null;
+ let compMarginChartInstance = null;
+ let valEvolutionChartInstance = null;
+ let currentBizMode = 'evolution';
+
+ function getChartColors() {
+ const isDark = document.documentElement.classList.contains('dark');
+ return {
+ text: isDark ? '#CBD5E1' : '#475569',
+ grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+ radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+ };
+ }
+
+ function initBizChart() {
+ const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+ const colors = getChartColors();
+
+ const evoConfig = {
+ type: 'bar',
+ data: {
+ labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026', 'FY2027E'],
+ datasets: [
+ {
+ label: 'DRAM 内存 (含 HBM / DDR5)',
+ data: [11.0, 17.5, 27.5, 100.7, 165.0],
+ backgroundColor: '#0284C7',
+ borderRadius: 4,
+ },
+ {
+ label: 'NAND 闪存与企业级 SSD',
+ data: [4.5, 7.5, 9.8, 31.8, 48.0],
+ backgroundColor: '#6366F1',
+ borderRadius: 4,
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+ }
+ }
+ },
+ scales: {
+ x: {
+ stacked: true,
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ },
+ y: {
+ stacked: true,
+ max: 230,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+ }
+ }
+ }
+ };
+
+ const splitConfig = {
+ type: 'bar',
+ data: {
+ labels: [
+ '产品：DRAM 内存 ($100.7B)',
+ '产品：NAND 闪存 ($31.8B)',
+ '部门：云内存 CMBU (~30%)',
+ '部门：移动客户端 MCBU (~24%)',
+ '数据中心 SSD (单季近 $10B)'
+ ],
+ datasets: [
+ {
+ label: 'FY2026 结构规模 ($B)',
+ data: [100.7, 31.8, 39.9, 31.9, 38.5],
+ backgroundColor: ['#0284C7', '#6366F1', '#06B6D4', '#38BDF8', '#10B981'],
+ borderRadius: 6,
+ barThickness: 26
+ }
+ ]
+ },
+ options: {
+ indexAxis: 'y',
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: { display: false },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `营收规模: $${ctx.parsed.x}B`
+ }
+ }
+ },
+ scales: {
+ x: {
+ max: 120,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+ },
+ y: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ };
+
+ if (bizChartInstance) bizChartInstance.destroy();
+ bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+ }
+
+ function switchBizChart(mode) {
+ currentBizMode = mode;
+ const btnEvo = document.getElementById('btn-chart-evo');
+ const btnSplit = document.getElementById('btn-chart-split');
+ const titleEl = document.getElementById('biz-chart-title');
+ const subEl = document.getElementById('biz-chart-sub');
+
+ if (mode === 'evolution') {
+ btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-mucyan-600 dark:text-mucyan-400 shadow-sm transition';
+ btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+ titleEl.textContent = 'FY2023–FY2027E 营收与 DRAM / NAND 结构演进';
+ subEl.textContent = 'DRAM 收入突破 $100B，云内存与企业级 SSD 成为核心增长引擎';
+ } else {
+ btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-mucyan-600 dark:text-mucyan-400 shadow-sm transition';
+ btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+ titleEl.textContent = 'FY2026 美光科技核心业务与产品线结构拆解';
+ subEl.textContent = 'DRAM 占比 76%，云内存与企业级 SSD 构成高利润驱动力';
+ }
+ initBizChart();
+ }
+
+ function initRadarChart() {
+ const ctx = document.getElementById('moatRadarChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (radarChartInstance) radarChartInstance.destroy();
+ radarChartInstance = new Chart(ctx, {
+ type: 'radar',
+ data: {
+ labels: [
+ 'HBM 高带宽内存技术与认证',
+ '1-gamma 先进 EUV 节点密度',
+ '企业级 SSD 市场份额与生态',
+ '三大寡头产能与定价纪律',
+ '产业链上游算力绑定深度'
+ ],
+ datasets: [
+ {
+ label: '美光科技 (MU)',
+ data: [9.4, 9.5, 9.6, 9.2, 9.3],
+ borderColor: '#0284C7',
+ backgroundColor: 'rgba(2, 132, 199, 0.22)',
+ pointBackgroundColor: '#0284C7',
+ borderWidth: 2.5
+ },
+ {
+ label: '三星/海力士双雄 (Memory Peers)',
+ data: [9.6, 9.4, 9.0, 9.4, 9.1],
+ borderColor: '#6366F1',
+ backgroundColor: 'rgba(99, 102, 241, 0.14)',
+ pointBackgroundColor: '#6366F1',
+ borderWidth: 1.8
+ },
+ {
+ label: '传统利基存储对手 (Niche Players)',
+ data: [5.2, 5.8, 6.0, 5.5, 5.0],
+ borderColor: '#94A3B8',
+ backgroundColor: 'rgba(148, 163, 184, 0.12)',
+ pointBackgroundColor: '#94A3B8',
+ borderWidth: 1.5,
+ borderDash: [4, 4]
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+ }
+ },
+ scales: {
+ r: {
+ min: 0,
+ max: 10,
+ ticks: { display: false, stepSize: 2 },
+ grid: { color: colors.grid },
+ angleLines: { color: colors.radarAngle },
+ pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ });
+ }
+
+ function initCompMarginChart() {
+ const ctx = document.getElementById('compMarginChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (compMarginChartInstance) compMarginChartInstance.destroy();
+ compMarginChartInstance = new Chart(ctx, {
+ type: 'bar',
+ data: {
+ labels: [
+ '美光科技 (MU · 高带宽 HBM 驱动)',
+ 'SK海力士 (HBM 市场份额领先)',
+ '台积电 (TSMC · 逻辑代工霸主)',
+ '三星电子 (Samsung · 综合存储)',
+ '传统存储/利基竞争厂商'
+ ],
+ datasets: [{
+ label: '营业利润率 Operating Margin (%)',
+ data: [74.6, 52.0, 44.5, 32.5, 14.2],
+ backgroundColor: ['#0284C7', '#6366F1', '#06B6D4', '#38BDF8', '#94A3B8'],
+ borderRadius: 6,
+ barThickness: 22
+ }]
+ },
+ options: {
+ indexAxis: 'y',
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: { display: false },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `营业利润率: ${ctx.parsed.x}%`
+ }
+ }
+ },
+ scales: {
+ x: {
+ max: 85,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+ },
+ y: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ });
+ }
+
+ function initValEvolutionChart() {
+ const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+ valEvolutionChartInstance = new Chart(ctx, {
+ type: 'bar',
+ data: {
+ labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026', 'FY2027E'],
+ datasets: [
+ {
+ type: 'bar',
+ label: '全年总营收 ($B)',
+ data: [15.5, 25.1, 37.4, 133.2, 213.0],
+ backgroundColor: 'rgba(2, 132, 199, 0.85)',
+ borderRadius: 5,
+ barThickness: 28,
+ yAxisID: 'y'
+ },
+ {
+ type: 'bar',
+ label: 'GAAP 净利润 ($B)',
+ data: [-5.8, 1.3, 5.2, 85.0, 135.0],
+ backgroundColor: 'rgba(99, 102, 241, 0.85)',
+ borderRadius: 5,
+ barThickness: 28,
+ yAxisID: 'y'
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ },
+ y: {
+ type: 'linear',
+ position: 'left',
+ max: 240,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+ }
+ }
+ }
+ });
+ }
+
+ function updateChartsTheme() {
+ initBizChart();
+ initRadarChart();
+ initCompMarginChart();
+ initValEvolutionChart();
+ }
+
+ window.addEventListener('DOMContentLoaded', () => {
+ loadKpiChecklist();
+ initBizChart();
+ initRadarChart();
+ initCompMarginChart();
+ initValEvolutionChart();
+ });
+ </script>
+</body>
+</html>

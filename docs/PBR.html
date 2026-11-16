@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>巴西石油 Petrobras (NYSE: PBR) 深度研究报告：超高自由现金流、深海盐下油田霸主与高股息复利机器</title>
+ <!-- Tailwind CSS -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ <!-- Chart.js -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+ tailwind.config = {
+ darkMode: 'class',
+ theme: {
+ extend: {
+ fontFamily: {
+ sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+ mono: ['JetBrains Mono', 'monospace'],
+ },
+ colors: {
+ navy: {
+ 950: '#070B14',
+ 900: '#0F172A',
+ 800: '#1E293B',
+ 700: '#334155',
+ },
+ pbreen: {
+ 300: '#86EFAC',
+ 400: '#4ADE80',
+ 500: '#22C55E',
+ 600: '#16A34A',
+ 700: '#15803D',
+ },
+ pbyellow: {
+ 300: '#FDE047',
+ 400: '#FACC15',
+ 500: '#EAB308',
+ 600: '#CA8A04',
+ },
+ pbcult: {
+ 400: '#38BDF8',
+ 500: '#0EA5E9',
+ 600: '#0284C7',
+ }
+ }
+ }
+ }
+ }
+ </script>
+
+ <style>
+ ::-webkit-scrollbar { width: 6px; height: 6px; }
+ ::-webkit-scrollbar-track { background: transparent; }
+ ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 3px; }
+ .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+ @media print {
+ #sidebar, #mobile-header, #theme-toggle-btn, .no-print { display: none !important; }
+ main { margin-left: 0 !important; padding: 0 !important; }
+ section { break-inside: avoid; }
+ }
+
+ .report-card { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+ .report-card:hover { transform: translateY(-2px); }
+
+ .nav-link.active {
+ background: linear-gradient(90deg, rgba(34, 197, 94, 0.24) 0%, rgba(234, 179, 8, 0.06) 100%);
+ border-left: 3px solid #22C55E;
+ color: #FFFFFF;
+ font-weight: 600;
+ }
+ </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-pbreen-500 selection:text-navy-950 transition-colors duration-200">
+
+ <!-- 顶部全局阅读进度条 -->
+ <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+ <div id="reading-progress" class="h-full bg-gradient-to-r from-pbreen-600 via-pbreen-400 to-pbyellow-400 w-0 transition-all duration-150"></div>
+ </div>
+
+ <!-- 移动端顶部导航栏 -->
+ <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+ <div class="flex items-center space-x-2.5">
+ <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-pbreen-400 to-pbreen-600 flex items-center justify-center font-extrabold text-navy-950 text-xs shadow">
+ PBR
+ </div>
+ <div>
+ <div class="text-[11px] text-pbreen-400 font-semibold tracking-wider uppercase">NYSE: PBR · High Yield Energy</div>
+ <div class="text-sm font-bold leading-tight">巴西石油 Petrobras 深度研究报告</div>
+ </div>
+ </div>
+ <div class="flex items-center space-x-2">
+ <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+ <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ </button>
+ <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+ </button>
+ </div>
+ </header>
+
+ <!-- 移动端折叠抽屉菜单 -->
+ <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+ <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+ <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+ <div>
+ <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+ <span class="font-bold text-white text-base">PBR 研报目录导航</span>
+ <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ </button>
+ </div>
+ <ul class="mt-4 space-y-1.5 text-sm">
+ <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+ <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+ <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+ <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 全球能源巨头横向对比</a></li>
+ <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与股息复利推演</a></li>
+ <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+ <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+ </ul>
+ </div>
+ <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+ <p>全球能源与红利资产研究组</p>
+ <p class="mt-1">数据基准：2026年11月 (Q3 26 / FY26E)</p>
+ </div>
+ </nav>
+ </div>
+
+ <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+ <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+ <div>
+ <div class="p-5 border-b border-slate-800/80">
+ <div class="flex items-center space-x-3">
+ <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pbreen-400 via-pbreen-500 to-pbreen-600 flex items-center justify-center text-navy-950 font-extrabold text-base shadow-lg shadow-pbreen-500/25">
+ PBR
+ </div>
+ <div>
+ <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-pbreen-400 bg-pbreen-500/15 px-2 py-0.5 rounded">NYSE: PBR / PBR.A</span>
+ <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">巴西石油深度研报</h2>
+ </div>
+ </div>
+ <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+ 拉美能源霸主 · 超低开采成本盐下油田与极高自由现金流复利引擎
+ </p>
+ </div>
+
+ <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">参考股价 (52周区间)</span>
+ <span class="font-mono font-bold text-white">~$16.50 <span class="text-slate-400 text-[10px]">($14.2-$23.8)</span></span>
+ </div>
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">2026E 日产量纪录</span>
+ <span class="font-mono font-bold text-pbreen-400">~3.51M 桶/日 <span class="text-slate-400">(创历史新高)</span></span>
+ </div>
+ <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+ <span class="text-slate-400">季度业绩与股息</span>
+ <span class="font-mono font-bold text-pbyellow-400">营收 $33B · 股息 $2.8B</span>
+ </div>
+ </div>
+
+ <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+ <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+ <nav id="desktop-nav" class="space-y-1 text-[13px]">
+ <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-pbreen-400 mr-2">00</span>执行摘要与核心指标</span>
+ </a>
+ <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+ </a>
+ <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+ </a>
+ <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>全球能源巨头横向对比</span>
+ </a>
+ <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与股息复利推演</span>
+ </a>
+ <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+ </a>
+ <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+ </a>
+ </nav>
+ </div>
+ </div>
+
+ <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+ <div class="flex items-center justify-between">
+ <span class="text-xs text-slate-400">阅读模式切换</span>
+ <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition cursor-pointer">
+ <svg class="w-3.5 h-3.5 text-pbyellow-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ <svg class="w-3.5 h-3.5 text-pbyellow-500 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <span class="dark:hidden">深色护眼模式</span>
+ <span class="hidden dark:inline">机构亮色模式</span>
+ </button>
+ </div>
+ <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-gradient-to-r from-pbreen-500 to-pbreen-600 hover:from-pbreen-600 hover:to-pbreen-700 text-navy-950 text-xs font-extrabold transition shadow-sm cursor-pointer">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+ <span>打印 / 导出 PDF 研报</span>
+ </button>
+ </div>
+ </aside>
+
+ <!-- 主内容区 -->
+ <main class="lg:ml-[280px] min-h-screen">
+ <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+ <!-- =========================================================
+ 00. Hero 研报封面区与执行摘要
+ ========================================================= -->
+ <section id="sec-exec" class="scroll-mt-20">
+ <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+ <div class="flex flex-wrap items-center gap-2">
+ <span class="px-2.5 py-1 rounded-md bg-pbreen-500/15 text-pbreen-700 dark:text-pbreen-400 font-bold border border-pbreen-500/30">评级：买入 / 高分红超高自由现金流核心标的</span>
+ <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：2026Q3 财报超预期与 3.51M 桶日产纪录兑现期</span>
+ </div>
+ <div class="flex items-center space-x-3 font-mono">
+ <span>覆盖时间：2026年11月</span>
+ <span>NYSE: PBR / PBR.A</span>
+ </div>
+ </div>
+
+ <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+ <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#22C55E 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+ <div class="relative z-10">
+ <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-pbreen-500/20 border border-pbreen-400/40 text-pbreen-300 text-xs font-semibold mb-4">
+ <span class="w-2 h-2 rounded-full bg-pbreen-400 animate-pulse"></span>
+ <span>CORE THESIS · 盐下油田极致低成本 × 3.51M桶日产历史新高 × $66亿单季自由现金流与 $28亿中期强劲派息</span>
+ </div>
+ <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+ 巴西石油公司 Petrobras (NYSE: PBR) 深度研究报告：全球盐下油田成本霸主、超高自由现金流现金奶牛与高股息复利引擎
+ </h1>
+ <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+ 巴西国家石油公司交出大超预期的 <strong class="text-white">2026Q3 财务与运营答卷</strong>：受益于桑托斯盆地盐下超大油田投产，油气日产量跃升至 <strong class="text-pbreen-300">351.2万桶油当量的历史新高</strong>。单季营业收入达 <strong class="text-white">$330亿（同比大增 +40.4%）</strong>，经营现金流高达 <strong class="text-pbreen-400">$120亿</strong>，自由现金流飙升至 <strong class="text-white">$66亿</strong>。
+ 董事会果断批准基于 Q3 净利润派发总计 <strong class="text-pbyellow-400">$28亿（约 153 亿雷亚尔）</strong>的中期股息，并将 2026 全年经营现金流指引上调至 <strong class="text-pbreen-400">$450亿–$500亿</strong>，尽显拉美能源巨头的顶级创现实力。
+ </p>
+
+ <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">盐下油田极低成本优势</div>
+ <div class="text-white font-semibold">依托世界级超深水盐下储层，开采现金成本行业断层领先，盈亏平衡点大幅低于同业</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">大额股东现金回报</div>
+ <div class="text-pbyellow-400 font-semibold">Q3 宣布派发 $28 亿中期股息，全年自由现金流充沛，提供极具吸引力的双位数分红回报</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">稳健资本纪律与资产负债表</div>
+ <div class="text-pbreen-400 font-semibold">净债务环比下降 4.2% 至 $578亿，净债务/EBITDA 维持在稳健的 1.00 倍安全区间</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>总市值与美股股价</span>
+ <span class="p-1.5 rounded-lg bg-pbreen-500/15 text-pbreen-600 dark:text-pbreen-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~$108B</span>
+ <span class="text-xs font-bold text-pbreen-600 dark:text-pbreen-400 bg-pbreen-500/15 px-2 py-0.5 rounded">~$16.50</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ NYSE 挂牌普通股与优先股（PBR / PBR.A），股息现金流通过 ADR 高效直达全球投资者。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>Q3 创收与单季自由现金流</span>
+ <span class="p-1.5 rounded-lg bg-pbyellow-500/15 text-pbyellow-600 dark:text-pbyellow-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$33.0B</span>
+ <span class="text-xs font-bold text-pbyellow-600 dark:text-pbyellow-400 bg-pbyellow-500/15 px-2 py-0.5 rounded">FCF $6.6B</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ Q3 营收同比增长 +40.4%，自由现金流达 $66 亿美元（同比大增 +33%），创下极为强劲的现金创收表现。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>日产量与净债务 / EBITDA</span>
+ <span class="p-1.5 rounded-lg bg-pbcult-500/15 text-pbcult-600 dark:text-pbcult-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">3.51M</span>
+ <span class="text-xs font-bold text-pbcult-600 dark:text-pbcult-400 bg-pbcult-500/15 px-2 py-0.5 rounded">杠杆率 1.00x</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 日产油气当量达到 351.2 万桶新高；净债务环比下降 4.2% 至 $578 亿，财务杠杆比率保持在 1.00x 的极佳安全线。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>Q3 派息与全年现金流指引</span>
+ <span class="p-1.5 rounded-lg bg-pbreen-500/15 text-pbreen-600 dark:text-pbreen-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$2.8B</span>
+ <span class="text-xs font-bold text-pbreen-700 dark:text-pbreen-400 bg-pbreen-500/15 px-2 py-0.5 rounded">OCF $45-50B</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 董事会批准 $28 亿中期股息派发；并将全年经营现金流（OCF）指引上调至 $450–$500 亿美元。
+ </p>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 一、 业务与收入架构 (Business & Revenue Architecture)
+ ========================================================= -->
+ <section id="sec-biz" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-pbreen-600 dark:text-pbreen-400">Section 01 · Business & Revenue Architecture</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：桑托斯盆地盐下油田井喷，勘探、炼化与天然气一体化协同</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">FY26E 总营收 ~$120B+ · 经营现金流指引上调至 $450亿–$500亿美元</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+ <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">2022–2026E 营业收入与经营现金流（OCF）演进路径</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">得益于盐下油田产量放量及油价支撑，OCF 稳步攀升并上调至 $450B-$500B 目标区间</p>
+ </div>
+ <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+ <button onclick="switchBizChart('rev_evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-pbreen-600 dark:text-pbreen-400 shadow-sm transition cursor-pointer">视图A：营收与现金流演进</button>
+ <button onclick="switchBizChart('prod_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer">视图B：油气产量与运营拆解</button>
+ </div>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="bizArchitectureChart"></canvas>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">2026Q3 三大核心经营超预期引擎</h3>
+ <ul class="space-y-4 text-sm">
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-pbreen-500/15 text-pbreen-600 dark:text-pbreen-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">日产油气当量突破 351.2 万桶，创下历史新高</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 依托深海盐下巨型油田的高效开发，Q3 平均日产量跃升至 <strong>351.2 万桶油当量</strong>（净油气产量连续数季超预期），FPSO（浮式生产储卸油船）产能利用率达到巅峰。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-pbyellow-500/15 text-pbyellow-600 dark:text-pbyellow-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">营收同比大幅增长 +40.4% 至 $330 亿美元</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 单季总营收达到 <strong>$330 亿美元</strong>，超出市场预期；同时经营现金流达 <strong>$120 亿美元</strong>，自由现金流飙升至 <strong>$66 亿美元</strong>（同比大增 +33%）。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-pbcult-500/15 text-pbcult-600 dark:text-pbcult-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">柴油产量达 76.9 万桶/日，炼化与出口双轮驱动</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 国内炼厂开工率表现优异，柴油产量达 <strong>76.9 万桶/日</strong>，有效满足巴西国内能源需求，并预计在第四季度实现 <strong>14 万桶/日的石油出口增量</strong>。
+ </p>
+ </div>
+ </li>
+ </ul>
+ </div>
+ <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+ <span class="text-slate-500 dark:text-slate-400">2026 全年经营现金流指引</span>
+ <span class="font-bold text-pbreen-600 dark:text-pbreen-400">$450亿 – $500亿美元</span>
+ </div>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-pbreen-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-pbreen-500/15 text-pbreen-700 dark:text-pbreen-400 text-xs font-bold">核心创收支柱 · 占总营收 ~75%</span>
+ <span class="font-mono text-xs font-bold text-pbreen-600 dark:text-pbreen-400">盐下超低采油成本</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-950 dark:text-white">1. 上游勘探与生产板块（E&P · 盐下油田）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 专注于大西洋超深水桑托斯（Santos）和坎波斯（Campos）盆地的世界级盐下巨型油田。凭借卓越的单井产能和极低的吨油开采现金成本，上游板块贡献了绝大部分的营业利润与经营现金流，是名副其实的全球印钞机。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>Q3 日产油气 3.51M 桶当量</span>
+ <span class="text-pbreen-600 dark:text-pbreen-400 font-semibold">世界级深海低成本龙头</span>
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-pbyellow-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-pbyellow-500/15 text-pbyellow-700 dark:text-pbyellow-400 text-xs font-bold">炼化与物流板块 · 占总营收 ~20%</span>
+ <span class="font-mono text-xs font-bold text-pbyellow-600 dark:text-pbyellow-400">柴油产量 76.9万桶/日</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-950 dark:text-white">2. 炼油、运输与化工板块（R&T）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 拥有并运营巴西核心炼油厂网络，Q3 柴油产量达到 <strong>76.9 万桶/日</strong>。炼化板块通过将自产原油高效就地转化为高品质成品油与石化产品，与上游勘探形成完美的风险对冲和全产业链协同。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>Q3 炼厂高效开工与成品油供应</span>
+ <span class="text-pbyellow-600 dark:text-pbyellow-400 font-semibold">国内成品油主导供应商</span>
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-pbcult-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-pbcult-500/15 text-pbcult-700 dark:text-pbcult-400 text-xs font-bold">天然气与低碳能源储备</span>
+ <span class="font-mono text-xs font-bold text-pbcult-600 dark:text-pbcult-400">天然气管网与可再生能源</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-950 dark:text-white">3. 天然气、电力与可再生能源板块（G&P）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 统筹巴西全国的天然气处理、输送管道及热电联产发电资产。同时，公司正循序渐进推进海上风电与低碳氢能项目的研发与试点，在保障当前传统化石能源现金流的同时稳妥布局绿色转型。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>天然气管网与输配枢纽</span>
+ <span class="text-pbcult-600 dark:text-pbcult-400 font-semibold">平衡传统能源与低碳布局</span>
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-indigo-500/15 text-indigo-700 dark:text-indigo-400 text-xs font-bold">资本支出与财务防线</span>
+ <span class="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400">资本开支 $240B-$255B</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-950 dark:text-white">4. 战略投资与严谨资本配置体系</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 将 2026 全年资本支出（CapEx）指引修订为 <strong>$240亿–$255亿美元</strong>（Q3 单季 CapEx 为 $64 亿），在保障 FPSO 船体建造和核心油田增产的同时，通过严格的项目回报率筛选机制杜绝盲目烧钱。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>净债务 $578B / 杠杆率 1.00x</span>
+ <span class="text-indigo-600 dark:text-indigo-400 font-semibold">纪律严明的资本回报政策</span>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 二、 行业地位与四重核心护城河 (Industry Position & Moat)
+ ========================================================= -->
+ <section id="sec-moat" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-pbreen-600 dark:text-pbreen-400">Section 02 · Industry Position & Economic Moat</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：盐下超低成本、巨型储量与强大的创现能力</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球超深水油气开采技术领跑者)</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-pbreen-500/15 text-pbreen-600 dark:text-pbreen-400 flex items-center justify-center font-bold text-sm">01</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">桑托斯盆地世界级盐下超低成本优势</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 巴西海域盐下层（Pre-salt）油田单井产能极高、采油现金成本在全球同行中处于顶尖的成本优势地位，即使在国际油价波动周期中也具备极强的盈利与现金安全垫。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-pbyellow-500/15 text-pbyellow-600 dark:text-pbyellow-400 flex items-center justify-center font-bold text-sm">02</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">深海超深水钻探与 FPSO 核心技术壁垒</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 经过数十年的极限深海勘探攻坚，巴西石油在超深水钻井、抗腐蚀材料及大规模 FPSO（浮式生产储卸油船）集群管理上构建了极高的技术壁垒，新进入者几乎无法复制。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-pbcult-500/15 text-pbcult-600 dark:text-pbcult-400 flex items-center justify-center font-bold text-sm">03</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">巴西国内炼化与成品油分销绝对主导</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 公司掌控着巴西国内最核心的炼油产能与全国性成品油物流管网，形成了“勘探开采-炼化加工-终端零售”闭环的国内能源供给安全网。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">超强自由现金流与严格杠杆管理</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ Q3 单季自由现金流高达 $66 亿美元，净债务/EBITDA 锁定在 1.00x 稳健水平，确保了公司在应对宏观周期时的顶级财务防御力。
+ </p>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">全球主要石油与能源巨头五维护城河雷达图</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">巴西石油 (PBR) vs 埃克森美孚 (XOM) vs 壳牌 (SHEL)（满分 10 分）</p>
+ <div class="relative h-72 w-full">
+ <canvas id="moatRadarChart"></canvas>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 三、 全球能源巨头横向对比 (Competitive Landscape)
+ ========================================================= -->
+ <section id="sec-comp" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-pbreen-600 dark:text-pbreen-400">Section 03 · Global Energy Competitive Landscape</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 全球能源巨头横向对比：超高股息收益率与盐下低成本竞争优势</h2>
+ </div>
+ <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+ <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-pbreen-500 text-navy-950 shadow-sm transition cursor-pointer">全部巨头</button>
+ <button onclick="filterCompetitors('latam')" data-filter="latam" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">新兴市场与拉美巨头</button>
+ <button onclick="filterCompetitors('supermajor')" data-filter="supermajor" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">国际石油超级巨头</button>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+ <div class="overflow-x-auto">
+ <table class="w-full text-left border-collapse">
+ <thead>
+ <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+ <th class="py-4 px-5 min-w-[180px]">企业名称与核心代码</th>
+ <th class="py-4 px-4 min-w-[130px]">核心油气资产分布</th>
+ <th class="py-4 px-4 min-w-[140px]">油气产量与成本特征</th>
+ <th class="py-4 px-4 min-w-[100px]">动态 P/E</th>
+ <th class="py-4 px-4 min-w-[115px]">预期股息率</th>
+ <th class="py-4 px-4 min-w-[115px]">自由现金流回报</th>
+ <th class="py-4 px-5 min-w-[230px]">核心优劣势与竞合定位评估</th>
+ </tr>
+ </thead>
+ <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+ <tr data-category="core" class="bg-pbreen-500/5 dark:bg-pbreen-500/10 font-medium">
+ <td class="py-4 px-5">
+ <div class="flex items-center space-x-2">
+ <span class="px-2 py-0.5 rounded bg-pbreen-500 text-navy-950 text-[10px] font-extrabold">高股息核心</span>
+ <span class="font-bold text-slate-900 dark:text-white">巴西石油 (PBR)</span>
+ </div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">NYSE: PBR / PBR.A</div>
+ </td>
+ <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">巴西桑托斯与坎波斯盆地盐下油田</td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-pbreen-500/15 text-pbreen-700 dark:text-pbreen-400">3.51M桶/日 · 极低采油现金成本</span>
+ </td>
+ <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~4.5x - 5.5x</td>
+ <td class="py-4 px-4 font-mono font-bold text-pbyellow-600 dark:text-pbyellow-400">~10%+</td>
+ <td class="py-4 px-4 font-mono font-bold text-pbreen-600 dark:text-pbreen-400">超高 ($6.6B/季)</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>超高股息与盐下成本霸主：</strong>凭借世界级深海低成本储层与 3.51M 桶日产纪录，创现能力极强；但面临巴西宏观政策和国有属性带来的治理贴水。
+ </td>
+ </tr>
+
+ <tr data-category="supermajor" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">埃克森美孚 (XOM)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">NYSE: XOM</div>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">圭亚那 Stabroek 嵌段 + 二叠纪盆地</td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-pbcult-500/15 text-pbcult-700 dark:text-pbcult-400">全球多元化超巨型资产</span>
+ </td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~13.0x</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~3.2%</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">稳健增长</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>全球综合能源标杆：</strong>资产组合极其均衡，财务安全性极高，但股息率远低于 PBR。
+ </td>
+ </tr>
+
+ <tr data-category="supermajor" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">壳牌 (SHEL)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">NYSE: SHEL</div>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">北海、深水墨西哥湾、LNG 全球贸易</td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-pbyellow-500/15 text-pbyellow-700 dark:text-pbyellow-400">LNG 贸易与深水优势</span>
+ </td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~8.5x</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~4.0%</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">极强回购</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>LNG 与欧洲红利巨头：</strong>在液化天然气贸易领域具备全球统治力，注重通过股票回购返还股东现金。
+ </td>
+ </tr>
+
+ <tr data-category="latam" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">哥伦比亚国家石油 (EC)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">NYSE: EC</div>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">哥伦比亚本土及拉美陆上/近海盆地</td>
+ <td class="py-4 px-4">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-700 dark:text-indigo-400">中小型拉美原油产商</span>
+ </td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~5.8x</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~11.5%</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">中等</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>拉美高息同业：</strong>同样具备高股息特征，但储量规模、单井产能及抗风险能力与 PBR 存在量级差距。
+ </td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base">全球主要石油与能源巨头动态市盈率（P/E）与股息率双维对比</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">巴西石油 (PBR) 凭借超低估值（~5x P/E）与双位数股息率在国际能源板块中脱颖而出</p>
+ </div>
+ <span class="text-xs font-semibold text-pbyellow-700 dark:text-pbyellow-400 bg-pbyellow-500/15 px-2.5 py-1 rounded">极具吸引力的现金回报估值差</span>
+ </div>
+ <div class="relative h-64 w-full">
+ <canvas id="compMarginChart"></canvas>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 四、 财务健康与股息复利推演 (Financial Health & Dividend Simulator)
+ ========================================================= -->
+ <section id="sec-fin" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-pbreen-600 dark:text-pbreen-400">Section 04 · Financial Health & Dividend Simulator</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与股息复利体系：$66亿单季自由现金流与超高分红推演</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">Q3 净利润 $77亿 · 净债务杠杆率 1.00x 保持极佳稳健</span>
+ </div>
+
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-pbreen-600 dark:text-pbreen-400 uppercase">Q3 Free Cash Flow</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$6.60B</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 单季自由现金流达到 $66 亿美元（同比大幅增长 +33%），为持续派发高额现金股息提供源源不断的活水。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-pbyellow-600 dark:text-pbyellow-400 uppercase">Net Debt / EBITDA</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">1.00x</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 净债务环比下降 4.2% 至 $578 亿美元，杠杆比率稳稳锁定在 1.00x，远低于行业警戒线。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-pbcult-600 dark:text-pbcult-400 uppercase">Operating Cash Flow Guidance</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$45B–$50B</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 随着产量冲高及布伦特油价支撑，管理层上调 2026 全年经营现金流指引至 $450亿–$500 亿美元。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase">Q3 Dividend Distribution</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$2.80B</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 董事会批准基于 Q3 净利润派发 $28 亿美元（153亿雷亚尔）中期股息，兑现股东高回报承诺。
+ </p>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base">2022–2026E 营业收入与自由现金流（FCF）增长演进趋势</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">强劲的盐下油田产量放量驱动 FCF 保持高位，持续夯实高额股息派发能力</p>
+ </div>
+ <span class="text-xs font-mono font-bold text-pbreen-700 dark:text-pbreen-400 bg-pbreen-500/15 px-2.5 py-1 rounded">单季 FCF 高达 $6.6B</span>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="valEvolutionChart"></canvas>
+ </div>
+ </div>
+
+ <div class="bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 rounded-2xl p-6 sm:p-8 text-white border border-slate-700 shadow-xl space-y-6 no-print">
+ <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-700/80">
+ <div>
+ <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-pbreen-400 font-bold">
+ <span>HIGH-YIELD ENERGY COMPOUNDING ENGINE · 高息资产 DRIP 复利模拟器</span>
+ </div>
+ <h3 class="text-lg sm:text-xl font-bold text-white mt-1">巴西石油 (PBR) DRIP 复利与成本股息率（Yield on Cost）动态推演器</h3>
+ <p class="text-xs text-slate-400 mt-0.5">基准参数：当前参考股价 $16.50 | 动态股息率约 10%+ | 支持不同地区美股及 ADR 股息预扣税率测算</p>
+ </div>
+ <label class="inline-flex items-center space-x-2.5 px-3.5 py-2 rounded-xl bg-pbreen-500/15 border border-pbreen-400/30 text-xs font-semibold text-pbreen-300 cursor-pointer shrink-0">
+ <input type="checkbox" id="drip-toggle" checked onchange="updateDividendSimulator()" class="w-4 h-4 rounded accent-[#22C55E] cursor-pointer">
+ <span>开启股息自动再投资 (DRIP)</span>
+ </label>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+ <div class="lg:col-span-5 space-y-4 text-xs">
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">初始投入本金 (USD)</span>
+ <span id="sim-principal-label" class="font-mono font-bold text-white text-sm">$30,000</span>
+ </div>
+ <input id="sim-principal" type="range" min="5000" max="200000" step="5000" value="30000" oninput="updateDividendSimulator()" class="w-full accent-[#22C55E] cursor-pointer">
+ </div>
+
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">长期持有年限 (Years)</span>
+ <span id="sim-years-label" class="font-mono font-bold text-white text-sm">10 年</span>
+ </div>
+ <input id="sim-years" type="range" min="1" max="20" step="1" value="10" oninput="updateDividendSimulator()" class="w-full accent-[#22C55E] cursor-pointer">
+ </div>
+
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">年均股息增长 / 油价周期波动假设</span>
+ <span id="sim-growth-label" class="font-mono font-bold text-pbreen-400 text-sm">3.0%</span>
+ </div>
+ <input id="sim-growth" type="range" min="-2" max="8" step="0.5" value="3.0" oninput="updateDividendSimulator()" class="w-full accent-[#22C55E] cursor-pointer">
+ </div>
+
+ <div class="pt-1">
+ <div class="text-slate-300 font-medium mb-2">股息预扣税率（Withholding Tax）情景：</div>
+ <div class="grid grid-cols-3 gap-2" id="tax-btn-group">
+ <button type="button" onclick="setTaxRate(0)" data-tax="0" class="tax-btn px-2 py-2 rounded-lg text-[11px] font-medium bg-navy-950/70 text-slate-300 border border-slate-700 hover:border-pbreen-400 transition cursor-pointer">
+ 0% 免税账户<br><span class="text-[10px] text-slate-400">特定税务安排</span>
+ </button>
+ <button type="button" onclick="setTaxRate(0.15)" data-tax="0.15" class="tax-btn active px-2 py-2 rounded-lg text-[11px] font-bold bg-pbreen-500 text-navy-950 border border-pbreen-400 shadow transition cursor-pointer">
+ 15% 标准协定<br><span class="text-[10px] text-navy-900">巴西/海外ADR常规</span>
+ </button>
+ <button type="button" onclick="setTaxRate(0.25)" data-tax="0.25" class="tax-btn px-2 py-2 rounded-lg text-[11px] font-medium bg-navy-950/70 text-slate-300 border border-slate-700 hover:border-pbreen-400 transition cursor-pointer">
+ 25% 较高预扣<br><span class="text-[10px] text-slate-400">特定地区税率</span>
+ </button>
+ </div>
+ </div>
+ </div>
+
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">期末预计总资产 (含税后分红)</div>
+ <div id="sim-final-value" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1.5">$92,450</div>
+ <div id="sim-total-return" class="text-xs font-semibold text-pbreen-400 mt-1.5">累计总回报 +208.2%</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">期末年度税后股息现金流</div>
+ <div id="sim-annual-div" class="text-2xl sm:text-3xl font-mono font-extrabold text-pbyellow-400 mt-1.5">$9,850</div>
+ <div id="sim-monthly-div" class="text-xs text-slate-400 mt-1.5">折合每月被动现金流 ~$820</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">期末税后成本股息率 (Yield on Cost)</div>
+ <div id="sim-yoc" class="text-2xl sm:text-3xl font-mono font-extrabold text-teal-400 mt-1.5">32.83%</div>
+ <div class="text-xs text-slate-400 mt-1.5">相对于初始投入本金的每年分红回报</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">持有期累计获配税后股息总额</div>
+ <div id="sim-cum-div" class="text-2xl sm:text-3xl font-mono font-extrabold text-pbreen-400 mt-1.5">$48,200</div>
+ <div id="sim-shares-end" class="text-xs text-slate-400 mt-1.5">期末持仓股数：5,600 股 (起始 1,818 股)</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div class="bg-pbreen-50/70 dark:bg-pbreen-950/20 rounded-2xl p-6 border border-pbreen-200 dark:border-pbreen-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-pbreen-700 dark:text-pbreen-400 text-base">多头核心论点 (Bull Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-pbreen-500/15 text-pbreen-700 dark:text-pbreen-300">极低成本 + 双位数股息</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-pbreen-600 font-bold">✓</span><span><strong>世界级盐下油田成本优势：</strong>深海开采现金成本极低，盈亏平衡油价远低于行业均值，在各种油价周期下均能实现稳健现金盈余。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-pbreen-600 font-bold">✓</span><span><strong>卓越的创现与分红能力：</strong>Q3 单季自由现金流达 $66 亿美元，宣布派发 $28 亿美元中期股息，为全球追求现金流回报的投资者提供罕见的双位数股息红利。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-pbreen-600 font-bold">✓</span><span><strong>产量连创历史新高：</strong>日产油气当量突破 351.2 万桶，FPSO 船体产能不断释放，成长性与现金流形成强大共振。</span></li>
+ </ul>
+ </div>
+
+ <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">宏观政治与油价波动</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>国有属性与政策干预风险：</strong>作为巴西国家控股企业，可能承载部分国家能源保障或宏观调控社会责任，资本开支政策存在受政治周期影响的波动可能。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>国际油价系统性回调风险：</strong>若全球经济增速放缓导致布伦特原油价格中枢下移，将直接冲击公司的营收弹性与自由现金流规模。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>汇率与税收政策不确定性：</strong>巴西雷亚尔兑美元汇率波动及当地税制改革可能对财报折算和实际派息产生阶段性干扰。</span></li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 五、 投资决策与风险配置框架 (Investment Decision & Risk)
+ ========================================================= -->
+ <section id="sec-inv" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-pbreen-600 dark:text-pbreen-400">Section 05 · Investment Decision & Risk Allocation</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景估值推演与能源组合策略</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：高股息现金流压舱石 · 逢油价回调或估值回落积极吸纳</span>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-pbreen-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-pbreen-500/15 text-pbreen-600 dark:text-pbreen-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+ <span class="font-mono text-xs font-bold text-pbreen-600 dark:text-pbreen-400">概率：25%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">6.5x–7.5x P/E ($22–$26)</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>国际油价中枢稳居 $80+ 高位；桑托斯盆地新投产 FPSO 产能超预期释放，日产油气突破 360 万桶；管理层维持慷慨的超高股息派发政策。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-pbreen-600 dark:text-pbreen-400">
+ 含息潜在年化总回报：+25% 至 +35%
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-pbyellow-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-pbyellow-500/15 text-pbyellow-700 dark:text-pbyellow-400 text-xs font-bold">基准情景 (Base Case)</span>
+ <span class="font-mono text-xs font-bold text-pbyellow-600 dark:text-pbyellow-400">概率：55%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">4.5x–5.5x P/E ($15–$19)</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>布伦特油价在 $70–$80 区间震荡；2026 全年经营现金流顺利兑现 $450亿–$500亿美元指引；保持稳健的股东现金回报与 1.00x 债务杠杆。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-pbyellow-600 dark:text-pbyellow-400">
+ 含息稳健年化总回报：+12% 至 +18%（高股息支撑）
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+ <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">3.5x–4.0x P/E ($11–$13)</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>全球宏观经济疲软导致国际油价跌破 $60；资本开支大幅超支或地缘政策扰动导致分红比例阶段性收紧。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+ 含息潜在回撤：-15% 至 -25%（高股息率构筑强力底部）
+ </div>
+ </div>
+ </div>
+
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心潜在风险评估与跟踪边界</h3>
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 宏观政治与国有治理风险</span>
+ <span class="text-xs font-mono text-rose-500 font-semibold">关注度：高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">政府宏观政策导向与资本开支调整的潜在不确定性</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 作为巴西国家控股公司，管理层战略可能受联邦政府宏观经济及能源政策导向的影响，需持续跟踪历次财报中关于分红政策与投资预算的官方表态。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 国际原油价格系统性波动风险</span>
+ <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">布伦特油价波动对上游现金流与自由现金流的直接敏感性</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 尽管盐下油田成本极低，但营收和自由现金流依然高度依赖全球原油定价。油价单边下行将直接传导至每季度自由现金流规模与派息金额。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">03 · 汇率波动与雷亚尔贬值损耗</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">本地货币对美元汇率波动对财务报表折算的影响</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 公司本地运营成本及部分计价以雷亚尔为主，而原油销售多以美元计价。雷亚尔大幅波动可能对按美元折算的净利润和分红带来汇兑损益扰动。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">04 · 深海工程项目延期与 CapEx 超支</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">FPSO 建造交付进度及全年资本开支执行偏差</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 2026 全年 CapEx 指引为 $240亿–$255亿美元。若全球造船厂和海工装备供应链紧张导致 FPSO 交付延期，可能对未来产能接续产生阶段性影响。
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+ <h3 class="text-base font-bold text-pbreen-400 mb-4 flex items-center space-x-2">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ <span>机构级投资组合配置纪律与能源板块策略</span>
+ </h3>
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-white mb-1">1. 高息现金流压舱石配置</div>
+ <p class="text-slate-300 leading-relaxed">
+ 在全球宏观经济及地缘政治不确定性加剧背景下，将 PBR 作为高现金流、高股息的能源压舱石配置，可为整体投资组合提供丰厚的现金流回报。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-pbyellow-400 mb-1">2. 周期波动中的纪律性吸纳</div>
+ <p class="text-slate-300 leading-relaxed">
+ 鉴于能源板块与油价高度相关，建议采取分批建仓与逢油价深度回调、估值回落时加仓的策略，有效平抑短期波动的心理压力。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-pbreen-400 mb-1">3. ADR 税务与账户效率优化</div>
+ <p class="text-slate-300 leading-relaxed">
+ 优先通过美股 NYSE 交易的 ADR（PBR 普通股 / PBR.A 优先股）进行配置，并根据个人税务居民身份合规测算股息预扣税，最大化长线 DRIP 复利效用。
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+ ========================================================= -->
+ <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-pbreen-600 dark:text-pbreen-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+ </div>
+ <div class="flex items-center space-x-2 no-print">
+ <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-pbreen-500/15 text-pbreen-700 dark:text-pbreen-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+ <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition cursor-pointer">重置清单</button>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+ 点击勾选季度财报中已验证达标的经营指标（勾选状态自动本地保存），持续校验巴西石油的盐下油田产量与高分红安全垫：
+ </p>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#22C55E] focus:ring-pbreen-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">1. 油气总日产量是否稳守 350 万桶油当量大关</span>
+ <span class="text-[11px] font-mono text-pbreen-600 dark:text-pbreen-400 font-semibold shrink-0">产量增长锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 2026Q3 日产量达到 351.2 万桶创纪录新高；需持续跟踪后续 FPSO 投产及老油田递减对日产量的支撑力度。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#22C55E] focus:ring-pbreen-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">2. 单季自由现金流（FCF）与经营现金流（OCF）兑现度</span>
+ <span class="text-[11px] font-mono text-pbyellow-600 dark:text-pbyellow-400 font-semibold shrink-0">创现能力锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ Q3 FCF 达 $66 亿美元，OCF 指引上调至 $450亿–$500 亿美元；需核查后续季度现金流是否持续兑现。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#22C55E] focus:ring-pbreen-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">3. 董事会中期及常规股息派发规模与派息率政策</span>
+ <span class="text-[11px] font-mono text-pbcult-600 dark:text-pbcult-400 font-semibold shrink-0">股东回报锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ Q3 宣布派发 $28 亿美元中期股息；需跟踪未来季度净利润分红比例是否维持在高位区间。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#22C55E] focus:ring-pbreen-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">4. 净债务与杠杆率（Net Debt / EBITDA）是否安全守在 1.5x 以下</span>
+ <span class="text-[11px] font-mono text-pbreen-600 dark:text-pbreen-400 font-semibold shrink-0">资产负债安全锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ Q3 末净债务降至 $578 亿美元，杠杆率维持在 1.00x；需确保债务规模受控，避免过度举债。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#22C55E] focus:ring-pbreen-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">5. 全年资本开支（CapEx）执行进度与项目预算偏差</span>
+ <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">资本纪律锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 跟踪全年 CapEx 指引（$240亿–$255亿美元）的实际落地情况，防止非核心项目导致资本开支无序膨胀。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#22C55E] focus:ring-pbreen-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">6. 炼化开工率、柴油产量与国内成品油市场份额稳定性</span>
+ <span class="text-[11px] font-mono text-pbyellow-600 dark:text-pbyellow-400 font-semibold shrink-0">炼化协同锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 检查炼厂柴油产量（Q3 76.9万桶/日）及第四季度石油出口增量（14万桶/日）的兑现情况。
+ </p>
+ </div>
+ </label>
+ </div>
+ </div>
+ </section>
+
+ <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+ <span>巴西石油公司 Petrobras (NYSE: PBR / PBR.A) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+ <span>数据基准：2026Q3 财报及 2026 年 11 月市场一致预期 (FY26E)</span>
+ </div>
+ <p class="leading-relaxed">
+ <strong>免责声明：</strong>本深度研究报告基于巴西石油公司公开财务报告（6-K/20-F）、2026Q3 业绩披露数据及全球能源行业调研资料整理生成，旨在提供结构化的产业分析与高息资产估值框架。报告中涉及的盈利预测、现金流指引、三情景目标价及 DRIP 股息复利模拟均基于特定假设条件推演，不构成任何证券买卖建议、税务规划意见或收益承诺。跨境美股 ADR 股息预扣税率因投资者国籍、税务居民身份及账户属性存在差异，请在独立核实后审慎决策。
+ </p>
+ </footer>
+
+ </div>
+ </main>
+
+ <script>
+ function toggleTheme() {
+ const html = document.documentElement;
+ html.classList.toggle('dark');
+ updateChartsTheme();
+ }
+
+ function toggleMobileMenu() {
+ const drawer = document.getElementById('mobile-drawer');
+ drawer.classList.toggle('hidden');
+ }
+
+ const sections = document.querySelectorAll('section[id]');
+ const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+ window.addEventListener('scroll', () => {
+ const scrollTop = window.scrollY;
+ const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+ const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+ document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+ let currentId = 'sec-exec';
+ sections.forEach(sec => {
+ const top = sec.offsetTop - 160;
+ if (scrollTop >= top) {
+ currentId = sec.getAttribute('id');
+ }
+ });
+
+ navLinks.forEach(link => {
+ link.classList.remove('active');
+ const numSpan = link.querySelector('span span');
+ if (numSpan) {
+ numSpan.classList.remove('text-pbreen-400');
+ numSpan.classList.add('text-slate-500');
+ }
+ if (link.dataset.target === currentId) {
+ link.classList.add('active');
+ if (numSpan) {
+ numSpan.classList.remove('text-slate-500');
+ numSpan.classList.add('text-pbreen-400');
+ }
+ }
+ });
+ });
+
+ function filterCompetitors(category) {
+ document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+ if (btn.dataset.filter === category) {
+ btn.classList.add('bg-pbreen-500', 'text-navy-950', 'font-semibold', 'shadow-sm');
+ btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+ } else {
+ btn.classList.remove('bg-pbreen-500', 'text-navy-950', 'font-semibold', 'shadow-sm');
+ btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+ }
+ });
+
+ const rows = document.querySelectorAll('#comp-table-body tr');
+ rows.forEach(row => {
+ const rowCat = row.dataset.category;
+ if (category === 'all' || rowCat === 'core' || rowCat === category) {
+ row.style.display = '';
+ } else {
+ row.style.display = 'none';
+ }
+ });
+ }
+
+ let currentTaxRate = 0.15; // 默认 15% 巴西/海外ADR常规预扣税率
+
+ function setTaxRate(rate) {
+ currentTaxRate = rate;
+ document.querySelectorAll('#tax-btn-group .tax-btn').forEach(btn => {
+ const btnRate = parseFloat(btn.dataset.tax);
+ if (Math.abs(btnRate - rate) < 0.001) {
+ btn.className = 'tax-btn active px-2 py-2 rounded-lg text-[11px] font-bold bg-pbreen-500 text-navy-950 border border-pbreen-400 shadow transition cursor-pointer';
+ const subSpan = btn.querySelector('span');
+ if (subSpan) subSpan.className = 'text-[10px] text-navy-900';
+ } else {
+ btn.className = 'tax-btn px-2 py-2 rounded-lg text-[11px] font-medium bg-navy-950/70 text-slate-300 border border-slate-700 hover:border-pbreen-400 transition cursor-pointer';
+ const subSpan = btn.querySelector('span');
+ if (subSpan) subSpan.className = 'text-[10px] text-slate-400';
+ }
+ });
+ updateDividendSimulator();
+ }
+
+ function updateDividendSimulator() {
+ const principal = parseFloat(document.getElementById('sim-principal').value);
+ const years = parseInt(document.getElementById('sim-years').value, 10);
+ const growthPct = parseFloat(document.getElementById('sim-growth').value);
+ const drip = document.getElementById('drip-toggle').checked;
+
+ document.getElementById('sim-principal-label').textContent = '$' + principal.toLocaleString('en-US');
+ document.getElementById('sim-years-label').textContent = years + ' 年';
+ document.getElementById('sim-growth-label').textContent = growthPct.toFixed(1) + '%';
+
+ const initPrice = 16.50;
+ const initDps = 1.65; // 约 10% 初始股息率
+ const g = growthPct / 100;
+
+ const initialShares = principal / initPrice;
+ let shares = initialShares;
+ let sharePrice = initPrice;
+ let dps = initDps;
+ let cashPool = 0;
+ let cumulativeNetDiv = 0;
+
+ for (let y = 1; y <= years; y++) {
+ const grossDiv = shares * dps;
+ const netDiv = grossDiv * (1 - currentTaxRate);
+ cumulativeNetDiv += netDiv;
+
+ const nextPrice = sharePrice * (1 + g);
+ if (drip) {
+ const avgReinvestPrice = (sharePrice + nextPrice) / 2;
+ shares += netDiv / avgReinvestPrice;
+ } else {
+ cashPool += netDiv;
+ }
+ sharePrice = nextPrice;
+ if (y < years) {
+ dps = dps * (1 + g);
+ }
+ }
+
+ const endForwardDps = initDps * Math.pow(1 + g, years);
+ const endAnnualNetDiv = shares * endForwardDps * (1 - currentTaxRate);
+ const finalPortfolioVal = (shares * sharePrice) + cashPool;
+ const totalReturnPct = ((finalPortfolioVal - principal) / principal) * 100;
+ const yieldOnCost = (endAnnualNetDiv / principal) * 100;
+
+ document.getElementById('sim-final-value').textContent = '$' + Math.round(finalPortfolioVal).toLocaleString('en-US');
+ document.getElementById('sim-total-return').textContent = `累计总回报 +${totalReturnPct.toFixed(1)}% (${drip ? '含DRIP复利' : '现金分红留存'})`;
+ document.getElementById('sim-annual-div').textContent = '$' + Math.round(endAnnualNetDiv).toLocaleString('en-US');
+ document.getElementById('sim-monthly-div').textContent = `折合每月税后被动现金流 ~$${Math.round(endAnnualNetDiv / 12).toLocaleString('en-US')}`;
+ document.getElementById('sim-yoc').textContent = yieldOnCost.toFixed(2) + '%';
+ document.getElementById('sim-cum-div').textContent = '$' + Math.round(cumulativeNetDiv).toLocaleString('en-US');
+ document.getElementById('sim-shares-end').textContent = `期末持仓股数：${shares.toFixed(1)} 股 (起始 ${initialShares.toFixed(1)} 股)`;
+ }
+
+ const KPI_STORAGE_KEY = 'pbr_research_kpi_state_v1';
+
+ function loadKpiChecklist() {
+ try {
+ const saved = localStorage.getItem(KPI_STORAGE_KEY);
+ if (saved) {
+ const stateMap = JSON.parse(saved);
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ if (typeof stateMap[cb.id] === 'boolean') {
+ cb.checked = stateMap[cb.id];
+ }
+ });
+ }
+ } catch (e) {}
+ updateKpiChecklist();
+ }
+
+ function updateKpiChecklist() {
+ const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+ const total = checkboxes.length;
+ let checkedCount = 0;
+ const stateMap = {};
+
+ checkboxes.forEach(cb => {
+ stateMap[cb.id] = cb.checked;
+ if (cb.checked) checkedCount++;
+ });
+
+ const pct = Math.round((checkedCount / total) * 100);
+ document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+ try {
+ localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+ } catch (e) {}
+ }
+
+ function resetKpiChecklist() {
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ cb.checked = false;
+ });
+ updateKpiChecklist();
+ }
+
+ let bizChartInstance = null;
+ let radarChartInstance = null;
+ let compMarginChartInstance = null;
+ let valEvolutionChartInstance = null;
+ let currentBizMode = 'rev_evolution';
+
+ function getChartColors() {
+ const isDark = document.documentElement.classList.contains('dark');
+ return {
+ text: isDark ? '#CBD5E1' : '#475569',
+ grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+ radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+ };
+ }
+
+ function initBizChart() {
+ const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+ const colors = getChartColors();
+
+ const evoConfig = {
+ type: 'bar',
+ data: {
+ labels: ['2022', '2023', '2024', '2025', '2026E'],
+ datasets: [
+ {
+ label: '上游勘探与生产经营现金流 OCF ($B)',
+ data: [48.5, 44.2, 43.0, 44.5, 47.5],
+ backgroundColor: '#22C55E',
+ borderRadius: 4,
+ stack: 'ocf'
+ },
+ {
+ label: '炼化与天然气板块利润贡献 ($B)',
+ data: [12.2, 10.5, 11.0, 11.2, 11.8],
+ backgroundColor: '#EAB308',
+ borderRadius: 4,
+ stack: 'ocf'
+ },
+ {
+ type: 'line',
+ label: '全年总营业收入 ($B)',
+ data: [124.3, 103.5, 110.2, 115.0, 122.0],
+ borderColor: '#0EA5E9',
+ backgroundColor: '#0EA5E9',
+ borderWidth: 2.5,
+ pointRadius: 4,
+ tension: 0.25
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}B`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ },
+ y: {
+ min: 0,
+ max: 140,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+ }
+ }
+ }
+ };
+
+ const splitConfig = {
+ type: 'bar',
+ data: {
+ labels: [
+ 'Q3 日产油气当量 (百万桶/日)',
+ 'Q3 营业收入 ($十亿)',
+ 'Q3 经营现金流 OCF ($十亿)',
+ 'Q3 自由现金流 FCF ($十亿)',
+ '柴油产量 (十万桶/日)',
+ '第四季度石油出口增量 (万桶/日)'
+ ],
+ datasets: [
+ {
+ label: '2026Q3 运营指标表现',
+ data: [3.51, 33.0, 12.0, 6.6, 7.69, 14.0],
+ backgroundColor: [
+ '#22C55E',
+ '#16A34A',
+ '#EAB308',
+ '#CA8A04',
+ '#0EA5E9',
+ '#38BDF8'
+ ],
+ borderRadius: 6,
+ barThickness: 22
+ }
+ ]
+ },
+ options: {
+ indexAxis: 'y',
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: { display: false },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `指标表现: ${ctx.parsed.x}`
+ }
+ }
+ },
+ scales: {
+ x: {
+ min: 0,
+ max: 40,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 } }
+ },
+ y: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ };
+
+ if (bizChartInstance) bizChartInstance.destroy();
+ bizChartInstance = new Chart(ctx, currentBizMode === 'rev_evolution' ? evoConfig : splitConfig);
+ }
+
+ function switchBizChart(mode) {
+ currentBizMode = mode;
+ const btnEvo = document.getElementById('btn-chart-evo');
+ const btnSplit = document.getElementById('btn-chart-split');
+ const titleEl = document.getElementById('biz-chart-title');
+ const subEl = document.getElementById('biz-chart-sub');
+
+ if (mode === 'rev_evolution') {
+ btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-pbreen-600 dark:text-pbreen-400 shadow-sm transition cursor-pointer';
+ btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+ titleEl.textContent = '2022–2026E 营业收入与经营现金流（OCF）演进路径';
+ subEl.textContent = '得益于盐下油田产量放量及油价支撑，OCF 稳步攀升并上调至 $450B-$500B 目标区间';
+ } else {
+ btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-pbreen-600 dark:text-pbreen-400 shadow-sm transition cursor-pointer';
+ btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+ titleEl.textContent = '2026Q3 核心油气产量与创收现金流核心指标拆解';
+ subEl.textContent = '日产油气突破 3.51M 桶新高，单季 FCF 达 $6.6B，柴油产量与出口增长态势强劲';
+ }
+ initBizChart();
+ }
+
+ function initRadarChart() {
+ const ctx = document.getElementById('moatRadarChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (radarChartInstance) radarChartInstance.destroy();
+ radarChartInstance = new Chart(ctx, {
+ type: 'radar',
+ data: {
+ labels: [
+ '盐下油田单井产能与超低成本',
+ '深海钻探与 FPSO 技术壁垒',
+ '巴西国内成品油与炼化主导',
+ '自由现金流创收能力',
+ '国际化分散度与地缘合规韧性'
+ ],
+ datasets: [
+ {
+ label: '巴西石油 (PBR)',
+ data: [9.8, 9.5, 9.0, 9.6, 6.0],
+ borderColor: '#22C55E',
+ backgroundColor: 'rgba(34, 197, 94, 0.24)',
+ pointBackgroundColor: '#22C55E',
+ borderWidth: 2.5
+ },
+ {
+ label: '埃克森美孚 (XOM)',
+ data: [8.8, 8.5, 8.0, 8.9, 9.5],
+ borderColor: '#EAB308',
+ backgroundColor: 'rgba(234, 179, 8, 0.14)',
+ pointBackgroundColor: '#EAB308',
+ borderWidth: 2.0
+ },
+ {
+ label: '壳牌 (SHEL)',
+ data: [8.2, 8.4, 8.5, 8.8, 9.2],
+ borderColor: '#0EA5E9',
+ backgroundColor: 'rgba(14, 165, 233, 0.12)',
+ pointBackgroundColor: '#0EA5E9',
+ borderWidth: 1.8,
+ borderDash: [4, 4]
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+ }
+ },
+ scales: {
+ r: {
+ min: 0,
+ max: 10,
+ ticks: { display: false, stepSize: 2 },
+ grid: { color: colors.grid },
+ angleLines: { color: colors.radarAngle },
+ pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ });
+ }
+
+ function initCompMarginChart() {
+ const ctx = document.getElementById('compMarginChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (compMarginChartInstance) compMarginChartInstance.destroy();
+ compMarginChartInstance = new Chart(ctx, {
+ type: 'bar',
+ data: {
+ labels: [
+ '巴西石油 (PBR · 盐下低成本高息王)',
+ '哥伦比亚国家石油 (EC · 拉美高息同业)',
+ '壳牌 (SHEL · LNG与欧洲红利)',
+ '埃克森美孚 (XOM · 全球超级综合标杆)'
+ ],
+ datasets: [
+ {
+ label: '动态市盈率 P/E (倍)',
+ data: [5.0, 5.8, 8.5, 13.0],
+ backgroundColor: '#22C55E',
+ borderRadius: 5,
+ barThickness: 14
+ },
+ {
+ label: '预期股息率 Dividend Yield (%)',
+ data: [10.5, 11.5, 4.0, 3.2],
+ backgroundColor: '#EAB308',
+ borderRadius: 5,
+ barThickness: 14
+ }
+ ]
+ },
+ options: {
+ indexAxis: 'y',
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x}${ctx.dataset.label.includes('息率') ? '%' : 'x'}`
+ }
+ }
+ },
+ scales: {
+ x: {
+ max: 15,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 } }
+ },
+ y: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ });
+ }
+
+ function initValEvolutionChart() {
+ const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+ valEvolutionChartInstance = new Chart(ctx, {
+ type: 'bar',
+ data: {
+ labels: ['2021', '2022', '2023', '2024', '2025', '2026E'],
+ datasets: [
+ {
+ type: 'bar',
+ label: '自由现金流 FCF ($十亿)',
+ data: [31.5, 53.2, 38.4, 34.0, 31.2, 33.5],
+ backgroundColor: 'rgba(34, 197, 94, 0.85)',
+ borderRadius: 5,
+ barThickness: 28,
+ yAxisID: 'y'
+ },
+ {
+ type: 'line',
+ label: '净债务 / EBITDA 杠杆比率',
+ data: [1.65, 0.55, 0.82, 0.95, 0.98, 1.00],
+ borderColor: '#EAB308',
+ backgroundColor: '#EAB308',
+ borderWidth: 3,
+ pointRadius: 5,
+ pointHoverRadius: 7,
+ tension: 0.25,
+ yAxisID: 'y1'
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => ctx.dataset.yAxisID === 'y'
+ ? `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}B`
+ : `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}x`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ },
+ y: {
+ type: 'linear',
+ position: 'left',
+ min: 0,
+ max: 65,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' },
+ title: { display: true, text: '自由现金流 FCF ($十亿)', color: colors.text, font: { size: 11 } }
+ },
+ y1: {
+ type: 'linear',
+ position: 'right',
+ min: 0,
+ max: 2.0,
+ grid: { drawOnChartArea: false },
+ ticks: { color: '#EAB308', font: { size: 11, weight: '600' }, callback: v => v.toFixed(2) + 'x' },
+ title: { display: true, text: '净债务 / EBITDA', color: '#EAB308', font: { size: 11 } }
+ }
+ }
+ }
+ });
+ }
+
+ function updateChartsTheme() {
+ initBizChart();
+ initRadarChart();
+ initCompMarginChart();
+ initValEvolutionChart();
+ }
+
+ window.addEventListener('DOMContentLoaded', () => {
+ loadKpiChecklist();
+ updateDividendSimulator();
+ initBizChart();
+ initRadarChart();
+ initCompMarginChart();
+ initValEvolutionChart();
+ });
+ </script>
+</body>
+</html>

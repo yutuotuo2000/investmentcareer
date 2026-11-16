@@ -1,0 +1,1393 @@
+html_content = """<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>思爱普 SAP SE (NYSE: SAP) 深度研究报告：云转型超级周期、Business AI 矩阵与历史性业绩突破</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            sapblue: {
+              400: '#4DA8FF',
+              500: '#008FD3',
+              600: '#006CA8',
+            },
+            accent: {
+              500: '#0070F2',
+              600: '#0058C0',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(0, 143, 211, 0.22) 0%, rgba(6, 182, 212, 0.06) 100%);
+      border-left: 3px solid #008FD3;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-sapblue-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-sapblue-500 via-sky-400 to-teal-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sapblue-500 to-sapblue-600 flex items-center justify-center font-extrabold text-white shadow">
+        SAP
+      </div>
+      <div>
+        <div class="text-[11px] text-sapblue-400 font-semibold tracking-wider uppercase">NYSE: SAP · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">思爱普 SAP SE 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">SAP 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构拆解</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球企业级软件与云转型研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY26 / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sapblue-500 to-sapblue-600 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-sapblue-500/25">
+            SAP
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-sapblue-400 bg-sapblue-500/15 px-2 py-0.5 rounded">NYSE: SAP</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">思爱普深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          云转型超级周期 · Cloud ERP 核心引擎与 Business AI 企业智能化领航者
+        </p>
+      </div>
+
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">Q3 2026 单季总营收</span>
+          <span class="font-mono font-bold text-white">€10.27B <span class="text-sapblue-400">(+13%)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">云业务营收 (Q3)</span>
+          <span class="font-mono font-bold text-teal-400">€6.67B <span class="text-slate-400">(+25%)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">当前云订单储备</span>
+          <span class="font-mono font-bold text-sapblue-400">€24.14B (+26%)</span>
+        </div>
+      </div>
+
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-sapblue-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构拆解</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-sapblue-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-sapblue-500 hover:bg-sapblue-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-sapblue-500/15 text-sapblue-600 dark:text-sapblue-400 font-bold border border-sapblue-500/30">评级：强烈买入 / 核心企业软件底仓</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：2026 财年云转型超级周期与 AI 变现期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NYSE: SAP</span>
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#008FD3 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sapblue-500/20 border border-sapblue-500/40 text-sapblue-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-sapblue-400 animate-pulse"></span>
+              <span>CORE THESIS · 单季总营收历史性突破 €10B × 云 ERP 同比劲增 28% × Business AI 商业化加速</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              思爱普 SAP SE (NYSE: SAP) 深度研究报告：云转型超级周期、Business AI 矩阵与历史性业绩突破
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              作为全球企业级管理软件（ERP）绝对霸主，SAP 在 2026 年第三季度迎来了历史上首个单季总营收突破 <strong class="text-white">€100 亿</strong>的里程碑（总营收达到 <strong class="text-sapblue-400">€10.27B</strong>，同比 +13%）。
+              其中，核心云业务营收大增 <strong class="text-teal-400">+25% 达 €6.67B</strong>，云订单储备（Cloud Backlog）跃升至 <strong class="text-white">€24.14B (+26%)</strong>。
+              伴随 RISE/GROW 迁移飞轮持续加速及 Joule AI 深度赋能企业核心业务流，SAP 正稳步向 30% 非 IFRS 营业利润率与 €100 亿自由现金流宏伟目标迈进。
+            </p>
+
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">历史性单季突破</div>
+                <div class="text-white font-semibold">Q3 总营收首破 €100 亿大关（€10.27B），非 IFRS 营业利润率提升至 29.5%</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">云订单储备强劲</div>
+                <div class="text-sapblue-400 font-semibold">当前云订单储备（Current Cloud Backlog）达到 €24.14 亿（按固定汇率 +26%）</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">Business AI 深度嵌入</div>
+                <div class="text-teal-400 font-semibold">前 50 大客户交易中深度绑定 AI 与业务数据云，客单价与附加值显著放大</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Q3 2026 单季总营收</span>
+              <span class="p-1.5 rounded-lg bg-sapblue-500/15 text-sapblue-600 dark:text-sapblue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">€10.27B</span>
+              <span class="text-xs font-bold text-sapblue-600 dark:text-sapblue-400 bg-sapblue-500/15 px-2 py-0.5 rounded">+13% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              历史上首个单季总营收突破 100 亿欧元，展现出全球大型企业对核心 ERP 升级的强劲刚需。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Q3 云业务营收 (Cloud Revenue)</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h10a4 4 0 004-4M3 9a4 4 0 014-4h10a4 4 0 014 4M12 12v9m0-9l-3 3m3-3l3 3"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">€6.67B</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">+25% YoY (CC)</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              核心云 ERP 套件（Cloud ERP Suite）收入同比大增 28%，驱动收入结构向高毛利云端加速转变。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>当前云订单储备 (Cloud Backlog)</span>
+              <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">€24.14B</span>
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">+26% YoY (CC)</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              未来中长期云业务增长的“蓄水池”，订单规模持续超预期，锁定未来数年高景气度。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>非 IFRS 营业利润率 & 现金流</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">29.5%</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">FCF €1.72B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              营业利润率同比大幅提升 1.2 个百分点，单季自由现金流暴增 36% 至 €17.2 亿。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sapblue-600 dark:text-sapblue-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构拆解：Cloud ERP 中枢与 Business AI 增效引擎</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Q3 2026 总营收 €10.27B · 云收入 €6.67B</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2022–FY2026E 云业务与总营收演进趋势</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">云业务收入占比持续跨越式提升，驱动整体营收迈向高增长轨道</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-sapblue-600 dark:text-sapblue-400 shadow-sm transition">视图A：年度营收演进</button>
+                <button onclick="switchBizChart('q3_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：Q3 业务拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="sapBizChart"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业架构三大结构性转型拐点</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-sapblue-500/15 text-sapblue-600 dark:text-sapblue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Cloud ERP Suite 绝对核心统治力</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      作为整个业务生态的中枢，Cloud ERP 贡献了云营收的约 <strong>89%</strong>。RISE with SAP 与 GROW with SAP 方案正以极高效率成建制地将全球老旧本地客户迁移上云。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Business AI 与 Joule 助理加速变现</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      AI 助手 <strong>Joule</strong> 及业务数据云深度嵌入财务、HR 和供应链。在 Q3 的前 50 大客户交易中，有 9 单直接包含了 AI 与数据云组件，显著拉高客单价。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">传统软件许可的结构性替代</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      传统本地许可证收入温和收缩（Q3 下滑 9%），但高增长、高黏性的云业务爆发完美对冲了传统周期的下滑，实现更高质量的利润与现金流结构。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">核心转型催化剂</span>
+              <span class="font-bold text-sapblue-600 dark:text-sapblue-400">RISE with SAP & Joule AI 工作流升级</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sapblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 rounded-md bg-sapblue-500/15 text-sapblue-600 dark:text-sapblue-400 text-xs font-bold">绝对核心引擎 · 占比约 89%</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">+28% YoY (Cloud ERP)</span>
+              </div>
+              <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">Q3 云业务：€6.67B</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. Cloud ERP Suite（核心云 ERP 套件）</h3>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">RISE 与 GROW 转型飞轮</div>
+                <p class="leading-relaxed">
+                  通过标准化的云迁移工具包，将海量运行在 ECC 时代的传统企业平移至云端，不仅大幅缩短了客户部署周期，也确保了长期订阅收入的持续高增。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">端到端业务流程整合</div>
+                <p class="leading-relaxed">
+                  涵盖财务、供应链、采购、制造全链路，确保企业在云端获得无缝的全球合规与多币种、多准则账务处理能力。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">AI 价值赋能器</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Joule AI</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. Business AI 与业务数据云</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Joule 个人 AI 助理深入企业日常审批、财务对账与 HR 招聘。结合 SAP 独特的业务数据云，实现跨系统知识图谱的高效检索与智能决策。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              前 50 大客户交易渗透率显著提升
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-accent-500/10 text-accent-600 dark:text-accent-400 text-xs font-bold">全球商务网络</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Ariba & Concur</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 商务网络与支出管理</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                包含 SAP Ariba（供应链采购）、SAP Concur（差旅与费用管理）及 Business Network。连接全球数百万家买家与供应商，构筑庞大的 B2B 交易生态。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold">
+              全球 B2B 交易流量核心枢纽
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">人力资源 SaaS</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">SuccessFactors</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 人力资本管理（HCM）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                SAP SuccessFactors 持续为全球跨国巨头提供核心 HR、薪酬福利与人才发展云端解决方案，与企业财务 ERP 形成完美协同。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              跨国企业 HCM 标配选择
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-400 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-slate-500/10 text-slate-600 dark:text-slate-400 text-xs font-bold">传统基盘优化</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Support & License</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">5. 软件支持与本地许可</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                传统软件许可证收入伴随客户上云而温和收缩（Q3 -9%），但维护支持收入保持稳健，为云转型期持续提供稳定的现金流底盘。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+              平稳过渡期现金流稳固器
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与四重核心护城河
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：Mission-Critical 流程绑定</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球大型企业管理软件绝对霸主)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sapblue-500/15 text-sapblue-600 dark:text-sapblue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Mission-Critical 核心流程绑定</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                全球财富 500 强中绝大多数企业的财务、供应链、人事底层数据均运行在 SAP 系统之上。切换 ERP 系统的迁移成本极大、容错率极低，使其拥有近乎不可替代的客户黏性。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">业务数据云与全球知识图谱</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                SAP 的数据结构映射了全球超过 700 万个字段、5 万张业务表及独特的行业流程知识。其 AI 策略开放接入 70 多个前沿模型并通过严苛隐私治理确保企业机密绝对安全。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">RISE/GROW 转型标准化飞轮</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                通过标准化的云迁移工具包与预置行业最佳实践，SAP 将原本高度定制且割裂的本地客户以极高效率成建制地“平移”到云端，大幅缩短客户数字化转型周期。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全球系统集成商与 ISV 生态网络</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                汇聚了全球数万家系统集成商（SI）、咨询巨头（如埃森哲、德勤）及独立软件开发商，形成强大的双边网络效应，共同推动 SAP 解决方案在全球各行业落地。
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">企业级软件五维护城河量化雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">SAP vs 甲骨文(Oracle) vs 微软(Dynamics) vs Workday（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="sapMoatRadar"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sapblue-600 dark:text-sapblue-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：全球大型企业 ERP 与云服务博弈</h2>
+          </div>
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-sapblue-500 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('erp')" data-filter="erp" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">核心 ERP 与数据库对手</button>
+            <button onclick="filterCompetitors('saas')" data-filter="saas" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">云办公与垂直 SaaS 对手</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[180px]">竞争厂商与核心代表</th>
+                  <th class="py-4 px-4 min-w-[130px]">云软件与平台阵营</th>
+                  <th class="py-4 px-4 min-w-[140px]">核心优势领域</th>
+                  <th class="py-4 px-4 min-w-[135px]">全球大型企业地位</th>
+                  <th class="py-4 px-4 min-w-[115px]">非 IFRS 云毛利</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞合关系评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <tr data-category="core" class="bg-sapblue-500/5 dark:bg-sapblue-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-sapblue-500 text-white text-[10px] font-extrabold">行业霸主</span>
+                      <span class="font-bold text-slate-900 dark:text-white">SAP SE (SAP)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">RISE/GROW, Cloud ERP, Joule AI</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">全球最强企业管理云生态</span>
+                  </td>
+                  <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">跨国财务、供应链与 ERP 核心</td>
+                  <td class="py-4 px-4 font-bold text-sapblue-600 dark:text-sapblue-400">大型企业绝对统治力</td>
+                  <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~74.3%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>端到端管理标杆：</strong>凭借 RISE 迁移飞轮与 Business AI 深度嵌入，大型集团客户上云首选，盈利与现金流质量极佳。
+                  </td>
+                </tr>
+
+                <tr data-category="erp" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Oracle (甲骨文)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">OCI 云基础设施 / Fusion ERP</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">OCI 云底座 + Fusion SaaS</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">数据库底座强大、云基础设施</td>
+                  <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">全球数据库龙头与 ERP 强敌</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~65% - 70%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>强力竞争对手：</strong>凭借 OCI 云基础设施的高性价比和数据库垄断地位对 SAP 形成包抄，但在超大型跨国集团复杂 ERP 场景的渗透率仍逊于 SAP。
+                  </td>
+                </tr>
+
+                <tr data-category="saas" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Microsoft (微软)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Dynamics 365 / Azure / Copilot</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-500/15 text-sky-700 dark:text-sky-400">Office + Azure + Copilot 协同</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">办公协同生态与全栈 AI 布局</td>
+                  <td class="py-4 px-4 font-semibold text-sky-600 dark:text-sky-400">中小及中大型企业全方位渗透</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~60% - 68%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>生态降维打击：</strong>通过 Office/Teams 办公协同与 Azure 深度打通 Dynamics 365，在中端市场和智能化办公协同上具备极强优势。
+                  </td>
+                </tr>
+
+                <tr data-category="saas" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Workday</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Workday HCM & Financials</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-700 dark:text-indigo-400">云原生 HR 与财务 SaaS</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">现代人力资源管理 (HCM)</td>
+                  <td class="py-4 px-4 font-semibold text-indigo-600 dark:text-indigo-400">全球 HCM 领域领头羊</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~70% - 72%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>垂直领域强手：</strong>在现代云原生人力资源管理（HCM）上具备极佳用户体验，但在传统重工业、制造业供应链与大规模工厂管理场景较弱。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值体系解析
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与估值体系：营业利润率向 30% 迈进与自由现金流爆发</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">云毛利 ~74.3% · 远期 P/E 估值重塑</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-sapblue-600 dark:text-sapblue-400 uppercase">Cloud Gross Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">74.3% (Non-IFRS)</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              云业务规模效应不断释放，非 IFRS 云毛利率稳定在 74.3% 高位，展现出软件即服务（SaaS）的顶级盈利基因。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Operating Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">29.5% (+1.2 pts)</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              Q3 非 IFRS 营业利润率提升至 29.5%，向管理层设定的 30% 中长期战略目标稳步靠拢。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Free Cash Flow (Q3)</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">€1.72B (+36%)</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              单季自由现金流同比飙升 36% 至 17.2 亿欧元，全年向约 100 亿欧元的宏伟现金流目标全力冲刺。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase">FY26 Cloud Revenue Guidance</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">€25.8B - €26.2B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              前三季度业绩超预期落地，管理层持续将全年云收入锚定在指引区间的上沿，全年非 IFRS 营业利润目标维持在 €11.8B–€12.2B。
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2026E 云收入爆发与营业利润率改善趋势</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">云转型进入收获期：收入规模与利润率实现“戴维斯双击”式改善</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-sapblue-600 dark:text-sapblue-400 bg-sapblue-500/10 px-2.5 py-1 rounded">Cloud Backlog €24.14B (+26%)</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="sapValuationChart"></canvas>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">云转型收获期</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>云订单储备高增（+26%）：</strong>Current Cloud Backlog 高达 €24.14 亿，锁定未来数年确定性收入。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>Business AI 提升客单价：</strong>Joule AI 与业务数据云成功打入高端大客户交易，显著增强软件附加值与定价权。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>卓越的现金创造力：</strong>自由现金流单季大增 36%（€1.72B），全年向 €100 亿目标迈进，股东回报与回购支撑充足。</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">宏观与迁移执行</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>宏观经济不确定性：</strong>全球宏观经济若显著放缓，可能导致部分跨国企业延迟大型 IT 资本开支和 ERP 上云预算。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>大客户迁移执行周期：</strong>超大型集团将复杂定制本地 ERP 迁移上云涉及极高工程复杂度，项目延期可能带来阶段性波动。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>AI 变现进度预期：</strong>Business AI 的规模化变现需要时间，若企业端付费意愿不及预期可能对估值弹性形成压制。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sapblue-600 dark:text-sapblue-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与机构风控纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：全球企业软件核心底仓 · 紧盯订单储备增速</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sapblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-sapblue-500/15 text-sapblue-600 dark:text-sapblue-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-sapblue-600 dark:text-sapblue-400">概率：35%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">驱动估值：戴维斯双击</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>Business AI（Joule）商业化超预期带动客单价大幅跃升，RISE 迁移速度超越预期，云收入持续保持 25%+ 超高增速，非 IFRS 营业利润率提前突破 30%。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-sapblue-600 dark:text-sapblue-400">
+              潜在上行空间：+30% 至 +40%
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">驱动估值：稳健盈利兑现</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>宏观经济维持温和复苏，云业务按 20%-25% 既定目标稳步增长，Backlog 维持 ~26% 增速，自由现金流如期达成 €100 亿年度目标。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-teal-600 dark:text-teal-400">
+              潜在上行空间：+15% 至 +25%（基本面扎实驱动）
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：15%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：宏观压力缓冲</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>全球宏观显著恶化导致企业 IT 预算缩减，云迁移决策周期大幅拉长，Backlog 增速跌破 20%，估值倍数阶段性收缩。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+              潜在下行回撤：-10% 至 -15%（高黏性维护收入提供安全垫）
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-sapblue-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>机构级资产配置与投资组合建议</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white mb-1">1. 企业软件核心底仓 (Core Software Allocation)</div>
+              <p class="text-slate-300 leading-relaxed">
+                作为全球企业级 ERP 绝对龙头，SAP 具备极强的抗周期属性与高黏性订阅模式，建议在科技与成长组合中保持<strong>标配至超配（Overweight）</strong>。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-sapblue-400 mb-1">2. 逢宏观情绪波动分批布局</div>
+              <p class="text-slate-300 leading-relaxed">
+                利用宏观市场对欧洲经济或短期 IT 预算的担忧所带来的回调，分批吸纳以充分享受云转型带来的长期复利红利。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-teal-400 mb-1">3. 紧盯 Cloud Backlog 领先指标</div>
+              <p class="text-slate-300 leading-relaxed">
+                将当前云订单储备（Current Cloud Backlog）同比增速作为核心监控指标，确保云转型超级周期的高景气度持续兑现。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-sapblue-500/15 text-sapblue-600 dark:text-sapblue-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），用高频基本面事实动态校准投资逻辑：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#008FD3] focus:ring-sapblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 当前云订单储备（Current Cloud Backlog）增速</span>
+                  <span class="text-[11px] font-mono text-sapblue-600 dark:text-sapblue-400 font-semibold shrink-0">核心前瞻锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪固定汇率下当前云订单储备同比增速是否维持在 25% 左右的景气区间（当前为 €24.14B, +26%）。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#008FD3] focus:ring-sapblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. Cloud ERP Suite 占云收入比重是否稳超 85%</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">核心产品壁垒</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查核心云 ERP 在整体云业务中的压舱石作用及 RISE/GROW 方案的签单落地广度。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#008FD3] focus:ring-sapblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 非 IFRS 云毛利率是否保持在 74% 附近</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">SaaS 盈利质量</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监控云端基础设施扩展过程中的成本控制与规模效应，确保非 IFRS 云毛利率维持在 74% 黄金区间。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#008FD3] focus:ring-sapblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 非 IFRS 营业利润率向 30% 战略目标迈进</span>
+                  <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">经营杠杆指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪每季财报披露的营业利润率改善幅度（Q3 已提升至 29.5%），验证运营效率的持续优化。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#008FD3] focus:ring-sapblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. Business AI（Joule）在顶尖大单中的渗透率</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">AI 变现先行指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  关注每季前 50 大客户签约中包含 AI 与业务数据云组件的订单比例，评估 AI 带来的客单价溢价。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#008FD3] focus:ring-sapblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. 自由现金流（Free Cash Flow）年度目标达成度</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">现金牛印钞机</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查全年自由现金流是否顺利向约 100 亿欧元的宏伟目标靠拢，确保股东回购与分红资金充沛。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 页脚免责声明 -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>思爱普 SAP SE (NYSE: SAP) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2026 Q3 财报及 2026 年 11 月市场一致预期</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于思爱普公司公开财务报告、企业级软件行业调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的未来业绩预测、自由现金流目标及三情景估值模型均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-sapblue-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-sapblue-400');
+          }
+        }
+      });
+    });
+
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-sapblue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-sapblue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    const KPI_STORAGE_KEY = 'sap_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {}
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {}
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    let bizChartInstance = null;
+    let moatRadarInstance = null;
+    let valuationChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('sapBizChart').getContext('2d');
+      const colors = getChartColors();
+
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E'],
+          datasets: [
+            {
+              label: '云业务营收 (Cloud Revenue)',
+              data: [12.0, 13.7, 16.5, 20.3, 26.0],
+              backgroundColor: '#008FD3',
+              borderRadius: 4,
+            },
+            {
+              label: '软件支持与许可 (Support & License)',
+              data: [18.8, 17.5, 17.2, 16.8, 16.0],
+              backgroundColor: '#64748B',
+              borderRadius: 4,
+            },
+            {
+              label: '其他服务 (Services & Other)',
+              data: [9.9, 10.0, 10.3, 10.5, 10.8],
+              backgroundColor: '#06B6D4',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: €${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 55,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '€' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            'Q3 云业务营收 (Cloud)',
+            'Q3 软件支持 (Support)',
+            'Q3 软件许可 (Software License)',
+            'Q3 服务与其他 (Services)'
+          ],
+          datasets: [
+            {
+              label: 'Q3 2026 营收 (€B)',
+              data: [6.67, 3.12, 0.38, 0.10],
+              backgroundColor: [
+                '#008FD3',
+                '#3B82F6',
+                '#06B6D4',
+                '#64748B'
+              ],
+              borderRadius: 6,
+              barThickness: 26
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `Q3 营收: €${ctx.parsed.x}B (总计 €10.27B)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 8,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '€' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-sapblue-600 dark:text-sapblue-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022–FY2026E 云业务与总营收演进趋势';
+        subEl.textContent = '云业务收入占比持续跨越式提升，驱动整体营收迈向高增长轨道';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-sapblue-600 dark:text-sapblue-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'Q3 2026 单季各收入板块拆解';
+        subEl.textContent = '单季总营收 €10.27B · 云业务 €6.67B（同比增长 25%）';
+      }
+      initBizChart();
+    }
+
+    function initMoatRadar() {
+      const ctx = document.getElementById('sapMoatRadar').getContext('2d');
+      const colors = getChartColors();
+
+      if (moatRadarInstance) moatRadarInstance.destroy();
+      moatRadarInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '核心 ERP 与财务流程绑定',
+            '业务数据云与行业知识图谱',
+            'RISE 迁移标准化与生态网络',
+            '全球大客户黏性与迁移成本',
+            'Business AI 工作流集成度'
+          ],
+          datasets: [
+            {
+              label: 'SAP SE (SAP)',
+              data: [9.9, 9.6, 9.7, 9.8, 9.2],
+              borderColor: '#008FD3',
+              backgroundColor: 'rgba(0, 143, 211, 0.22)',
+              pointBackgroundColor: '#008FD3',
+              borderWidth: 2.5
+            },
+            {
+              label: 'Oracle (甲骨文)',
+              data: [8.8, 8.5, 8.2, 8.4, 8.5],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.14)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: 'Microsoft / Workday 对手阵营',
+              data: [8.0, 7.8, 8.5, 8.0, 9.0],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValuationChart() {
+      const ctx = document.getElementById('sapValuationChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valuationChartInstance) valuationChartInstance.destroy();
+      valuationChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年总营收 (€B)',
+              data: [30.9, 31.2, 32.8, 35.1, 38.5],
+              backgroundColor: 'rgba(0, 143, 211, 0.85)',
+              borderRadius: 5,
+              barThickness: 28,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: '云业务营收 (€B)',
+              data: [12.0, 13.7, 16.5, 20.3, 26.0],
+              backgroundColor: 'rgba(6, 182, 212, 0.85)',
+              borderRadius: 5,
+              barThickness: 28,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '非 IFRS 营业利润率 (%)',
+              data: [20.5, 22.1, 24.8, 27.2, 29.8],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: €${ctx.parsed.y}B`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 50,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '€' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 40,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initMoatRadar();
+      initValuationChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initMoatRadar();
+      initValuationChart();
+    });
+  </script>
+</body>
+</html>
+"""
+
+with open("SAP.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+print("Successfully generated SAP.html")

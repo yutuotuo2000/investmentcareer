@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>哔哩哔哩 (NASDAQ: BILI / HKEX: 9626) 深度研究报告：从 Z 世代二次元社区到高商业化效率的内容生态与持续盈利重估</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#060B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            bilipink: {
+              400: '#FF85AD',
+              500: '#FB7299',
+              600: '#E0527B',
+            },
+            biliblue: {
+              400: '#38BDF8',
+              500: '#00A1D6',
+              600: '#0284C7',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(251, 114, 153, 0.26) 0%, rgba(0, 161, 214, 0.10) 100%);
+      border-left: 3px solid #FB7299;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-bilipink-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-bilipink-500 via-biliblue-500 to-amber-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-bilipink-500 to-biliblue-500 flex items-center justify-center font-extrabold text-white shadow text-xs">
+        BILI
+      </div>
+      <div>
+        <div class="text-[11px] text-bilipink-400 font-semibold tracking-wider uppercase">NASDAQ: BILI · HKEX: 9626</div>
+        <div class="text-sm font-bold leading-tight">哔哩哔哩深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">BILI 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构（广告 + 游戏双引擎）</a></li>
+          <li><a href="#sec-comm" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 社区生态与 UP 主商业变现闭环</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 社区文化壁垒与 PUGV 护城河</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务盈利质量与经营杠杆模型</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>中国互联网与文娱生态研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY26E / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-bilipink-500 to-biliblue-500 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-bilipink-500/30">
+            BILI
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-bilipink-400 bg-bilipink-500/15 px-2 py-0.5 rounded">NASDAQ: BILI · 9626.HK</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">哔哩哔哩深度研究报告</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          高粘性 PUGV 视频社区 · 高毛利效果广告与精品游戏（《三谋》等）双轮驱动持续盈利
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY26E 营收共识</span>
+          <span class="font-mono font-bold text-white">~¥31.8B <span class="text-bilipink-400">(+12.5%)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">日均活跃用户 (DAU)</span>
+          <span class="font-mono font-bold text-biliblue-400">1.08亿+ <span class="text-slate-400">(日均105分钟)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">估值锚 (Non-GAAP P/E)</span>
+          <span class="font-mono font-bold text-amber-400">~21.0x (盈利全面释放)</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-bilipink-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构（广告 + 游戏双引擎）</span>
+          </a>
+          <a href="#sec-comm" data-target="sec-comm" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>社区生态与 UP 主商业变现</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>社区文化壁垒与 PUGV 护城河</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与盈利释放模型</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-bilipink-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-bilipink-500 hover:bg-bilipink-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400 font-bold border border-bilipink-500/30">评级：增持 / 中国最具商业化弹性的年轻世代内容社区</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 盈利质量跃升与长期经营杠杆释放周期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NASDAQ: BILI · 9626.HK</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#251329] to-[#0D1E3A] text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景 B站 粉蓝矩阵纹理 -->
+          <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#FB7299 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-bilipink-500/20 border border-bilipink-400/40 text-bilipink-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-bilipink-400 animate-pulse"></span>
+              <span>CORE THESIS · 1.08亿+ 高粘性 DAU 社区底座 × 高毛利效果广告持续超预期 × 精品长线游戏盈利爆发</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              哔哩哔哩 (NASDAQ: BILI / 9626.HK) 深度研究报告：从 Z 世代二次元社区到高商业化效率的内容生态与持续盈利重估
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              作为中国年轻世代密度最高、社区粘性最强的综合性视频社区，哔哩哔哩已完成从“亏损扩张换用户”向“高质量可持续盈利”的战略跨越。
+              凭借 <strong class="text-bilipink-400">超 1.08 亿日活用户与日均 105 分钟以上使用时长</strong> 构筑的稀缺流量池，叠加 <strong class="text-white">“一横N纵”广告基建升级、商业化带货（花火/大开环）以及《三国：谋定天下》等精品游戏长线运营</strong>，公司综合毛利率稳步迈向 36%+ 区间，Non-GAAP 净利润率进入加速释放通道。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">稀缺年轻消费人群资产</div>
+                <div class="text-white font-semibold">用户平均年龄 ~25 岁，随着 95/00 后步入成家立业与消费黄金期，单客商业价值加速兑现</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">广告商业化效率跃升</div>
+                <div class="text-bilipink-400 font-semibold">效果广告增速持续领跑行业，游戏、电商（大开环）、AI 应用与网服成为四大核心增长引擎</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">高毛利业务驱动经营杠杆</div>
+                <div class="text-biliblue-400 font-semibold">广告与自研/代理高毛利游戏占比提升，毛利率持续扩张，正向自由现金流充沛</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2026E 全年总营收</span>
+              <span class="p-1.5 rounded-lg bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">¥31.8B</span>
+              <span class="text-xs font-bold text-bilipink-600 dark:text-bilipink-400 bg-bilipink-500/15 px-2 py-0.5 rounded">+12.5% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              广告业务保持 20%+ 高增速，叠加游戏业务稳健贡献与大会员/直播基本盘，营收重回双位数稳健增长。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>日均活跃用户 (DAU)</span>
+              <span class="p-1.5 rounded-lg bg-biliblue-500/15 text-biliblue-600 dark:text-biliblue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">1.08亿+</span>
+              <span class="text-xs font-bold text-biliblue-600 dark:text-biliblue-400 bg-biliblue-500/15 px-2 py-0.5 rounded">DAU/MAU ~30%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              用户日均使用时长稳定在 100–108 分钟历史高位区间，高互动弹幕与长中视频壁垒构筑极强用户粘性。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>综合毛利率 (Gross Margin)</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">36.5%</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">持续扩张</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              高毛利广告与游戏收入占比突破 52%，带宽与服务器固定成本摊薄，带动毛利率连续十余个季度环比改善。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Non-GAAP 净利润率</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">8.5%</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">盈利加速兑现</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              研发与市场费用率显著优化，经营杠杆全面释放，公司迈入可持续规模化盈利阶段（长期目标 10%–15%）。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-bilipink-600 dark:text-bilipink-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：广告与游戏双核心引擎 + 增值服务稳健基本盘</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">FY2026E 总营收 ~¥31.8B · 高毛利业务主导收入结构升级</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2022–FY2027E 四大业务板块营收结构演进（¥十亿）</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">广告与游戏两大高毛利板块占比持续扩大，带动整体盈利能力发生质变</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-bilipink-600 dark:text-bilipink-400 shadow-sm transition">视图A：营收结构演进</button>
+                <button onclick="switchBizChart('split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：FY26E 板块拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业化核心增长飞轮拆解</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">“一横N纵”广告基建与推荐算法升级</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      打通自然流量与商业流量池，AIGC 创意生成工具与深层转化模型（oCPX）显著提升点击率与 ROI，推动效果广告连续多个季度实现 25%–30% 高增长。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-biliblue-500/15 text-biliblue-600 dark:text-biliblue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">精品化游戏战略与长生命周期运营</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      聚焦二次元、SLG 与年轻向垂类，爆款《三国：谋定天下》验证“降肝减氪”创新品类破圈能力，《FGO》《碧蓝航线》等长青产品贡献稳定现金流。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">“大开环”电商生态带货模式</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      坚持不自建重资产仓储物流，而是与淘宝天猫、京东、拼多多等全网电商平台深度打通，成为各家 618/双11 期间的核心种草与成交转化阵地。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">单用户商业价值释放</span>
+              <span class="font-bold text-bilipink-600 dark:text-bilipink-400">汽车、家装、母婴及数码 3C 预算加速涌入</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 四大核心业务板块矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- 板块 1：增值服务 (VAS) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-biliblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-biliblue-500/15 text-biliblue-600 dark:text-biliblue-400 text-xs font-bold">压舱石 · 营收占比 ~38%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~¥12.1B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">1. 增值服务（大会员 + 直播）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                涵盖超 2,200 万大会员付费订阅（逾 80% 为年度或自动续费会员）、视频生态一体化直播打赏、充电计划及猫耳 FM/漫画付费。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-biliblue-600 dark:text-biliblue-400 font-semibold">
+              年度大会员留存率极高 · 现金流稳健
+            </div>
+          </div>
+
+          <!-- 板块 2：商业广告 (Advertising) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-bilipink-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400 text-xs font-bold">第一增长极 · 占比 ~33%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~¥10.5B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 效果广告、品牌与花火商单</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                依托高转化效率的效果广告系统及官方商单撮合平台“花火”，涵盖原生信息流、Story-Mode 竖屏视频广告及 UP 主深度定制内容营销。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-bilipink-600 dark:text-bilipink-400 font-semibold">
+              核心毛利扩张引擎 · 广告加载率仍有空间
+            </div>
+          </div>
+
+          <!-- 板块 3：移动游戏 (Mobile Games) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amber-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">高弹性利润 · 占比 ~21%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~¥6.7B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 精品自研与独家代理游戏</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                深度绑定年轻玩家生态，《三国：谋定天下》开辟年轻化 SLG 赛道实现长线高流水，叠加二次元旗舰产品矩阵，毛利率高达 60%+。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold">
+              社区天然获客零渠道分成 · 利润贡献显著
+            </div>
+          </div>
+
+          <!-- 板块 4：IP 衍生品及其他 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">线下与消费 · 占比 ~8%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~¥2.5B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. IP 衍生品（会员购）与漫展经济</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                围绕国产动画与虚拟偶像 IP 开发手办潮玩（会员购魔力赏）、Bilibili World (BW) 线下超级漫展及 BML 演唱会，打通线上线下情感消费闭环。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              “谷子经济”核心阵地 · 强化品牌文化凝聚力
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 社区生态与 UP 主商业变现闭环 (Creator & Ecosystem)
+      ========================================================= -->
+      <section id="sec-comm" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-biliblue-600 dark:text-biliblue-400">Section 02 · Creator Monetization & Content Ecosystem</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 社区生态与 UP 主商业变现闭环：从精神共鸣到“内容即消费”</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">日均活跃 UP 主稳健增长 · 超 300 万 UP 主在 B 站获得收入</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：内容品类破圈与商业化四大支柱 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">内容品类破圈：知识、科技 AI 与生活消费全面繁荣</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在稳固 ACG（动画、漫画、游戏）基本盘的同时，科技数码、AI 大模型科普、财经商业、汽车评测与家居生活成为增速最快的品类，全网最活跃的 AI 开发者与爱好者均聚集于此。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-biliblue-500/15 text-biliblue-600 dark:text-biliblue-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">多元变现体系保障创作者生态长期繁荣</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                构建“花火商单 + 视频带货（悬赏计划）+ 直播打赏 + 付费课堂/专属充电视频”立体变现网络，降低 UP 主对单一平台补贴的依赖，创作者生态健康度持续提升。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">深度长中视频构筑高信任度消费决策心智</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                相比短视频的碎片化脉冲式消费，B 站 5–30 分钟的深度评测与教程视频在选购数码产品、家电、汽车及美妆等高客单决策中拥有无可替代的“种草转化率”。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">国产动画（国创）与精品纪录片品牌护城河</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                持续出品《凡人修仙传》《灵笼》《中国奇谭》及高分人文纪录片，不仅拉动大会员续费，更通过授权发行与衍生品开发放大全产业链 IP 价值。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：年龄代际成长红利卡片 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">B 站核心用户代际成长带来的 ARPU 跃迁逻辑</h3>
+            <div class="space-y-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                  <span>早期阶段（2018–2021：学生群体为主）</span>
+                  <span class="text-slate-500 font-mono">高时长 · 低付费能力</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  用户平均年龄约 21 岁，消费集中在游戏与低客单价零食饮料，广告主预算集中于快消与手游。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-bilipink-500/10 border border-bilipink-500/30">
+                <div class="flex justify-between font-bold text-bilipink-600 dark:text-bilipink-400 mb-1">
+                  <span>当前阶段（2026+：步入职场与家庭消费黄金期）</span>
+                  <span class="font-mono">平均年龄 ~25岁 · 高客单爆发</span>
+                </div>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+                  首批 95 后、00 后核心用户迈入 25–32 岁人生新阶段，首购汽车、房屋装修、母婴育儿及高端数码消费需求集中释放，单用户广告价值（ARPU）呈指数级放大。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 社区文化壁垒与 PUGV 护城河 (Community & PUGV Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-bilipink-600 dark:text-bilipink-400">Section 03 · Community Culture & PUGV Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 社区文化壁垒与 PUGV 护城河：弹幕社交图谱 + 高留存正式会员体系</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：宽护城河 (Wide Moat · 中国互联网独一无二的社区归属感)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大护城河解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">2.5亿+“答题转正”正式会员与 80% 十二个月留存率</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                独创的 100 道社区礼仪与兴趣测试题筛选出高认同感核心群体。通过考试的正式会员第 12 个月留存率长期稳定在 80% 左右，构筑极高的迁移壁垒。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-biliblue-500/15 text-biliblue-600 dark:text-biliblue-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">弹幕文化与同好圈层共鸣（情感归属资产）</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                月均互动量超 160 亿次（弹幕、评论、一键三连），弹幕将孤立的视频观看转化为跨时空的“同好共赏”社交体验，形成独特的“玩梗”文化与精神家园。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">PUGV（专业用户创作视频）长尾内容资产库</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                PUGV 贡献平台 90% 以上的播放量。优质长中视频具有极强的“复利效应”，数年前发布的经典科普、鬼畜与教程视频至今仍在持续贡献长尾播放与广告库存。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">年轻二次元与游戏文化发源地心智</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                绝大多数国产精品游戏（《原神》《黑神话：悟空》《鸣潮》等）均选择 B 站作为首曝与核心玩家运营主阵地，平台在游戏分发领域具备天然话语权。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">国内主流视频与内容平台五维竞争力雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">哔哩哔哩 (BILI) vs 抖音/快手（短视频） vs 爱奇艺/腾讯视频（长视频）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康与盈利释放模型 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-biliblue-600 dark:text-biliblue-400">Section 04 · Financial Health & Operating Leverage</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与盈利释放模型：毛利率迈向 36%+ 与利润剪刀差加速扩大</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">可转债包袱基本出清 · 充沛现金储备与正向经营现金流</span>
+        </div>
+
+        <!-- 1. 财务健康度四大指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-bilipink-600 dark:text-bilipink-400 uppercase">Gross Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">36.5%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              受益于高毛利广告和游戏收入占比提升，叠加服务器带宽成本集约化，毛利率较 2022 年翻倍。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-biliblue-600 dark:text-biliblue-400 uppercase">Non-GAAP Net Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">8.5%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              实现全面扭亏为盈后，收入增长带来的毛利增量高度转化为净利润，长期 Non-GAAP 净利率目标 10%–15%。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase">Operating Cash Flow</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">&gt;¥5.5B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              全年正向经营性现金流强劲，游戏预收款与广告现金回款优秀，为后续股东回报（股票回购）奠定基础。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">OpEx Discipline</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">持续优化</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              销售费用率与研发费用率（聚焦精品自研与 AI 推荐提效）显著下降，管理团队执行力获市场高度认可。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 财务与利润率双轴演进图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 综合毛利率与 Non-GAAP 净利润率跃升轨迹</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">清晰展现哔哩哔哩从深度亏损期成功跨越盈亏平衡点并进入高盈利释放阶段的财务蜕变</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-bilipink-600 dark:text-bilipink-400 bg-bilipink-500/10 px-2.5 py-1 rounded">长期净利率目标 10%–15%</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-bilipink-600 dark:text-bilipink-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与核心风险应对</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：中概文娱与年轻消费首选标的，把握广告与新游催化波段</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-bilipink-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-bilipink-600 dark:text-bilipink-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：25x – 28x Non-GAAP P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>效果广告保持 25%+ 高增长，《三国：谋定天下》海外版及储备新游接力爆款，综合毛利率突破 38%，Non-GAAP 净利润率超预期迈向 11%+。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-bilipink-600 dark:text-bilipink-400">
+              潜在上行空间：+40% 至 +55%（业绩与估值双击）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-biliblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-biliblue-500/15 text-biliblue-600 dark:text-biliblue-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-biliblue-600 dark:text-biliblue-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：20x – 22x Non-GAAP P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>FY26E 总营收如期实现 ~¥31.8B，DAU 稳步增长至 1.1 亿左右，广告业务维持行业领先增速，Non-GAAP 净利润率稳步达成 8.5%。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-biliblue-600 dark:text-biliblue-400">
+              潜在上行空间：+20% 至 +30%（内生盈利增长驱动）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-slate-500/15 text-slate-600 dark:text-slate-300 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-slate-600 dark:text-slate-300">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：15x – 17x Non-GAAP P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>宏观消费复苏偏弱导致品牌广告主预算收紧，核心游戏流水出现自然下滑，短视频平台对用户时长的争夺加剧。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300">
+              潜在下行回撤：-15% 至 -20%（充沛净现金与社区基本盘托底）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构应对策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 游戏业务产品周期与爆款接续波动风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">单一主力游戏进入成熟期后的流水自然回落压力</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                游戏行业天然存在生命周期波动，《三国：谋定天下》等重磅产品基数较高后，需密切观察新赛季更新留存率以及后续二次元/休闲新游的接档节奏。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 短视频与小红书等泛娱乐社区的流量竞争</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">抖音、快手、视频号及小红书对年轻用户时长的争夺</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                抖音持续发力中长视频激励计划，小红书也在拓展视频与科技二次元内容。B 站需持续维护优质头部 UP 主的创作者生态与商业化收入预期。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 商业化提速与核心社区用户体验的平衡</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">信息流广告加载率与恰饭商单密度过高的用户敏感度</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                B 站用户对低质营销内容容忍度较低，平台必须依靠原生高质量创意广告和精准算法分发，避免因过度商业化损伤社区氛围。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 宏观广告大盘与港美股中概流动性波动</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">品牌广告主季末投放节奏及海外资金情绪扰动</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                美妆、快消等品牌广告受消费大环境影响较大，且 BILI 具备较高 Beta 弹性，在宏观汇率或港美股市场波动期间股价振幅往往高于大盘。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-biliblue-600 dark:text-biliblue-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-bilipink-500/15 text-bilipink-600 dark:text-bilipink-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），用高频社区与商业化指标动态追踪哔哩哔哩的盈利释放质量：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="bili-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FB7299] focus:ring-bilipink-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 广告业务同比增速是否维持 20%+ 领跑行业</span>
+                  <span class="text-[11px] font-mono text-bilipink-600 dark:text-bilipink-400 font-semibold shrink-0">核心增长引擎锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  重点追踪效果广告占比提升及游戏、电商、AI 科技、汽车四大垂类广告主预算投入力度。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="bili-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FB7299] focus:ring-bilipink-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 日均活跃用户 (DAU) 与用户日均使用时长（100分钟+）</span>
+                  <span class="text-[11px] font-mono text-biliblue-600 dark:text-biliblue-400 font-semibold shrink-0">社区基本盘底线</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  确认 DAU 稳健增长且 DAU/MAU 粘性比值维持在 30% 左右，验证商业化提速未损害用户活跃度。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="bili-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FB7299] focus:ring-bilipink-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 综合毛利率持续环比改善并向 37%+ 迈进</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">盈利质量核心锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查高毛利业务占比提升及服务器带宽成本集约化效果，跟踪毛利额同比增速是否显著快于营收增速。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="bili-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FB7299] focus:ring-bilipink-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 《三国：谋定天下》长线赛季流水与新游管线进展</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">游戏弹性观察点</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪主力游戏在赛季更新时的 iOS 畅销榜排名表现，以及海外发行与自研休闲/二次元新游的版号测试节点。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="bili-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FB7299] focus:ring-bilipink-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 获得收入 UP 主数量及“大开环”电商带货 GMV 增速</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">创作者生态健康度</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  验证“内容即消费”心智持续深化，确保腰部与头部 UP 主变现渠道畅通，维持优质内容稳定供给。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="bili-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FB7299] focus:ring-bilipink-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. Non-GAAP 净利润率扩张节奏与股票回购执行情况</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">股东回报指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪经营费用率（SG&A、R&D）控费纪律，以及董事会授权股票回购计划在港美股市场的实际回购金额。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>哔哩哔哩 (NASDAQ: BILI / HKEX: 9626) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：历史披露财报及 2026 年 11 月市场一致预期 (FY26E / FY27E)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告、中国互联网视频与游戏行业调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的 FY2026E/FY2027E 营收预测、毛利率与 Non-GAAP 净利润率展望、游戏流水假设及三情景估值模型均基于特定行业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-bilipink-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-bilipink-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'bili_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 5. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2022–FY2027E 四大业务营收结构演进（堆叠柱状图）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              label: '增值服务 VAS (大会员+直播)',
+              data: [8.7, 9.9, 10.9, 11.4, 12.1, 12.8],
+              backgroundColor: '#00A1D6',
+              borderRadius: 3,
+            },
+            {
+              label: '商业广告 (效果+品牌+花火)',
+              data: [5.1, 6.4, 8.2, 9.2, 10.5, 12.1],
+              backgroundColor: '#FB7299',
+              borderRadius: 3,
+            },
+            {
+              label: '移动游戏 (精品自研与代理)',
+              data: [5.0, 4.0, 5.6, 5.8, 6.7, 7.4],
+              backgroundColor: '#F59E0B',
+              borderRadius: 3,
+            },
+            {
+              label: 'IP 衍生品及其他',
+              data: [3.1, 2.2, 2.1, 1.9, 2.5, 2.9],
+              backgroundColor: '#6366F1',
+              borderRadius: 3,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ¥${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 40,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：FY2026E 业务板块营收拆解（横向柱状图）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '增值服务 VAS (大会员+直播)',
+            '商业广告 (效果广告+花火商单)',
+            '移动游戏 (三国谋定天下等矩阵)',
+            'IP 衍生品与线下漫展 (会员购/BW)'
+          ],
+          datasets: [
+            {
+              label: 'FY2026E 业务板块营收贡献 (¥十亿)',
+              data: [12.1, 10.5, 6.7, 2.5],
+              backgroundColor: [
+                '#00A1D6',
+                '#FB7299',
+                '#F59E0B',
+                '#6366F1'
+              ],
+              borderRadius: 6,
+              barThickness: 28
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `营收规模: ¥${ctx.parsed.x}B (占总营收 ${(ctx.parsed.x / 31.8 * 100).toFixed(1)}%)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 15,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-bilipink-600 dark:text-bilipink-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022–FY2027E 四大业务板块营收结构演进（¥十亿）';
+        subEl.textContent = '广告与游戏两大高毛利板块占比持续扩大，带动整体盈利能力发生质变';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-bilipink-600 dark:text-bilipink-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2026E 核心业务板块营收拆解（总计 ~¥31.8B）';
+        subEl.textContent = '广告与游戏合计贡献超 54% 营收，成为利润端高速释放的核心引擎';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '年轻世代密度与文化认同壁垒',
+            '高粘性弹幕互动与社区留存率',
+            '深度长中视频消费决策心智',
+            '二次元与精品游戏分发协同效应',
+            '全平台商业变现规模与算法基建'
+          ],
+          datasets: [
+            {
+              label: '哔哩哔哩 (BILI)',
+              data: [9.8, 9.7, 9.5, 9.6, 8.4],
+              borderColor: '#FB7299',
+              backgroundColor: 'rgba(251, 114, 153, 0.24)',
+              pointBackgroundColor: '#FB7299',
+              borderWidth: 2.5
+            },
+            {
+              label: '头部短视频平台 (抖音/快手)',
+              data: [7.6, 8.2, 6.8, 8.0, 9.8],
+              borderColor: '#00A1D6',
+              backgroundColor: 'rgba(0, 161, 214, 0.14)',
+              pointBackgroundColor: '#00A1D6',
+              borderWidth: 1.8
+            },
+            {
+              label: '传统长视频平台 (爱优腾)',
+              data: [6.5, 5.8, 7.5, 5.5, 7.2],
+              borderColor: '#F59E0B',
+              backgroundColor: 'rgba(245, 158, 11, 0.10)',
+              pointBackgroundColor: '#F59E0B',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '综合毛利率 (%)',
+              data: [17.6, 24.2, 32.7, 35.1, 36.5, 37.8],
+              backgroundColor: 'rgba(0, 161, 214, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'Non-GAAP 净利润率 (%)',
+              data: [-30.6, -15.1, -0.1, 5.2, 8.5, 11.2],
+              borderColor: '#FB7299',
+              backgroundColor: '#FB7299',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 0,
+              max: 45,
+              grid: { color: colors.grid },
+              ticks: { color: '#00A1D6', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: -35,
+              max: 18,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#FB7299', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>英伟达 NVIDIA (NASDAQ: NVDA) 深度研究报告：从 GPU 加速计算霸主到 AI 工厂与全栈算力基础设施核心引擎</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            nvgreen: {
+              400: '#94D82D',
+              500: '#76B900',
+              600: '#5C9200',
+            },
+            accent: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(118, 185, 0, 0.22) 0%, rgba(6, 182, 212, 0.06) 100%);
+      border-left: 3px solid #76B900;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-nvgreen-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-nvgreen-500 via-emerald-400 to-teal-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-nvgreen-500 to-nvgreen-600 flex items-center justify-center font-extrabold text-navy-950 shadow">
+        NV
+      </div>
+      <div>
+        <div class="text-[11px] text-nvgreen-400 font-semibold tracking-wider uppercase">NASDAQ: NVDA · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">英伟达 NVIDIA 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">NVDA 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值重置</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球半导体与 AI 算力基础设施研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY26 / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-nvgreen-500 to-nvgreen-600 flex items-center justify-center text-navy-950 font-extrabold text-base shadow-lg shadow-nvgreen-500/25">
+            NVDA
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-nvgreen-400 bg-nvgreen-500/15 px-2 py-0.5 rounded">NASDAQ: NVDA</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">英伟达深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          GPU 加速计算霸主 · AI 工厂整机柜与全栈算力基础设施核心引擎
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY26 全年营收</span>
+          <span class="font-mono font-bold text-white">$215.9B <span class="text-nvgreen-400">(+65%)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY27E 营收共识</span>
+          <span class="font-mono font-bold text-teal-400">~$411.0B <span class="text-slate-400">(+90%)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">远期估值锚</span>
+          <span class="font-mono font-bold text-nvgreen-400">~18.0x P/E · PEG 0.18</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-nvgreen-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-nvgreen-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-nvgreen-500 hover:bg-nvgreen-600 text-navy-950 text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-nvgreen-500/15 text-nvgreen-600 dark:text-nvgreen-400 font-bold border border-nvgreen-500/30">评级：强烈买入 / 核心重仓配置</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 架构代际跃迁</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NASDAQ: NVDA</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景科技绿电路点阵纹理 -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#76B900 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-nvgreen-500/20 border border-nvgreen-500/40 text-nvgreen-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-nvgreen-400 animate-pulse"></span>
+              <span>CORE THESIS · 从单卡卖芯片跃迁至整机柜“AI 工厂” × 18.0x 远期估值安全边际</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              英伟达 NVIDIA (NASDAQ: NVDA) 深度研究报告：从 GPU 加速计算霸主到 AI 工厂与全栈算力基础设施核心引擎
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              英伟达已完成从单一计算芯片供应商向<strong class="text-white">全栈“AI 工厂”系统级基础设施霸主</strong>的跨越。FY2026 全年营收飙升至 <strong class="text-nvgreen-400">$215.9B (+65% YoY)</strong>，其中数据中心贡献 <strong class="text-white">$193.7B（占比 89.7%）</strong>，全年营业现金流高达 <strong class="text-teal-400">$103B</strong>。
+              随着 2026 年 8 月下一代 <strong class="text-nvgreen-400">Vera Rubin</strong> 机柜系统启动量产交付、网络业务突破 <strong class="text-white">$31B</strong> 且主权 AI 暴增超三倍，叠加指数级业绩消化使远期 P/E 回落至 <strong class="text-emerald-400">~18.0x（PEG 仅 0.18）</strong>，配置性价比达到历史罕见高度。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">系统级价值量跃迁</div>
+                <div class="text-white font-semibold">单吉瓦电力对应 NVDA 营收从 Blackwell 的 ~$25B 跃升至 Vera Rubin 的 ~$40B</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">客户结构健康多元化</div>
+                <div class="text-nvgreen-400 font-semibold">主权 AI 暴增超 3 倍突破 $30B，非 CSP 企业与 AI 云客户合计贡献 $70.0B</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">成长消化高估值悖论</div>
+                <div class="text-teal-400 font-semibold">FY27E 营收共识 ~$411B，远期 P/E 仅 ~18.0x（PEG 0.18），远低于 10 年均值 0.93</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2026 全年总营收</span>
+              <span class="p-1.5 rounded-lg bg-nvgreen-500/15 text-nvgreen-600 dark:text-nvgreen-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$215.9B</span>
+              <span class="text-xs font-bold text-nvgreen-600 dark:text-nvgreen-400 bg-nvgreen-500/15 px-2 py-0.5 rounded">+65% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Blackwell 整机柜大规模放量与网络业务爆发，推动千亿美元体量下仍维持超高速扩张。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>数据中心业务营收</span>
+              <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$193.7B</span>
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">占比 89.7%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              同比增长 +68% YoY；其中网络年营收突破 $31B，GB200/GB300 整机柜占出货约 2/3。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>净利润率 & 营业现金流</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">55.6%</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">OCF $103B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              FY26 营业利润达 $130B (+60% YoY)，全年股东回报 $41B（Q2 FY27 单季回购分红达 $26B）。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2027E 预期 & 远期估值</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~$411B</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Fwd P/E ~18.0x</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Vera Rubin 放量驱动 FY27E 营收再近翻倍，动态 PEG 仅 0.18，估值性价比显著凸显。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-nvgreen-600 dark:text-nvgreen-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：从单卡销售向“AI 工厂整机柜 + 全栈互联”跃迁</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">FY2026 总营收 $215.9B · 数据中心占比 89.7%</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2022–FY2027E 分部营收演进与数据中心统治力</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">数据中心由 $10.6B 跃升至 FY26 $193.7B，FY27E 向 $380B+ 迈进</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-nvgreen-600 dark:text-nvgreen-400 shadow-sm transition">视图A：营收演进</button>
+                <button onclick="switchBizChart('dc_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：数据中心拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业架构三大结构性拐点</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-nvgreen-500/15 text-nvgreen-600 dark:text-nvgreen-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">整机柜（Rack-Scale）主导硬件交付</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      Blackwell B200/GB200/GB300 整机柜已占计算出货约 <strong>2/3</strong>，2026年8月下一代 <strong>Vera Rubin</strong> 机柜系统启动量产交付，单机柜集成 GPU、CPU、高速互联与液冷架构。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">网络业务突破 $31B，增速反超计算芯片</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      Mellanox InfiniBand、Spectrum-X 以太网交换机及 NVLink 互联组成全球最大 AI 网络业务，万卡/十万卡集群对无损低延迟互联的刚需驱动网络占比持续扩大。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">非 CSP 客户破 $70B，主权 AI 暴增超三倍</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      除大型云巨头（CSP 贡献 $123.8B）外，主权国家 AI 基础设施支出暴增超三倍突破 <strong>$30B</strong>，叠加垂直行业企业与新兴 AI 云，非 CSP 客户合计贡献 <strong>$70.0B</strong>。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">核心代际催化剂</span>
+              <span class="font-bold text-nvgreen-600 dark:text-nvgreen-400">Vera Rubin 机柜系统 (2026年8月启动量产)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 五大业务分部详细卡片矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 分部 1：数据中心 (占两列宽度以突出核心地位) -->
+          <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-nvgreen-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 rounded-md bg-nvgreen-500/15 text-nvgreen-600 dark:text-nvgreen-400 text-xs font-bold">绝对核心引擎 · 占比 89.7%</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">+68% YoY</span>
+              </div>
+              <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">FY26 营收：$193.7B</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 数据中心（Data Center：计算单元 + 高速网络 + 主权 AI）</h3>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">产品线拆分：计算与网络双轮驱动</div>
+                <p class="leading-relaxed">
+                  计算单元涵盖 Hopper、Blackwell（B200/GB200/GB300 整机柜占出货约 2/3）及 2026 年 8 月启动量产的 <strong>Vera Rubin</strong>；高速互联网络（InfiniBand / Spectrum-X / NVLink）年营收突破 <strong>$31B</strong>，增速快于计算芯片。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">客户结构拆分：CSP 稳健 + 主权 AI 爆发</div>
+                <p class="leading-relaxed">
+                  大型云巨头（CSP）贡献 <strong>$123.8B</strong>；而<strong>主权 AI</strong> 业务暴增超三倍突破 <strong>$30B</strong>，叠加专业 AI 云与传统企业级客户，非 CSP 板块合计贡献 <strong>$70.0B</strong>，显著降低单一客户集中度风险。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 分部 2：游戏与 AI PC -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-accent-500/10 text-accent-600 dark:text-accent-400 text-xs font-bold">占比 5.3% · +10% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$11.4B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 游戏与 AI PC（Gaming）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                全球独立显卡市占率稳居 <strong>80%–85%</strong>。GeForce RTX 50 Blackwell 系列凭借 DLSS 4 神经网络渲染与本地端侧 AI 算力优势，持续巩固消费级品牌号召力与百万级开发者底盘。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+              独显市占率 80%-85% · 端侧 AI 入口
+            </div>
+          </div>
+
+          <!-- 分部 3：专业可视化 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">占比 0.9% · +21% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$1.9B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 专业可视化（Pro Visualization）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                FY26 Q4 单季营收<strong>加速暴增 159%</strong>。Omniverse 物理 AI 数字孪生平台与 RTX PRO 5000 Blackwell 工作站正成为制造业工厂仿真与企业级 AI 代理（AI Agents）的核心算力载体。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              Q4 单季增速 +159% · Omniverse 放量
+            </div>
+          </div>
+
+          <!-- 分部 4：汽车与具身智能 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">占比 1.0% · +55% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$2.1B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 汽车与具身智能（Auto & Robotics）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                NVIDIA DRIVE Thor 下一代高算力智驾芯片规模上车，叠加 Jetson Thor 人形机器人计算底座（Project GR00T），手握超 <strong>$140 亿</strong>汽车设计定点管线（Design Win Pipeline）。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              定点管线 &gt;$14B · 物理 AI 核心抓手
+            </div>
+          </div>
+
+          <!-- 分部 5：OEM 及其他 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-400 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-slate-500/10 text-slate-600 dark:text-slate-400 text-xs font-bold">占比 3.1% · +258% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$6.8B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">5. OEM 及其他业务（OEM & Other）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                受惠于边缘 AI 模组、主流游戏主机定制 SoC 放量及授权许可收入激增，FY2026 全年营收实现 <strong>+258%</strong> 爆发式增长，进一步厚实非数据中心板块的现金流贡献。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+              边缘模组与主机芯片 · 同比暴增 258%
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与四重核心护城河 (Industry Position & Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：软硬全栈构建深不可测壁垒</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球 AI 算力基础设施标准制定者)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重护城河深度解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 护城河 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-nvgreen-500/15 text-nvgreen-600 dark:text-nvgreen-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">CUDA 生态与 NIM/NeMo 企业护城河</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                近二十年深耕沉淀，汇聚全球<strong>数百万开发者</strong>、数百个垂直领域加速库（cuDNN、TensorRT-LLM）及亿万行底层代码，叠加企业级微服务 <strong>NVIDIA NIM / NeMo</strong>，构筑极高的迁移转换成本与双边网络效应。
+              </p>
+            </div>
+
+            <!-- 护城河 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全栈系统集成与 NVLink 域互联</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                通过第五/六代 NVLink 与 NVSwitch 将 <strong>72 颗 GPU</strong> 互联为单一超巨型逻辑芯片，商业模式从单卡升级为 GB300 / Vera Rubin 整机柜“AI 工厂”。<strong>单吉瓦（1GW）电力对应 NVDA 营收从 Blackwell 的 ~$25B 跃升至 Vera Rubin 的 ~$40B</strong>。
+              </p>
+            </div>
+
+            <!-- 护城河 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“一年一代”极端敏捷迭代节奏</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                打破半导体传统两年一换代规律，推行 <strong>Hopper → Blackwell → Vera Rubin（集成 Rubin GPU + Vera 独立自研 CPU + Groq 3 LPX 极速推理芯片）</strong>一年一代路线图，令追赶者刚量产即面临 1–2 个代际的能效落后。
+              </p>
+            </div>
+
+            <!-- 护城河 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">先进封装（CoWoS/HBM）产能锁定霸权</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                凭借千亿美元级预付款与全栈BOM掌控力，长期锁定台积电（TSMC）绝大部分 <strong>CoWoS-L 先进封装</strong>产能以及 SK 海力士/美光最高规格 <strong>HBM3e / HBM4</strong> 显存配额，形成物理层面的排他性供给壁垒。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">算力基础设施五维护城河量化雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">NVIDIA vs AMD/Intel 通用芯片对手 vs 云巨头自研定制 ASIC（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比 (Competitive Landscape)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-nvgreen-600 dark:text-nvgreen-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：全栈代际领先，ASIC 仅限局部场景</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-nvgreen-500 text-navy-950 shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('merchant')" data-filter="merchant" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">通用算力芯片竞争者</button>
+            <button onclick="filterCompetitors('asic')" data-filter="asic" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">云巨头自研定制 ASIC</button>
+            <button onclick="filterCompetitors('edge')" data-filter="edge" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">边缘与汽车算力</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[180px]">竞争厂商与代表架构</th>
+                  <th class="py-4 px-4 min-w-[130px]">软件栈成熟度</th>
+                  <th class="py-4 px-4 min-w-[140px]">互联与机柜扩展</th>
+                  <th class="py-4 px-4 min-w-[135px]">AI 算力市占地位</th>
+                  <th class="py-4 px-4 min-w-[115px]">毛利率水平</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞合关系评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：NVIDIA 基准 -->
+                <tr data-category="core" class="bg-nvgreen-500/5 dark:bg-nvgreen-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-nvgreen-500 text-navy-950 text-[10px] font-extrabold">行业标准</span>
+                      <span class="font-bold text-slate-900 dark:text-white">NVIDIA (NVDA)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Blackwell / Vera Rubin / Groq LPX</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">CUDA + NIM 行业绝对标准</span>
+                  </td>
+                  <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">NVLink 72卡域 + IB/Spectrum-X</td>
+                  <td class="py-4 px-4 font-bold text-nvgreen-600 dark:text-nvgreen-400">训练 &gt;90% · 推理主导</td>
+                  <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~73% - 75%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>全栈代际统治者：</strong>唯一提供“芯片+高速互联+整机柜+企业软件”交钥匙 AI 工厂方案，客户 TCO（总拥有成本）最优。
+                  </td>
+                </tr>
+
+                <!-- 行 2：AMD -->
+                <tr data-category="merchant" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">AMD (Instinct MI 系列)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">MI325X / MI350 / MI400 机柜</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">ROCm 快速追赶 (仍逊于 CUDA)</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">Infinity Fabric + UALink 联盟</td>
+                  <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">通用 GPU 第二极 (~6%-8%)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~50% - 54%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>核心追赶者：</strong>凭借大显存容量与性价比成为 CSP 制衡英伟达的首选“第二供应商”，但在超大规模万卡训练稳定性和机柜级生态上仍有代差。
+                  </td>
+                </tr>
+
+                <!-- 行 3：Google TPU -->
+                <tr data-category="asic" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Google (TPU v5p / v6 Trillium)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">云巨头内部自研定制 ASIC</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-500/15 text-accent-700 dark:text-accent-400">JAX / PyTorch XLA (封闭自用)</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">ICI 光电路交换 (OCS 强项)</td>
+                  <td class="py-4 px-4 font-semibold text-accent-600 dark:text-accent-400">自研 ASIC 最强标杆</td>
+                  <td class="py-4 px-4 font-mono text-slate-500 dark:text-slate-400">内部自用 (非对外售卖)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>深度绑定自身生态：</strong>支撑 Gemini 模型训练与推理极具能效优势，但仅限 GCP 内部生态使用，无法对外向企业及主权国家销售，同时仍大量采购 NVDA 满足外部云租户。
+                  </td>
+                </tr>
+
+                <!-- 行 4：Amazon Trainium & Broadcom 定制 ASIC -->
+                <tr data-category="asic" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Broadcom / AWS Trainium</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">定制 XPU 设计服务 + 高速交换</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">Neuron SDK / 高度定制化算子</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">Tomahawk 以太网交换芯片强势</td>
+                  <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">特定内部推理/训练负载分流</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">AVGO ~65% - 75%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>固定算法负载利器：</strong>在模型结构高度固化的内部推理场景具备单位成本优势，但面对模型架构快速演进（如多模态/Agent）缺乏灵活性，研发周期长。
+                  </td>
+                </tr>
+
+                <!-- 行 5：Intel Gaudi -->
+                <tr data-category="merchant" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Intel (Gaudi 3 / Xeon)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">传统 x86 巨头转型算力</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-500/10 text-rose-600 dark:text-rose-400">oneAPI / SynapseAI 生态薄弱</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">标准以太网 RoCE 互联</td>
+                  <td class="py-4 px-4 text-rose-600 dark:text-rose-400 font-semibold">份额边缘化 (&lt;2%)</td>
+                  <td class="py-4 px-4 font-mono text-rose-600 dark:text-rose-400">~35% - 40%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>战略承压：</strong>受制于代工业务拖累与软件生态割裂，数据中心 AI 加速器商业化进展大幅低于预期。
+                  </td>
+                </tr>
+
+                <!-- 行 6：边缘与汽车算力 (Qualcomm / Mobileye / Tesla FSD) -->
+                <tr data-category="edge" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">高通 / Mobileye / 自研智驾</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Snapdragon Ride / EyeQ / FSD</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-700 dark:text-indigo-400">端侧车规级编译器与工具链</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">单车/单机端侧低功耗 SoC</td>
+                  <td class="py-4 px-4 font-semibold text-indigo-600 dark:text-indigo-400">端侧车规与座舱主力</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~52% - 56%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>端云协同差异化：</strong>高通在智能座舱占优，而英伟达凭借“云端 Cosmos 世界模型训练 + 车端 DRIVE Thor + 机器人 Jetson”全栈闭环在高阶端到端智驾与人形机器人占据制高点。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 配套 Chart.js 横向条形图：营业利润率与年度研发投入对比 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">全球主要算力芯片厂商营业利润率（Operating Margin）与研发壁垒对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">NVDA FY26 营业利润率高达 ~60.2%，全年研发投入达 $18.5B（Q2 FY27 单季更飙升至 $7.05B）</p>
+            </div>
+            <span class="text-xs font-semibold text-nvgreen-600 dark:text-nvgreen-400 bg-nvgreen-500/15 px-2.5 py-1 rounded">软件溢价 + 系统集成带来断层盈利能力</span>
+          </div>
+          <div class="relative h-60 w-full">
+            <canvas id="compMarginChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值体系解析 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与估值体系：百亿级现金流与“成长消化估值”悖论</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">远期 P/E ~18.0x · PEG 0.18（远低于10年均值 0.93）</span>
+        </div>
+
+        <!-- 1. 财务健康度四大硬核指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-nvgreen-600 dark:text-nvgreen-400 uppercase">Gross Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">71% – 75%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              Blackwell 爬坡初期短暂过渡后迅速回升至 73%-75% 稳态高位，体现极强定价权与软件/网络高毛利拉动。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Operating Profit</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$130.0B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              FY2026 全年营业利润同比大增 +60%，净利润率高达 <strong>55.6%</strong>，经营杠杆效率位居全球万亿市值巨头之首。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Operating Cash Flow</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$103.0B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              轻晶圆厂（Fabless）模式带来极低资本开支占比，全年经营现金流突破千亿美元大关，现金储备极其充裕。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase">Shareholder Return</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$41.0B / 年</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              FY2026 全年回购与分红达 $41B；进入 FY27 更进一步加速，Q2 FY27 单季股东回报即高达 <strong>$26.0B</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 财务与估值演进双轴图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 营收/净利润爆发与远期 P/E 估值倍数收敛趋势</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">“成长消化高估值”经典范本：盈利呈指数级兑现，使远期 P/E 从 52x 峰值大幅收敛至 ~18.0x</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">当前 PEG = 0.18 (10年均值 0.93)</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 3. 估值体系演进三阶段 + 华尔街多空分歧面板 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-500">STAGE 01 · 2022 及以前</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-mono font-semibold">20x–30x P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">周期性硬件芯片定价阶段</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              市场将其视为游戏显卡与传统服务器加速卡周期股，估值随 PC 装机量与加密货币库存周期剧烈波动。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-accent-500/30 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400">STAGE 02 · 2023–2024</span>
+              <span class="px-2 py-0.5 rounded bg-accent-500/15 text-accent-700 dark:text-accent-300 text-[11px] font-mono font-semibold">50x+ TTM P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">生成式 AI 稀缺性溢价阶段</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              大模型军备竞赛引爆 Hopper 供不应求，市场赋予稀缺垄断溢价，TTM 市盈率一度突破 50x 以上高位。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-gradient-to-br from-nvgreen-500/10 to-teal-500/10 border border-nvgreen-500/40 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-nvgreen-600 dark:text-nvgreen-400">STAGE 03 · 2026 年底当前视角</span>
+              <span class="px-2 py-0.5 rounded bg-nvgreen-500/20 text-nvgreen-700 dark:text-nvgreen-300 text-[11px] font-mono font-semibold">~18.0x Fwd P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">基础设施复利与深度价值安全边际</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              随着 FY26 $215.9B 营收与 FY27E ~$411B 共识兑现，远期 P/E 回落至 ~18.0x，PEG 仅 0.18，兼具顶级成长性与深度价值保护。
+            </p>
+          </div>
+        </div>
+
+        <!-- 华尔街多空分歧对比 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">万亿订单能见度</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>2025–2027 累计超 1 万亿美元订单能见度：</strong>Blackwell 与 Vera Rubin 机柜需求排期已锁定至 2027 年下半年。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>Inference-Time Scaling（推理侧扩展定律）：</strong>推理型大模型（Reasoning Models）消耗百倍 Token 算力，带动极速推理芯片需求爆发。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>18.0x 远期 P/E 极具修复空间：</strong>一旦市场确认 FY28 算力支出维持韧性，估值有望向 24x–28x 均值回归。</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">周期见顶博弈</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>CSP 资本开支增速斜率放缓担忧：</strong>四大云巨头年度 CapEx 基数已极其庞大，市场担忧 2027 年后同比增速边际回落引发“消化期”。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>自研 ASIC 内部替代分流：</strong>Google TPU、AWS Trainium 与微软 Maia 持续优化内部特定推理负载，长期可能限制 GPU 理论天花板。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>电力与物理机房交付瓶颈：</strong>电网并网审批与变压器供应周期可能阶段性制约下游数据中心通电上架速度。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-nvgreen-600 dark:text-nvgreen-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景估值推演与风控纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：全球科技核心底仓 · 紧盯 16x–20x 估值锚点</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-nvgreen-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-nvgreen-500/15 text-nvgreen-600 dark:text-nvgreen-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-nvgreen-600 dark:text-nvgreen-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：26x – 28x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>Vera Rubin 机柜放量超预期，主权 AI 与企业级 NIM 软件订阅突破 $100B+，推理型 AI 引发新一轮算力紧缺，毛利率稳守 75% 以上，FY28 营收延续 35%+ 高增。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-nvgreen-600 dark:text-nvgreen-400">
+              潜在上行空间：+45% 至 +60%（戴维斯双击）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-accent-500/15 text-accent-600 dark:text-accent-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-accent-600 dark:text-accent-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：21x – 23x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>FY27E 营收如期兑现 ~$411B 共识预期，网络与主权 AI 对冲 CSP 增速换挡，毛利率维持 73%–74%，年度百亿美元股票回购持续增厚 EPS。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-accent-600 dark:text-accent-400">
+              潜在上行空间：+20% 至 +30%（盈利驱动+温和修复）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：14x – 15x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>下游 AI 应用商业变现不及预期导致云巨头大幅削减 2027 下半年 CapEx，ASIC 加速替代推理份额，毛利率回落至 68% 左右，市场按传统半导体周期股定价。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+              潜在下行回撤：-15% 至 -20%（受巨额回购托底）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构对冲缓释策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 下游 CapEx 周期波动风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">超大规模云厂商资本开支增速放缓与 ROI 验证</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                尽管非 CSP 客户已扩至 $70B，大型云巨头仍贡献超六成数据中心收入。若企业端 AI 软件 ROI 变现滞后，可能触发云厂商阶段性消化库存与放缓下单节奏。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 定制芯片替代分流风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">头部客户自研 ASIC 对推理端份额的蚕食</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                Google TPU、AWS Trainium 等定制 ASIC 在算子固定的内部推理场景具有功耗成本优势，长期可能分流部分标准推理算力需求，需关注专用推理架构（如 LPX）对冲效果。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 供应链与新架构爬坡风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">CoWoS / HBM4 瓶颈及 Vera Rubin 机柜良率波动</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                高度集成的整机柜系统涉及数十万个精密组件与液冷散热模块，任何子组件（如光模块、铜缆背板、HBM4 堆叠）良率波动均可能短期影响单季交付确认与毛利率。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 地缘政治与出口管制风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">跨国算力出口许可与主权合规壁垒</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                美国商务部对高端 AI 芯片及主权 AI 算力集群的出口许可审批政策若进一步收紧，可能限制部分海外区域市场拓展并加速本土替代生态培育。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 机构级仓位配置建议 -->
+        <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-nvgreen-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>机构级投资组合仓位配置与交易纪律建议</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white mb-1">1. 核心底仓定位（Core Allocation）</div>
+              <p class="text-slate-300 leading-relaxed">
+                作为全球 AI 算力基础设施无可替代的“卖水人”与全栈标准制定者，建议在科技与成长型组合中保持<strong>基准权重至超配（Overweight）核心底仓</strong>。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-nvgreen-400 mb-1">2. 波段择时锚点（16x–20x Fwd P/E）</div>
+              <p class="text-slate-300 leading-relaxed">
+                当前 ~18.0x 远期 P/E（PEG 0.18）处于历史极低分位，具备强回购与高业绩能见度双重护航，建议在 <strong>16x–20x 区间逢宏观情绪波动分批加仓</strong>。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-teal-400 mb-1">3. 产业链上下游配对对冲</div>
+              <p class="text-slate-300 leading-relaxed">
+                可通过适度配置头部光模块/高速铜缆互联、液冷温控及电力设备标的共享机柜密度升级红利，同时以头部云软件应用股对冲单一硬件周期波动。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-nvgreen-500/15 text-nvgreen-600 dark:text-nvgreen-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），用高频基本面事实动态校准估值安全边际：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#76B900] focus:ring-nvgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. Vera Rubin 机柜出货爬坡与单吉瓦价值量</span>
+                  <span class="text-[11px] font-mono text-nvgreen-600 dark:text-nvgreen-400 font-semibold shrink-0">核心代际锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪 2026 年 8 月启动量产后的季度出货占比，验证单吉瓦数据中心对应营收是否向 ~$40B 顺利跃升。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#76B900] focus:ring-nvgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 数据中心网络业务与 Spectrum-X 增速</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">全栈壁垒指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监测网络分部在突破 $31B 年营收基数后，Spectrum-X 以太网交换机在万卡集群中的渗透率与增速是否持续快于计算卡。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#76B900] focus:ring-nvgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 主权 AI 与企业级客户占收比是否突破 35%</span>
+                  <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">客户分散度</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  当前非 CSP 客户合计贡献 $70.0B（占数据中心 ~36.1%），持续追踪主权 AI（&gt;$30B）及医疗/金融/制造企业客户扩张广度。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#76B900] focus:ring-nvgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 综合毛利率是否稳守 73%–75% 黄金区间</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">定价权晴雨表</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查新架构 Rubin 整机柜初期爬坡及 HBM4 采购成本上升背景下，公司通过系统集成与软件溢价稳住 73%–75% 毛利率的能力。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#76B900] focus:ring-nvgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 头部四大 CSP 季度资本开支（CapEx）指引</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">先行需求指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪微软、Alphabet、Meta、亚马逊每季财报对 2027 年 AI 数据中心资本开支及电力基建投产的最新上调/维持信号。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#76B900] focus:ring-nvgreen-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. 推理端专用算力（LPX）与 NIM 软件变现进展</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">护城河加固器</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪低延迟极速推理芯片（LPX）商业化落地与 NVIDIA AI Enterprise / NIM 软件订阅年化经常性收入（ARR）扩张进度。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>英伟达 NVIDIA (NASDAQ: NVDA) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2026 财报及 2026 年 11 月市场一致预期 (FY27E)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告、半导体供应链调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的 FY2027E 营收预测、单吉瓦价值量测算、三情景估值模型及概率分布均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-nvgreen-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-nvgreen-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-nvgreen-500', 'text-navy-950', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-nvgreen-500', 'text-navy-950', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'nvda_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 6. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2022–FY2027E 分部营收演进（堆叠柱状图）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026', 'FY2027E'],
+          datasets: [
+            {
+              label: '数据中心 (Data Center)',
+              data: [10.6, 15.0, 47.5, 115.2, 193.7, 382.0],
+              backgroundColor: '#76B900',
+              borderRadius: 4,
+            },
+            {
+              label: '游戏与 AI PC (Gaming)',
+              data: [12.5, 9.1, 10.4, 10.4, 11.4, 13.0],
+              backgroundColor: '#3B82F6',
+              borderRadius: 4,
+            },
+            {
+              label: '专业可视化 / 汽车 / OEM 其他',
+              data: [3.8, 2.9, 3.0, 4.9, 10.8, 16.0],
+              backgroundColor: '#06B6D4',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 450,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：FY2026 数据中心客户结构与产品拆分对比（分组柱状图）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '按客户：大型云巨头 (CSP)',
+            '按客户：AI云与企业客户',
+            '按客户：主权 AI (暴增>3倍)',
+            '按产品：AI 计算单元 (GPU/机柜)',
+            '按产品：高速互联网络 (IB/Spectrum-X)'
+          ],
+          datasets: [
+            {
+              label: 'FY2026 营收贡献 ($B)',
+              data: [123.8, 39.9, 30.0, 162.5, 31.2],
+              backgroundColor: [
+                '#3B82F6',
+                '#06B6D4',
+                '#10B981',
+                '#76B900',
+                '#6366F1'
+              ],
+              borderRadius: 6,
+              barThickness: 26
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `FY26 营收规模: $${ctx.parsed.x}B (占数据中心 ${(ctx.parsed.x / 193.7 * 100).toFixed(1)}%)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 185,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-nvgreen-600 dark:text-nvgreen-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022–FY2027E 分部营收演进与数据中心统治力';
+        subEl.textContent = '数据中心由 $10.6B 跃升至 FY26 $193.7B，FY27E 向 $380B+ 迈进';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-nvgreen-600 dark:text-nvgreen-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2026 数据中心（$193.7B）客户结构与产品拆分';
+        subEl.textContent = '非 CSP 客户合计达 $70.0B（主权 AI 破 $30B），网络业务突破 $31B';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '软件生态锁定 (CUDA/NIM)',
+            '整机柜互联与带宽 (NVLink)',
+            '单瓦算力与一年一代节奏',
+            '供应链 CoWoS/HBM 议价',
+            '长期客户黏性与平台迁移成本'
+          ],
+          datasets: [
+            {
+              label: 'NVIDIA (NVDA)',
+              data: [9.9, 9.8, 9.7, 9.8, 9.6],
+              borderColor: '#76B900',
+              backgroundColor: 'rgba(118, 185, 0, 0.22)',
+              pointBackgroundColor: '#76B900',
+              borderWidth: 2.5
+            },
+            {
+              label: '云巨头自研定制 ASIC (TPU/Trainium)',
+              data: [6.2, 7.6, 7.4, 7.2, 8.0],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.14)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: 'AMD / Intel 通用算力对手',
+              data: [5.8, 6.4, 7.0, 6.5, 5.5],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      const ctx = document.getElementById('compMarginChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'NVIDIA (NVDA · 全栈 AI 工厂)',
+            'Broadcom (AVGO · 定制 ASIC 与网络)',
+            'Qualcomm (QCOM · 端侧与汽车算力)',
+            'AMD (Instinct MI + 传统 CPU)',
+            'Intel (INTC · 代工拖累转型期)'
+          ],
+          datasets: [{
+            label: '营业利润率 Operating Margin (%)',
+            data: [60.2, 42.5, 28.4, 16.5, 4.2],
+            backgroundColor: [
+              '#76B900',
+              '#3B82F6',
+              '#06B6D4',
+              '#64748B',
+              '#94A3B8'
+            ],
+            borderRadius: 6,
+            barThickness: 22
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `营业利润率: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 70,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年总营收 ($B)',
+              data: [26.9, 27.0, 60.9, 130.5, 215.9, 411.0],
+              backgroundColor: 'rgba(118, 185, 0, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: '全年净利润 ($B)',
+              data: [9.8, 4.4, 29.8, 72.9, 120.0, 228.0],
+              backgroundColor: 'rgba(59, 130, 246, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '远期市盈率 Forward P/E (x)',
+              data: [38.0, 52.0, 36.5, 29.0, 22.5, 18.0],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}x`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 450,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 60,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

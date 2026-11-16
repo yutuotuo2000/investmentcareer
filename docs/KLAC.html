@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>科磊 KLA Corporation (NASDAQ: KLAC) 深度研究报告：半导体工艺控制霸主与 AI 基础设施质检核心引擎</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+                    mono: ['JetBrains Mono', 'monospace'],
+                },
+                colors: {
+                    navy: {
+                        950: '#070B14',
+                        900: '#0F172A',
+                        800: '#1E293B',
+                        700: '#334155',
+                    },
+                    klared: {
+                        400: '#FB7185',
+                        500: '#E11D48',
+                        600: '#BE123C',
+                    },
+                    accent: {
+                        500: '#0284C7',
+                        600: '#0369A1',
+                    },
+                    teal: {
+                        500: '#14B8A6',
+                        600: '#0D9488',
+                    }
+                }
+            }
+        }
+    }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+        @media print {
+            #sidebar, #mobile-header, #theme-toggle-btn, .no-print { display: none !important; }
+            main { margin-left: 0 !important; padding: 0 !important; }
+            section { break-inside: avoid; }
+        }
+
+        .report-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(90deg, rgba(225, 29, 72, 0.22) 0%, rgba(2, 132, 199, 0.08) 100%);
+            border-left: 3px solid #E11D48;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-klared-500 selection:text-white transition-colors duration-200">
+
+    <!-- 顶部全局阅读进度条 -->
+    <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+        <div id="reading-progress" class="h-full bg-gradient-to-r from-klared-500 via-accent-500 to-teal-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- 移动端顶部导航栏 -->
+    <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+        <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-klared-500 to-klared-600 flex items-center justify-center font-extrabold text-white shadow">
+                KL
+            </div>
+            <div>
+                <div class="text-[11px] text-klared-400 font-semibold tracking-wider uppercase">NASDAQ: KLAC · Equity Research</div>
+                <div class="text-sm font-bold leading-tight">科磊 KLAC 深度研究报告</div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+                <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </button>
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 移动端抽屉菜单 -->
+    <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+        <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+        <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <span class="font-bold text-white text-base">KLAC 研报目录导航</span>
+                    <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <ul class="mt-4 space-y-1.5 text-sm">
+                    <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+                    <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构与工艺控制霸主地位</a></li>
+                    <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. AI 基础设施需求与四重护城河</a></li>
+                    <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 竞争格局与同行对标</a></li>
+                    <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+                    <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+                    <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+                </ul>
+            </div>
+            <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <p>全球半导体设备与工艺控制研究组</p>
+                <p class="mt-1">数据基准：2026年11月 (FY26 / FY27E)</p>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 桌面端左侧固定侧边导航栏 -->
+    <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+        <div>
+            <!-- 品牌头部 -->
+            <div class="p-5 border-b border-slate-800/80">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-klared-500 to-klared-600 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-klared-500/25">
+                        KLAC
+                    </div>
+                    <div>
+                        <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-klared-400 bg-klared-500/15 px-2 py-0.5 rounded">NASDAQ: KLAC</span>
+                        <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">科磊深度研报</h2>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                    半导体工艺控制全球绝对霸主 · AI 芯片良率管理与晶圆检测核心引擎
+                </p>
+            </div>
+
+            <!-- 实时股票快照徽章 -->
+            <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">FY2026 全年营收</span>
+                    <span class="font-mono font-bold text-white">$13.58B <span class="text-klared-400">(+11.7% YoY)</span></span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">FY27 Q2 营收指引</span>
+                    <span class="font-mono font-bold text-teal-400">~$4.7B (Midpoint)</span>
+                </div>
+                <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+                    <span class="text-slate-400">工艺控制市场份额</span>
+                    <span class="font-mono font-bold text-klared-400">~50%+ (绝对垄断)</span>
+                </div>
+            </div>
+
+            <!-- 导航目录 -->
+            <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+                <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+                <nav id="desktop-nav" class="space-y-1 text-[13px]">
+                    <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-klared-400 mr-2">00</span>执行摘要与核心指标</span>
+                    </a>
+                    <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构与工艺控制霸主地位</span>
+                    </a>
+                    <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>AI 基础设施需求与四重护城河</span>
+                    </a>
+                    <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>竞争格局与同行对标</span>
+                    </a>
+                    <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+                    </a>
+                    <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+                    </a>
+                    <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- 底部工具栏 -->
+        <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-slate-400">阅读模式切换</span>
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+                    <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-3.5 h-3.5 text-klared-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="dark:hidden">深色护眼模式</span>
+                    <span class="hidden dark:inline">机构亮色模式</span>
+                </button>
+            </div>
+            <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-klared-500 hover:bg-klared-600 text-white text-xs font-extrabold transition shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                <span>打印 / 导出 PDF 研报</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+            <!-- =========================================================
+            00. 封面与执行摘要
+            ========================================================= -->
+            <section id="sec-exec" class="scroll-mt-20">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-klared-500/15 text-klared-600 dark:text-klared-400 font-bold border border-klared-500/30">评级：强烈买入 / 核心重仓配置</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 先进逻辑/存储与 AI 良率军备竞赛</span>
+                    </div>
+                    <div class="flex items-center space-x-3 font-mono">
+                        <span>覆盖时间：2026年11月</span>
+                        <span>NASDAQ: KLAC</span>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+                    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#FB7185 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-klared-500/20 border border-klared-500/40 text-klared-400 text-xs font-semibold mb-4">
+                            <span class="w-2 h-2 rounded-full bg-klared-400 animate-pulse"></span>
+                            <span>CORE THESIS · 半导体制造不可或缺的“电子显微镜之眼”：订单积压飙升至 $125.7 亿 × ROIC 高达 72.7%</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+                            科磊 KLA Corporation (NASDAQ: KLAC) 深度研究报告：半导体工艺控制绝对霸主与 AI 基础设施良率质检核心引擎
+                        </h1>
+                        <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+                            科磊（KLA）作为全球半导体工艺控制（Process Control）与良率管理领域的绝对霸主，占据市场份额超过 <strong>50%</strong>。在 FY2026 财年中，公司实现全年营收 <strong class="text-klared-400">$13.58B</strong>，净利润达 <strong class="text-white">$4.83B</strong>。
+                            随着 AI 芯片复杂度指数级上升、GAA 晶体管与 HBM 内存堆叠带来前所未有的微观缺陷挑战，KLA 的订单积压（Backlog）飙升至 <strong class="text-teal-400">$125.7 亿</strong>。叠加 10 比 1 拆股后的流动性优化与高达 <strong>72.7%</strong> 的顶级资本回报率（ROIC），其作为半导体“卖水人”的长期投资价值愈发凸显。
+                        </p>
+
+                        <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">工艺控制绝对壁垒</div>
+                                <div class="text-white font-semibold">晶圆缺陷检测与图形化检测市占率超过 50%，每代制程升级的刚需标配</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">订单与业绩强劲超预期</div>
+                                <div class="text-klared-400 font-semibold">FY Q1 营收 $4.14B 同比大增 28.9%，订单积压飙升至 $125.7 亿，指引持续超预期</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">顶级资本效率与股东回报</div>
+                                <div class="text-teal-400 font-semibold">ROIC 高达 72.7%，FCF 超 $37.7 亿，净债务占 EBITDA 仅 0.98x</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4个核心 KPI 卡片 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>FY2026 全年总营收</span>
+                            <span class="p-1.5 rounded-lg bg-klared-500/15 text-klared-600 dark:text-klared-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$13.58B</span>
+                            <span class="text-xs font-bold text-klared-600 dark:text-klared-400 bg-klared-500/15 px-2 py-0.5 rounded">+11.7% YoY</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            先进逻辑/晶圆代工与 HBM 存储厂商加速扩产，带动工艺控制设备与服务收入稳健双位数增长。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>营业利润率 (Operating Margin)</span>
+                            <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">41.7%</span>
+                            <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">毛利率 61.3%</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            高技术壁垒带来强大定价权，运营利润率超越历史均值，净利润率维持在 35.6% 的行业巅峰。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>订单积压 (Backlog)</span>
+                            <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$12.57B</span>
+                            <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">Visibility 高</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            相比前一年的 $7.86B 大幅飙升，为未来几个季度的业绩连续兑现提供了极其扎实的订单能见度。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>资本回报率 (ROIC)</span>
+                            <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">72.7%</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">FCF $3.77B</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            极致的资本效率与轻资产运营模式，令 KLA 持续通过大规模股份回购与分红回馈股东。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            01. 业务架构与工艺控制霸主地位
+            ========================================================= -->
+            <section id="sec-biz" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-klared-600 dark:text-klared-400">Section 01 · Business Architecture & Monopoly Moat</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务架构与工艺控制霸主地位：晶圆制造的“电子显微镜之眼”</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">FY26 总营收 $13.58B · 半导体工艺控制占比 ~90%</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 分部营收演进与工艺控制主导力</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">晶圆检测与图形化设备贡献绝对主力，服务业务实现 17 连增</p>
+                            </div>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="bizArchitectureChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心业务分部与高粘性服务</h3>
+                            <ul class="space-y-4 text-sm">
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-klared-500/15 text-klared-600 dark:text-klared-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">晶圆检测与图形化（Wafer & Patterning Inspection）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            核心创收支柱（FY26 贡献超 $9.3B），涵盖明场/暗场晶圆缺陷检测，在纳米级芯片制造中充当不可替代的“质检法官”。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">高回购高粘性服务（Services）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            服务业务营收大增 17% 至 <strong>$3.13B</strong>（占总收入 ~23%），并创下连续 17 年年度正增长纪录，提供极其平稳的现金流防波堤。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">特种半导体与 PCB/封装检测</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            特种半导体工艺（Specialty Semiconductor Process）与 PCB 封装检测贡献超 $960M，全面受益于先进封装（Advanced Packaging）军备竞赛。
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-500 dark:text-slate-400">核心业务特性</span>
+                            <span class="font-bold text-klared-600 dark:text-klared-400">高门槛检测 · 17年服务连增 · 绝对定价权</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            02. AI 基础设施需求与四重护城河
+            ========================================================= -->
+            <section id="sec-moat" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · AI Infrastructure Demand & Economic Moat</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 AI 基础设施需求与四重护城河：制程微缩与先进封装的终极受益者</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球良率管理标准制定者)</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-klared-500/15 text-klared-600 dark:text-klared-400 flex items-center justify-center font-bold text-sm">01</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">纳米级缺陷检测绝对技术壁垒</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                随着 GAA（环绕栅极）晶体管与 2nm 以下先进制程演进，任何微小颗粒或对准误差都将导致芯片报废。KLA 拥有行业独步的电子束和光学检测算法，市占率超 50%。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">02</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">AI 时代先进封装良率刚需</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                AI 芯片普遍采用 CoWoS 及多层 HBM 内存堆叠，封装复杂度呈几何级数上升。KLA 的先进封装检测组合成为台积电、三星等大厂量产良率的生死线。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">高粘性服务网络与数据反馈闭环</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                全球数千台尖端检测设备与客户 Fab 厂深度绑定，通过云端和 AI 算法实时反馈良率数据，形成极高的客户转换成本与生态粘性。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">04</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">顶级的资本效率与定价权</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                凭借研发高投入（年度 R&D 约 $1.5B）与轻晶圆厂模式，KLA 创造了高达 <strong>72.7% 的 ROIC</strong> 与超 41% 的运营利润率。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">工艺控制五维护城河量化雷达图</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">KLA vs 泛林集团(LRCX) / 应用材料(AMAT) 在检测领域的对比 (满分10分)</p>
+                        <div class="relative h-72 w-full">
+                            <canvas id="moatRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            03. 竞争格局与同行对标
+            ========================================================= -->
+            <section id="sec-comp" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-klared-600 dark:text-klared-400">Section 03 · Competitive Landscape & Peer Benchmarking</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 竞争格局与同行对标：工艺控制赛道无可撼动的王者</h2>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                                    <th class="py-4 px-5 min-w-[180px]">竞争厂商与代表领域</th>
+                                    <th class="py-4 px-4 min-w-[140px]">工艺控制/检测份额</th>
+                                    <th class="py-4 px-4 min-w-[140px]">盈利能力 (Net Margin)</th>
+                                    <th class="py-4 px-4 min-w-[125px]">资本回报率 (ROIC)</th>
+                                    <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞争壁垒评估</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm">
+                                <tr class="bg-klared-500/5 dark:bg-klared-500/10 font-medium">
+                                    <td class="py-4 px-5">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-0.5 rounded bg-klared-500 text-white text-[10px] font-extrabold">绝对龙头</span>
+                                            <span class="font-bold text-slate-900 dark:text-white">KLA Corporation (KLAC)</span>
+                                        </div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">晶圆检测 / 图形化 / 良率管理</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold text-klared-600 dark:text-klared-400">&gt;50% (细分市场绝对垄断)</td>
+                                    <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~35.6% - 37.4%</td>
+                                    <td class="py-4 px-4 font-mono font-bold text-emerald-600 dark:text-emerald-400">~72.7%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>工艺控制无冕之王：</strong>专注缺陷检测与度量，盈利质量和资本回报率在半导体设备板块首屈一指。
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/45 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">应用材料 Applied Materials (AMAT)</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">薄膜沉积 / 刻蚀 / 部分检测</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">拥有部分检测产品 (份额次席)</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~25% - 28%</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~30% - 35%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>综合设备巨头：</strong>产品线极其丰富（沉积与刻蚀为主），在纯度量检测领域的专业深度略逊于 KLA。
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/45 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">泛林集团 Lam Research (LRCX)</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">刻蚀与沉积专家 (存储优势)</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-500 dark:text-slate-400">不涉足核心光学/电子束检测</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~26% - 29%</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~35% - 40%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>存储制造中流砥柱：</strong>在 3D NAND 与先进 DRAM 刻蚀领域极强，与 KLA 在 Fab 厂中形成互补而非直接竞争。
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/45 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">ASML Holding (ASML)</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">EUV 光刻机全球绝对垄断</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-500 dark:text-slate-400">无直接竞争 (光刻对准量测协同)</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~28% - 32%</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~30% - 35%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>光刻霸主：</strong>ASML 负责“画电路”，而 KLA 负责“查错纠偏”，两者共同构成了先进制程不可或缺的双核心。
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            04. 财务健康与估值体系
+            ========================================================= -->
+            <section id="sec-fin" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与估值体系：强劲现金流与股东回报引擎</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">自由现金流 $3.77B · 资产负债表健康极低杠杆</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-klared-600 dark:text-klared-400 uppercase">Free Cash Flow</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$3.77B</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            资本开支占营收比例极低（仅约 3%），每年产生近 40 亿美元真金白银的自由现金流。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Net Income (FY26)</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$4.83B</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            全年净利润同比显著增长，带动摊薄每股收益（EPS）稳步走高，盈利兑现能力极强。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Debt / EBITDA</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">0.98x</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            债务负担极轻，总债务仅占市值的不到 3%，信用评级稳固（S&P 上调至 'A' 级）。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase">Shareholder Returns</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$3.01B / 年</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            叠加高达 21% 的股息增幅与加码的 70 亿美元回购授权，持续缩减流通股本增厚 EPS。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 营收与净利润演进趋势</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">周期成长稳健：穿越半导体行业周期波动，营收与利润中枢持续上移</p>
+                        </div>
+                    </div>
+                    <div class="relative h-72 w-full">
+                        <canvas id="valEvolutionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            05. 投资决策与风险配置
+            ========================================================= -->
+            <section id="sec-inv" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-klared-600 dark:text-klared-400">Section 05 · Investment Decision & Risk Framework</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与长期资产配置</h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-klared-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-klared-500/15 text-klared-600 dark:text-klared-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                                <span class="font-mono text-xs font-bold text-klared-600 dark:text-klared-400">概率：30%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">订单加速兑现与估值扩张</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>AI 芯片与先进封装需求远超预期，$125.7 亿订单积压迅速转化为高毛利营收，毛利率站稳 62% 以上，带动股价实现戴维斯双击。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-klared-600 dark:text-klared-400">
+                            潜在上行空间：+35% 至 +50%
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">基准情景 (Base Case)</span>
+                                <span class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">概率：50%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">业绩稳健增长与股东回报</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>晶圆厂产能利用率维持高位，FY27 营收与利润如期实现双位数稳健增长，持续的股份回购与分红提供扎实收益支撑。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-teal-600 dark:text-teal-400">
+                            潜在收益率：+15% 至 +25%
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">半导体周期性回调冲击</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>宏观经济波动导致下游晶圆厂推迟部分扩产计划，订单交付放缓，估值倍数出现阶段性收缩。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+                            潜在下行回撤：-15% 至 -20%（极低的债务与高现金流提供安全垫）
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+                    <h3 class="text-base font-bold text-klared-400 mb-4 flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>机构级资产配置建议</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <div class="font-bold text-white mb-1">1. 半导体设备核心标的</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                作为工艺控制绝对垄断者，KLA 具备穿越半导体周期的超强盈利能力，建议在科技组合中作为核心底仓配置。
+                            </p>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <div class="font-bold text-klared-400 mb-1">2. 动态跟踪 Backlog 转化</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                密切关注每个季度高达 125 亿美元以上的订单积压（Backlog）向真实营收的转化速度与毛利率表现。
+                            </p>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <div class="font-bold text-teal-400 mb-1">3. 关注先进制程与先进封装节点</div>
+                            <p class="text-slate-300 leading-relaxed">
+                                跟踪台积电、三星等大厂在 2nm 及 CoWoS 先进封装产能扩建上的资本开支变动。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            06. 季度跟踪 KPI 核查清单
+            ========================================================= -->
+            <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Tracking KPIs</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+                    </div>
+                    <div class="flex items-center space-x-2 no-print">
+                        <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-klared-500/15 text-klared-600 dark:text-klared-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+                        <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        点击勾选机构季报追踪已验证达标的核心指标（状态自动本地保存），动态校准投资逻辑：
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-klared-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">1. 订单积压（Backlog）维持在 120 亿美元以上高位</span>
+                                    <span class="text-[11px] font-mono text-klared-600 dark:text-klared-400 font-semibold shrink-0">需求能见度</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    跟踪每季财报中未完成订单金额，确保先进制程及封装需求持续旺盛。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-klared-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">2. 毛利率（Gross Margin）稳守 61% - 63% 区间</span>
+                                    <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">定价权指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    核查高端检测设备组合在面对供应链或通胀压力时维持高毛利的能力。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-klared-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">3. 服务业务营收维持双位数稳健增长</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">稳定现金流</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    监控装机量扩张带来的高黏性维护与软件服务收入增长轨迹。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-klared-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">4. 运营利润率（Operating Margin）保持在 40% 以上</span>
+                                    <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">经营杠杆效率</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    评估研发及运营费用管控效率，确保营收增长有效转化为净利润。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-klared-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">5. 自由现金流（FCF）年度转化率与股东回报</span>
+                                    <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">资本回报指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    跟踪股份回购执行额度与分红增长，验证高 ROIC 资本配置策略。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-klared-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">6. 先进逻辑与存储客户资本开支指引变动</span>
+                                    <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">行业先行指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    追踪台积电、SK海力士、美光等核心客户对晶圆厂扩产的最新资本开支计划。
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            免责声明页脚
+            ========================================================= -->
+            <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+                    <span>科磊 KLA Corporation (NASDAQ: KLAC) 深度商业与投资价值分析报告 · 机构研究版</span>
+                    <span>数据基准：FY2026 全年财报及 2026 年 11 月市场一致预期</span>
+                </div>
+                <p class="leading-relaxed">
+                    <strong>免责声明：</strong>本深度研究报告基于科磊公开财务报告、最新季度财报及市场公开信息整理生成，旨在提供结构化的产业分析与估值研究框架。报告中涉及的营收预期、订单积压及情景模拟均为基于公开数据的客观分析，不构成任何具体的证券买卖建议或投资承诺。投资者在做出投资决策前应进行独立尽职调查。
+                </p>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- 交互与图表脚本 -->
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            updateChartsTheme();
+        }
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+            let currentId = 'sec-exec';
+            sections.forEach(sec => {
+                const top = sec.offsetTop - 160;
+                if (scrollTop >= top) {
+                    currentId = sec.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const numSpan = link.querySelector('span span');
+                if (numSpan) {
+                    numSpan.classList.remove('text-klared-400');
+                    numSpan.classList.add('text-slate-500');
+                }
+                if (link.dataset.target === currentId) {
+                    link.classList.add('active');
+                    if (numSpan) {
+                        numSpan.classList.remove('text-slate-500');
+                        numSpan.classList.add('text-klared-400');
+                    }
+                }
+            });
+        });
+
+        const KPI_STORAGE_KEY = 'klac_research_kpi_state_v1';
+
+        function loadKpiChecklist() {
+            try {
+                const saved = localStorage.getItem(KPI_STORAGE_KEY);
+                if (saved) {
+                    const stateMap = JSON.parse(saved);
+                    document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+                        if (typeof stateMap[cb.id] === 'boolean') {
+                            cb.checked = stateMap[cb.id];
+                        }
+                    });
+                }
+            } catch (e) {}
+            updateKpiChecklist();
+        }
+
+        function updateKpiChecklist() {
+            const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+            const total = checkboxes.length;
+            let checkedCount = 0;
+            const stateMap = {};
+
+            checkboxes.forEach(cb => {
+                stateMap[cb.id] = cb.checked;
+                if (cb.checked) checkedCount++;
+            });
+
+            const pct = Math.round((checkedCount / total) * 100);
+            document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+            try {
+                localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+            } catch (e) {}
+        }
+
+        function resetKpiChecklist() {
+            document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            updateKpiChecklist();
+        }
+
+        let bizChartInstance = null;
+        let radarChartInstance = null;
+        let valEvolutionChartInstance = null;
+
+        function getChartColors() {
+            const isDark = document.documentElement.classList.contains('dark');
+            return {
+                text: isDark ? '#CBD5E1' : '#475569',
+                grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+                radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+            };
+        }
+
+        function initBizChart() {
+            const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+            const colors = getChartColors();
+
+            if (bizChartInstance) bizChartInstance.destroy();
+            bizChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026', 'FY2027E'],
+                    datasets: [
+                        {
+                            label: '半导体工艺控制 (Process Control)',
+                            data: [8.8, 8.2, 9.6, 10.4, 12.0],
+                            backgroundColor: '#E11D48',
+                            borderRadius: 4,
+                        },
+                        {
+                            label: '高回购高粘性服务 (Services)',
+                            data: [2.3, 2.5, 2.7, 3.13, 3.6],
+                            backgroundColor: '#0284C7',
+                            borderRadius: 4,
+                        },
+                        {
+                            label: '特种半导体与PCB检测 (Specialty & PCB)',
+                            data: [0.8, 0.7, 0.8, 0.95, 1.1],
+                            backgroundColor: '#14B8A6',
+                            borderRadius: 4,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                        },
+                        y: {
+                            stacked: true,
+                            max: 18,
+                            grid: { color: colors.grid },
+                            ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initRadarChart() {
+            const ctx = document.getElementById('moatRadarChart').getContext('2d');
+            const colors = getChartColors();
+
+            if (radarChartInstance) radarChartInstance.destroy();
+            radarChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        '工艺控制与缺陷检测份额',
+                        '研发投入与算法壁垒',
+                        '服务粘性与Fab厂深度集成',
+                        '资本效率与ROIC水平',
+                        '先进封装良率质检能力'
+                    ],
+                    datasets: [
+                        {
+                            label: 'KLA Corporation (KLAC)',
+                            data: [9.8, 9.6, 9.5, 9.8, 9.7],
+                            borderColor: '#E11D48',
+                            backgroundColor: 'rgba(225, 29, 72, 0.22)',
+                            pointBackgroundColor: '#E11D48',
+                            borderWidth: 2.5
+                        },
+                        {
+                            label: '应用材料 (AMAT - 综合设备)',
+                            data: [7.5, 8.8, 8.0, 7.8, 8.2],
+                            borderColor: '#0284C7',
+                            backgroundColor: 'rgba(2, 132, 199, 0.14)',
+                            pointBackgroundColor: '#0284C7',
+                            borderWidth: 1.8
+                        },
+                        {
+                            label: '泛林集团 (LRCX - 刻蚀为主)',
+                            data: [5.0, 8.5, 7.5, 8.0, 7.0],
+                            borderColor: '#94A3B8',
+                            backgroundColor: 'rgba(148, 163, 184, 0.12)',
+                            pointBackgroundColor: '#94A3B8',
+                            borderWidth: 1.5,
+                            borderDash: [4, 4]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 10,
+                            ticks: { display: false, stepSize: 2 },
+                            grid: { color: colors.grid },
+                            angleLines: { color: colors.radarAngle },
+                            pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initValEvolutionChart() {
+            const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+            const colors = getChartColors();
+
+            if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+            valEvolutionChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026', 'FY2027E'],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: '全年总营收 ($B)',
+                            data: [11.9, 11.4, 12.15, 13.58, 15.2],
+                            backgroundColor: 'rgba(225, 29, 72, 0.85)',
+                            borderRadius: 5,
+                            barThickness: 24,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'bar',
+                            label: '全年净利润 ($B)',
+                            data: [3.39, 2.76, 4.06, 4.83, 5.5],
+                            backgroundColor: 'rgba(2, 132, 199, 0.85)',
+                            borderRadius: 5,
+                            barThickness: 24,
+                            yAxisID: 'y'
+                        },
+                        {
+                            type: 'line',
+                            label: '营业利润率 Operating Margin (%)',
+                            data: [40.2, 38.5, 41.2, 41.7, 42.5],
+                            borderColor: '#14B8A6',
+                            backgroundColor: '#14B8A6',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            tension: 0.25,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            max: 18,
+                            grid: { color: colors.grid },
+                            ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            min: 20,
+                            max: 60,
+                            grid: { drawOnChartArea: false },
+                            ticks: { color: '#14B8A6', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartsTheme() {
+            initBizChart();
+            initRadarChart();
+            initValEvolutionChart();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadKpiChecklist();
+            initBizChart();
+            initRadarChart();
+            initValEvolutionChart();
+        });
+    </script>
+</body>
+</html>

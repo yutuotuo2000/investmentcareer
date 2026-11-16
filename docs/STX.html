@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>希捷科技 Seagate Technology (NASDAQ: STX) 深度研究报告：HAMR Mozaic 4+ 垄断 AI 数据湖底座与 57.8% 毛利率重估周期</title>
+  <!-- Tailwind CSS 3.4.17 -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Chart.js 4.4.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            navy: {
+              950: '#060B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155'
+            },
+            stxgreen: {
+              400: '#34D399',
+              500: '#00B140',
+              600: '#059669'
+            },
+            accent: {
+              500: '#0EA5E9',
+              600: '#0284C7'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(0, 177, 64, 0.22) 0%, rgba(14, 165, 233, 0.06) 100%);
+      border-left: 3px solid #00B140;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-stxgreen-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-stxgreen-500 via-emerald-400 to-cyan-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-stxgreen-500 to-emerald-600 flex items-center justify-center font-extrabold text-white shadow">
+        STX
+      </div>
+      <div>
+        <div class="text-[11px] text-stxgreen-400 font-semibold tracking-wider uppercase">NASDAQ: STX · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">希捷科技深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">STX 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与营收跃迁架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. HAMR Mozaic 技术护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 寡头竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 资产负债去杠杆与估值重置</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与多空风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球 AI 存储与半导体基础设施研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FQ1'27 季报)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-stxgreen-500 to-emerald-600 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-emerald-500/25">
+            STX
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-stxgreen-400 bg-stxgreen-500/15 px-2 py-0.5 rounded">NASDAQ: STX</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">希捷科技深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球唯一规模量产 HAMR 近线存储霸主 · AI 数据湖确定性底座
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章（供门户自动提取 finMetrics） -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FQ1'27 最新营收</span>
+          <span class="font-mono font-bold text-white">$4.23B (+61% YoY)</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">Non-GAAP 毛利率</span>
+          <span class="font-mono font-bold text-stxgreen-400">57.8% (创历史纪录)</span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">远期估值锚</span>
+          <span class="font-mono font-bold text-cyan-400">~13.1x Fwd P/E · 目标 $897+</span>
+        </div>
+      </div>
+
+      <!-- 核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-stxgreen-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与营收跃迁架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>HAMR Mozaic 技术护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>寡头竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务去杠杆与估值重置</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与多空风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-stxgreen-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-stxgreen-500 hover:bg-stxgreen-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-stxgreen-500/15 text-stxgreen-600 dark:text-stxgreen-400 font-bold border border-stxgreen-500/30">评级：强烈买入 / 错杀回调核心配置</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FQ1'27 业绩井喷 × HAMR 44TB 独占量产</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月15日</span>
+            <span>NASDAQ: STX</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#082420] to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-emerald-800/50">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#00B140 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-stxgreen-500/20 border border-stxgreen-500/40 text-stxgreen-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-stxgreen-400 animate-pulse"></span>
+              <span>CORE THESIS · 从强周期机械硬盘厂蜕变为 57.8% 毛利率的 AI 数据湖寡头定价权资产</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              希捷科技 Seagate Technology (NASDAQ: STX) 深度研究报告：HAMR Mozaic 4+ 垄断 AI 数据湖底座与 57.8% 毛利率重估周期
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              希捷科技已彻底改写传统机械硬盘（HDD）行业的盈利天花板。根据公司最新披露的 <a href="https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stxq12027pressreleasefinan.htm" target="_blank" rel="noopener noreferrer" class="text-stxgreen-400 underline hover:text-emerald-300">2027 财年第一季度财报 (SEC Form 8-K)</a>，FQ1'27 单季营收跃升至 <strong class="text-white">$4.233B (+61.0% YoY)</strong>，Non-GAAP 毛利率飙升至惊人的 <strong class="text-stxgreen-400">57.8%（同比暴增 1,770 bps）</strong>，Non-GAAP 营业利润率突破 <strong class="text-white">50.7%</strong>，单季自由现金流创历史最高纪录达 <strong class="text-cyan-400">$1.479B（FCF 利润率 34.9%）</strong>。
+              凭借全球唯一规模量产的热辅助磁记录平台 <a href="https://horizontechnology.com/news/hard-drive-capacity-race-to-100tb/" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline hover:text-cyan-200">Mozaic 4+（最高 44TB）</a> 与锁定至 2028 年的按单生产（BTO）云巨头长协，叠加近期随 AI 硬件板块回调后 FY27E 远期市盈率压缩至仅 <strong class="text-emerald-400">~13.1x</strong>，当前处于罕见的“基本面加速上调 × 估值深度折价”黄金击球区。
+            </p>
+
+            <!-- 核心投资结论三栏高亮 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">超越芯片厂的利润率跃升</div>
+                <div class="text-white font-semibold">GAAP 毛利率从 FY23 低谷 18.3% 飙升至 FQ1'27 的 57.3%，FQ2 指引营收再冲 $4.80B</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">HAMR 商业化领先 12-18 个月</div>
+                <div class="text-stxgreen-400 font-semibold">Mozaic 4+ (4.4TB/碟 · 44TB) 已向两大超大规模云厂批量交付，近线产能长协锁至 2028 年</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">闪电式去杠杆与股东回报</div>
+                <div class="text-cyan-300 font-semibold">FQ1 偿债 $1.2B + 季后赎回 $750M 将总债务压降至 $1.6B，单季回购与分红回馈 $568M</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片（供门户自动抓取 kpis） -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FQ1'27 单季总营收</span>
+              <span class="px-2 py-0.5 rounded bg-stxgreen-500/15 text-stxgreen-600 dark:text-stxgreen-400 font-mono">+61.0% YoY</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$4.23B</span>
+              <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400">FQ2指引 $4.8B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              继 FY26 全年实现 $12.20B (+34.1%) 后持续加速，年化营收跑率已突破 $19B。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Non-GAAP 毛利率 & 营业利润率</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-mono">+17.7pct YoY</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">57.8%</span>
+              <span class="text-xs font-bold text-stxgreen-600 dark:text-stxgreen-400">OPM 50.7%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              高面密度 HAMR 摊薄单 TB 物料成本叠加 BTO 价值定价，毛利率连续 14 个季度扩张。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FQ1'27 自由现金流 (FCF)</span>
+              <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 font-mono">FCF率 34.9%</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$1.48B</span>
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-300">LTM $4.2B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              单季经营现金流 $1.69B，资本开支仅 $211M（占营收 5.0%），轻扩产高现金转化率凸显。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY27E 远期市盈率估值</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 font-mono">目标价 $897+</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~13.1x</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400">TTM ~27.8x</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              股价自 $1,145 高点回调至 ~$528，而 FQ2 指引 Non-GAAP EPS 高达 $9.20，盈利爆发急速消化估值。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           01. 业务与营收跃迁架构
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-stxgreen-600 dark:text-stxgreen-400">SECTION 01 · BUSINESS & REVENUE ARCHITECTURE</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">业务与收入架构：AI 数据湖引爆近线大容量存储超级周期</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">数据源：<a href="https://investors.seagate.com/news/news-details/2026/Seagate-Technology-Reports-Fiscal-First-Quarter-2027-Financial-Results/default.aspx" target="_blank" rel="noopener noreferrer" class="text-stxgreen-500 hover:underline">Seagate FQ1'27 & FY26 IR</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- 左侧交互图表卡片 -->
+          <div class="lg:col-span-2 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <div>
+                <h3 id="biz-chart-title" class="text-base font-bold text-slate-900 dark:text-white">FQ1'26 – FQ2'27E 季度营收跃升与 Non-GAAP 毛利率扩张轨迹</h3>
+                <p id="biz-chart-sub" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">单季营收从 $2.63B 连续跃升至指引 $4.80B，Non-GAAP 毛利率突破 57.8%</p>
+              </div>
+              <div class="inline-flex rounded-lg p-1 bg-slate-100 dark:bg-navy-800 text-xs">
+                <button id="btn-chart-evo" onclick="switchBizChart('quarterly')" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-stxgreen-600 dark:text-stxgreen-400 shadow-sm transition">
+                  季度爆发曲线
+                </button>
+                <button id="btn-chart-split" onclick="switchBizChart('annual')" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+                  年度周期全貌
+                </button>
+              </div>
+            </div>
+            <div class="relative h-80 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧商业架构深度拆解 -->
+          <div class="space-y-4">
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-stxgreen-500/15 text-stxgreen-600 dark:text-stxgreen-400">核心增长极 · >80% 容量占比</span>
+                <span class="font-mono text-xs text-slate-400">Mass Capacity</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">大容量近线存储（Nearline Cloud & AI Data Lake）</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                在 AI 时代分层存储架构中，HBM 与企业级 SSD 负责热数据训练与推理缓存，而海量原始多模态训练语料、视频生成资产、Checkpoints 检查点及合规留存数据全部沉淀于每 TB 成本仅为闪存 1/6～1/8 的近线 HDD 集群（例如 <a href="https://www.mordorintelligence.com/industry-reports/hard-disk-drive-market" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">Meta 披露其全球 AI 训练底层真理源采用 HDD BLOB 存储织网 + 区域闪存 L3 缓存架构</a>）。数据中心贡献了希捷超 <a href="https://tickeron.com/trading-investing-101/seagate-technologys-remarkable-rally-a-comprehensive-analysis-of-stxs-136-stock-price-surge/" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">80% 的 EB 级容量消耗</a>。
+              </p>
+            </div>
+
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-cyan-400">商业模式质变</span>
+                <span class="font-mono text-xs text-slate-400">Build-to-Order</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">BTO 按单生产长协终结恶性库存周期</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                吸取 FY2023 云客户去库存导致营收跌至 <a href="https://www.wallstreetzen.com/stocks/us/nasdaq/stx/revenue" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">$7.38B</a> 的历史教训，希捷全面推行严格的按单生产（Build-to-Order）长协机制。截至 2026 年下半年，超大规模云客户签订的长协已将希捷<a href="https://www.mordorintelligence.com/industry-reports/hard-disk-drive-market" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">绝大部分近线 EB 产能锁定至 2028 日历年</a>，现货市场供给极度稀缺，赋予希捷持续提价权。
+              </p>
+            </div>
+
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">边缘与企业系统</span>
+                <span class="font-mono text-xs text-slate-400">VIA / Lyve / Systems</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">智能视频分析（VIA）与企业级存储系统</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                智慧城市高清视频监控、工业机器视觉与自动驾驶路测数据回传构成稳定的边缘大容量需求基本盘，辅以 Exos CORVAULT 高密度自愈存储阵列服务传统企业私有云。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           02. HAMR Mozaic 技术护城河
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-stxgreen-600 dark:text-stxgreen-400">SECTION 02 · ECONOMIC MOAT & HAMR ARCHITECTURE</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">行业地位与四重护城河：深耕二十载铸就 HAMR 物理学壁垒</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">技术平台：<a href="https://www.seagate.com/innovation/mozaic/" target="_blank" rel="noopener noreferrer" class="text-stxgreen-500 hover:underline">Seagate Mozaic™ HAMR</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <!-- 五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">全球 HDD 三寡头技术与商业护城河五维对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">希捷在单碟面密度、HAMR 量产成熟度与毛利率弹性上显著领跑</p>
+            </div>
+            <div class="relative h-72 w-full my-2">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-navy-800/60 p-3 rounded-xl border border-slate-200/70 dark:border-slate-700/70">
+              注：根据 <a href="https://horizontechnology.com/news/hard-drive-capacity-race-to-100tb/" target="_blank" rel="noopener noreferrer" class="text-stxgreen-500 hover:underline">Horizon Technology 2026 行业追踪</a>，希捷是全球唯一在超大规模云环境批量部署 44TB HAMR 硬盘的厂商。
+            </div>
+          </div>
+
+          <!-- 四大护城河卡片矩阵 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-stxgreen-600 dark:text-stxgreen-400">MOAT 01 · 纳米光子与超晶格介质</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">Mozaic 4+ 实现单碟 4.4TB 物理突破</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                传统垂直磁记录（PMR/ePMR）受限于超顺磁效应极限（单碟难以有效突破 ~3.2TB）。希捷通过集成纳米光子激光器瞬间将盘片局部加热至居里温度以上写入，配合高矫顽力<strong>铁铂（FePt）超晶格颗粒介质</strong>，于 <a href="https://horizontechnology.com/news/hard-drive-capacity-race-to-100tb/" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">2026 年 3 月实现 Mozaic 4+（10 碟 44TB）向两大云巨头批量出货</a>，并锁定 2027 年底/2028 年初迈向单碟 5TB（50TB+）的 Mozaic 5 路线图。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">MOAT 02 · 机房电力与空间刚性套利</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">单 TB 功耗锐减 60% · TCO 下降 25%</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                AI 数据中心当前最大的瓶颈是电力配额与机柜空间。在标准 3.5 英寸 10 碟氦气封装架构下，<a href="https://www.techpowerup.com/news-tags/HAMR" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">Mozaic 平台使同一机架空间存储容量提升 300%，每 TB 功耗降低 60%，每 TB 总体拥有成本（TCO）下降 25%</a>，且无需增加双磁臂结构或改动现有 60/90 盘位机箱背板（<a href="https://industrialmonitordirect.com/blogs/knowledgebase/dual-actuator-hdds-why-40tb-drives-ship-without-them" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">Industrial Monitor Direct</a>）。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400">MOAT 03 · 制造边际杠杆飞轮</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">不加盘片只提密度 = 极致毛利扩张</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                当单盘容量从 24TB 升级至 36TB 乃至 <a href="https://www.seagate.com/innovation/mozaic/" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">44TB</a> 时，内部依然维持高效率的 10 张盘片与 20 个磁头结构，无需堆叠更多机械组件即可多卖出 50%～80% 的有效存储容量！这种“恒定 BOM 硬件壳体 × 面密度溢价”正是希捷 Non-GAAP 毛利率在 FQ1'27 冲上 <a href="https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stxq12027pressreleasefinan.htm" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">57.8%</a> 的底层制造密码。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-amber-600 dark:text-amber-400">MOAT 04 · 垂直自研核心磁头与晶圆</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">100% 内部掌控激光磁头与介质良率</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                希捷在北美与亚洲拥有高度垂直整合的磁头晶圆、量子天线（Plasmonic良率核心）与 12nm/7nm 主控 SoC 产线。由于超大规模云厂商对近线盘的严苛认证周期长达 9～12 个月，竞争对手无法通过外购组件快速复制 HAMR 可靠性曲线。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           03. 寡头竞争格局横向对比
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-stxgreen-600 dark:text-stxgreen-400">SECTION 03 · DUOPOLY & PEER BENCHMARKING</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">同行竞争格局：全球三强寡头割据，希捷独占 HAMR 先发红利</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">出货份额来源：<a href="https://www.forbes.com/sites/tomcoughlin/2026/02/02/c4q-2025-and-2025-hard-disk-drive-industry-update/" target="_blank" rel="noopener noreferrer" class="text-stxgreen-500 hover:underline">Forbes / Coughlin Associates</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 横向表格对比 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+            <div class="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">全球近线大容量存储核心玩家技术路线与竞争力矩阵</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-100/80 dark:bg-navy-800/80 text-slate-600 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800 font-semibold">
+                    <th class="py-3 px-4">对比维度</th>
+                    <th class="py-3 px-3 text-stxgreen-600 dark:text-stxgreen-400">希捷 Seagate (STX)</th>
+                    <th class="py-3 px-3">西部数据 (WDC)</th>
+                    <th class="py-3 px-3">东芝 Toshiba</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200/70 dark:divide-slate-800/70 text-slate-700 dark:text-slate-300">
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">全球 HDD 出货量份额</td>
+                    <td class="py-3 px-3 font-mono font-bold text-stxgreen-600 dark:text-stxgreen-400">~40.8% (高容量溢价龙头)</td>
+                    <td class="py-3 px-3 font-mono">~42.3%</td>
+                    <td class="py-3 px-3 font-mono">~17.0%</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">2026 主力量产技术路线</td>
+                    <td class="py-3 px-3 font-semibold text-slate-900 dark:text-white">All-in HAMR (Mozaic 3+/4+)</td>
+                    <td class="py-3 px-3">ePMR + UltraSMR 过渡</td>
+                    <td class="py-3 px-3">FC-MAMR / MAS-MAMR</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">当前商用最高单盘容量</td>
+                    <td class="py-3 px-3 font-mono font-bold text-stxgreen-600 dark:text-stxgreen-400">44TB (CMR/SMR 规模出货)</td>
+                    <td class="py-3 px-3 font-mono">40TB UltraSMR (26H2 爬坡)</td>
+                    <td class="py-3 px-3 font-mono">~32TB 样品验证</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">HAMR 大规模量产节点</td>
+                    <td class="py-3 px-3 font-semibold text-emerald-600 dark:text-emerald-400">已于 2025-2026 规模交付</td>
+                    <td class="py-3 px-3">预计 2027 年启动量产</td>
+                    <td class="py-3 px-3">2027 年及以后</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">读写随机覆盖性能权衡</td>
+                    <td class="py-3 px-3">原生高密度 CMR 无覆盖惩罚</td>
+                    <td class="py-3 px-3">UltraSMR 随机重写延迟较高</td>
+                    <td class="py-3 px-3">中等（依赖多碟堆叠）</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">与企业级 QLC eSSD 关系</td>
+                    <td class="py-3 px-3" colspan="3">互补分层而非替代：eSSD 主导低延迟热推理缓存，近线 HDD 垄断冷温原始语料库（单 TB 价差维持 6x–8x，且全球晶圆厂产能优先倾斜 HBM）</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 同业利润率对比条形图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">存储与硬科技龙头最新季度 Non-GAAP 营业利润率对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">STX 在 FQ1'27 营业利润率达 50.7%，正式跻身顶级半导体算力梯队</p>
+            </div>
+            <div class="relative h-64 w-full my-2">
+              <canvas id="compMarginChart"></canvas>
+            </div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+              注：STX 数据源自 <a href="https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stxq12027pressreleasefinan.htm" target="_blank" rel="noopener noreferrer" class="text-stxgreen-500 hover:underline">FQ1'27 财报 (50.7% Non-GAAP OPM)</a>；2026 年 10 月初市场曾因 <a href="https://247wallst.com/investing/2026/10/15/seagate-could-have-a-long-runway-as-data-storage-demand-explodes/" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">东芝扩产传闻引发短暂回调</a>，但希捷近线长协已锁至 2028 年，实际份额与定价未受冲击。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           04. 财务健康度与估值重置体系
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-stxgreen-600 dark:text-stxgreen-400">SECTION 04 · FINANCIAL HEALTH & VALUATION RESET</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">财务健康与估值体系：闪电去杠杆修复资产负债表，回调砸出 ~13x 远期估值锚</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">预测来源：<a href="https://www.trefis.com/data/companies/STX" target="_blank" rel="noopener noreferrer" class="text-stxgreen-500 hover:underline">Trefis</a> · <a href="https://www.tickertape.in/us-stocks/seagate-technology-plc-STX-share-price" target="_blank" rel="noopener noreferrer" class="text-stxgreen-500 hover:underline">Tickertape</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 估值与业绩演进双轴图 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">FY2024 – FY2028E 营收、Non-GAAP 净利润与隐含市盈率压缩</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 mb-4">按当前股价 ~$528.44 测算，FY27E ($40.42 EPS) 远期 P/E 仅 ~13.1x，FY28E ($66.58 EPS) 进一步降至 ~7.9x</p>
+            <div class="relative h-72 w-full">
+              <canvas id="valEvolutionChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 资产负债表去杠杆与股东回报明细 -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white">🛡️ 历史遗留高负债担忧已彻底解除</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                过去空头做空 STX 的核心理由是高杠杆与负净资产，但 <a href="https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stxq12027pressreleasefinan.htm" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">FQ1'27 资产负债表</a>证明其财务体质已发生根本逆转：
+              </p>
+              <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-200">
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">FQ1'27 单季偿还债务本金</span>
+                  <span class="font-mono font-bold text-stxgreen-600 dark:text-stxgreen-400">-$1.20B (总债降至 $2.4B)</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">季末后额外提前赎回债务</span>
+                  <span class="font-mono font-bold text-emerald-600 dark:text-emerald-400">-$750M (总债压降至 $1.6B)</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">股东权益转正并大幅增厚</span>
+                  <span class="font-mono font-bold text-slate-900 dark:text-white">$3,453M (上季末 $2,167M)</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">LTM 经调整 EBITDA</span>
+                  <span class="font-mono font-bold text-cyan-600 dark:text-cyan-400">$6,094M (总债/EBITDA &lt;0.3x)</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5">
+                  <span class="text-slate-500 dark:text-slate-400">FQ1 股东回报（回购 + 提息）</span>
+                  <span class="font-mono font-bold text-amber-600 dark:text-amber-400">$568M · 季息升至 $0.76/股</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-br from-emerald-950/80 to-navy-900 rounded-2xl p-4 border border-emerald-500/30 text-xs text-slate-200 space-y-1.5">
+              <div class="font-bold text-stxgreen-400">🎯 华尔街机构一致预期锚点（2026年11月）</div>
+              <p class="leading-relaxed">
+                据 <a href="https://fr.benzinga.com/quote/STX/price-targets" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline">Benzinga (19 买入 / 2 持有)</a>、<a href="https://public.com/stocks/stx" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline">Public ($897.26)</a> 与 <a href="https://stockanalysis.com/stocks/stx/" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline">StockAnalysis ($1,044.83)</a> 统计，股价自 8 月高点 $1,145 随板块情绪回撤至 ~$528 后，隐含上行修复空间达 <strong>+70% ～ +98%</strong>。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           05. 投资决策与多空风险配置
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-stxgreen-600 dark:text-stxgreen-400">SECTION 05 · BULL VS BEAR & PORTFOLIO STRATEGY</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">投资决策与风险配置：多空情景推演与买点纪律</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 看多核心催化 -->
+          <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border-l-4 border-l-stxgreen-500 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">🐂 牛市核心逻辑与上行催化剂 (Bull Case)</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-stxgreen-500/15 text-stxgreen-600 dark:text-stxgreen-400">目标 $900 – $1,050</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li><strong>1. FQ2'27 利润再创纪录：</strong>管理层指引 FQ2'27（2027年1月26日披露）营收达 <a href="https://ng.investing.com/news/earnings/seagate-earnings-beat-by-029-revenue-topped-estimates-2761146" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">$4.80B ± $0.10B、Non-GAAP EPS $9.20 ± $0.20</a>，显著超越市场原共识（$4.56B / $8.61），隐含单季毛利率有望向 60% 关口逼近。</li>
+              <li><strong>2. 多模态视频生成引爆 EB 级增量：</strong>视频生成大模型与物理世界自动驾驶训练产生的数据体积是纯文本模型的数百倍，云厂商冷温存储扩容刚需具备极强持续性。</li>
+              <li><strong>3. 净负债清零后回购火力全开：</strong>随着总债务已压降至 $1.6B（接近净现金状态），未来每年 $6B+ 的自由现金流将绝大部分投向股票回购与股息增长，直接增厚每股收益。</li>
+            </ul>
+          </div>
+
+          <!-- 看空风险与跟踪边界 -->
+          <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border-l-4 border-l-rose-500 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">🐻 核心下行风险与证伪信号 (Bear Risks)</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400">高波动 Beta ~2.1</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li><strong>1. 2027 下半年对手产能追赶与价格纪律松动：</strong>若西部数据在 2027 年顺利实现 HAMR 批量良率爬坡，或东芝激进扩产打破三寡头默契，可能抑制单 TB 均价（ASP）涨幅（<a href="https://stocktwits.com/news-articles/markets/equity/wdc-stx-stocks-slide-up-to-10-what-s-the-toshiba-connection/cZDjXT1RBKJ" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:underline">Stocktwits 行业动态</a>）。</li>
+              <li><strong>2. 超大规模云厂商 CapEx 节奏波动：</strong>公司前四大云客户集中度高，一旦北美 CSP 资本开支进入阶段性消化期，BTO 远期订单可能出现延期提货。</li>
+              <li><strong>3. 贸易关税与 BIS 合规分期付款及供应链集中度：</strong>希捷主要制造基地位于新加坡、泰国与中国（<a href="https://koalagains.com/stocks/XETRA/847" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:underline">KoalaGains 供应链分析</a>），需持续关注跨境关税政策变动及 BIS 和解协议季度付款执行情况。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           06. 季度跟踪 KPI 核查清单
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-stxgreen-600 dark:text-stxgreen-400">SECTION 06 · QUARTERLY TRACKING CHECKLIST</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">季度财报跟踪 KPI 核查清单（备战 2027年1月 FQ2 季报）</h2>
+          </div>
+          <div class="flex items-center gap-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-stxgreen-500/15 text-stxgreen-600 dark:text-stxgreen-400 border border-stxgreen-500/30">已核查 0 / 6 项 (0%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-200/70 hover:bg-slate-300 dark:bg-navy-800 dark:hover:bg-navy-700 text-slate-600 dark:text-slate-300 transition">重置</button>
+          </div>
+        </div>
+
+        <div id="kpi-checklist" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-stxgreen-500/50 transition">
+            <input type="checkbox" id="stx-kpi-1" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-stxgreen-500 focus:ring-stxgreen-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">1. FQ2'27 营收与 EPS 是否兑现上限指引</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">核查营收是否达到或突破 $4.80B 中枢，Non-GAAP 稀释 EPS 是否突破 $9.20–$9.40 区间。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-stxgreen-500/50 transition">
+            <input type="checkbox" id="stx-kpi-2" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-stxgreen-500 focus:ring-stxgreen-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">2. Mozaic 4+ (44TB) 云巨头认证扩围进度</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">跟踪除首批两家超大规模云厂外，其余北美及主权云客户导入 40TB+ HAMR 产品的出货占比。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-stxgreen-500/50 transition">
+            <input type="checkbox" id="stx-kpi-3" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-stxgreen-500 focus:ring-stxgreen-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">3. Non-GAAP 毛利率能否稳守 58%+ 并冲击 60%</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">验证 HAMR 晶圆磁头良率爬坡与高容量产品组合对单 TB 制造成本的持续摊薄效应。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-stxgreen-500/50 transition">
+            <input type="checkbox" id="stx-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-stxgreen-500 focus:ring-stxgreen-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">4. BTO 按单生产长协锁定期限与定价条款</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">确认 2028 年近线 EB 产能锁定比例是否维持高位，以及新签长协是否包含年度涨价保护。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-stxgreen-500/50 transition">
+            <input type="checkbox" id="stx-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-stxgreen-500 focus:ring-stxgreen-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">5. 净现金拐点与单季股票回购力度放大</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">总债务降至 $1.6B 后，观察单季股票回购金额是否从 FQ1 的 $400M 提升至 $800M–$1B+ 级别。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-stxgreen-500/50 transition">
+            <input type="checkbox" id="stx-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-stxgreen-500 focus:ring-stxgreen-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">6. 竞争对手 WDC 40TB UltraSMR 与 HAMR 时间表对比</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">跟踪 WDC 2027 年 HAMR 量产进度与 Toshiba 扩产落地节奏，确保行业资本开支纪律未破坏（CapEx/Rev &lt;6%）。</div>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- 页脚免责声明与权威引用源 -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2">
+        <div>
+          <strong>权威数据来源索引：</strong>
+          <a href="https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stxq12027pressreleasefinan.htm" target="_blank" rel="noopener noreferrer" class="text-stxgreen-600 dark:text-stxgreen-400 hover:underline">SEC Form 8-K (FQ1 2027 季报原文)</a> ·
+          <a href="https://investors.seagate.com/news/news-details/2026/Seagate-Technology-Reports-Fiscal-Fourth-Quarter-and-Fiscal-Year-2026-Financial-Results/" target="_blank" rel="noopener noreferrer" class="text-stxgreen-600 dark:text-stxgreen-400 hover:underline">Seagate FY2026 全年业绩公告</a> ·
+          <a href="https://www.seagate.com/innovation/mozaic/" target="_blank" rel="noopener noreferrer" class="text-stxgreen-600 dark:text-stxgreen-400 hover:underline">Seagate Mozaic™ HAMR 技术白皮书</a> ·
+          <a href="https://horizontechnology.com/news/hard-drive-capacity-race-to-100tb/" target="_blank" rel="noopener noreferrer" class="text-stxgreen-600 dark:text-stxgreen-400 hover:underline">Horizon Technology 100TB 路线图追踪</a> ·
+          <a href="https://www.trefis.com/data/companies/STX" target="_blank" rel="noopener noreferrer" class="text-stxgreen-600 dark:text-stxgreen-400 hover:underline">Trefis 财务预测</a>
+        </div>
+        <p>免责声明：本报告基于美国 SEC 公开财报披露及权威行业研究数据编制，仅供深度投研与基本面拆解参考，不构成任何具体证券买卖要约。</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    const KPI_STORAGE_KEY = 'stx_research_kpi_v1';
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'quarterly';
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      try {
+        localStorage.setItem('stx_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+      } catch (e) {}
+      updateChartsTheme();
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      if (drawer) drawer.classList.toggle('hidden');
+    }
+
+    // 滚动阅读进度与目录高亮联动
+    window.addEventListener('scroll', () => {
+      const docEl = document.documentElement;
+      const scrollTop = docEl.scrollTop || document.body.scrollTop;
+      const scrollHeight = docEl.scrollHeight - docEl.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      const bar = document.getElementById('reading-progress');
+      if (bar) bar.style.width = progress + '%';
+
+      const sections = ['sec-exec', 'sec-biz', 'sec-moat', 'sec-comp', 'sec-fin', 'sec-inv', 'sec-kpi'];
+      let activeId = sections[0];
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 160) {
+          activeId = id;
+        }
+      });
+      document.querySelectorAll('#desktop-nav .nav-link').forEach(link => {
+        if (link.getAttribute('data-target') === activeId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    function loadKpiChecklist() {
+      try {
+        const raw = localStorage.getItem(KPI_STORAGE_KEY);
+        if (raw) {
+          const map = JSON.parse(raw);
+          Object.keys(map).forEach(k => {
+            const cb = document.getElementById(k);
+            if (cb) cb.checked = Boolean(map[k]);
+          });
+        }
+      } catch (e) {}
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const boxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = boxes.length || 1;
+      let checked = 0;
+      const map = {};
+      boxes.forEach(cb => {
+        map[cb.id] = cb.checked;
+        if (cb.checked) checked++;
+      });
+      const pct = Math.round((checked / total) * 100);
+      const badge = document.getElementById('kpi-progress-badge');
+      if (badge) badge.textContent = `已核查 ${checked} / ${boxes.length} 项 (${pct}%)`;
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(map));
+      } catch (e) {}
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('bizArchitectureChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      const quarterlyConfig = {
+        type: 'bar',
+        data: {
+          labels: ["FQ1'26", "FQ2'26", "FQ3'26", "FQ4'26", "FQ1'27", "FQ2'27E(指引)"],
+          datasets: [
+            {
+              type: 'bar',
+              label: '单季营业收入 ($B)',
+              data: [2.63, 2.83, 3.11, 3.63, 4.23, 4.80],
+              backgroundColor: 'rgba(0, 177, 64, 0.82)',
+              borderRadius: 6,
+              barThickness: 28,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'Non-GAAP 毛利率 (%)',
+              data: [40.1, 42.3, 46.8, 52.7, 57.8, 59.5],
+              borderColor: '#0EA5E9',
+              backgroundColor: '#0EA5E9',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: {
+              position: 'left',
+              min: 0,
+              max: 5.5,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              position: 'right',
+              min: 30,
+              max: 65,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#0EA5E9', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      };
+
+      const annualConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023(低谷)', 'FY2024', 'FY2025', 'FY2026', 'FY2027E(共识)'],
+          datasets: [
+            {
+              label: '全年总营收 ($B)',
+              data: [11.66, 7.38, 6.55, 9.10, 12.20, 20.32],
+              backgroundColor: '#00B140',
+              borderRadius: 6,
+              barThickness: 26
+            },
+            {
+              label: '全年自由现金流 FCF ($B)',
+              data: [1.28, 0.62, 0.66, 1.45, 3.10, 6.80],
+              backgroundColor: '#0EA5E9',
+              borderRadius: 6,
+              barThickness: 26
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: { grid: { color: colors.grid }, ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' } }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'quarterly' ? quarterlyConfig : annualConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnQ = document.getElementById('btn-chart-evo');
+      const btnA = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'quarterly') {
+        btnQ.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-stxgreen-600 dark:text-stxgreen-400 shadow-sm transition';
+        btnA.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = "FQ1'26 – FQ2'27E 季度营收跃升与 Non-GAAP 毛利率扩张轨迹";
+        subEl.textContent = '单季营收从 $2.63B 连续跃升至指引 $4.80B，Non-GAAP 毛利率突破 57.8%';
+      } else {
+        btnA.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-stxgreen-600 dark:text-stxgreen-400 shadow-sm transition';
+        btnQ.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022 – FY2027E 年度营收与自由现金流跨越周期对比';
+        subEl.textContent = '从 FY24 $6.55B 周期谷底跃向 FY27E $20.32B 新高度';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('moatRadarChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '单碟面密度 (4.4TB/碟)',
+            'HAMR 云端量产进度',
+            '单TB能效与TCO优势',
+            '毛利率与定价弹性',
+            '长协锁单可见度 (至2028)'
+          ],
+          datasets: [
+            {
+              label: '希捷科技 Seagate (STX)',
+              data: [9.8, 9.7, 9.5, 9.6, 9.4],
+              borderColor: '#00B140',
+              backgroundColor: 'rgba(0, 177, 64, 0.22)',
+              pointBackgroundColor: '#00B140',
+              borderWidth: 2.5
+            },
+            {
+              label: '西部数据 (WDC · ePMR/UltraSMR)',
+              data: [8.3, 7.2, 8.6, 8.2, 8.8],
+              borderColor: '#0EA5E9',
+              backgroundColor: 'rgba(14, 165, 233, 0.14)',
+              pointBackgroundColor: '#0EA5E9',
+              borderWidth: 1.8
+            },
+            {
+              label: '东芝 Toshiba (MAMR)',
+              data: [7.0, 6.2, 7.2, 6.5, 6.8],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('compMarginChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'NVIDIA (AI 算力标杆)',
+            '希捷 STX (FQ1\'27 Non-GAAP)',
+            '科磊 KLAC (半导体检测龙头)',
+            '博通 AVGO (定制 ASIC 与软件)',
+            '应用材料 AMAT (晶圆设备)'
+          ],
+          datasets: [{
+            label: '营业利润率 Operating Margin (%)',
+            data: [60.2, 50.7, 41.7, 42.5, 30.0],
+            backgroundColor: ['#64748B', '#00B140', '#0EA5E9', '#6366F1', '#94A3B8'],
+            borderRadius: 6,
+            barThickness: 20
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              max: 68,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('valEvolutionChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2024', 'FY2025', 'FY2026', 'FY2027E', 'FY2028E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '营业收入 ($B)',
+              data: [6.55, 9.10, 12.20, 20.32, 28.79],
+              backgroundColor: 'rgba(0, 177, 64, 0.82)',
+              borderRadius: 5,
+              barThickness: 22,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: 'Non-GAAP 净利润 ($B)',
+              data: [0.28, 1.75, 3.65, 9.30, 14.90],
+              backgroundColor: 'rgba(14, 165, 233, 0.85)',
+              borderRadius: 5,
+              barThickness: 22,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '当前股价隐含 P/E 倍数 (x)',
+              data: [63.0, 35.4, 27.8, 13.1, 7.9],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: {
+              position: 'left',
+              min: 0,
+              max: 32,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              position: 'right',
+              min: 0,
+              max: 70,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

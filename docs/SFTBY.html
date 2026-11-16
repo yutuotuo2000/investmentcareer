@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>软银集团 SoftBank Group (OTC: SFTBY / TSE: 9984) 深度研究报告：从愿景基金风投帝国到“Arm + OpenAI + 物理AI”超级人工智能（ASI）全栈资本母舰</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            sbgblue: {
+              400: '#38BDF8',
+              500: '#0284C7',
+              600: '#0369A1',
+            },
+            amber: {
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+            },
+            emerald: {
+              400: '#34D399',
+              500: '#10B981',
+              600: '#059669',
+            },
+            teal: {
+              400: '#22D3EE',
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报排版细节 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化：隐藏侧边栏与交互控件 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微上移交互 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态：软银科技银蓝与 ASI 极光微光 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(2, 132, 199, 0.26) 0%, rgba(245, 158, 11, 0.08) 100%);
+      border-left: 3px solid #38BDF8;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-sbgblue-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部 1px 全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-sbgblue-500 via-amber-400 to-emerald-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部吸附导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sbgblue-400 to-sbgblue-600 flex items-center justify-center font-extrabold text-navy-950 text-[10px] tracking-tighter shadow">
+        SFTBY
+      </div>
+      <div>
+        <div class="text-[11px] text-sbgblue-400 font-semibold tracking-wider uppercase">OTC: SFTBY · TSE: 9984</div>
+        <div class="text-sm font-bold leading-tight">软银集团深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300 cursor-pointer" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white cursor-pointer" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉目录菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">SFTBY 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 资产组合与 ASI 全栈架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重生态护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 全球科技控股阵营横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务纪律与 SOTP 折价推演</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球科技控股与 ASI 算力资本研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (Q2 FY2026)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 顶部机构品牌徽章 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sbgblue-400 via-sbgblue-500 to-amber-400 flex items-center justify-center text-navy-950 font-extrabold text-[11px] tracking-tighter shadow-lg shadow-sbgblue-500/25 shrink-0">
+            SFTBY
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-sbgblue-400 bg-sbgblue-500/15 px-2 py-0.5 rounded">OTC: SFTBY · TSE: 9984</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">软银集团深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球 ASI 超级人工智能全栈资本母舰 · Arm × OpenAI 核心控股底座
+        </p>
+      </div>
+
+      <!-- 实时快照徽章区 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">Q2 末峰值 NAV</span>
+          <span class="font-mono font-bold text-white">¥59.8T <span class="text-sbgblue-400">($380B)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">11月9日备考 NAV</span>
+          <span class="font-mono font-bold text-emerald-400">¥44.7T <span class="text-slate-300">($282B)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">核心折价与杠杆</span>
+          <span class="font-mono font-bold text-amber-400">折价 ~53% · LTV 15.9%</span>
+        </div>
+      </div>
+
+      <!-- 七个核心章节目录导航 (Scroll-Spy) -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-315px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-sbgblue-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>资产组合与 ASI 全栈架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重生态护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>全球科技控股阵营对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务纪律与 SOTP 折价推演</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-sbgblue-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-gradient-to-r from-sbgblue-500 to-sbgblue-600 hover:from-sbgblue-600 hover:to-sbgblue-700 text-white text-xs font-extrabold transition shadow-sm cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要 (#sec-exec)
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-sbgblue-500/15 text-sbgblue-600 dark:text-sbgblue-400 font-bold border border-sbgblue-500/30">评级：增持 / 高弹性 AI 核心折价套利</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：2026–2030 ASI 全栈基建兑现期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>OTC: SFTBY / TSE: 9984 (1拆4拆股后)</span>
+          </div>
+        </div>
+
+        <!-- Hero 渐变封面卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景科技银蓝点阵纹理 -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#38BDF8 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sbgblue-500/20 border border-sbgblue-400/40 text-sbgblue-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+              <span>CORE THESIS · “Arm 算力底座 + OpenAI 13% 旗舰卡位”双核驱动 × 超 50% 深度 NAV 折价安全垫</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              软银集团 SoftBank Group (OTC: SFTBY / TSE: 9984) 深度研究报告：从愿景基金风投帝国到“Arm + OpenAI + 物理AI”超级人工智能（ASI）全栈资本母舰
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              孙正义已彻底完成从分散式移动互联网财务风投向垂直一体化<strong class="text-white">“超级人工智能（Artificial Super Intelligence, ASI）”全栈资本母舰</strong>的战略重构。截至 2026 年 9 月底（Q2 FY2026），集团净资产价值（NAV）一度创下 <strong class="text-sbgblue-400">¥59.8万亿 ($380B)</strong> 季度末新高；即便按 2026 年 11 月 9 日全球科技股回调后市价重估，备考净资产（Pro Forma NAV）仍高达 <strong class="text-emerald-400">¥44.7万亿 ($282B)</strong>。
+              2026 年 10 月软银圆满完成对 OpenAI 最后一笔追加出资，累计投入 <strong class="text-amber-400">$64.6B 锁定约 13% 核心股权</strong>（累计未实现账面浮盈达 <strong class="text-white">$45.0B</strong>）；叠加控股约 88%–90% 的 <strong class="text-sbgblue-400">Arm 在超大规模云厂商 CPU 份额突破 60%</strong>、集团净负债率（LTV）严控于 <strong class="text-emerald-400">15.9%</strong>（远低于 25% 警戒红线）并提前半年结清 $40B 过桥贷款。对比当前美股 ADR（SFTBY 参考价 ~$11.00，2026年初 1 拆 4 后总市值约 <strong class="text-white">$125B–$135B</strong>），隐含高达 <strong class="text-amber-400">~52%–55% 的深度 NAV 折价</strong>，为二级市场投资者提供了罕见的“五折买入 Arm + OpenAI”非对称赔率。
+            </p>
+
+            <!-- 底部三栏核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">双王牌垄断卡位</div>
+                <div class="text-white font-semibold">Arm 云端数据中心 CPU 份额突破 &gt;60% + 独占 OpenAI ~13% 股权（OpenAI ARR 飙至 $50B）</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">创纪录融资与铁血财务纪律</div>
+                <div class="text-sbgblue-400 font-semibold">Q2 单季高效融资 $56.5B 提前半年还清 $40B 过桥贷，坐拥 ¥5.0T ($32B) 充沛现金池</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">超 52% 深度折价构筑安全垫</div>
+                <div class="text-amber-400 font-semibold">市值较 $282B 备考 NAV 折价逾半，CFO 后藤芳光明确短期“踩刹车”严守 LTV &lt;25% 底线</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>备考净资产 (Pro Forma NAV)</span>
+              <span class="p-1.5 rounded-lg bg-sbgblue-500/15 text-sbgblue-600 dark:text-sbgblue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$282B</span>
+              <span class="text-xs font-bold text-sbgblue-600 dark:text-sbgblue-400 bg-sbgblue-500/15 px-2 py-0.5 rounded">¥44.7T</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              9月末季报峰值达 <strong>¥59.8T ($380B)</strong>；对比 ~$130B 市值隐含逾 53% 控股折价保护。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>OpenAI 累计重仓与持股</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$64.6B</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded">持股 ~13%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              累计账面未实现浮盈 <strong>$45.0B</strong>；OpenAI 周活破 12 亿、年化经常性收入 ARR 达 <strong>$50B</strong>。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Arm 数据中心统治力</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">&gt;60%</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">云端CPU份额</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              超大规模云巨头渗透率较 2024 年翻 4 倍，累计出货超 <strong>19 亿核</strong>，CSS 子系统版税率翻倍跃升。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>负债率 LTV 与流动性储备</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">15.9%</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/15 px-2 py-0.5 rounded">现金 ¥5.0T</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              远低于 25% 常态管理上限，母公司手握现金 <strong>¥5.0万亿 ($32B)</strong>，足额覆盖未来 2 年债期 2 倍以上。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           01. 资产组合与 ASI 全栈架构 (#sec-biz)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sbgblue-600 dark:text-sbgblue-400">Section 01 · Portfolio & ASI Full-Stack Ecosystem</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 资产组合与 ASI 全栈架构：双核占逾八成净值，全链路闭环成形</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">总权益资产 ~$350.8B · 扣除净债务 ~$68.8B = 备考 NAV $282.0B</span>
+        </div>
+
+        <!-- 交互式双视图 Chart.js 面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图切换图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">备考 NAV 核心底层资产构成拆解 vs 二级市场总市值 ($B)</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">仅 Arm 控股权益（~$132B）一项即已覆盖软银当前二级市场全部市值（~$130B），OpenAI 等巨额资产相当于“免费附赠”</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('sotp')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-sbgblue-600 dark:text-sbgblue-400 shadow-sm transition cursor-pointer">视图A：底层资产拆解</button>
+                <button onclick="switchBizChart('nav_history')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer">视图B：历年 NAV 演进</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：商业架构三大结构性跃迁列表 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业架构三大结构性跃迁</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-sbgblue-500/15 text-sbgblue-600 dark:text-sbgblue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">从分散式财务风投转向 ASI 垂直整合控股</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      彻底告别过往愿景基金广撒网的消费互联网模式，将逾 85% 资本火力高度聚焦于<strong>“AI 芯片（Arm/Ampere）+ 基础模型（OpenAI）+ 绿色算力基建 + 具身机器人”</strong>四层控股闭环。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">OpenAI $30B 三期追加收官并绑定 Cristal 生态</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      2026年10月完成 $30B 追加承诺的最后一笔交割（总出资达 <strong>$64.6B</strong>，持股 ~13%），并通过日本合资企业 <strong>Cristal intelligence</strong> 独家推进企业级 AI Agent 商业化落地。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">数据中心基建审慎纠偏，切换轻重结合策略</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      正视超大型园区多方协调摩擦，Q2 果断对前期非最优发电设备采购计提 <strong>¥597.2B ($3.7B)</strong> 一次性减值出清包袱，转而通过拟 <strong>$4B 收购 DigitalBridge</strong> 撬动第三方机构资管杠杆。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">核心战略愿景</span>
+              <span class="font-bold text-sbgblue-600 dark:text-sbgblue-400">超越人类智慧 10,000 倍的 ASI 基础设施底座</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 五大核心资产板块卡片矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 板块 1：AI 芯片与算力架构底座（占两列宽度） -->
+          <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sbgblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 rounded-md bg-sbgblue-500/15 text-sbgblue-600 dark:text-sbgblue-400 text-xs font-bold">第一压舱石支柱 · 备考权益 ~$132B+</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">云端 CPU 份额 &gt;60%</span>
+              </div>
+              <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">~88% 控股 Arm</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. AI 芯片与算力架构底座：Arm + Ampere ($6.5B全资) + Graphcore + Intel 战略入股</h3>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">Arm 数据中心爆发 &amp; CSS 版税翻倍</div>
+                <p class="leading-relaxed">
+                  NVIDIA Grace/Vera、AWS Graviton、Google Axion 与微软 Cobalt 全面采用 Arm 架构，推动 Arm 超大规模云厂商渗透率较 2024 年翻 4 倍突破 <strong>60%</strong>（累计出货超 19 亿核），计算子系统（CSS）推动单核版税率成倍跃升。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">Ampere 全资整合 &amp; Intel 战略点石成金</div>
+                <p class="leading-relaxed">
+                  2025 年 11 月以 <strong>$6.5B 全现金</strong>完成收购云原生 Arm 服务器 CPU 领军者 Ampere Computing（连同 Graphcore 补齐芯片设计实体）；此外 <strong>$2B 抄底战略入股 Intel</strong> 已斩获超万亿日元账面收益，并巧妙通过 <strong>$7.4B 远期合约（Collar/Forward）</strong>锁定流动性。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 板块 2：旗舰大模型核心股权 OpenAI -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amber-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-bold">持股 ~13% · 浮盈 $45.0B</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$110.8B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 旗舰大模型股权：OpenAI（累计出资 $64.6B）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                领投参与 2026 年 <strong>$852B 估值</strong>超级融资轮，10 月末完成全部追加交割。OpenAI 全球周活突破 <strong>12 亿人</strong>，年化经常性收入（ARR）飙升至 <strong>$50B</strong>，且高粘性企业端收入占比提前半年达成 <strong>50%</strong> 里程碑。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold">
+              二级市场唯一大比例直通 OpenAI 公开上市载体
+            </div>
+          </div>
+
+          <!-- 板块 3：算力基建与能源网络 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">电力与数字地产底座</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">1.2GW + $4B并购</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 算力基建：Stargate + SB Energy + DigitalBridge</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                联手 OpenAI 推进德州 <strong>1.2GW</strong> 旗舰数据中心园区，依托 SB Energy 提供清洁绿电，并拟斥资 <strong>$4B 收购数字基建资管巨头 DigitalBridge</strong>。Q2 主动对非最优发电设备采购计提 ¥597.2B ($3.7B) 减值，彰显务实风控与报表透明度。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              掌握稀缺并网电力与全球光纤机柜网络
+            </div>
+          </div>
+
+          <!-- 板块 4：物理 AI 与愿景基金矩阵 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">具身智能 + 愿景扭亏</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$52B+ 组合</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 物理 AI 与愿景基金：ABB 机器人 ($5.375B) + SVF</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                愿景基金全面回暖（SVF1 累计净收益 <strong>$11.4B</strong>、SVF2 因持有部分 OpenAI 份额累计收益达 <strong>$14.4B</strong>）。重磅斥资 <strong>$5.375B 收购瑞士 ABB 工业机器人业务</strong>，联动 Gravitas Robotics、AutoStore 与 Zipline 构建物理世界具身大脑。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              大模型注入精密机械臂 · 开启工业具身纪元
+            </div>
+          </div>
+
+          <!-- 板块 5：稳健分红现金牛 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">稳定股息与质押压舱石</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$38B 权益</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">5. 现金流底座：SoftBank Corp. (9434.T) + PayPay + TMUS</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                日本电信子公司 H1 营收创历史新高至 <strong>¥3,798.7B (+12% YoY)</strong>，企业云与 AI 解决方案大增 <strong>+37%</strong>，全年归母净利指引上调至 <strong>¥610B</strong>；叠加国民级支付应用 PayPay 盈利跃升及 T-Mobile US 流动性股权，持续输血母公司利息与运营开支。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+              H1 营收 ¥3.80T (+12%) · 抗周期防御底盘
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           02. 行业地位与四重生态护城河 (#sec-moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Ecosystem Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重生态护城河：指令集税基、稀缺门票与跨层资本杠杆</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：结构性生态壁垒 · 信用评级 Fitch BBB+</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重护城河深度解析卡片 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 护城河 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sbgblue-500/15 text-sbgblue-600 dark:text-sbgblue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Arm 指令集架构标准与云端高能效垄断</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在电力成为 AI 数据中心头号瓶颈的时代，Arm 每瓦算力能效优势不可替代。从移动端 99% 垄断延伸至云端服务器超 <strong>60% 份额</strong>及边缘 AI PC，Arm 向全球几乎每一颗高端 AI 异构芯片征收永久性“指令集版税”。
+              </p>
+            </div>
+
+            <!-- 护城河 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">OpenAI 稀缺一级半市场通道 (Retail Proxy)</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                区别于微软复杂的利润分成与云算力协议，软银持有的是实打实约 <strong>13% 的重组后股权权益</strong>（按备考净资产计占比近 40%）。在 OpenAI 正式 IPO 前，SFTBY 是全球公众投资者以<strong>五折安全垫</strong>间接配置 OpenAI 的最高纯度标的。
+              </p>
+            </div>
+
+            <!-- 护城河 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">无追索权资产质押融资能力（单季募资 $56.5B）</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                依托日本国内超低利率日元零售债券基本盘、Fitch <strong>BBB+</strong> 投资级信用背书，以及对 Arm / T-Mobile / Intel 股权成熟的无追索权（Non-recourse）衍生品结构化融资能力，软银可在不稀释母公司股东的前提下瞬间调动百亿美元级并购资金。
+              </p>
+            </div>
+
+            <!-- 护城河 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“硅片—模型—能源—机器人”ASI 跨层生态协同</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                控股矩阵内部产生强大飞轮：Arm 与 Ampere 为数据中心定制高能效芯片 → SB Energy 与 DigitalBridge 提供绿电与机柜 → OpenAI 提供最强模型底座 → <strong>Cristal intelligence</strong> 与 <strong>ABB 机器人</strong>将智能体批量导入日本及全球大型企业与工厂。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">全球科技控股与资本平台五维能力雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">软银集团 SFTBY vs 传统科技控股 (Prosus) vs 另类资产巨头 (Blackstone/KKR)</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           03. 全球科技控股与 AI 基础设施资本阵营横向对比 (#sec-comp)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sbgblue-600 dark:text-sbgblue-400">Section 03 · Global HoldCo & AI Capital Peers</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 全球科技控股与 AI 基础设施资本阵营横向对比</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-sbgblue-500 text-white shadow-sm transition cursor-pointer">全部阵营</button>
+            <button onclick="filterCompetitors('holdco')" data-filter="holdco" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">科技控股母舰 (HoldCo)</button>
+            <button onclick="filterCompetitors('aigiant')" data-filter="aigiant" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">AI 模型与生态巨头</button>
+            <button onclick="filterCompetitors('infra')" data-filter="infra" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">数字基建与另类资本</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[185px]">平台名称与代码</th>
+                  <th class="py-4 px-4 min-w-[165px]">核心底层旗舰资产</th>
+                  <th class="py-4 px-4 min-w-[125px]">AI 全栈纯度</th>
+                  <th class="py-4 px-4 min-w-[130px]">财务杠杆管理</th>
+                  <th class="py-4 px-4 min-w-[135px]">NAV 折溢价水平</th>
+                  <th class="py-4 px-5 min-w-[230px]">核心优劣势与配置定位评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：软银集团 SFTBY -->
+                <tr data-category="core" class="bg-sbgblue-500/5 dark:bg-sbgblue-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-sbgblue-500 text-white text-[10px] font-extrabold">核心标的</span>
+                      <span class="font-bold text-slate-900 dark:text-white">软银集团 (SFTBY)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">TSE: 9984 · 市值 ~$130B</div>
+                  </td>
+                  <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">Arm (~88%) + OpenAI (~13%) + SoftBank Corp + ABB机器人</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-700 dark:text-amber-400">极高 (&gt;85% 聚焦ASI)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-emerald-600 dark:text-emerald-400 font-bold">LTV 15.9% (&lt;25%)</td>
+                  <td class="py-4 px-4 font-mono font-extrabold text-sbgblue-600 dark:text-sbgblue-400">深度折价 ~53%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>全球唯一“芯片+顶流闭源大模型”折价母舰：</strong>兼具 Arm 上市高弹性与 OpenAI IPO 稀缺门票，超 50% 折价提供丰厚容错垫；短板在于 NAV 受高估值科技股波动放大。
+                  </td>
+                </tr>
+
+                <!-- 行 2：Prosus / Naspers -->
+                <tr data-category="holdco" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Prosus N.V. (PRX.AS)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">欧洲最大消费互联网控股母舰</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">腾讯控股 (~24%) + 全球外卖/分类信息矩阵</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">中等 (应用层AI为主)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">净现金流稳健</td>
+                  <td class="py-4 px-4 font-mono font-semibold text-amber-600 dark:text-amber-400">折价 ~33% - 36%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>开放式减持回购典范：</strong>通过持续微量减持腾讯回购自身股票将折价从 50%+ 压缩至 ~34%，证明只要回购机制果断，巨型科技控股折价完全可实现大幅收敛。
+                  </td>
+                </tr>
+
+                <!-- 行 3：Microsoft -->
+                <tr data-category="aigiant" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Microsoft (MSFT)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">OpenAI 核心云与企业端盟友</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">Azure 全球云 + Office Copilot + OpenAI 战略权益</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">高 (云+企业软件变现)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">AAA 顶级净现金</td>
+                  <td class="py-4 px-4 font-mono text-slate-500 dark:text-slate-400">无控股折价 (~30x P/E)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>经营性确定性极高但无折价红利：</strong>万亿体量下 OpenAI 估值翻倍对微软总市值弹性有限，而对 ~$130B 市值的软银则能产生接近 1:1 的净值爆发拉动。
+                  </td>
+                </tr>
+
+                <!-- 行 4：Blackstone / Brookfield -->
+                <tr data-category="infra" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Blackstone / Brookfield</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">BX / BAM · 全球数字基建霸主</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">QTS 数据中心 + 全球核电/水电绿电资产池</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-500/15 text-teal-700 dark:text-teal-400">中高 (算力地产与电力)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">LP 基金轻资本费率</td>
+                  <td class="py-4 px-4 font-mono text-emerald-600 dark:text-emerald-400">溢价交易 (赚管理费)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>软银收购 DigitalBridge 的直接对标：</strong>依靠管理费（FRE）享有高估值溢价；软银并入 DigitalBridge 正是为了复制这种不消耗母公司资产负债表的基建扩张模式。
+                  </td>
+                </tr>
+
+                <!-- 行 5：Berkshire Hathaway -->
+                <tr data-category="holdco" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Berkshire Hathaway (BRK.B)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">全球实业与保险浮存金控股标杆</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">保险浮存金 + 铁路能源 + Apple 等蓝筹股票池</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">低 (传统价值防御)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">零成本浮存金 + 巨额美债</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~1.5x–1.6x P/B (无折价)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>控股公司治理终极形态：</strong>透明资本配置与严苛纪律使其消除控股折价；软银近年严守 LTV &lt;25% 红线并及时止损非优基建，正努力重塑机构信任。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 配套 Chart.js 横向柱状图：NAV 折价率对比 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">全球主要控股集团与科技投资平台 NAV 折价率 / 隐含安全边际对比 (%)</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">正值代表二级市场市值相对底层净资产（NAV）的折价幅度；软银 ~53.9% 的折价率处于全球大型控股公司极值区间</p>
+            </div>
+            <span class="text-xs font-semibold text-sbgblue-600 dark:text-sbgblue-400 bg-sbgblue-500/15 px-2.5 py-1 rounded">折价收敛 + 底层资产升值“双引擎”</span>
+          </div>
+          <div class="relative h-60 w-full">
+            <canvas id="compDiscountChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           04. 财务健康度、LTV 纪律与交互式 SOTP / NAV 折价估值推演器 (#sec-fin)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Discipline & Interactive SOTP Simulator</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度、LTV 纪律与交互式 SOTP / NAV 折价估值推演器</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">LTV 15.9% 远低于 25% 警戒线 · 提前半年结清 $40B 过桥贷</span>
+        </div>
+
+        <!-- 1. 四大硬核财务指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Loan-to-Value (LTV)</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">15.9%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              常态化管理红线为 <strong>&lt;25%</strong>（极端市场上限 35%）。即便经历 11 月初科技股回调，备考杠杆率仍处于极度充裕的安全走廊。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-sbgblue-600 dark:text-sbgblue-400 uppercase">Cash Position</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">¥5.0T ($32B)</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              母公司手头流动性储备足额覆盖<strong>未来 2 年以上全部到期债券兑付需求的 2 倍有余</strong>，彻底隔绝短期流动性挤兑风险。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase">Q2 Record Fundraising</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$56.5B / 季</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              Q2 单季通过资产支持融资、Intel $7.4B 远期合约及混合债募集创纪录 $56.5B，<strong>提前 6 个月全额还清 $40B OpenAI 过桥贷款</strong>。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase">H1 Accounting Net Loss</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">-¥768B (-$4.8B)</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              系会计准则错配所致：主因 $3.7B 发电设备一次性减值，以及 Intel 股价暴涨导致配套远期衍生品产生账面公允价值负变动，<strong>非经营性现金失血</strong>（注：控股并表的 Arm 市值暴涨不计入损益表）。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 核心亮点交互工具：SFTBY 分部加总 (SOTP) 与 NAV 折价动态估值推演器 -->
+        <div class="bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-xl">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-700/80">
+            <div>
+              <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                <span>Interactive Valuation Engine · 实时分部加总模型</span>
+              </div>
+              <h3 class="text-lg sm:text-xl font-extrabold text-white">SFTBY 分部加总 (SOTP) 与 NAV 折价动态估值推演器</h3>
+              <p class="text-xs text-slate-400 mt-1">拖动下方四大核心参数滑块，或一键点击右侧预设情景，实时测算 1拆4 后美股 SFTBY ADR 每股内在公允价值（当前参考基准价：$11.00）</p>
+            </div>
+            <!-- 快捷情景预设按钮 -->
+            <div class="flex flex-wrap gap-1.5 text-xs no-print shrink-0">
+              <button onclick="applySotpPreset(0, 852, 52, 39.2)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 transition cursor-pointer">备考现值基准</button>
+              <button onclick="applySotpPreset(12, 950, 45, 42.0)" class="px-2.5 py-1.5 rounded-lg bg-sbgblue-500/20 hover:bg-sbgblue-500/30 text-sbgblue-300 border border-sbgblue-500/40 font-semibold transition cursor-pointer">基准修复(折价45%)</button>
+              <button onclick="applySotpPreset(25, 1250, 35, 46.0)" class="px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-semibold transition cursor-pointer">OpenAI万亿IPO牛市</button>
+              <button onclick="applySotpPreset(-25, 600, 60, 34.0)" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 transition cursor-pointer">熊市压力测试</button>
+            </div>
+          </div>
+
+          <!-- 4 个实时滑块区 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <!-- Slider 1: Arm -->
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="flex items-center justify-between text-xs sm:text-sm mb-2">
+                <label for="slider-arm" class="font-semibold text-slate-200">1. Arm 控股市值变动假设 (基准权益 $132B)</label>
+                <span id="val-arm-label" class="font-mono font-bold text-sbgblue-400">0% ($132.0B)</span>
+              </div>
+              <input id="slider-arm" type="range" min="-40" max="60" step="5" value="0" oninput="calculateSOTP()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#38BDF8]" />
+              <div class="flex justify-between text-[11px] text-slate-400 font-mono mt-1.5">
+                <span>-40% ($79B)</span>
+                <span>0% 现价基准</span>
+                <span>+60% ($211B)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: OpenAI -->
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="flex items-center justify-between text-xs sm:text-sm mb-2">
+                <label for="slider-openai" class="font-semibold text-slate-200">2. OpenAI 整体估值假设 (软银持股 ~13%)</label>
+                <span id="val-openai-label" class="font-mono font-bold text-amber-400">$852B (权益 $110.8B)</span>
+              </div>
+              <input id="slider-openai" type="range" min="500" max="1500" step="10" value="852" oninput="calculateSOTP()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#FBBF24]" />
+              <div class="flex justify-between text-[11px] text-slate-400 font-mono mt-1.5">
+                <span>$500B 保守</span>
+                <span>$852B 最新融资轮</span>
+                <span>$1,500B 超级IPO</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: NAV Discount -->
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="flex items-center justify-between text-xs sm:text-sm mb-2">
+                <label for="slider-discount" class="font-semibold text-slate-200">3. 市场赋予控股折价率 (NAV Discount %)</label>
+                <span id="val-discount-label" class="font-mono font-bold text-emerald-400">52% 折价</span>
+              </div>
+              <input id="slider-discount" type="range" min="25" max="65" step="1" value="52" oninput="calculateSOTP()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#34D399]" />
+              <div class="flex justify-between text-[11px] text-slate-400 font-mono mt-1.5">
+                <span>25% (回购/IPO催化)</span>
+                <span>45% 历史中枢</span>
+                <span>65% 恐慌极值</span>
+              </div>
+            </div>
+
+            <!-- Slider 4: Other Net Assets minus Net Debt -->
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="flex items-center justify-between text-xs sm:text-sm mb-2">
+                <label for="slider-other" class="font-semibold text-slate-200">4. 其他资产(电信/SVF/Ampere)减净债务净额</label>
+                <span id="val-other-label" class="font-mono font-bold text-teal-400">+$39.2B</span>
+              </div>
+              <input id="slider-other" type="range" min="15" max="65" step="0.2" value="39.2" oninput="calculateSOTP()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#22D3EE]" />
+              <div class="flex justify-between text-[11px] text-slate-400 font-mono mt-1.5">
+                <span>+$15B 减值承压</span>
+                <span>+$39.2B 备考净值</span>
+                <span>+$65B 愿景退出爆发</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 张实时联动测算结果卡 -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-700/80">
+            <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-700">
+              <div class="text-xs text-slate-400 font-medium">推演备考总净资产 (Implied NAV)</div>
+              <div id="res-total-nav" class="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1.5">$282.0B</div>
+              <div id="res-nav-sub" class="text-xs text-slate-400 mt-1 font-mono">双核占比：86.1% (Arm + OpenAI)</div>
+            </div>
+
+            <div class="bg-navy-950/80 rounded-xl p-5 border border-sbgblue-500/40 shadow-inner">
+              <div class="text-xs text-sbgblue-300 font-medium">折价后 SFTBY 每股 ADR 公允价值</div>
+              <div id="res-adr-price" class="text-2xl sm:text-3xl font-extrabold font-mono text-sbgblue-400 mt-1.5">$11.45</div>
+              <div id="res-mcap-sub" class="text-xs text-slate-400 mt-1 font-mono">对应目标总市值：$135.3B</div>
+            </div>
+
+            <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-700">
+              <div class="text-xs text-slate-400 font-medium">较当前参考价 ($11.00) 潜在空间</div>
+              <div id="res-upside" class="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400 mt-1.5">+4.1%</div>
+              <div id="res-verdict" class="text-xs text-slate-300 mt-1">当前市价隐含约 53.9% 折价安全垫</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Chart.js 双轴演进图：NAV 与 LTV 安全走廊 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2026 Q2 集团净资产规模 (NAV) 与净负债率 (LTV %) 安全走廊演进</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">无论在加息寒冬还是千亿美元大举重仓 OpenAI 期间，CFO 后藤芳光始终将控股 LTV 严控在 25% 常态警戒红线下方</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">当前备考 LTV = 15.9% (安全缓冲 9.1个百分点)</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="ltvEvolutionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 4. 多空核心分歧对比面板 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">OpenAI IPO 超级催化</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>“买 Arm 送 OpenAI”极端折价套利：</strong>当前 ~$130B 市值甚至低于所持 Arm 单一股权价值（~$132B），相当于市场对价值逾 $110B 的 OpenAI 股权及电信/机器人资产给予零定价甚至负定价。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>OpenAI 万亿美元级 IPO 临近重塑流动性：</strong>随着 OpenAI 完成商业化公司治理转型、ARR 突破 $50B，一旦启动正式 IPO，软银底层资产透明度与变现能力将发生质变。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>短期“踩刹车”消除过度举债担忧：</strong>完成 OpenAI $64.6B 出资并提前结清 $40B 过桥贷后，管理层明确放缓大额新增支出，若折价持续超 50% 具备随时重启巨额股票回购的资本冗余。</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">高估值共振与重资产泥潭</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>底层双核自身处于极高估值倍数：</strong>Arm 交易在极高远期市盈率、OpenAI 一级估值高达 $852B（对应 ~17x ARR 且仍在巨额烧钱扩建算力），若 AI 泡沫退潮将引发 NAV 分子端缩水与折价率分母端走阔“双杀”。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>Stargate 超大型重资产基建执行摩擦：</strong>Q2 因协调延迟果断计提 $3.7B 发电设备减值已敲响警钟，重资产能源与数据中心并非软银历史擅长领域。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>“孙正义冲动”压制控股折价收敛：</strong>部分机构担忧一旦 NAV 回升释放 LTV 空间，孙正义更倾向于继续发起百亿美元级激进并购而非像 Prosus 那样持续注销回购股票。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           05. 投资决策与风险配置框架 (#sec-inv)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sbgblue-600 dark:text-sbgblue-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与折价套利纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：AI 生态高赔率卫星/增强仓 · 紧盯 &gt;50% NAV 折价击球区</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amber-400 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-amber-600 dark:text-amber-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价：$19.5 – $23.0</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>OpenAI 以 $1.2T–$1.5T 估值推进历史级 IPO，Arm CSS 数据中心与端侧芯片推动市值再涨 25%+，同时董事会重启万亿日元级回购促使 NAV 折价率收敛至 <strong>35%</strong>。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-amber-600 dark:text-amber-400">
+              潜在上行空间：+75% 至 +110%（净值扩张×折价收敛戴维斯双击）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sbgblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-sbgblue-500/15 text-sbgblue-600 dark:text-sbgblue-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-sbgblue-600 dark:text-sbgblue-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价：$14.5 – $16.5</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>Arm 稳步兑现 Armv9 与云端芯片份额扩张红利，OpenAI ARR 向 $75B+ 迈进支撑估值稳中有升，LTV 严守 15%–20% 推动市场恐慌消退、NAV 折价回归 <strong>45%</strong> 历史均值。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-sbgblue-600 dark:text-sbgblue-400">
+              潜在上行空间：+30% 至 +50%（均值回归高确定性赔率）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守位：$7.5 – $8.5</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>全球云巨头 AI 资本开支意外骤降引发半导体估值杀跌（Arm 回调 25%+），开源模型冲击闭源商业模式压低 OpenAI 估值，叠加避险情绪令 NAV 折价扩至 <strong>60%</strong>。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+              潜在下行回撤：-23% 至 -32%（由 ¥5.0T 现金池与电信股息托底）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险卡片 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构风控监测点</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · Arm 质押市值波动与 LTV 被动抬升风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">单一上市核心资产占总净值比重近半的敏感性</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                Arm 股价波动会直接放大软银 NAV 振幅（如 9 月末 ¥59.8T 回落至 11 月初 ¥44.7T）。若半导体板块出现极端深跌，尽管质押融资无母公司追索权，仍会被动推升 LTV 并压缩再投资腾挪空间。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · OpenAI 巨额算力烧钱与“循环融资”争议</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">$64.6B 非上市重仓的流动性锁定与盈利拐点验证</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                尽管 OpenAI ARR 已达 $50B，但前沿模型训练与 Stargate 算力采购仍伴随每年百亿美元级现金消耗；同时市场对科技巨头间“出资换算力采购”的循环收入质量保持严苛审视。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · Stargate 大型基建协调延期与重资产减值风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">电网审批、燃气轮机交付与跨财团利益博弈</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                Q2 计提 $3.7B 电力设备减值暴露出吉瓦级数据中心在土地并网与供应链排期上的复杂性；后续需紧盯 DigitalBridge 并购交割后能否顺利将重资产开发风险转移至外部机构 LP。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 控股折价长期固化、税务递延与日元汇率波动</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">潜在变现资本利得税摩擦与 USD/JPY 加息周期敞口</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                控股公司折价包含未来处置浮盈资产时的潜在税务贴现（约 20%–30%）；此外日本央行加息路径驱动日元汇率双向剧烈波动，会对美股美元计价的 SFTBY ADR 产生直接折算影响。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 机构级仓位配置与交易纪律建议横幅 -->
+        <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-sbgblue-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>机构级投资组合仓位配置与交易纪律建议</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white mb-1">1. 替代高溢价直投 Arm + 抢筹 OpenAI</div>
+              <p class="text-slate-300 leading-relaxed">
+                对于看好 Arm 架构统治力同时渴望配置未上市 OpenAI 的资金，<strong>买入 SFTBY 显著优于直接追高单一 Arm 股票</strong>——用同等市值不仅拿下近九成 Arm，还免费获得 $110B+ OpenAI 仓位。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-amber-400 mb-1">2. 逆向折价择时法则（50%–55% 击球区）</div>
+              <p class="text-slate-300 leading-relaxed">
+                历史经验表明，软银 NAV 折价率在 <strong>52%–58%</strong> 区间往往对应阶段性情绪冰点与回购触发前夜；当折价收敛至 <strong>32%–35%</strong> 以内时则应逐步兑现部分波段超额收益。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-emerald-400 mb-1">3. 组合风险对冲配对（Pair Trade）</div>
+              <p class="text-slate-300 leading-relaxed">
+                专业机构可采取<strong>“多头 SFTBY + 适度对冲部分高估值半导体指数波动”</strong>策略，剥离大盘 Beta 后纯粹赚取 OpenAI 商业化升值与 53% 控股折价修复的独立 Alpha。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           06. 季度基本面跟踪 KPI 交互式核查清单 (#sec-kpi)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-sbgblue-500/15 text-sbgblue-600 dark:text-sbgblue-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition cursor-pointer">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选软银每季财报说明会（Earnings Briefing）已验证达标的跟踪项（状态自动保存至浏览器本地存储），用硬核财务纪律动态校验折价安全边际：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-sbgblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 备考 LTV 是否严格维持在 20%–25% 常态安全走廊以内</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">财务生命线</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  当前备考 LTV 为 15.9%、母公司手握现金 ¥5.0T；持续核查管理层“短期踩刹车”承诺兑现度，确保新增并购不突破 25% 常态上限。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-sbgblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. OpenAI ARR（当前 $50B）增速斜率及 IPO 治理架构进展</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">头号净值引擎</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪 OpenAI 企业端收入占比（已达 50%）、推理算力毛利率改善，以及正式向公开资本市场递交上市时间表的实质信号。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-sbgblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. Arm 数据中心云巨头市占率（&gt;60%）及 CSS 版税率提升幅度</span>
+                  <span class="text-[11px] font-mono text-sbgblue-600 dark:text-sbgblue-400 font-semibold shrink-0">上市压舱石</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监测 Armv9 与计算子系统（CSS）在云端定制芯片及高端旗舰手机/PC 中的渗透率，验证版税收入高增速能否消化高估值倍数。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-sbgblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. NAV 折价率突破 50% 后董事会是否重启大规模股票回购</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">折价收敛扳机</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  在 OpenAI $64.6B 出资收官且 $40B 过桥贷结清后，观察董事会是否顺应股东呼声推出新一轮 5,000亿–1万亿日元级回购注销计划。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-sbgblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. Stargate 德州项目交付及 $3.7B 电力设备减值潜在回收情况</span>
+                  <span class="text-[11px] font-mono text-rose-600 dark:text-rose-400 font-semibold shrink-0">基建风控排雷</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪德州 1.2GW 数据中心通电节点、DigitalBridge ($4B) 并购整合，以及前期计提减值的发电设备转售/返利回收比例。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-sbgblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. ABB 机器人（$5.375B）监管审批交割与 Ampere 协同订单</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">物理AI催化剂</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查瑞士 ABB 工业机器人业务反垄断交割进度，以及全资子公司 Ampere Computing 在 AI 推理服务器市场的芯片导入订单。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>软银集团 SoftBank Group (OTC: SFTBY / TSE: 9984) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2026 Q2 财报说明会及 2026 年 11 月中旬备考重估数据</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告（FY2026 Q2 Earnings Briefing）、监管披露文件及市场公开研究资料整理生成，旨在提供结构化的控股公司分部加总（SOTP）与净资产折价（NAV Discount）分析框架。报告中涉及的未上市股权（如 OpenAI）估值测算、备考净资产推演、三情景目标价区间及概率权重均基于特定市场假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应充分考量美股 OTC ADR 流动性、跨境汇率波动及科技周期风险并独立审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步重绘全部 4 张 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 顶部全局阅读进度条与左侧导航滚动监听高亮 (Scroll-Spy)
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-sbgblue-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-sbgblue-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 全球科技控股阵营横向对比筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-sbgblue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-sbgblue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. SOTP 分部加总与 NAV 折价动态估值推演器
+    // ==========================================
+    // 2026年1月1日 1拆4 拆股后折合美股 SFTBY 等效总单位数约 11.82B (11.82B * $11.00 = $130.0B 市值)
+    const SFTBY_EQUIV_SHARES_B = 11.82;
+    const CURRENT_SFTBY_REF_PRICE = 11.00;
+    const BASE_ARM_STAKE_B = 132.0;
+    const OPENAI_OWNERSHIP_RATIO = 0.13;
+
+    function calculateSOTP() {
+      const armChangePct = parseFloat(document.getElementById('slider-arm').value);
+      const openAiValB = parseFloat(document.getElementById('slider-openai').value);
+      const navDiscountPct = parseFloat(document.getElementById('slider-discount').value);
+      const otherNetB = parseFloat(document.getElementById('slider-other').value);
+
+      // 1. 计算各分部权益价值 ($B)
+      const impliedArmB = BASE_ARM_STAKE_B * (1 + armChangePct / 100);
+      const impliedOpenAiB = openAiValB * OPENAI_OWNERSHIP_RATIO;
+      const impliedTotalNavB = impliedArmB + impliedOpenAiB + otherNetB;
+
+      // 2. 折价后目标市值与每股 ADR 价值
+      const impliedMcapB = impliedTotalNavB * (1 - navDiscountPct / 100);
+      const impliedAdrPrice = impliedMcapB / SFTBY_EQUIV_SHARES_B;
+      const upsidePct = ((impliedAdrPrice - CURRENT_SFTBY_REF_PRICE) / CURRENT_SFTBY_REF_PRICE) * 100;
+      const coreTwinSharePct = ((impliedArmB + impliedOpenAiB) / impliedTotalNavB) * 100;
+
+      // 3. 更新滑块数值标签
+      const armSign = armChangePct > 0 ? '+' : '';
+      document.getElementById('val-arm-label').textContent = `${armSign}${armChangePct}% ($${impliedArmB.toFixed(1)}B)`;
+      document.getElementById('val-openai-label').textContent = `$${openAiValB}B (权益 $${impliedOpenAiB.toFixed(1)}B)`;
+      document.getElementById('val-discount-label').textContent = `${navDiscountPct}% 折价`;
+      document.getElementById('val-other-label').textContent = `+$${otherNetB.toFixed(1)}B`;
+
+      // 4. 更新三张核心结果卡片
+      document.getElementById('res-total-nav').textContent = `$${impliedTotalNavB.toFixed(1)}B`;
+      document.getElementById('res-nav-sub').textContent = `双核占比：${coreTwinSharePct.toFixed(1)}% (Arm + OpenAI)`;
+      document.getElementById('res-adr-price').textContent = `$${impliedAdrPrice.toFixed(2)}`;
+      document.getElementById('res-mcap-sub').textContent = `对应目标总市值：$${impliedMcapB.toFixed(1)}B`;
+
+      const upsideEl = document.getElementById('res-upside');
+      const verdictEl = document.getElementById('res-verdict');
+      if (upsidePct >= 0) {
+        upsideEl.textContent = `+${upsidePct.toFixed(1)}%`;
+        upsideEl.className = 'text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400 mt-1.5';
+        verdictEl.textContent = upsidePct > 25
+          ? '显著低估：具备强劲戴维斯双击赔率'
+          : '估值具安全边际：折价保护充裕';
+      } else {
+        upsideEl.textContent = `${upsidePct.toFixed(1)}%`;
+        upsideEl.className = 'text-2xl sm:text-3xl font-extrabold font-mono text-rose-400 mt-1.5';
+        verdictEl.textContent = '压力情景：底层资产回撤与高折价共振';
+      }
+    }
+
+    function applySotpPreset(armPct, openAiVal, discountPct, otherNet) {
+      document.getElementById('slider-arm').value = armPct;
+      document.getElementById('slider-openai').value = openAiVal;
+      document.getElementById('slider-discount').value = discountPct;
+      document.getElementById('slider-other').value = otherNet;
+      calculateSOTP();
+    }
+
+    // ==========================================
+    // 6. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'sftby_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略隐私模式存储限制
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略隐私模式存储限制
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 7. Chart.js 四张专业图表初始化与主题同步重绘
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compDiscountChartInstance = null;
+    let ltvEvolutionChartInstance = null;
+    let currentBizMode = 'sotp';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    // 图表 1：备考 NAV 底层资产构成拆解 vs 历年 NAV 演进
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：备考 NAV 核心底层资产构成拆解 ($B)
+      const sotpConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            'Arm 控股权益 (~88%)',
+            'OpenAI 股权 (~13%/@$852B)',
+            '愿景基金 SVF1/2 及拉美',
+            'SoftBank Corp & T-Mobile',
+            'Ampere / ABB / Intel 直投',
+            '备考净资产 NAV (扣净债后)',
+            'SFTBY 当前二级市场总市值'
+          ],
+          datasets: [{
+            label: '估值规模 ($B 亿美元)',
+            data: [132.0, 110.8, 52.0, 38.0, 18.0, 282.0, 130.0],
+            backgroundColor: [
+              '#0284C7',
+              '#F59E0B',
+              '#6366F1',
+              '#10B981',
+              '#06B6D4',
+              '#38BDF8',
+              '#F43F5E'
+            ],
+            borderRadius: 6,
+            barThickness: 24
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  const val = ctx.parsed.x;
+                  if (ctx.dataIndex === 5) return `备考总 NAV (总权益 $350.8B - 控股净债务 $68.8B): $${val}B`;
+                  if (ctx.dataIndex === 6) return `二级市场总市值: ~$${val}B (较备考 NAV 折价 ~53.9%)`;
+                  return `底层权益价值: ~$${val}B`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 310,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      // 视图 B：FY2022–FY2026 Q2 集团净资产价值 (NAV) 演进 (¥ 万亿)
+      const historyConfig = {
+        type: 'bar',
+        data: {
+          labels: ['2022.03', '2023.03', '2024.03', '2026.03 (FY25末)', '2026.06 (历史峰值)', '2026.09 (Q2末)', '2026.11 (备考)'],
+          datasets: [{
+            label: '集团净资产价值 NAV (¥ 万亿日元)',
+            data: [18.5, 19.2, 27.8, 40.1, 72.3, 59.8, 44.7],
+            backgroundColor: [
+              '#64748B',
+              '#64748B',
+              '#0284C7',
+              '#0284C7',
+              '#F59E0B',
+              '#38BDF8',
+              '#10B981'
+            ],
+            borderRadius: 6,
+            barThickness: 28
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `集团净资产 (NAV): ¥${ctx.parsed.y} 万亿`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              max: 80,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'T' }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'sotp' ? sotpConfig : historyConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'sotp') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-sbgblue-600 dark:text-sbgblue-400 shadow-sm transition cursor-pointer';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+        titleEl.textContent = '备考 NAV 核心底层资产构成拆解 vs 二级市场总市值 ($B)';
+        subEl.textContent = '仅 Arm 控股权益（~$132B）一项即已覆盖软银当前二级市场全部市值（~$130B），OpenAI 等巨额资产相当于“免费附赠”';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-sbgblue-600 dark:text-sbgblue-400 shadow-sm transition cursor-pointer';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+        titleEl.textContent = 'FY2022–FY2026.11 集团净资产价值 (NAV) 跃迁演进 (¥ 万亿)';
+        subEl.textContent = '尽管随全球科技股估值波动（26年6月曾冲高至 ¥72.3T），备考净资产中枢（¥44.7T）较三年前仍翻逾 2.4 倍';
+      }
+      initBizChart();
+    }
+
+    // 图表 2：五维护城河雷达图
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '底层芯片标准统治力 (Arm)',
+            '顶流未上市AI重仓 (OpenAI)',
+            '无追索权结构化融资能力',
+            '硅-模-电-机全栈产业协同',
+            '二级市场折价安全垫'
+          ],
+          datasets: [
+            {
+              label: '软银集团 (SFTBY)',
+              data: [9.8, 9.9, 9.4, 9.2, 9.6],
+              borderColor: '#0284C7',
+              backgroundColor: 'rgba(2, 132, 199, 0.24)',
+              pointBackgroundColor: '#0284C7',
+              borderWidth: 2.5
+            },
+            {
+              label: '传统科技控股 (Prosus/Naspers)',
+              data: [3.5, 6.2, 7.5, 5.8, 8.2],
+              borderColor: '#F59E0B',
+              backgroundColor: 'rgba(245, 158, 11, 0.14)',
+              pointBackgroundColor: '#F59E0B',
+              borderWidth: 1.8
+            },
+            {
+              label: '另类资产巨头 (Blackstone/KKR)',
+              data: [4.2, 6.8, 9.5, 7.6, 4.0],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    // 图表 3：全球主要控股集团 NAV 折价率对比
+    function initCompDiscountChart() {
+      const ctx = document.getElementById('compDiscountChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (compDiscountChartInstance) compDiscountChartInstance.destroy();
+      compDiscountChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            '软银集团 SFTBY (Arm + OpenAI 全栈母舰)',
+            'Exor N.V. (欧洲家族工业与科技控股)',
+            'Prosus N.V. (腾讯大股东 · 持续回购缩窄)',
+            'Investor AB (北欧瓦伦堡家族标杆控股)',
+            'Berkshire Hathaway (实业浮存金 · 溢价交易)'
+          ],
+          datasets: [{
+            label: '相对底层 NAV 折价率 (%)',
+            data: [53.9, 41.5, 34.5, 11.8, -6.0],
+            backgroundColor: [
+              '#0284C7',
+              '#06B6D4',
+              '#F59E0B',
+              '#10B981',
+              '#64748B'
+            ],
+            borderRadius: 6,
+            barThickness: 22
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.parsed.x >= 0
+                  ? `NAV 折价率: ${ctx.parsed.x}% (折价安全垫)`
+                  : `相对账面/内在净值溢价: +${Math.abs(ctx.parsed.x)}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              min: -15,
+              max: 65,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    // 图表 4：NAV 规模与 LTV 安全走廊双轴演进图
+    function initLtvEvolutionChart() {
+      const ctx = document.getElementById('ltvEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (ltvEvolutionChartInstance) ltvEvolutionChartInstance.destroy();
+      ltvEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['2022.03', '2023.03', '2024.03', '2026.03', '2026.06峰值', '2026.09 (Q2)', '2026.11备考'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '集团净资产 NAV (¥ 万亿)',
+              data: [18.5, 19.2, 27.8, 40.1, 72.3, 59.8, 44.7],
+              backgroundColor: 'rgba(2, 132, 199, 0.82)',
+              borderRadius: 5,
+              barThickness: 26,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '控股净负债率 LTV (%)',
+              data: [20.4, 11.0, 8.4, 14.2, 12.8, 16.5, 15.9],
+              borderColor: '#10B981',
+              backgroundColor: '#10B981',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            },
+            {
+              type: 'line',
+              label: '常态化管理上限红线 (25% LTV)',
+              data: [25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0],
+              borderColor: '#F43F5E',
+              borderWidth: 2,
+              borderDash: [6, 5],
+              pointRadius: 0,
+              fill: false,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: ¥${ctx.parsed.y}T`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 85,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'T' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 35,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#10B981', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompDiscountChart();
+      initLtvEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      calculateSOTP();
+      initBizChart();
+      initRadarChart();
+      initCompDiscountChart();
+      initLtvEvolutionChart();
+    });
+  </script>
+</body>
+</html>

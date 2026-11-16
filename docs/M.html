@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>梅西百货 (NYSE: M) 深度商业与转型价值研究报告：私有化博弈、传统百货数字化重组与资产价值重估</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#0B0F19',
+              900: '#111827',
+              800: '#1F2937',
+              700: '#374151',
+            },
+            macyred: {
+              500: '#E11D48', // 梅西百货经典红
+              600: '#BE123C',
+              400: '#FB7185',
+            },
+            macygold: {
+              500: '#D97706', // 奢华星标金
+              600: '#B45309',
+              400: '#FBBF24',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #4B5563;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(225, 29, 72, 0.28) 0%, rgba(217, 119, 6, 0.12) 100%);
+      border-left: 3px solid #E11D48;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F9FAFB] text-[#111827] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-macyred-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-macyred-500 via-macygold-500 to-amber-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-macyred-500 to-macygold-500 flex items-center justify-center font-extrabold text-white shadow text-xs">
+        M
+      </div>
+      <div>
+        <div class="text-[11px] text-macyred-400 font-semibold tracking-wider uppercase">NYSE: M · MACY'S, INC.</div>
+        <div class="text-sm font-bold leading-tight">梅西百货深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">M 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 核心商业矩阵（Macy's、Bloomingdale's 与 Bluemercury）</a></li>
+          <li><a href="#sec-strat" onclick="toggleMobileMenu()" class="block epk px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. “Bold New Chapter” 战略与闭店精简转型</a></li>
+          <li><a href="#sec-asset" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 核心物业资产重估与私有化博弈</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康度、现金流与毛利率拆解</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与三情景估值推演</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球零售与困境反转投资研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (Q3 2026 财报后)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#111827] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-macyred-500 to-macygold-500 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-macyred-500/30">
+            M
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-macyred-400 bg-macyred-500/15 px-2 py-0.5 rounded">NYSE: M · MACY'S</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">梅西百货深度报告</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          美国传统百货转型标杆 × 核心物业资产重估与私有化博弈困境反转
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">Q3 2026 净销售额</span>
+          <span class="font-mono font-bold text-white">$4.72B <span class="text-amber-400">(-2.1% YoY)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">数字化销售占比</span>
+          <span class="font-mono font-bold text-macyred-400">~32% <span class="text-slate-400">(全渠道全覆盖)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">物业隐性价值重估</span>
+          <span class="font-mono font-bold text-macygold-400">旗舰店地标资产极高安全垫</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-macyred-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>核心商业矩阵（Macy's/Bloomingdale's）</span>
+          </a>
+          <a href="#sec-strat" data-target="sec-strat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>“Bold New Chapter” 战略与闭店精简</span>
+          </a>
+          <a href="#sec-asset" data-target="sec-asset" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>物业资产重估与私有化博弈框架</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康度与毛利率/现金流拆解</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与三情景估值推演</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-macyred-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-macyred-500 hover:bg-macyred-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-macyred-500/15 text-macyred-700 dark:text-macyred-400 font-bold border border-macyred-500/30">评级：谨慎买入 / 困境反转与地产价值重估标的</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">股票代码：NYSE: M (Macy's, Inc.)</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NYSE: M</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#3B111C] to-[#3B280A] text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景 网格科技纹理 -->
+          <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#E11D48 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-macyred-500/20 border border-macyred-400/40 text-macyred-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-macygold-400 animate-pulse"></span>
+              <span>CORE THESIS · Bold New Chapter 战略落地 × 百货闭店精简与高端业务保留 × 旗舰店物业资产隐性价值重估与私有化博弈</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              梅西百货 (NYSE: M) 深度商业与转型价值研究报告：私有化博弈、传统百货数字化重组与资产价值重估
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              作为美国乃至全球最知名的百年百货巨头，梅西百货（Macy's, Inc.）正处于全渠道精简转型与资本运作的十字路口。面对传统百货客流下滑的行业长期结构性压力，公司通过推行坚决的<strong class="text-macyred-400">“Bold New Chapter”战略</strong>，主动剥离低效门店、聚焦高增长的奢侈品（Bloomingdale's）与美妆（Bluemercury）矩阵，并依托其分布于全美核心商圈的巨额黄金地标物业资产，吸引资本市场持续进行私有化博弈与资产重估。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">地产与资产重估安全垫</div>
+                <div class="text-white font-semibold">先驱广场（Herald Square）等核心地标资产估值远超当前市值，提供强劲安全边际</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">战略闭店与效率提升</div>
+                <div class="text-macygold-400 font-semibold">主动关闭约 150 家低效梅西百货门店，将资源集中于百家核心优质店与高溢价板块</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">私有化博弈与困境反转</div>
+                <div class="text-macyred-400 font-semibold">私募股权机构（Arkhouse/Brigade）持续表现出收购意愿，估值弹性催化因素明确</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Q3 净销售额 (Net Sales)</span>
+              <span class="p-1.5 rounded-lg bg-macyred-500/15 text-macyred-700 dark:text-macyred-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$4.72B</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded">-2.1% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              受宏观高通胀与百货零售疲软影响，全渠道销售小幅承压，但降本增效推升盈利韧性。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>毛利率 (Gross Margin)</span>
+              <span class="p-1.5 rounded-lg bg-macygold-500/15 text-macygold-600 dark:text-macygold-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~39.8%</span>
+              <span class="text-xs font-bold text-macygold-600 dark:text-macygold-400 bg-macygold-500/15 px-2 py-0.5 rounded">库存纪律改善</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              严格的库存管理与促销克制使毛利率保持健康区间，供应链效率较疫情前显著优化。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>数字化渗透率 (Digital Share)</span>
+              <span class="p-1.5 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~32%</span>
+              <span class="text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/15 px-2 py-0.5 rounded">全渠道全协同</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              线上电商平台与线下实体门店深度融合，提供线上下单、店内退货及全美门店仓储发货服务。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>闭店转型计划（Bold New Chapter）</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                关店 ~150家
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">优质化</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">聚焦百家旗舰</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              三年内关闭约 150 家低效梅西百货门店，腾出资本全面赋能高增长的奢侈品与美妆零售板块。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 核心商业矩阵 (Business & Brand Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-macyred-700 dark:text-macyred-400">Section 01 · Macy's Multi-Brand Retail Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 核心商业矩阵：Macy's、Bloomingdale's 与 Bluemercury 的三层错位协同</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">大众百货大盘 · 高端轻奢百货 · 高毛利美妆连锁</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2023–FY2027E 销售额演进与三品牌矩阵结构（$十亿）</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">Macy's 主品牌精简瘦身，Bloomingdale's 与 Bluemercury 贡献高毛利增量</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-macyred-700 dark:text-macyred-400 shadow-sm transition">视图A：营收演进</button>
+                <button onclick="switchBizChart('split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：品牌占比</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">三品牌组合错位经营的核心洞察</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-macyred-500/15 text-macyred-700 dark:text-macyred-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Macy's 主品牌（大众至中产阶级中坚）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      贡献约 70%+ 的总销售额。通过“Bold New Chapter”主动关闭低效店、淘汰冗余SKU，将重点锚定在全美最具坪效的百家精选大店与线上数字化商城。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-macygold-500/15 text-macygold-600 dark:text-macygold-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Bloomingdale's（高端与奢侈品增长引擎）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      面向中高收入客群，受宏观经济波动影响较小，同店销售与美妆服饰毛利率表现显著优于大众百货平均水平，扩张势头强劲。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Bluemercury（高毛利美妆与护肤专卖链）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      小巧精致的社区及高端美妆零售网络，具有高复购率与强黏性，成为集团拉拢年轻消费者与提升美妆品类利润率的利器。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">多品牌协同核心优势</span>
+              <span class="font-bold text-macyred-700 dark:text-macyred-400">阶梯式客群覆盖 + 全渠道会员体系积分打通</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 三大板块卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 板块 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-macyred-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-macyred-500/15 text-macyred-700 dark:text-macyred-400 text-xs font-bold">基础盘 · 瘦身精简</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Macy's</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">1. Macy's 主品牌精简化改革</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                关停拖累业绩的约 150 家低坪效门店，将资源集中于核心商圈的旗舰店与奥莱（Macy's Backstage）业态，优化库存结构与物流周转。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-macyred-700 dark:text-macyred-400 font-semibold">
+              销售额占比 ~70% · 现金流压舱石
+            </div>
+          </div>
+
+          <!-- 板块 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-macygold-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-macygold-500/15 text-macygold-600 dark:text-macygold-400 text-xs font-bold">高增长 · 奢侈品</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Bloomingdale's</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. Bloomingdale's 高端百货网络</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                聚焦中高收入客群，凭借独特的设计师品牌甄选与沉浸式购物体验，持续实现稳健的同店正增长，稳步推进精选分店扩张。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-macygold-600 dark:text-macygold-400 font-semibold">
+              抗通胀韧性强 · 盈利能力显著领先
+            </div>
+          </div>
+
+          <!-- 板块 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">高毛利 · 美妆专家</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Bluemercury</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. Bluemercury 美妆专卖连锁</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                专注于高端护肤、彩妆与香氛，通过独立店面与店中店模式双轮驱动，为集团贡献高毛利率及优异的用户黏性与复购率。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+              美妆高毛利护城河 · 持续扩容
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 “Bold New Chapter” 战略与闭店精简转型 (Strategic Transformation)
+      ========================================================= -->
+      <section id="sec-strat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-macygold-600 dark:text-macygold-400">Section 02 · Bold New Chapter Strategic Transformation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 “Bold New Chapter” 战略：关闭 150 家低效门店、聚焦核心百货与数字化</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">主动收缩战线 · 优化坪效与资产回报率（ROIC）</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大战略支柱 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-macyred-500/15 text-macyred-700 dark:text-macyred-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">果断关闭约 150 家低坪效、低增长的梅西百货门店</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                首阶段重点关停拖累整体利润率的尾部门店，减少资本开支和库存积压，将有限的运营资金与管理精力重新聚焦于全美最具盈利能力的优质核心门店。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-macygold-500/15 text-macygold-600 dark:text-macygold-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">加码投资核心优质门店（First 100 Stores）体验升级</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                对精选出的百家核心店进行大规模店面翻新、增加导购人员、优化商品陈列与品牌组合，大幅提升线下顾客的消费体验与客单价（ATV）。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">加速高端成长型品牌 Bloomingdale's 与 Bluemercury 扩张</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                将集团资源向高毛利的奢侈品与美妆板块倾斜，计划在未来几年内增开数十家 Bloomingdale's 奥莱店和 Bluemercury 专卖店，打造新的利润增长极。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">供应链数字化与全渠道库存全美一体化协同</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                打通线上商城与全美数百家实体店的库存数据，实现“店即仓库（Store-as-a-Fulfillment-Center）”，大幅缩短末端配送时效并降低全渠道履约成本。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：战略转型评估卡片 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">资本市场对“Bold New Chapter”转型的多空博弈审视</h3>
+            <div class="space-y-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                  <span>悲观视角（传统百货结构性衰退论）</span>
+                  <span class="text-slate-500 font-mono">电商冲击 · 实体客流下降</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  部分投资者认为关店虽然能减少亏损，但也可能导致整体销售规模缩水，难以彻底扭转传统百货在年轻一代消费者心中的品牌老化印象。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-macyred-500/10 border border-macyred-500/30">
+                <div class="flex justify-between font-bold text-macyred-700 dark:text-macyred-400 mb-1">
+                  <span>乐观视角（精简高效与坪效重估）</span>
+                  <span class="font-mono">轻装上阵 · 利润率回升</span>
+                </div>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+                  通过果断砍掉长尾低效店，梅西百货将从“追求庞大门店数量”转向“追求单店坪效与现金流最大化”，配合高端品牌的高速增长，具备显著的困境反转潜力。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 物业资产重估与私有化博弈框架 (Real Estate Asset & Privatization)
+      ========================================================= -->
+      <section id="sec-asset" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-macyred-700 dark:text-macyred-400">Section 03 · Real Estate Asset Valuation & Privatization Arbitrage</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 物业资产重估与私有化博弈框架：地标性旗舰店隐性价值与并购催化</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">核心资产安全垫 · 先驱广场旗舰店地标价值远超市值</span>
+        </div>
+
+        <div class="grid grid-loc-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大资产重估支柱 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-macyred-500/15 text-macyred-700 dark:text-macyred-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">地标旗舰店资产（纽约先驱广场 Herald Square 旗舰店）</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                坐落于曼哈顿核心黄金地段的先驱广场梅西百货旗舰店占地极广，市场估值高达数十亿美元，单店地产价值即占据公司总市值相当大比例，构筑了极厚的资产安全底盘。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-macygold-500/15 text-macygold-600 dark:text-macygold-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全美核心商圈优质百货物业所有权</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                除了纽约，梅西百货在旧金山、芝加哥等全美一二线城市核心商业区拥有大量自由物业房地产，长期以来账面资产价值严重低估于实际重置成本。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">私募股权收购博弈（Arkhouse & Brigade 联合收购要约）</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                以 Arkhouse Management 和 Brigade Capital 为首的投资集团曾多次向梅西百货提交私有化收购要约，折射出资本市场对梅西百货“地产价值大于业务价值”的强烈共识。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">地产分拆、合资开发与变现的潜在催化剂</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                未来若私有化或地产资产剥离方案取得实质性进展，通过出售周边停车场、闲置地产或将旗舰店部分楼层改造为写字楼/公寓，可直接释放巨额现金流回报股东。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：资产价值与市值对比卡片 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">梅西百货隐性地产价值与当前市值对比逻辑</h3>
+            <div class="space-y-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                  <span>当前二级市场估值（市值维度）</span>
+                  <span class="text-slate-500 font-mono">反映百货经营悲观预期</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  由于传统百货销售额增长缓慢，资本市场往往给予较低的市盈率（P/E）或市销率（P/S）估值，导致公司整体市值常年处于被低估状态。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-macygold-500/10 border border-macygold-500/30">
+                <div class="flex justify-between font-bold text-macygold-600 dark:text-macygold-400 mb-1">
+                  <span>真实重置资产价值（NAV 净资产价值维度）</span>
+                  <span class="font-mono">地标物业重估 · 安全底盘</span>
+                </div>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+                  若按照全美核心商圈商业地产的真实重置成本与公开市场交易均价测算，梅西百货持有的地产价值每股折算显著高于当前股价，这也是私募股权资本频频觊觎的根本原因。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与 200 亿 ARR 增长模型 (Financial Health)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 04 · Financial Health & Margin/Cash Flow Analysis</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与盈利模型：毛利率纪律、债务结构与自由现金流</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">严控库存防促销战 · 审慎管理债务到期与流动性</span>
+        </div>
+
+        <!-- 1. 财务健康度四大指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-macyred-700 dark:text-macyred-400 uppercase">Gross Margin Resilience</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~39%–40%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              通过精准定价与克制的促销手段，抵御了宏观消费降级带来的毛利率侵蚀。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-macygold-600 dark:text-macygold-400 uppercase">Inventory Health</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">-5% YoY</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              库存周转率持续优化，尾货积压风险大幅降低，有效减少了清仓甩卖对利润的损害。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase">Liquidity & Cash Position</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$1.2B+</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              现金及现金等价物加上充沛的未动用信贷额度，为闭店转型期提供了安全流动性保障。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Debt Maturity Profile</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">结构优化</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              近期无迫使公司陷入困境的巨额债务到期，财务团队积极进行债务重组与展期。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 净销售额与毛利率演进图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2023–FY2027E 净销售额（$十亿）与毛利率演进趋势</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">展现关店精简后营收规模温和收缩但盈利能力与毛利率企稳回升的轨迹</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-macygold-600 dark:text-macygold-400 bg-macygold-500/10 px-2.5 py-1 rounded">核心逻辑：从追求规模转向追求利润率与资产回报率</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与宏观/AI 情景配置框架 (Investment Decision)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-macyred-700 dark:text-macyred-400">Section 05 &bull; Investment Decision & Macro/Privatization Scenarios</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与宏观/私有化情景配置框架：三情景推演与核心风险应对</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：高风险高弹性的困境反转与地产重估套利资产</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">牛市情景 (Bull Case · 私有化成功/地产重估)</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">收购溢价兑现 / 股价大幅上行</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>私募股权买方财团提高收购报价并成功达成私有化协议，或者“Bold New Chapter”转型超预期驱动百货旗舰店坪效飙升，资产价值全面兑现。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              潜在超额回报：+30% 至 +50% 向上弹性
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-macyred-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-macyred-500/15 text-macyred-700 dark:text-macyred-400 text-xs font-bold">基准情景 (Base Case · 稳步闭店与现金流改善)</span>
+                <span class="font-mono text-xs font-bold text-macyred-700 dark:text-macyred-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">区间震荡 / 依靠分红与回购兑现</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>宏观经济维持软着陆，零售消费需求平稳。梅西百货按计划稳步推进 150 家闭店转型，Bloomingdale's 保持稳健增长，估值在资产净值（NAV）附近获得良好支撑。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-macyred-700 dark:text-macyred-400">
+              核心收益来源：基本面困境反转与股息分红回报
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-slate-500/15 text-slate-600 dark:text-slate-300 text-xs font-bold">熊市情景 (Bear Case · 消费深度衰退/转型受阻)</span>
+                <span class="font-mono text-xs font-bold text-slate-600 dark:text-slate-300">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守底线：地产重置价支撑</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>美国宏观经济陷入深度衰退，中产阶级消费力大幅萎缩，闭店重组费用超出预期，导致利润率阶段性恶化，私有化谈判彻底搁浅。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300">
+              下行保护：庞大的自由地产资产与低负债率防止破产风险
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构应对策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 美国宏观零售消费疲软与通胀粘性风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">中产阶级核心客群可支配收入缩减导致可选消费下滑</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                若高通胀与高利率持续压制中产阶级服饰与家居支出，梅西百货主品牌的同店销售额可能面临超预期下滑压力。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · “Bold New Chapter” 闭店及重组摩擦风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">大规模关店产生的重组费用、资产减值及人才流失</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                三年内关闭 150 家门店涉及复杂的供应链调整、员工安置与商场租赁合同解约，短期内可能产生大量一次性现金流出与运营摩擦。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 私有化收购谈判破裂引发的估值回调风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">私募股权收购要约若因融资或估值分歧最终撤回</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                市场对私有化溢价抱有一定预期，若买方财团因信贷环境收紧而最终撤回收购要约，可能导致股价短期内出现因投机资金撤离的波动。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 线上电商与全渠道竞争白热化风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">来自亚马逊及垂直快时尚、折扣电商的持续分流</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                传统百货在线上流量获取成本上面临巨头挤压，若全渠道数字化体验升级未能留住年轻客群，市场份额可能进一步被侵蚀。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 06 &bull; Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-macyred-500/15 text-macyred-700 dark:text-macyred-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），动态追踪梅西百货的闭店转型、同店销售与私有化进展：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="m-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-macyred-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 同店销售额（Comparable Sales）降幅是否持续收窄或实现转正</span>
+                  <span class="text-[11px] font-mono text-macyred-700 dark:text-macyred-400 font-semibold shrink-0">核心销售底盘</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查线上线下同店销售表现，验证宏观消费韧性及“First 100 Stores”门店改造效果。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="m-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-macyred-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 毛利率（Gross Margin）是否维持在 38%–40% 的健康区间</span>
+                  <span class="text-[11px] font-mono text-macygold-600 dark:text-macygold-400 font-semibold shrink-0">盈利纪律锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监控库存纪律与促销力度，确保公司没有因过度打折而损害毛利空间。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="m-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-macyred-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. “Bold New Chapter” 闭店转型计划的推进进度与关店数量</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">战略执行度</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪 150 家低效门店关闭的季度落地情况及重组费用开支是否符合预期。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="m-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-macyred-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. Bloomingdale's 与 Bluemercury 高端美妆板块的营收占比及增速</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">高毛利引擎</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  评估高端奢侈品与美妆双轮驱动对集团整体客单价与盈利结构的拉动成效。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="m-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-macyred-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 私有化收购要约（Arkhouse/Brigade）的最新进展与公告动态</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">并购估值催化</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监控管理层与买方财团关于尽职调查、出价调整及私有化博弈的官方披露。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="m-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E11D48] focus:ring-macyred-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. 自由现金流（FCF）生成能力与期末现金流动性储备规模</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">财务安全垫</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查公司现金流健康度，确保在零售淡季与转型期具备充足的财务安全边际。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>梅西百货 (NYSE: M) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：梅西百货 2026 Q3 财报及美国百货零售行业一致预期</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于 Macy's, Inc.（纽交所股票代码：M）公开披露的 2026 年第三季度财务报告、SEC 备案文件及市场公开并购传闻数据整理生成，旨在提供结构化的传统零售困境反转与地产价值重估分析框架。报告中涉及的 FY2026E–FY2027E 销售额预测、毛利率变动及三情景估值推演均基于特定宏观与行业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-macyred-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-macyred-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'm_macys_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 5. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#9CA3AF' : '#4B5563',
+        grid: isDark ? 'rgba(55, 65, 81, 0.5)' : 'rgba(229, 231, 235, 0.85)',
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2023–FY2027E 净销售额结构演进（堆叠柱状图，$十亿）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              label: "Macy's 主品牌业务",
+              data: [17.2, 16.5, 15.8, 15.0, 14.5],
+              backgroundColor: '#E11D48',
+              borderRadius: 3,
+            },
+            {
+              label: "Bloomingdale's 高端百货",
+              data: [3.8, 3.9, 4.0, 4.2, 4.4],
+              backgroundColor: '#D97706',
+              borderRadius: 3,
+            },
+            {
+              label: 'Bluemercury 美妆连锁',
+              data: [1.0, 1.1, 1.2, 1.3, 1.4],
+              backgroundColor: '#10B981',
+              borderRadius: 3,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 10, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 25,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：品牌矩阵销售贡献占比（横向柱状图）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            "Macy's 主品牌大盘（大众与中产阶级）",
+            "Bloomingdale's 奢华与高端百货",
+            "Bluemercury 高端美妆护肤连锁"
+          ],
+          datasets: [
+            {
+              label: '净销售额贡献占比 (%)',
+              data: [73, 20, 7],
+              backgroundColor: [
+                '#E11D48',
+                '#D97706',
+                '#10B981'
+              ],
+              borderRadius: 6,
+              barThickness: 28
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `营收贡献占比: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 90,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-macyred-700 dark:text-macyred-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2023–FY2027E 销售额演进与三品牌矩阵结构（$十亿）';
+        subEl.textContent = "Macy's 主品牌精简瘦身，Bloomingdale's 与 Bluemercury 贡献高毛利增量";
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-macyred-700 dark:text-macyred-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '核心品牌矩阵净销售额贡献占比拆解（Sales Mix Breakdown）';
+        subEl.textContent = "Macy's 主力盘占比约 73%，高端 Bloomingdale's 与美妆 Bluemercury 贡献优质利润";
+      }
+      initBizChart();
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '净销售额 ($ 十亿)',
+              data: [22.0, 21.5, 21.0, 20.5, 20.3],
+              backgroundColor: 'rgba(225, 29, 72, 0.85)',
+              borderRadius: 5,
+              barThickness: 32,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '毛利率 (%)',
+              data: [38.5, 39.1, 39.5, 39.8, 40.2],
+              borderColor: '#D97706',
+              backgroundColor: '#D97706',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 0,
+              max: 30,
+              grid: { color: colors.grid },
+              ticks: { color: '#E11D48', font: { size: 11, weight: '600' }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 30,
+              max: 50,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#D97706', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

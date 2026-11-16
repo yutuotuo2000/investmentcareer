@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>特斯拉 Tesla (NASDAQ: TSLA) 深度研究报告：从全球纯电制造标杆到 Cybercab 无人出租、储能Megapack与物理 AI 帝国</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            tslared: {
+              400: '#F87171',
+              500: '#E31937',
+              600: '#B91C1C',
+            },
+            accent: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(227, 25, 55, 0.24) 0%, rgba(59, 130, 246, 0.06) 100%);
+      border-left: 3px solid #E31937;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-tslared-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-tslared-500 via-rose-500 to-amber-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-tslared-500 to-tslared-600 flex items-center justify-center font-extrabold text-white shadow">
+        TSLA
+      </div>
+      <div>
+        <div class="text-[11px] text-tslared-400 font-semibold tracking-wider uppercase">NASDAQ: TSLA · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">特斯拉 Tesla 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">TSLA 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与 AI 估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球自动驾驶、能源存储与具身智能研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (Q3 2026 / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-tslared-500 to-tslared-600 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-tslared-500/25">
+            TSLA
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-tslared-400 bg-tslared-500/15 px-2 py-0.5 rounded">NASDAQ: TSLA</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">特斯拉深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球纯电制造标杆 · Cybercab 无人出租商业化、Megapack 储能与物理 AI 帝国
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">TTM 滚动总营收</span>
+          <span class="font-mono font-bold text-white">&gt;$100.0B <span class="text-emerald-400">(连续两季)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">26Q3 交付 / 储能</span>
+          <span class="font-mono font-bold text-amber-400">486,532 辆 · 13.7 GWh</span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">北美 FSD 选装率</span>
+          <span class="font-mono font-bold text-tslared-400">&gt;75% · 奥斯汀 Cybercab 运营</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-tslared-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-tslared-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-tslared-500 hover:bg-tslared-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-tslared-500/15 text-tslared-600 dark:text-tslared-400 font-bold border border-tslared-500/30">评级：物理 AI 平台龙头 / 波段配置与期权组合</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：2026H2 Cybercab 商业化落地与 AI 算力重估期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NASDAQ: TSLA</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景点阵纹理 -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#E31937 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-tslared-500/20 border border-tslared-500/40 text-tslared-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-tslared-400 animate-pulse"></span>
+              <span>CORE THESIS · Cybercab 无人出租商业化破冰 × Megapack 储能爆发 × 物理 AI 估值范式重构</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              特斯拉 Tesla (NASDAQ: TSLA) 深度研究报告：从全球纯电制造标杆到 Cybercab 无人出租、储能 Megapack 与物理 AI 帝国
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              特斯拉已彻底跨越单一电动车制造商的估值边界，正式迈入<strong class="text-white">“超级智能（SI）、无人驾驶 Robotaxi、电网级储能与具身机器人”</strong>四位一体的物理 AI 商业化元年。2026 年 Q3 单季汽车交付量回升至 <strong class="text-tslared-400">486,532 辆</strong>（累计下线突破 1,000 万辆，乘用车积压订单创四年新高），推动 TTM 滚动总营收连续两季站稳 <strong class="text-white">$100B+</strong> 大关。
+              随着 <strong class="text-amber-400">2026 年 9 月 3 日 Cybercab 正式在奥斯汀启动 Robotaxi 载客运营</strong>（无人驾驶里程环比暴增 8 倍）、北美新车 FSD 选装率飙升至 <strong class="text-emerald-400">75% 以上</strong>，叠加 Megapack 储能毛利率攀升至 <strong class="text-white">33.1%</strong>，公司正用高壁垒软件与能源现金流支撑万亿级物理 AI 梦想。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">Robotaxi 商业化历史性破冰</div>
+                <div class="text-white font-semibold">Cybercab 于 26 年 9 月在奥斯汀上线运营，无人里程环比激增 8 倍，北美 FSD 渗透率破 75%</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">AI 数据中心电力刚需引爆储能</div>
+                <p class="text-amber-400 font-semibold">26Q3 储能装机 13.7 GWh，毛利率达 33.1%，德州 50 GWh 超级储能工厂正式投产</p>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">高估值与远期期权定价博弈</div>
+                <div class="text-tslared-400 font-semibold">远期 P/E 处 ~180x–195x 高位，定价锚已从“单车制造利润”全面转向“AI 平台软件折现”</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>2026Q3 全球交付量</span>
+              <span class="p-1.5 rounded-lg bg-tslared-500/15 text-tslared-600 dark:text-tslared-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">486,532</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">积压订单4年新高</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              全球累计交付正式突破 1,000 万辆里程碑，柏林超级工厂创单季产量历史纪录，TTM 总营收稳超 $100B。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>北美 FSD 选装率 & Cybercab</span>
+              <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">&gt;75.0%</span>
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">环比暴增+20pct</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              监督版 FSD 成为北美购车核心驱动力；无方向盘 Cybercab 于 26 年 9 月在奥斯汀启动 Robotaxi 商业化载客。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>能源储能装机 & 毛利率</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">13.7 GWh</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">毛利率 33.1%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              26 年前三季度累计装机 36 GWh，AI 数据中心电网调峰需求驱动订单积压创历史新高，德州 50 GWh 工厂投产。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>经营现金流 & 远期估值锚</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$6.3B</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Q3 单季 OCF</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Q3 自由现金流 $1.5B（重投 AI 算力集群后仍实现现金净增 $1.9B），远期 P/E ~190x 反映远期 AI 平台期权溢价。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-tslared-600 dark:text-tslared-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：硬件规模筑底，储能高毛利与 AI 软件开启第二曲线</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">TTM 总营收 &gt;$100B · 服务及其他毛利创 $734M 纪录</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2021–FY2027E 分部营收演进与结构多元化</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">能源存储与服务/软件（FSD+超充）占比持续攀升，平滑整车价格周期波动</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-tslared-600 dark:text-tslared-400 shadow-sm transition">视图A：营收演进</button>
+                <button onclick="switchBizChart('dc_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：26Q3 业务拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业架构三大结构性拐点</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-tslared-500/15 text-tslared-600 dark:text-tslared-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">“硬件平价跑量 + FSD 端到端软件变现”飞轮启动</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      北美新车 FSD 选装率单季跃升近 20 个百分点突破 <strong>75%</strong>，千万级全球保有量正转化为高毛利软件递延收入释放的蓄水池。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Megapack 成为 AI 算力中心的“电网刚需标配”</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      大型 AI 数据中心对高稳定性电力与快速并网的需求引爆大型储能订单，26Q3 能源业务毛利率创下 <strong>33.1%</strong> 的高水平，德州 50 GWh 工厂与美国本土 LFP 电池同步落地。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">服务及其他板块毛利刷新历史纪录</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      依托北美 NACS 超级充电网络向全行业开放、特斯拉车险及售后生态扩张，26Q3 服务及其他板块毛利环比增至 <strong>$7.34 亿（毛利率 15.9%）</strong>。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">核心物理 AI 催化剂</span>
+              <span class="font-bold text-tslared-600 dark:text-tslared-400">Cybercab 跨城扩张 & Optimus 工厂量产部署</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 五大业务分部详细卡片矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 分部 1：核心智能电动车制造（占两列宽度） -->
+          <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-tslared-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 rounded-md bg-tslared-500/15 text-tslared-600 dark:text-tslared-400 text-xs font-bold">基础流量入口 · 营收占比 ~73%</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">累计交付破 1,000 万辆</span>
+              </div>
+              <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">26Q3 交付：486,532 辆</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 智能电动车矩阵（Model 3/Y 主力 + Semi 重卡量产 + 新一代 Roadster）</h3>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">主力车型：Model Y/3 全球统治与订单积压</div>
+                <p class="leading-relaxed">
+                  26Q3 Model 3/Y 交付 478,237 辆，期末乘用车未交付积压订单创下<strong>近四年最高水平</strong>（当前核心瓶颈在于电池供应爬坡），柏林超级工厂单季产量刷新历史新高。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">新品拓界：Tesla Semi 规模量产与超跑旗舰</div>
+                <p class="leading-relaxed">
+                  新款 <strong>Tesla Semi</strong> 电动重卡已在内华达高产能产线正式下线交付，切入干线物流降本蓝海；2026 年 10 月 15 日正式发布新一代 <strong>Roadster</strong> 巩固顶级品牌光环。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 分部 2：能源发电与 Megapack 储能 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">高毛利现金牛 · GM 33.1%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">36 GWh (9M26)</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 能源发电与储能（Megapack / Powerwall）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                AI 算力中心集群建设引爆电网侧储能需求，在手订单储备创历史极值。德州 Megafactory（规划年产能 50 GWh）正式投产，且首批采用美国本土电芯的 LFP Megapack 已顺利出货。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              毛利率 33.1% · 利润增速远超整车板块
+            </div>
+          </div>
+
+          <!-- 分部 3：FSD 端到端智驾与 Cybercab Robotaxi -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-accent-500/10 text-accent-600 dark:text-accent-400 text-xs font-bold">估值核心引擎 · 商业化破冰</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">FSD &gt;75%</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. FSD 超级智能与 Cybercab 无人出行</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                2026 年 9 月 3 日正式在奥斯汀投放 Cybercab 开展商业化 Robotaxi 载客服务，无监督自动驾驶总里程单季<strong>环比暴增 8 倍</strong>，周度保持双位数高速扩张。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold">
+              纯视觉端到端神经网络 · 百万级影子数据闭环
+            </div>
+          </div>
+
+          <!-- 分部 4：服务、超充网络与特斯拉保险 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">存量保有量变现 · GM 15.9%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">单季毛利 $734M</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 超级充电网络、保险与售后生态</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                依托全球超 1,000 万辆保有车队，超充网络（NACS 成为北美行业统一标准）、基于实时驾驶评分的特斯拉保险及维修配件收入持续放量，毛利率稳步攀升。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+              NACS 北美充电标准统治者 · 持续贡献高确定性现金流
+            </div>
+          </div>
+
+          <!-- 分部 5：Optimus 人形机器人与 Dojo/Cortex 算力 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">远期万亿看涨期权</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">物理 AI 终极形态</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">5. Optimus 具身智能与 AI 算力基建</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                复用 FSD 物理世界视觉理解大模型、自研 AI5 推理芯片与电机执行器供应链，Optimus 率先在自家超级工厂产线执行分拣装配任务，打通“工业自用→对外商业销售”路径。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              车机同源供应链 · 规模化降本能力全球独一档
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与四重核心护城河 (Industry Position & Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-tslared-600 dark:text-tslared-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：数据飞轮、超级制造与能源生态闭环</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：宽 (Wide Moat · 全球物理 AI 与清洁能源基础设施标杆)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重护城河深度解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 护城河 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-tslared-500/15 text-tslared-600 dark:text-tslared-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">千万级车队与纯视觉端到端数据飞轮</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                摒弃昂贵的高精地图与激光雷达路线，依托全球超 <strong>1,000 万辆量产车</strong>采集真实长尾路况视频，结合德州 Cortex 超大规模算力集群训练单一端到端神经网络，模型泛化与跨城复制边际成本趋近于零。
+              </p>
+            </div>
+
+            <!-- 护城河 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">垂直整合与“开箱即造（Unboxed）”制造革命</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                从一体化压铸（Giga Press）、4680 电芯、热泵系统到自研 AI 推理芯片全栈垂直整合；专为人驾设计的 <strong>Cybercab 采用革命性“Unboxed”模块化并行组装工艺</strong>，将单车制造成本压缩至传统燃油车一半以下。
+              </p>
+            </div>
+
+            <!-- 护城河 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Megapack + Autobidder 能源软硬生态</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                不止售卖集装箱储能硬件，更通过自研 <strong>Autobidder 实时电力交易软件</strong>帮助公用事业与 AI 数据中心在电网峰谷套利与调频，形成高粘性软件服务溢价与 33%+ 行业顶尖毛利率。
+              </p>
+            </div>
+
+            <!-- 护城河 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">零广告营销费用的全球品牌势能与 SpaceX 协同</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                无需传统车企百亿美元级电视广告投放即坐拥全球顶级品牌号召力；同时在材料科学、星链直连通信及 <strong>$20 亿战略入股 SpaceX</strong> 的协同下，构筑跨维度的航天级工程壁垒。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">智能出行与物理 AI 五维护城河雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Tesla (TSLA) vs 比亚迪 (BYD) vs 传统车企 / Waymo（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比 (Competitive Landscape)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-tslared-600 dark:text-tslared-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：制造端与比亚迪双雄争霸，AI 端与 Waymo 路线对决</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-tslared-500 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('ev')" data-filter="ev" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">全球新能源整车对手</button>
+            <button onclick="filterCompetitors('robotaxi')" data-filter="robotaxi" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">自动驾驶 Robotaxi 阵营</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[180px]">竞争对手与核心阵营</th>
+                  <th class="py-4 px-4 min-w-[135px]">自动驾驶技术路线</th>
+                  <th class="py-4 px-4 min-w-[140px]">核心量产与商业模式</th>
+                  <th class="py-4 px-4 min-w-[125px]">整体毛利率水平</th>
+                  <th class="py-4 px-4 min-w-[115px]">市场定价逻辑</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞合关系评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：Tesla 基准 -->
+                <tr data-category="core" class="bg-tslared-500/5 dark:bg-tslared-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-tslared-500 text-white text-[10px] font-extrabold">核心标的</span>
+                      <span class="font-bold text-slate-900 dark:text-white">Tesla (TSLA)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Model 3/Y + Cybercab + Megapack</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-tslared-500/15 text-tslared-700 dark:text-tslared-400">纯视觉端到端神经网络 (无图)</span>
+                  </td>
+                  <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">千万级保有量 + 低成本专用 Cybercab</td>
+                  <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~18% - 20% (储能 33%)</td>
+                  <td class="py-4 px-4 font-mono font-bold text-tslared-600 dark:text-tslared-400">物理 AI 平台期权</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>规模化与通用 AI 唯一交集：</strong>同时掌握百万级整车制造、自研端到端大模型与电网级储能闭环。
+                  </td>
+                </tr>
+
+                <!-- 行 2：比亚迪 BYD -->
+                <tr data-category="ev" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">比亚迪 (BYD)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">纯电 + 插混 DM-i 全球销量冠军</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">“天神之眼”多传感器融合智驾</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">全价格带车型矩阵 + 垂直三电供应链</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~19% - 21%</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~15x - 18x 制造 P/E</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>制造端最强劲敌：</strong>凭借插混与 10–25 万元价格带统治力稳居全球新能源销量第一，但在北美受关税限制且高阶通用 AI 溢价弱于特斯拉。
+                  </td>
+                </tr>
+
+                <!-- 行 3：Google Waymo -->
+                <tr data-category="robotaxi" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Waymo (Alphabet 旗下)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">北美多城商业化 Robotaxi 先行者</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-500/15 text-accent-700 dark:text-accent-400">激光雷达 + 高精地图 + 规则融合</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">采购第三方车型改装 + 重资产车队运营</td>
+                  <td class="py-4 px-4 font-mono text-slate-500 dark:text-slate-400">仍处商业化投入期</td>
+                  <td class="py-4 px-4 font-mono text-slate-500 dark:text-slate-400">计入 GOOGL 估值</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>安全性标杆但硬件成本高昂：</strong>在旧金山、凤凰城等地运行成熟，但单车传感器改装成本超 $10 万且依赖高精地图，跨城扩张速度与单英里成本劣于 Cybercab。
+                  </td>
+                </tr>
+
+                <!-- 行 4：华为鸿蒙智行 / 小鹏 / 理想 -->
+                <tr data-category="ev" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">中国头部新势力 (鸿蒙智行/小鹏/理想)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">中国高端智能电动与城区 NOA 领先者</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-700 dark:text-indigo-400">无图端到端 + 激光雷达双路线</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">智能座舱交互 + 增程/纯电本土精细化</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~14% - 21%</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">1.0x - 2.5x P/S</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>本土化体验极强：</strong>在中国复杂城市场景迭代极快，但在全球跨洲市场规模、储能 Megapack 与通用机器人生态上仍难以匹敌。
+                  </td>
+                </tr>
+
+                <!-- 行 5：萝卜快跑 / 小马智行 / 文远知行 -->
+                <tr data-category="robotaxi" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">萝卜快跑 / Pony.ai / WeRide</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">中国与中东 Robotaxi 商业化探索者</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-500/15 text-teal-700 dark:text-teal-400">多传感器融合 L4 专车方案</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">前装量产合作 + 区域牌照示范运营</td>
+                  <td class="py-4 px-4 font-mono text-slate-500 dark:text-slate-400">单城 UE 逐步打平</td>
+                  <td class="py-4 px-4 font-mono text-slate-500 dark:text-slate-400">L4 垂直赛道路演</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>区域牌照先发优势：</strong>在武汉、北京及中东阿布扎比等地率先跑通单车盈利模型，但缺乏千万级私家车量产数据反哺。
+                  </td>
+                </tr>
+
+                <!-- 行 6：传统欧美车企 (Toyota / GM / Ford) -->
+                <tr data-category="ev" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">传统跨国车企 (丰田 / 通用 / 福特)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">燃油与混动基本盘 + 电动化战略收缩</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">L2+ 辅助驾驶为主 (外采方案)</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">经销商网络 + 燃油车现金流维持分红</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~12% - 16%</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">6x - 9x 传统周期 P/E</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>软件定义汽车代差显著：</strong>受制于历史包袱与经销商体制，在电子电气架构与端到端智驾上落后特斯拉至少一个代际。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 配套 Chart.js 横向条形图：市销率 P/S 估值溢价对比 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">全球主要车企与出行平台市销率（Price-to-Sales, P/S）估值范式对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">TSLA 市销率高达 ~14.9x（传统车企仅 0.4x–1.3x），资本市场已将其按“AI 软件 + 机器人平台”而非制造工厂定价</p>
+            </div>
+            <span class="text-xs font-semibold text-tslared-600 dark:text-tslared-400 bg-tslared-500/15 px-2.5 py-1 rounded">AI 商业化溢价 vs 制造业估值鸿沟</span>
+          </div>
+          <div class="relative h-60 w-full">
+            <canvas id="compMarginChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值体系解析 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-tslared-600 dark:text-tslared-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与估值体系：强劲造血支撑百亿 AI 资本开支与远期期权定价</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">TTM 营收 &gt;$100B · Q3 OCF $6.3B · Fwd P/E ~193x</span>
+        </div>
+
+        <!-- 1. 财务健康度四大硬核指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-tslared-600 dark:text-tslared-400 uppercase">TTM Revenue Scale</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">&gt; $100.0B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              继 FY25 全年营收 $94.8B 后，2026 年连续两个季度滚动 12 个月总营收稳居千亿美元俱乐部之上。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">26Q3 Cash Generation</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$6.3B OCF</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              单季经营现金流高达 $63 亿，扣除近 $48 亿 AI 算力及超级工厂资本开支后仍实现 $15 亿自由现金流，账面现金再增 $19 亿。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Energy & Service Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">33.1% / 15.9%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              非整车板块盈利能力全面爆发：储能毛利率攀升至 33.1%，服务及其他毛利创下 $7.34 亿单季历史新高。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase">Balance Sheet Fortress</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">Debt/Eq 0.18</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              资产负债表极为稳健（流动比率 1.74，长期债务权益比仅 0.16），完全依靠内生造血即可覆盖 AI 训练集群与机器人研发开支。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 财务与估值演进双轴图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2021–FY2027E 营收规模、GAAP 净利润与远期 P/E 估值范式转换</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">“硬件盈利筑底 + AI 期权重估”：尽管短期重投研发使 GAAP 净利承压，但远期 P/E 稳定在 180x+ 高位反映市场对 Robotaxi 放量的定价</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-tslared-600 dark:text-tslared-400 bg-tslared-500/10 px-2.5 py-1 rounded">当前 P/S ~14.9x · Fwd P/E ~193x</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 3. 估值体系演进三阶段 + 华尔街多空分歧面板 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-500">STAGE 01 · 2020–2022</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-mono font-semibold">50x–100x P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">纯电渗透率爆发与超额制造利润期</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              上海超级工厂放量带动整车毛利率冲破 30%，市场将其作为高成长科技硬件龙头按销量 CAGR 定价。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-accent-500/30 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400">STAGE 02 · 2023–2025</span>
+              <span class="px-2 py-0.5 rounded bg-accent-500/15 text-accent-700 dark:text-accent-300 text-[11px] font-mono font-semibold">60x–120x P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">全球价格战降价换量与 AI 转型阵痛期</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              行业竞争加剧迫使单车均价下调（FY25 营收 $94.8B、净利 $3.8B），整车制造利润见底，但 Megapack 储能开始接棒。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-gradient-to-br from-tslared-500/10 to-amber-500/10 border border-tslared-500/40 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-tslared-600 dark:text-tslared-400">STAGE 03 · 2026 年底当前视角</span>
+              <span class="px-2 py-0.5 rounded bg-tslared-500/20 text-tslared-700 dark:text-tslared-300 text-[11px] font-mono font-semibold">~14.9x P/S · SOTP</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">“现金流底座 + 物理 AI 平台”分部估值期</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              随着 Cybercab 奥斯汀正式运营及北美 FSD 选装率破 75%，传统 P/E 已失真，华尔街全面转向 SOTP（储能+FSD 订阅+Robotaxi 车队折现）估值。
+            </p>
+          </div>
+        </div>
+
+        <!-- 华尔街多空分歧对比 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">赢家通吃 AI 网络效应</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>Cybercab 从 PPT 走向商业营收：</strong>26 年 9 月奥斯汀正式运营且无人里程环比暴增 8 倍，验证纯视觉端到端通用化可行性。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>FSD 软件化带来指数级利润率跃迁：</strong>北美 75%+ 选装率一旦向欧洲及中国完全获批复制，高毛利软件订阅将重塑集团盈利结构。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>AI 算力电力瓶颈最大受益者：</strong>全球科技巨头抢建 AI 数据中心带来海量电网储能刚需，Megapack 成为确定性最强的千亿级增长极。</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">高估值与监管节奏博弈</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>近 200 倍远期市盈率透支短期业绩：</strong>TTM 净利润仅约 $32 亿，若 Robotaxi 跨州监管审批推进慢于预期，高估值面临剧烈回撤风险。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>电池产能瓶颈与全球电车价格战：</strong>26Q3 财报明确指出电池供应仍限制整车放量上限，且中国与欧洲市场面临本土车企密集围攻。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>马斯克精力分散与政策补贴退坡风险：</strong>跨多线业务管理复杂性，以及美国新能源税收抵免与碳积分政策变动可能带来季度盈利波动。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-tslared-600 dark:text-tslared-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景 SOTP 推演与波段纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：物理 AI 长期期权底仓 · 紧盯 10x–12x P/S 回调加仓锚</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-tslared-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-tslared-500/15 text-tslared-600 dark:text-tslared-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-tslared-600 dark:text-tslared-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标定价：18x – 22x P/S</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>Cybercab 2027 年快速扩张至北美 10+ 核心大都市并实现无安全员规模盈利，FSD 在欧亚全面获批，Optimus 启动首批对外工业交付，迎来 AI 平台戴维斯双击。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-tslared-600 dark:text-tslared-400">
+              潜在上行空间：+40% 至 +65%（万亿级 AI 生态重估）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-accent-500/15 text-accent-600 dark:text-accent-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-accent-600 dark:text-accent-400">概率：45%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标定价：13x – 15x P/S</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>2027 年全球整车交付随电池瓶颈缓解恢复 12%–15% 增长，储能装机突破 65 GWh 保持 30%+ 毛利，Robotaxi 稳步推进区域试点，股价随营收同步抬升。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-accent-600 dark:text-accent-400">
+              潜在上行空间：+10% 至 +20%（基本面兑现消化估值）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：25%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守定价：8.5x – 10.0x P/S</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>美国联邦及州级自动驾驶安全审查收紧延缓 Cybercab 商业化放量节奏，且海外电车价格战迫使整车毛利率进一步下探，市场剥离部分远期 AI 期权溢价。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+              潜在下行回撤：-25% 至 -35%（高 Beta 剧烈波动属性）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构对冲缓释策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 自动驾驶安全与监管审批风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：极高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">无监督 FSD 极端长尾事故与 NHTSA 监管审查</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                随着奥斯汀 Cybercab 车队规模扩大，任何单起重大交通事故均可能引发监管机构暂停试点及舆论放大，直接触发短期估值剧烈波动。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 远期高估值倍数回撤风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">接近 200x 远期 P/E 对宏观利率与兑现节奏极度敏感</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                当前股价已高度计入 2027–2030 年物理 AI 商业化成功预期，若美债收益率反弹或单季自由现金流波动，极易引发高 Beta 杀估值行情。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 电池产能瓶颈与全球份额争夺风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">电芯供应制约整车放量及中国/欧洲品牌竞争</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                26Q3 财报显示电芯产能已成为限制交付攀升的主要瓶颈；同时中欧市场面临比亚迪及本土新势力在 20–35 万元区间的密集产品攻势。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 全球贸易关税与供应链本土化成本</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">跨国关税政策调整对储能电芯及整车成本的扰动</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                尽管公司正加速推进内华达本土 LFP 电池生产以规避进口关税，但北美制造端初期爬坡成本仍高于中国供应链体系。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 机构级仓位配置建议 -->
+        <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-tslared-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>机构级投资组合仓位配置与高 Beta 交易纪律建议</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white mb-1">1. 物理 AI 长期期权底仓定位</div>
+              <p class="text-slate-300 leading-relaxed">
+                特斯拉兼具千亿美元营收造血底盘与具身智能/无人出租最高赔率，适合在科技成长组合中作为<strong>卫星进攻仓位（Satellite Alpha）</strong>长期持有。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-tslared-400 mb-1">2. 逆向波段纪律（10x–12x P/S 吸纳）</div>
+              <p class="text-slate-300 leading-relaxed">
+                鉴于 TSLA 年化波动率极高，切忌在情绪亢奋追高，建议利用季度交付波动或宏观回调，在 <strong>10x–12x 市销率区间分批建仓</strong>，在 18x+ 区间适度止盈再平衡。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-teal-400 mb-1">3. 算力与能源产业链对冲配置</div>
+              <p class="text-slate-300 leading-relaxed">
+                可与上游<strong>AI 算力芯片龙头（如 NVDA）及电网电力设备标的</strong>形成哑铃组合，兼顾确定性卖水人现金流与终端物理 AI 应用爆发红利。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-tslared-600 dark:text-tslared-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-tslared-500/15 text-tslared-600 dark:text-tslared-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的里程碑指标（状态自动本地保存），用高频物理 AI 与能源事实动态校准估值锚点：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E31937] focus:ring-tslared-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. Cybercab 无监督里程增速与扩城数量</span>
+                  <span class="text-[11px] font-mono text-tslared-600 dark:text-tslared-400 font-semibold shrink-0">核心估值锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪奥斯汀车队运行稳定性及无人里程周度双位数增长延续性，验证向加州、德州其他城市复制的审批进展。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E31937] focus:ring-tslared-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 北美 FSD 选装率维持 75%+ 及海外落地</span>
+                  <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">软件变现指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监测北美高选装率向订阅制转化带来的高毛利软件收入释放，以及欧洲与中国市场全功能版本获批时间表。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E31937] focus:ring-tslared-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 能源储能装机量与 30%+ 毛利率延续性</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">第二增长极</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪德州 50 GWh Megafactory 产能爬坡速度及 AI 数据中心订单转化，确认储能板块维持 30%–33% 高毛利水平。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E31937] focus:ring-tslared-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 扣除碳积分后的整车核心毛利率企稳回升</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">制造护城河</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查随着电池供应瓶颈缓解与单车摊销下降，核心汽车硬件毛利率是否稳步回升至 17%–19% 区间。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E31937] focus:ring-tslared-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 自由现金流（FCF）正向覆盖 AI 资本开支</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">财务健康度</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  确保在百亿美元级年度 AI 算力与新工厂 CapEx 投入下，单季经营现金流（26Q3 为 $6.3B）仍能维持正向自由现金流净流入。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E31937] focus:ring-tslared-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. Optimus 工厂部署规模与外部客户交付节点</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">远期期权催化</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪超级工厂内部署的 Optimus 机器人数量与作业效率数据，以及面向外部企业客户的商业化首批交付时间表。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>特斯拉 Tesla (NASDAQ: TSLA) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2025 10-K、Q3 2026 股东信及 2026 年 11 月市场一致预期</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告（SEC 10-K / Q3 2026 Update）、新能源汽车与储能供应链调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的 FY2027E 营收预测、SOTP 分部估值及三情景概率分布均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-tslared-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-tslared-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-tslared-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-tslared-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'tsla_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 6. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2021–FY2027E 分部营收演进（堆叠柱状图，单位：$B）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              label: '汽车销售与租赁 (Automotive)',
+              data: [47.2, 71.5, 82.4, 77.1, 69.5, 76.5, 89.0],
+              backgroundColor: '#E31937',
+              borderRadius: 4,
+            },
+            {
+              label: '能源发电与储能 (Megapack/Powerwall)',
+              data: [2.8, 3.9, 6.0, 10.1, 12.8, 14.5, 21.5],
+              backgroundColor: '#06B6D4',
+              borderRadius: 4,
+            },
+            {
+              label: '服务、超充、FSD 软件与 Robotaxi',
+              data: [3.8, 6.1, 8.3, 10.5, 12.5, 15.0, 22.5],
+              backgroundColor: '#3B82F6',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 150,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：2026Q3 单季核心业务板块营收拆分（横向条形图，单位：$B）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '汽车销售与租赁 (含 FSD 递延释放)',
+            '服务、超充网络、保险及售后生态',
+            '能源发电与 Megapack 大型储能',
+            '单季经营现金流 (Operating Cash Flow)',
+            '单季资本开支 (AI 算力集群 + 超级工厂)'
+          ],
+          datasets: [
+            {
+              label: '2026Q3 单季规模 ($B)',
+              data: [20.5, 4.6, 3.4, 6.3, 4.8],
+              backgroundColor: [
+                '#E31937',
+                '#3B82F6',
+                '#06B6D4',
+                '#10B981',
+                '#F59E0B'
+              ],
+              borderRadius: 6,
+              barThickness: 26
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `26Q3 单季规模: $${ctx.parsed.x}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 24,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-tslared-600 dark:text-tslared-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2021–FY2027E 分部营收演进与结构多元化';
+        subEl.textContent = '能源存储与服务/软件（FSD+超充）占比持续攀升，平滑整车价格周期波动';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-tslared-600 dark:text-tslared-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '2026Q3 单季业务板块营收与现金流拆解 ($B)';
+        subEl.textContent = '单季总营收达 $28.5B（TTM 连续两季破 $100B），经营现金流 $6.3B 强劲覆盖 AI 重投';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '端到端智驾数据与算力闭环',
+            '一体化压铸与极简制造降本',
+            '电网级储能与补能网络生态',
+            '全球品牌势能与零广告获客',
+            '具身机器人与物理 AI 延展性'
+          ],
+          datasets: [
+            {
+              label: 'Tesla (TSLA)',
+              data: [9.8, 9.5, 9.7, 9.8, 9.9],
+              borderColor: '#E31937',
+              backgroundColor: 'rgba(227, 25, 55, 0.22)',
+              pointBackgroundColor: '#E31937',
+              borderWidth: 2.5
+            },
+            {
+              label: '比亚迪 (BYD · 垂直制造冠军)',
+              data: [7.6, 9.7, 8.6, 8.2, 7.0],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.14)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: '传统车企 / 垂直 L4 方案商',
+              data: [6.8, 7.0, 6.2, 7.2, 5.5],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      const ctx = document.getElementById('compMarginChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Tesla (TSLA · 物理 AI + 储能 + 整车)',
+            'Ferrari (RACE · 超豪华奢侈品护城河)',
+            '比亚迪 BYD (全球新能源销量冠军)',
+            '丰田 Toyota (全球传统车企盈利标杆)',
+            '通用 / 福特 (传统北美燃油车巨头)'
+          ],
+          datasets: [{
+            label: '市销率 Price-to-Sales (P/S 倍数)',
+            data: [14.9, 11.2, 1.3, 0.8, 0.4],
+            backgroundColor: [
+              '#E31937',
+              '#F59E0B',
+              '#3B82F6',
+              '#64748B',
+              '#94A3B8'
+            ],
+            borderRadius: 6,
+            barThickness: 22
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `市销率 P/S: ${ctx.parsed.x}x`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 18,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + 'x' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年总营收 ($B)',
+              data: [53.8, 81.5, 96.8, 97.7, 94.8, 106.0, 133.0],
+              backgroundColor: 'rgba(227, 25, 55, 0.85)',
+              borderRadius: 5,
+              barThickness: 22,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: '全年 GAAP 净利润 ($B)',
+              data: [5.5, 12.6, 15.0, 7.1, 3.8, 4.1, 7.8],
+              backgroundColor: 'rgba(59, 130, 246, 0.85)',
+              borderRadius: 5,
+              barThickness: 22,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '远期市盈率 Forward P/E (x)',
+              data: [115.0, 52.0, 68.0, 110.0, 165.0, 193.0, 135.0],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}x`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 150,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 230,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

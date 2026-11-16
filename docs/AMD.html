@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>美国超微公司 AMD (NASDAQ: AMD) 深度研究报告：Helios 整机柜与 MI450 算力狂飙、EPYC 服务器夺权与千亿营收跃迁</title>
+  <!-- Tailwind CSS 3.4.17 -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Chart.js 4.4.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            navy: {
+              950: '#060A12',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155'
+            },
+            amdred: {
+              400: '#FB7185',
+              500: '#ED1C24',
+              600: '#C8102E'
+            },
+            accent: {
+              500: '#06B6D4',
+              600: '#0891B2'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(237, 28, 36, 0.22) 0%, rgba(6, 182, 212, 0.06) 100%);
+      border-left: 3px solid #ED1C24;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-amdred-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-amdred-500 via-orange-500 to-cyan-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amdred-500 to-amdred-600 flex items-center justify-center font-extrabold text-white shadow">
+        AMD
+      </div>
+      <div>
+        <div class="text-[11px] text-amdred-400 font-semibold tracking-wider uppercase">NASDAQ: AMD · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">美国超微公司 AMD 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">AMD 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构与数据中心狂飙</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. Helios 整机柜与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. AI 算力双极与同行对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务弹性与千亿营收估值锚</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与多空风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球半导体与 AI 算力架构研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (26Q3 季报)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amdred-500 to-amdred-600 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-red-500/25">
+            AMD
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-amdred-400 bg-amdred-500/15 px-2 py-0.5 rounded">NASDAQ: AMD</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">美国超微公司深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球商用 AI GPU 第二极 · Helios 机柜级算力与 EPYC 服务器 CPU 霸主
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章（严格遵守门户三宫格自动提取契约） -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">26Q3 单季总营收</span>
+          <span class="font-mono font-bold text-white">$13.38B (+45% YoY)</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">数据中心单季营收</span>
+          <span class="font-mono font-bold text-amdred-400">$8.55B (+97% YoY)</span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">26Q4 指引 / 远期估值</span>
+          <span class="font-mono font-bold text-cyan-400">~$17.0B · ~30.8x 27E P/E</span>
+        </div>
+      </div>
+
+      <!-- 核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-amdred-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构与数据中心狂飙</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>Helios 整机柜与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>AI 算力双极与同行对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务弹性与千亿营收估值锚</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与多空风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-amdred-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-amdred-500 hover:bg-amdred-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-amdred-500/15 text-amdred-600 dark:text-amdred-400 font-bold border border-amdred-500/30">评级：强烈买入 / 开放式 AI 算力第二极核心重仓</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">拐点：26Q4 指引冲刺 $17B × Helios 72卡整机柜规模上线</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月15日</span>
+            <span>NASDAQ: AMD</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#220B12] to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-rose-900/50">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ED1C24 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amdred-500/20 border border-amdred-500/40 text-amdred-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-amdred-400 animate-pulse"></span>
+              <span>CORE THESIS · 从单芯片追赶者蜕变为五大顶级 AI 实验室实装的 Helios 机柜级算力平台</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              美国超微公司 AMD (NASDAQ: AMD) 深度研究报告：Helios 整机柜与 MI450 算力狂飙、EPYC 服务器夺权与千亿营收跃迁
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              美国超微公司（AMD）已彻底完成从 PC/游戏芯片厂商向超大规模 AI 基础设施巨头的历史性蜕变。根据 <a href="https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results" target="_blank" rel="noopener noreferrer" class="text-amdred-400 underline hover:text-rose-300">2026 年 11 月 3 日发布的 Q3 2026 财报</a>，单季总营收创历史新高至 <strong class="text-white">$13.38B (+45% YoY)</strong>，其中数据中心分部暴增 <strong class="text-amdred-400">+97% YoY 至 $8.55B（占公司总收入 64%）</strong>，推动 Non-GAAP 毛利率升至 <strong class="text-white">56.0%</strong>、Non-GAAP 稀释 EPS 飙升 <strong class="text-cyan-400">+74% 至 $2.09</strong>。
+              更具里程碑意义的是，搭载 72 颗 Instinct MI455X（单卡高达 432GB HBM4）的首代整机柜 AI 系统 <a href="https://www.workstation.co.uk/th/technical-notes/amd-instinct-rocm-vs-nvidia-cuda-evaluation-porting-technote" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline">AMD Helios</a> 已同时在 <strong>Anthropic、Meta、Microsoft、OpenAI（6 GW 多代协议）与 Oracle Cloud</strong> 五大买方生产集群上线运行；管理层指引 Q4 单季营收跳升至 <strong class="text-emerald-400">~$17.0B (+66% YoY)</strong>，并锚定 2027 年总营收增长超 80% 冲刺千亿美元大关。
+            </p>
+
+            <!-- 核心投资结论三栏高亮 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">机柜级 AI 算力正面破局</div>
+                <div class="text-white font-semibold">Helios 整机柜（72×MI455X · 31TB HBM4）批量交付，五大 AI 巨头齐聚实装</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">服务器 CPU + AI GPU 双轮共振</div>
+                <div class="text-amdred-400 font-semibold">第五代 Turin 与新发第六代 EPYC Venice 领跑云与企业服务器翻倍增长</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">千亿美元营收阶跃前夜</div>
+                <div class="text-cyan-300 font-semibold">FY26E ~$52.2B → FY27E 共识 ~$95.9B (+84%)，Non-GAAP EPS 迈向 $17.65</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片（严格对齐门户自动解析契约） -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>2026 Q3 单季总营收</span>
+              <span class="px-2 py-0.5 rounded bg-amdred-500/15 text-amdred-600 dark:text-amdred-400 font-mono">+45.0% YoY</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$13.38B</span>
+              <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400">Q4指引 ~$17B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              超越指引上限；Q4 预计环比再增 27%（同比 +66%），年化营收运行率直逼 $68B。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>数据中心分部营收</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-mono">+97.0% YoY</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$8.55B</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">占比 64.0%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              分部营业利润暴增 168% 至 $2.9B（OPM 34%），Q4 数据中心预计环比再飙升 ~50%。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Non-GAAP 毛利率 & EPS</span>
+              <span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 font-mono">EPS +74% YoY</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">56.0%</span>
+              <span class="text-xs font-bold text-slate-600 dark:text-slate-300">EPS $2.09</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Non-GAAP 营业利润达 $3.9B，GAAP 净利润 $2.43B，高毛利数据中心与嵌入式占比提升释放经营杠杆。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY27E 远期估值 & 目标价</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 font-mono">共识 ~$658</span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~30.8x</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400">27E EPS $17.65</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              按当前 ~$543 股价与 2027E 翻倍增长预期测算，动态 PEG 约 0.35，主流投行目标上看 $658–$800。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           01. 业务架构与数据中心狂飙
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-amdred-600 dark:text-amdred-400">SECTION 01 · SEGMENT ARCHITECTURE & REVENUE MIX SHIFT</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">业务与收入架构：数据中心占比跃居 64%，2027 年将突破 80%</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">数据源：<a href="https://www.insiderfinance.io/news/amd-q3-2026-results-signal-data-center-surge-earnings" target="_blank" rel="noopener noreferrer" class="text-amdred-500 hover:underline">AMD Q3 2026 10-Q / 8-K</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- 左侧双模式交互图 -->
+          <div class="lg:col-span-2 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <div>
+                <h3 id="biz-chart-title" class="text-base font-bold text-slate-900 dark:text-white">25Q3 – 26Q4E 季度总营收阶跃与数据中心占比跃升</h3>
+                <p id="biz-chart-sub" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">总营收从 $9.24B 跃向指引 $17.0B，Q4 AI GPU 收入预计首次超越服务器 CPU</p>
+              </div>
+              <div class="inline-flex rounded-lg p-1 bg-slate-100 dark:bg-navy-800 text-xs">
+                <button id="btn-chart-evo" onclick="switchBizChart('quarterly')" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-amdred-600 dark:text-amdred-400 shadow-sm transition">
+                  季度加速轨迹
+                </button>
+                <button id="btn-chart-split" onclick="switchBizChart('segment')" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+                  26Q3 分部拆解
+                </button>
+              </div>
+            </div>
+            <div class="relative h-80 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧三大业务分部拆解 -->
+          <div class="space-y-4">
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-amdred-500/15 text-amdred-600 dark:text-amdred-400">第一增长极 · 64% 占比</span>
+                <span class="font-mono text-xs text-slate-400">$8.55B (+97%)</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">数据中心（Instinct AI GPU + EPYC CPU）</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                2026 前三季度累计营收已达 <a href="https://www.insiderfinance.io/news/amd-q3-2026-results-signal-data-center-surge-earnings" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">$21.0B (+87% YoY)</a>。Instinct MI355X 与新一代 2nm/3nm 架构 MI450/MI455X 批量出货，叠加第五代 EPYC 与 11 月正式开售的<a href="https://www.ventureatlas.org/company/amd" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">第六代 EPYC 9006 (Zen 6 Venice)</a>，推动云与企业服务器销量同比双双翻倍。
+              </p>
+            </div>
+
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-500/15 text-blue-600 dark:text-cyan-400">现金流基石 · 28% 占比</span>
+                <span class="font-mono text-xs text-slate-400">$3.70B (-8%)</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">客户端与游戏（Ryzen AI PC + Radeon）</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                拆分来看，<strong>Client PC 业务逆势增长 +7% YoY 至 $2.9B</strong>（商用与高端 Ryzen AI 笔记本份额持续扩张），而 Gaming 受主机世代末期半定制芯片需求回落影响下降 40% 至 $773M（<a href="https://www.alpha-sense.com/earnings/amd/" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">AlphaSense 季报解析</a>）。
+              </p>
+            </div>
+
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">高利润率引擎 · 41% OPM</span>
+                <span class="font-mono text-xs text-slate-400">$1.10B (+29%)</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">嵌入式分部（Xilinx FPGA 与自适应计算）</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                工业、通信与航空航天库存消化完毕进入强劲复苏周期，单季营业利润大增 60% 至 $453M，高达 41% 的分部营业利润率为全公司盈利底座提供高粘性缓冲。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           02. Helios 整机柜与四重护城河
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-amdred-600 dark:text-amdred-400">SECTION 02 · HELIOS RACK-SCALE & CHIPLET MOAT</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">行业地位与四重护城河：432GB 超大显存霸权与全栈开放机柜生态</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">架构评测：<a href="https://www.workstation.co.uk/th/technical-notes/amd-instinct-rocm-vs-nvidia-cuda-evaluation-porting-technote" target="_blank" rel="noopener noreferrer" class="text-amdred-500 hover:underline">Helios vs Rubin 技术白皮书</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <!-- 五维竞争力雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2026-2027 旗舰 AI 算力平台五维能力对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">AMD 在单卡显存容量、x86 宿主协同与开放网络标准上构筑差异化胜势</p>
+            </div>
+            <div class="relative h-72 w-full my-2">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-navy-800/60 p-3 rounded-xl border border-slate-200/70 dark:border-slate-700/70">
+              注：MI455X 单卡集成 432GB HBM4，较同代竞品单卡 288GB 高出 50%，大幅减少超长上下文推理所需切分的卡数。
+            </div>
+          </div>
+
+          <!-- 四大护城河拆解 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-amdred-600 dark:text-amdred-400">MOAT 01 · 大模型推理显存王牌</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">单卡 432GB HBM4 精准卡位万亿参数推理</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                随着 AI 资本开支重心向长上下文与多智能体（Agentic AI）推理倾斜，KV Cache 显存容量与带宽成为首要瓶颈。<a href="https://www.ventureatlas.org/company/amd" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">Helios 整机柜集成 72 颗 MI455X，总显存高达 31TB HBM4、总带宽 1.7 PB/s、FP4 算力达 2.9 ExaFLOPS</a>，单美元 Token 吞吐性价比极具杀伤力。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400">MOAT 02 · CPU + GPU + NIC 垂直拼图</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">EPYC Venice + Pensando 800G 整机协同</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                通过整合收购的 Pensando 智能网卡（Vulcano 800G AI NIC）与 ZT Systems 整机柜系统工程团队，配合自家全球第一的 x86 服务器 CPU（第六代 Zen 6 EPYC），AMD 实现了从底层芯片到液冷机柜的交钥匙交付，彻底补齐过往系统级短板。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400">MOAT 03 · 开放标准联盟反制封闭锁定</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">UALink + ROCm 10 赢得云巨头战略扶持</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                超大规模云厂极度忌惮单一供应商议价垄断。<a href="https://www.ventureatlas.org/company/amd" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">OpenAI 签署多代 6 GW Instinct 采购框架（首批 1 GW MI450 于 26H2 启动）</a>，PyTorch、vLLM、SGLang 与 Triton 在 ROCm 10 上实现开箱即用迁移，使双供应商混部成为云厂标准配置。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">MOAT 04 · 2nm Chiplet 先进制程首发</div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">台积电 N2 纳米片工艺与 3.5D 封装先发</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                AMD 延续多年来在模块化芯粒（Chiplet）架构上的工程领先，率先在 <a href="https://www.techpowerup.com/news-tags/MI400" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">CDNA 5 (MI450/MI450X) 上导入台积电 2nm 制程</a>，既规避超大单芯片良率损耗，又为 2027 年下一代 MI500 共封装光学（CPO）预留演进弹性。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           03. 同行竞争格局横向对比
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-amdred-600 dark:text-amdred-400">SECTION 03 · AI SILICON COMPETITIVE LANDSCAPE</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">同行竞争格局：稳坐通用 AI 加速卡第二把交椅，蚕食传统 x86 服务器存量</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">格局参考：<a href="https://siliconanalysts.com/analysis/amd-vs-nvidia-ai-gpu-market-share-2026" target="_blank" rel="noopener noreferrer" class="text-amdred-500 hover:underline">Silicon Analysts 2026</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+            <div class="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">全球数据中心算力核心竞争者 2026–2027 旗舰参数与定位对比</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-100/80 dark:bg-navy-800/80 text-slate-600 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800 font-semibold">
+                    <th class="py-3 px-4">对比维度</th>
+                    <th class="py-3 px-3 text-amdred-600 dark:text-amdred-400">美国超微 AMD</th>
+                    <th class="py-3 px-3">英伟达 NVIDIA</th>
+                    <th class="py-3 px-3">博通 AVGO (定制 ASIC)</th>
+                    <th class="py-3 px-3">英特尔 Intel</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200/70 dark:divide-slate-800/70 text-slate-700 dark:text-slate-300">
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">26H2–27 主力机柜系统</td>
+                    <td class="py-3 px-3 font-bold text-slate-900 dark:text-white">Helios (72×MI455X)</td>
+                    <td class="py-3 px-3">Vera Rubin NVL72</td>
+                    <td class="py-3 px-3">定制 TPU / XPU 集群</td>
+                    <td class="py-3 px-3">Gaudi / Falcon Shores</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">单 GPU HBM4 显存容量</td>
+                    <td class="py-3 px-3 font-mono font-bold text-amdred-600 dark:text-amdred-400">432 GB (MI455X) / 288 GB</td>
+                    <td class="py-3 px-3 font-mono">288 GB (Rubin)</td>
+                    <td class="py-3 px-3 font-mono">依云厂工作负载定制</td>
+                    <td class="py-3 px-3 font-mono">份额边缘化</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">机柜级 Scale-Up 互联</td>
+                    <td class="py-3 px-3">UALink-over-Ethernet 开放标准</td>
+                    <td class="py-3 px-3">NVLink 6 专有协议</td>
+                    <td class="py-3 px-3">Tomahawk 以太网 / 光互联</td>
+                    <td class="py-3 px-3">PCIe / 以太网</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">服务器 CPU 协同地位</td>
+                    <td class="py-3 px-3 font-semibold text-emerald-600 dark:text-emerald-400">EPYC Zen 6 持续夺取份额</td>
+                    <td class="py-3 px-3">自研 ARM Vera CPU</td>
+                    <td class="py-3 px-3">无自有主机 CPU</td>
+                    <td class="py-3 px-3">Xeon 份额承压防守</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-semibold">核心商业切入点</td>
+                    <td class="py-3 px-3">大模型高显存推理 + 开放生态第二供方</td>
+                    <td class="py-3 px-3">前沿预训练与全栈 AI 工厂霸主</td>
+                    <td class="py-3 px-3">超大规模云厂内部固定算子降本</td>
+                    <td class="py-3 px-3">传统企业存量服务器更新</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">核心算力芯片巨头最新单季数据中心/AI 业务同比增速对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">AMD 数据中心在 26Q3 实现 +97% YoY 爆发式追赶</p>
+            </div>
+            <div class="relative h-64 w-full my-2">
+              <canvas id="compMarginChart"></canvas>
+            </div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+              注：AMD 26Q3 数据中心同比增速 +97%（<a href="https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results" target="_blank" rel="noopener noreferrer" class="text-amdred-500 hover:underline">AMD Q3 IR</a>），且 Q4 数据中心指引环比再增 ~50%，增速领跑二线追赶阵营。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           04. 财务弹性与千亿营收估值锚
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-amdred-600 dark:text-amdred-400">SECTION 04 · OPERATING LEVERAGE & VALUATION</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">财务健康与估值体系：经营费用增速不足收入一半，2027E 盈利翻倍消化估值</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">预测来源：<a href="https://www.trefis.com/data/companies/AMD" target="_blank" rel="noopener noreferrer" class="text-amdred-500 hover:underline">Trefis</a> · <a href="https://www.tickertape.in/us-stocks/advanced-micro-devices-inc-AMD-share-price" target="_blank" rel="noopener noreferrer" class="text-amdred-500 hover:underline">Tickertape</a></span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">FY2022 – FY2027E 全年营收阶跃与 Non-GAAP EPS 爆发曲线</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 mb-4">营收由 FY23 $22.68B 迈向 FY27E $95.90B，Non-GAAP EPS 预计于 2027 年飙升 120% 至 $17.65</p>
+            <div class="relative h-72 w-full">
+              <canvas id="valEvolutionChart"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white">📈 为什么表观 TTM P/E 高，但远期 PEG 极具吸引力？</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                由于 Xilinx 收购产生的巨额无形资产摊销压低了 GAAP 净利，静态 GAAP P/E（~115x）存在明显失真；机构定价核心锚定 Non-GAAP 经营杠杆：
+              </p>
+              <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-200">
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">2026 全年共识营收 / EPS</span>
+                  <span class="font-mono font-bold text-slate-900 dark:text-white">~$52.2B (+51%) · $8.04</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">2027 全年共识营收 / EPS</span>
+                  <span class="font-mono font-bold text-amdred-600 dark:text-amdred-400">~$95.9B (+84%) · $17.65</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">CFO 2027 经营杠杆指引</span>
+                  <span class="font-mono font-bold text-emerald-600 dark:text-emerald-400">OpEx 增速 &lt; 营收增速 1/2</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500 dark:text-slate-400">当前股价隐含 FY27E P/E</span>
+                  <span class="font-mono font-bold text-cyan-600 dark:text-cyan-400">~30.8x (52周高点回撤~18%)</span>
+                </li>
+                <li class="flex items-center justify-between py-1.5">
+                  <span class="text-slate-500 dark:text-slate-400">华尔街 53 位分析师平均目标</span>
+                  <span class="font-mono font-bold text-amber-600 dark:text-amber-400">~$658 (花旗最高看至 $800)</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-br from-rose-950/80 to-navy-900 rounded-2xl p-4 border border-rose-500/30 text-xs text-slate-200 space-y-1.5">
+              <div class="font-bold text-amdred-400">💡 AI 推理并购卡位（2026Q4 动态）</div>
+              <p class="leading-relaxed">
+                据 <a href="https://www.ventureatlas.org/company/amd" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline">Venture Atlas 披露的季报文件</a>，AMD 正推进约 $2.9B 收购硬连线模型芯片初创企业 Taalas（预计年底前交割），进一步强化超高速低功耗 AI 推理护城河。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           05. 投资决策与多空风险配置
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-amdred-600 dark:text-amdred-400">SECTION 05 · BULL VS BEAR & PORTFOLIO POSITIONING</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">投资决策与多空风险配置：拥抱机柜放量主升浪，严盯毛利率与摊薄效应</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border-l-4 border-l-emerald-500 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">🐂 牛市上行催化剂 (Bull Case)</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">目标 $660 – $800</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li><strong>1. OpenAI 6 GW 协议与五大云厂放量兑现：</strong>随着 Q4 Helios 整机柜部署大幅加速，AI GPU 单季收入正式超越 EPYC 服务器 CPU，推动 2027 年数据中心收入向 $75B+ 冲刺（<a href="https://admiralmarkets.com/education/articles/shares/amd-stock-apu-cpu-gpu-analysis" target="_blank" rel="noopener noreferrer" class="text-cyan-500 hover:underline">Admiral Markets</a>）。</li>
+              <li><strong>2. 第六代 EPYC Venice 全面收割企业级服务器换机：</strong>Zen 6 架构提供高达 36,864 核液冷机柜密度，在传统云与 AI 宿主节点持续挤压英特尔份额。</li>
+              <li><strong>3. 欧洲主权 AI 与超算大单持续落地：</strong>继美国能源部 $1B 超算合同后，EuroHPC 选定 Instinct MI430X 建设 LUMI-AI 超级计算机，打开全球主权云增量空间。</li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border-l-4 border-l-amdred-500 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">🐻 核心下行风险与跟踪边界 (Bear Risks)</h3>
+              <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-amdred-500/15 text-amdred-600 dark:text-amdred-400">重点监控整机毛利</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li><strong>1. 整机柜出货拉低短期毛利率：</strong>Q4 指引 Non-GAAP 毛利率约 55%（较 Q3 的 56% 微降 1pct），反映 Helios 机柜级系统及 HBM4 采购成本占比上升对毛利率的稀释压力。</li>
+              <li><strong>2. 云巨头自研 ASIC 分流与英伟达 Vera Rubin 正面压制：</strong>Google TPU、AWS Trainium 与博通定制 XPU 抢占内部固定负载，同时英伟达提前升级 Vera Rubin 显存带宽正面对抗 MI450（<a href="https://siliconanalysts.com/analysis/amd-vs-nvidia-ai-gpu-market-share-2026" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:underline">Silicon Analysts</a>）。</li>
+              <li><strong>3. PC 周期回落与潜在股本摊薄：</strong>管理层预计 2027 年全球 PC 市场可能出现双位数百分比回调，且需跟踪 OpenAI 认股权证（最高 1.6 亿股）及并购交割使 Q4 稀释股数增至 ~16.7 亿股的摊薄影响。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           06. 季度跟踪 KPI 核查清单
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div>
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-amdred-600 dark:text-amdred-400">SECTION 06 · QUARTERLY TRACKING CHECKLIST</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">季度财报跟踪 KPI 核查清单（备战 2026Q4 年报与 2027 指引）</h2>
+          </div>
+          <div class="flex items-center gap-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amdred-500/15 text-amdred-600 dark:text-amdred-400 border border-amdred-500/30">已核查 0 / 6 项 (0%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-200/70 hover:bg-slate-300 dark:bg-navy-800 dark:hover:bg-navy-700 text-slate-600 dark:text-slate-300 transition">重置</button>
+          </div>
+        </div>
+
+        <div id="kpi-checklist" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-amdred-500/50 transition">
+            <input type="checkbox" id="amd-kpi-1" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-amdred-500 focus:ring-amdred-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">1. 26Q4 营收是否站稳 $17.0B 并突破上限 ($17.5B)</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">核查数据中心分部是否兑现环比 +50% 增长（单季冲击 ~$12.8B），确认 AI GPU 收入正式超越服务器 CPU。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-amdred-500/50 transition">
+            <input type="checkbox" id="amd-kpi-2" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-amdred-500 focus:ring-amdred-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">2. Helios 整机柜良率与五大云厂二期追单规模</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">跟踪 OpenAI 首批 1 GW MI450 交付验收进度，以及 Oracle 5万卡集群向外部客户正式开放的时间表。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-amdred-500/50 transition">
+            <input type="checkbox" id="amd-kpi-3" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-amdred-500 focus:ring-amdred-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">3. Non-GAAP 毛利率能否守住 55% 底线</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">观察液冷整机柜放量及 HBM4 涨价背景下，高毛利第六代 EPYC Venice 与嵌入式复苏能否有效对冲毛利压力。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-amdred-500/50 transition">
+            <input type="checkbox" id="amd-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-amdred-500 focus:ring-amdred-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">4. ROCm 10 软件生态与自定义算子迁移反馈</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">跟踪头部推理框架在 MI455X / MI450X 上的实测有效算力利用率（MFU）与开发者社区采纳度。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-amdred-500/50 transition">
+            <input type="checkbox" id="amd-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-amdred-500 focus:ring-amdred-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">5. 台积电 N2 晶圆与 CoWoS / HBM4 产能配额保障</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">验证支撑 2027 年营收增长 >80%（冲刺 ~$96B）所需的先进封装与 HBM4 供应链锁定程度。</div>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-amdred-500/50 transition">
+            <input type="checkbox" id="amd-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-amdred-500 focus:ring-amdred-500" />
+            <div class="text-xs leading-relaxed">
+              <div class="font-bold text-slate-900 dark:text-white">6. 经营费用率收敛与稀释股数控制</div>
+              <div class="text-slate-500 dark:text-slate-400 mt-0.5">确认 Q4 Non-GAAP OpEx 控制在 ~$3.75B 附近，核查 Taalas 交割后稀释股数是否稳定在 ~16.7 亿股以内。</div>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- 页脚免责声明与权威引用源 -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2">
+        <div>
+          <strong>权威数据来源索引：</strong>
+          <a href="https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results" target="_blank" rel="noopener noreferrer" class="text-amdred-600 dark:text-amdred-400 hover:underline">AMD Q3 2026 官方财报公告 (2026-11-03)</a> ·
+          <a href="https://www.insiderfinance.io/news/amd-q3-2026-results-signal-data-center-surge-earnings" target="_blank" rel="noopener noreferrer" class="text-amdred-600 dark:text-amdred-400 hover:underline">AMD Form 10-Q / 8-K 分部摘要</a> ·
+          <a href="https://www.ventureatlas.org/company/amd" target="_blank" rel="noopener noreferrer" class="text-amdred-600 dark:text-amdred-400 hover:underline">Venture Atlas 产品线与里程碑追踪</a> ·
+          <a href="https://admiralmarkets.com/education/articles/shares/amd-stock-apu-cpu-gpu-analysis" target="_blank" rel="noopener noreferrer" class="text-amdred-600 dark:text-amdred-400 hover:underline">Admiral Markets 估值与指引分析</a> ·
+          <a href="https://www.trefis.com/data/companies/AMD" target="_blank" rel="noopener noreferrer" class="text-amdred-600 dark:text-amdred-400 hover:underline">Trefis 财务一致预期</a>
+        </div>
+        <p>免责声明：本报告基于美国 SEC 公开财报披露及权威行业研究数据编制，仅供深度投研与基本面拆解参考，不构成任何具体证券买卖要约。</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    const KPI_STORAGE_KEY = 'amd_research_kpi_v1';
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'quarterly';
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      try {
+        localStorage.setItem('amd_theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+      } catch (e) {}
+      updateChartsTheme();
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      if (drawer) drawer.classList.toggle('hidden');
+    }
+
+    window.addEventListener('scroll', () => {
+      const docEl = document.documentElement;
+      const scrollTop = docEl.scrollTop || document.body.scrollTop;
+      const scrollHeight = docEl.scrollHeight - docEl.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      const bar = document.getElementById('reading-progress');
+      if (bar) bar.style.width = progress + '%';
+
+      const sections = ['sec-exec', 'sec-biz', 'sec-moat', 'sec-comp', 'sec-fin', 'sec-inv', 'sec-kpi'];
+      let activeId = sections[0];
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 160) {
+          activeId = id;
+        }
+      });
+      document.querySelectorAll('#desktop-nav .nav-link').forEach(link => {
+        if (link.getAttribute('data-target') === activeId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    function loadKpiChecklist() {
+      try {
+        const raw = localStorage.getItem(KPI_STORAGE_KEY);
+        if (raw) {
+          const map = JSON.parse(raw);
+          Object.keys(map).forEach(k => {
+            const cb = document.getElementById(k);
+            if (cb) cb.checked = Boolean(map[k]);
+          });
+        }
+      } catch (e) {}
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const boxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = boxes.length || 1;
+      let checked = 0;
+      const map = {};
+      boxes.forEach(cb => {
+        map[cb.id] = cb.checked;
+        if (cb.checked) checked++;
+      });
+      const pct = Math.round((checked / total) * 100);
+      const badge = document.getElementById('kpi-progress-badge');
+      if (badge) badge.textContent = `已核查 ${checked} / ${boxes.length} 项 (${pct}%)`;
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(map));
+      } catch (e) {}
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('bizArchitectureChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      const quarterlyConfig = {
+        type: 'bar',
+        data: {
+          labels: ['25Q3', '25Q4', '26Q1', '26Q2', '26Q3', '26Q4E(指引)'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '单季总营业收入 ($B)',
+              data: [9.24, 10.27, 10.25, 11.53, 13.38, 17.00],
+              backgroundColor: 'rgba(237, 28, 36, 0.82)',
+              borderRadius: 6,
+              barThickness: 28,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '数据中心分部营收 ($B)',
+              data: [4.34, 5.40, 5.75, 6.73, 8.55, 12.80],
+              borderColor: '#06B6D4',
+              backgroundColor: '#06B6D4',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.25,
+              yAxisID: 'y'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: {
+              min: 0,
+              max: 19,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      const segmentConfig = {
+        type: 'bar',
+        data: {
+          labels: ['数据中心 (Data Center)', '客户端 PC (Client)', '嵌入式 (Embedded)', '游戏半定制 (Gaming)'],
+          datasets: [
+            {
+              label: '2026 Q3 分部营收 ($B)',
+              data: [8.55, 2.93, 1.10, 0.77],
+              backgroundColor: ['#ED1C24', '#3B82F6', '#10B981', '#94A3B8'],
+              borderRadius: 6,
+              barThickness: 32
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: { grid: { color: colors.grid }, ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' } }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'quarterly' ? quarterlyConfig : segmentConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnQ = document.getElementById('btn-chart-evo');
+      const btnS = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'quarterly') {
+        btnQ.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-amdred-600 dark:text-amdred-400 shadow-sm transition';
+        btnS.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '25Q3 – 26Q4E 季度总营收阶跃与数据中心占比跃升';
+        subEl.textContent = '总营收从 $9.24B 跃向指引 $17.0B，Q4 AI GPU 收入预计首次超越服务器 CPU';
+      } else {
+        btnS.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-amdred-600 dark:text-amdred-400 shadow-sm transition';
+        btnQ.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '2026 Q3 四大终端业务营收结构拆解 ($13.38B)';
+        subEl.textContent = '数据中心独占 $8.55B (OPM 34%)，嵌入式复苏贡献 $1.10B (OPM 41%)';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('moatRadarChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '单卡 HBM4 显存容量 (432GB)',
+            '宿主 x86 服务器 CPU 协同',
+            '开放互联标准 (UALink/ETH)',
+            '推理每美元 Token 性价比',
+            '底层软件生态厚度'
+          ],
+          datasets: [
+            {
+              label: 'AMD (Helios MI455X + EPYC)',
+              data: [9.9, 9.8, 9.5, 9.3, 8.1],
+              borderColor: '#ED1C24',
+              backgroundColor: 'rgba(237, 28, 36, 0.22)',
+              pointBackgroundColor: '#ED1C24',
+              borderWidth: 2.5
+            },
+            {
+              label: 'NVIDIA (Vera Rubin NVL72)',
+              data: [8.8, 8.5, 7.2, 9.0, 9.9],
+              borderColor: '#10B981',
+              backgroundColor: 'rgba(16, 185, 129, 0.14)',
+              pointBackgroundColor: '#10B981',
+              borderWidth: 1.8
+            },
+            {
+              label: '云厂定制 ASIC (TPU / Trainium)',
+              data: [7.8, 6.5, 8.0, 9.1, 7.0],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('compMarginChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'AMD 数据中心 (26Q3 YoY)',
+            'NVIDIA 数据中心 (FY26 YoY)',
+            'Broadcom AI 半导体 (FY26E YoY)',
+            'TSMC 高性能计算与总营收增速',
+            'Intel 数据中心与 AI (转型承压)'
+          ],
+          datasets: [{
+            label: '核心 AI/数据中心收入同比增速 (%)',
+            data: [97.0, 68.0, 62.0, 31.0, 5.0],
+            backgroundColor: ['#ED1C24', '#10B981', '#6366F1', '#06B6D4', '#94A3B8'],
+            borderRadius: 6,
+            barThickness: 20
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              max: 110,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '+' + v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('valEvolutionChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年营业收入 ($B)',
+              data: [23.60, 22.68, 25.79, 34.64, 52.23, 95.90],
+              backgroundColor: 'rgba(237, 28, 36, 0.82)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'Non-GAAP 稀释 EPS ($)',
+              data: [3.50, 2.65, 3.31, 4.17, 8.04, 17.65],
+              borderColor: '#06B6D4',
+              backgroundColor: '#06B6D4',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: {
+              position: 'left',
+              min: 0,
+              max: 110,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              position: 'right',
+              min: 0,
+              max: 20,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#06B6D4', font: { size: 11, weight: '600' }, callback: v => '$' + v }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

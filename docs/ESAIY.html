@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卫材株式会社 Eisai Co., Ltd. (OTC: ESAIY) 深度研究报告：从阿尔茨海默病创新药 Leqembi 全球商业化到神经科学与肿瘤学复利引擎</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+                    mono: ['JetBrains Mono', 'monospace'],
+                },
+                colors: {
+                    navy: {
+                        950: '#070B14',
+                        900: '#0F172A',
+                        800: '#1E293B',
+                        700: '#334155',
+                    },
+                    eisaired: {
+                        400: '#FF6B6B',
+                        500: '#D91424',
+                        600: '#B00E1A',
+                    },
+                    accent: {
+                        500: '#3B82F6',
+                        600: '#2563EB',
+                    },
+                    teal: {
+                        500: '#06B6D4',
+                        600: '#0891B2',
+                    }
+                }
+            }
+        }
+    }
+    </script>
+
+    <style>
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #94A3B8;
+        border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+        background: #475569;
+    }
+
+    @media print {
+        #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+            display: none !important;
+        }
+        main {
+            margin-left: 0 !important;
+            padding: 0 !important;
+        }
+        section {
+            break-inside: avoid;
+        }
+    }
+
+    .report-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+        background: linear-gradient(90deg, rgba(217, 20, 36, 0.22) 0%, rgba(6, 182, 212, 0.06) 100%);
+        border-left: 3px solid #D91424;
+        color: #FFFFFF;
+        font-weight: 600;
+    }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-eisaired-500 selection:text-white transition-colors duration-200">
+
+    <!-- 顶部全局阅读进度条 -->
+    <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+        <div id="reading-progress" class="h-full bg-gradient-to-r from-eisaired-500 via-amber-400 to-teal-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- 移动端顶部导航栏 -->
+    <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+        <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-eisaired-500 to-eisaired-600 flex items-center justify-center font-extrabold text-white shadow">
+                EI
+            </div>
+            <div>
+                <div class="text-[11px] text-eisaired-400 font-semibold tracking-wider uppercase">OTCMKTS: ESAIY · Equity Research</div>
+                <div class="text-sm font-bold leading-tight">卫材株式会社 Eisai 深度研究报告</div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+                <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </button>
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 移动端折叠抽屉菜单 -->
+    <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+        <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+        <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <span class="font-bold text-white text-base">ESAIY 研报目录导航</span>
+                    <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <ul class="mt-4 space-y-1.5 text-sm">
+                    <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+                    <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+                    <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+                    <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+                    <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+                    <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+                    <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+                </ul>
+            </div>
+            <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <p>全球神经科学与生物制药研究组</p>
+                <p class="mt-1">数据基准：2026年11月 (FY2026 / Q1 FY2027)</p>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+    <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+        <div>
+            <!-- 机构品牌头 -->
+            <div class="p-5 border-b border-slate-800/80">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-eisaired-500 to-eisaired-600 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-eisaired-500/25">
+                        EI
+                    </div>
+                    <div>
+                        <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-eisaired-400 bg-eisaired-500/15 px-2 py-0.5 rounded">OTCMKTS: ESAIY</span>
+                        <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">卫材株式会社深度研报</h2>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                    全球阿尔茨海默病创新药领跑者 · Leqembi 全球商业化与神经科学核心引擎
+                </p>
+            </div>
+
+            <!-- 股票实时快照徽章 -->
+            <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">当前 ADR 股价</span>
+                    <span class="font-mono font-bold text-white">$8.11 <span class="text-emerald-400">(+10.0% YTD)</span></span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">FY2026 财年营收</span>
+                    <span class="font-mono font-bold text-teal-400">¥825.4B <span class="text-slate-400">(+4.6% YoY)</span></span>
+                </div>
+                <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+                    <span class="text-slate-400">Leqembi 销售预期</span>
+                    <span class="font-mono font-bold text-eisaired-400">全年 JPY 143.5B 级别</span>
+                </div>
+            </div>
+
+            <!-- 六个核心章节目录导航 -->
+            <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+                <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+                <nav id="desktop-nav" class="space-y-1 text-[13px]">
+                    <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-eisaired-400 mr-2">00</span>执行摘要与核心指标</span>
+                    </a>
+                    <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+                    </a>
+                    <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+                    </a>
+                    <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+                    </a>
+                    <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+                    </a>
+                    <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+                    </a>
+                    <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- 侧边栏底部工具栏 -->
+        <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-slate-400">阅读模式切换</span>
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+                    <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-3.5 h-3.5 text-eisaired-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="dark:hidden">深色护眼模式</span>
+                    <span class="hidden dark:inline">机构亮色模式</span>
+                </button>
+            </div>
+            <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-eisaired-500 hover:bg-eisaired-600 text-white text-xs font-extrabold transition shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                <span>打印 / 导出 PDF 研报</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+            <!-- =========================================================
+            00. Hero 研报封面区与执行摘要
+            ========================================================= -->
+            <section id="sec-exec" class="scroll-mt-20">
+                <!-- 顶部研报元数据标签栏 -->
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-eisaired-500/15 text-eisaired-600 dark:text-eisaired-400 font-bold border border-eisaired-500/30">评级：买入 / 阿尔茨海默病创新药核心标的</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：Leqembi 全球放量与神经科学突破期</span>
+                    </div>
+                    <div class="flex items-center space-x-3 font-mono">
+                        <span>覆盖时间：2026年11月</span>
+                        <span>OTCMKTS: ESAIY</span>
+                    </div>
+                </div>
+
+                <!-- Hero 标题卡片 -->
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+                    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#D91424 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-eisaired-500/20 border border-eisaired-500/40 text-eisaired-400 text-xs font-semibold mb-4">
+                            <span class="w-2 h-2 rounded-full bg-eisaired-400 animate-pulse"></span>
+                            <span>CORE THESIS · 联合 Biogen 推出全球首款实质性延缓阿尔茨海默病进展的创新药 Leqembi × 营收突破历史纪录（¥825.4B）</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+                            卫材株式会社 Eisai Co., Ltd. (OTCMKTS: ESAIY) 深度研究报告：从阿尔茨海默病创新药 Leqembi 全球商业化到神经科学与肿瘤学复利引擎
+                        </h1>
+                        <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+                            卫材（Eisai）作为总部位于东京的全球领先制药企业，凭借与 Biogen 联合开发的靶向抗淀粉样蛋白抗体药物 <strong class="text-white">Leqembi (lecanemab)</strong>，成功开启了人类抗击阿尔茨海默病（AD）的历史性新纪元。在刚刚过去的 2026 财年中，卫材创下 <strong class="text-eisaired-400">¥825.4B 历史最高营收纪录（同比增长 4.56%）</strong>，其中合作伙伴 BioArctic 财报显示 Leqembi 单季全球销售额快速攀升至 <strong class="text-teal-400">¥32.2 亿（全预期销售额剑指 ¥143.5 亿级别）</strong>。
+                            伴随全球多国医保准入铺开、肿瘤学管线 in-licensing 持续落地及新财务政策改革，卫材正从传统神经科药企跃升为全球脑健康与罕见病创新领军者。
+                        </p>
+
+                        <!-- 核心投资结论高亮条 -->
+                        <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">营收创历史新高</div>
+                                <div class="text-white font-semibold">FY26 全年营收达 ¥825.4B（+4.56% YoY），创下公司历史最高纪录</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">Leqembi 全球加速放量</div>
+                                <div class="text-eisaired-400 font-semibold">Leqembi 全球销售预期高达 ¥143.5B，多国医保报销与临床渗透率持续走高</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">技术指标与买入评级</div>
+                                <div class="text-teal-400 font-semibold">StockInvest 评级为 Buy Candidate（短期上升通道稳固，目标区间上看 $8.81）</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4个核心 KPI 卡片 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+                    <!-- KPI 1 -->
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>FY2026 全年总营收</span>
+                            <span class="p-1.5 rounded-lg bg-eisaired-500/15 text-eisaired-600 dark:text-eisaired-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">¥825.4B</span>
+                            <span class="text-xs font-bold text-eisaired-600 dark:text-eisaired-400 bg-eisaired-500/15 px-2 py-0.5 rounded">+4.56% YoY</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            创下公司历史最高营收纪录，由 Leqembi 及 3L 核心产品线稳健放量强力驱动。
+                        </p>
+                    </div>
+
+                    <!-- KPI 2 -->
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>当前 ADR 股价</span>
+                            <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$8.11</span>
+                            <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">技术面买入信号</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            短期在上升通道内运行，技术面维持 Buy 评级，3 个月目标预测区间上看 $8.81。
+                        </p>
+                    </div>
+
+                    <!-- KPI 3 -->
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>Leqembi 预期销售额</span>
+                            <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">¥143.5B</span>
+                            <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">全球重磅放量</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            BioArctic 合作伙伴预期 Leqembi 全球销售额将达到 1,435 亿日元，成为全球AD治疗核心支柱。
+                        </p>
+                    </div>
+
+                    <!-- KPI 4 -->
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>市盈率 (P/E Ratio)</span>
+                            <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~32.1x</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">创新药估值溢价</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            市场给予其阿尔茨海默病首创药物的创新稀缺性溢价，长期成长空间广阔。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            一、 业务与收入架构 (Business & Revenue Architecture)
+            ========================================================= -->
+            <section id="sec-biz" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-eisaired-600 dark:text-eisaired-400">Section 01 · Business & Revenue Architecture</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：神经科学（Leqembi）与肿瘤学/全科产品双轮驱动</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">FY2026 总营收 ¥825.4B · 美国与日本本土核心市场</span>
+                </div>
+
+                <!-- 交互式 Chart.js 双视图切换面板 -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- 左侧：双视图图表 -->
+                    <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">2022–2026 年度营收与盈利结构演进</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">FY26 营收创历史新高（¥825.4B），Leqembi 进入全球商业化爆发期</p>
+                            </div>
+                            <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                                <button onclick="switchBizChart('revenue')" id="btn-chart-rev" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-eisaired-600 dark:text-eisaired-400 shadow-sm transition">视图A：年度营收演进</button>
+                                <button onclick="switchBizChart('segments')" id="btn-chart-seg" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：主要地区收入占比</button>
+                            </div>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="bizArchitectureChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：结构性拆解核心洞察 -->
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业架构三大结构性支柱</h3>
+                            <ul class="space-y-4 text-sm">
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-eisaired-500/15 text-eisaired-600 dark:text-eisaired-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">神经科学板块（Leqembi & BBM 脑健康生态）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            核心旗舰 Leqembi 针对早期阿尔茨海默病清除淀粉样斑块，联合 Biogen 在美、日、欧及中国加速渗透，同时积极布局数字与非药物解决方案（BBM）。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">肿瘤学板块（Oncology & In-Licensing）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            通过内部研发与多项重磅肿瘤学 in-licensing 战略合作（如与上海汉霖达成 Serplulimab 独家商业许可协议），不断丰富全球肿瘤管线。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">美国与日本本土制药基本盘</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            美国市场贡献最大份额，日本本土及亚洲市场提供稳定现金流，3L 核心产品线（Lenvima等）持续贡献坚实基本盘。
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-500 dark:text-slate-400">核心增长驱动</span>
+                            <span class="font-bold text-eisaired-600 dark:text-eisaired-400">Leqembi 全球商业化突破百亿日元大关</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 核心业务板块矩阵卡片 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-eisaired-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-eisaired-500/15 text-eisaired-600 dark:text-eisaired-400 text-xs font-bold">旗舰创新药 · 神经科学</span>
+                                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Leqembi 全球领跑</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">1. 阿尔茨海默病与神经科学</h3>
+                            <p class="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                旗舰抗淀粉样蛋白疗法 Leqembi 改变了全球AD治疗格局。卫材持续在 CTAD 等国际顶级会议上发布最新研究成果，巩固临床地位。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+                            全球首创 AD 疾病修正疗法 · 医保准入加速
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">战略拓展 · 肿瘤学</span>
+                                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">强强联手与授权合作</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 肿瘤学与外部授权合作</h3>
+                            <p class="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                结合自有研发及多项成功的肿瘤学 in-licensing 交易（如引进 Serplulimab 癌症免疫疗法），不断拓展大中华及全球肿瘤治疗版图。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+                            多项肿瘤授权落地 · 丰富管线矩阵
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-md bg-accent-500/10 text-accent-600 dark:text-accent-400 text-xs font-bold">基本盘 · 美日成熟市场</span>
+                                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">3L 产品群稳健支撑</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 美国与日本本土制药业务</h3>
+                            <p class="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                美国医药市场贡献最大收入来源，日本本土提供稳固现金流。通过新财务政策与成本改革，持续提升整体盈利运营效率。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold">
+                            美国市场为主导 · 成本改革增效
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            二、 行业地位与四重核心护城河 (Industry Position & Moat)
+            ========================================================= -->
+            <section id="sec-moat" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：AD 药物先发优势、全球临床与研发布局</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：宽护城河 (Wide Moat · 全球脑健康与神经科学开拓者)</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <!-- 左侧：四重护城河深度解析 -->
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-eisaired-500/15 text-eisaired-600 dark:text-eisaired-400 flex items-center justify-center font-bold text-sm">01</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">阿尔茨海默病创新药的绝对先发壁垒</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Leqembi 是全球首款获得多国正式批准并实现大规模商业化的抗淀粉样蛋白 AD 药物，在医生处方习惯、诊疗路径建设及患者心智上享有不可替代的先发优势。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">02</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">与 Biogen 的强大全球商业化协同</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                携手全球生物技术巨头 Biogen（渤健），在美、日、欧及全球各主要市场构建起无缝对接的医学教育、渠道准入与销售推广合力。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">深厚的神经科学研发管线与 BBM 生态</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                长期深耕神经内科领域，构建了涵盖早期诊断、药物治疗及数字健康解决方案（Brain Body Mind Ecosystem）的全方位脑健康产业链。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">严苛的财务政策与成本改革纪律</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                推进全新财务政策与成本改革，优化资源配置，确保在持续高强度研发投入的同时实现企业可持续的稳健盈利增长。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：五维护城河雷达图 -->
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">生物制药行业五维护城河量化雷达图</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">卫材 Eisai (ESAIY) vs 大型综合药企 vs 神经专科创新药企（满分 10 分）</p>
+                        <div class="relative h-72 w-full">
+                            <canvas id="moatRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            三、 同行竞争格局横向对比 (Competitive Landscape)
+            ========================================================= -->
+            <section id="sec-comp" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-eisaired-600 dark:text-eisaired-400">Section 03 · Global Competitive Landscape</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：阿尔茨海默病药物赛道双雄争霸</h2>
+                    </div>
+                    <!-- 交互式筛选按钮 -->
+                    <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+                        <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-eisaired-500 text-white shadow-sm transition">全部阵营</button>
+                        <button onclick="filterCompetitors('ad')" data-filter="ad" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">阿尔茨海默病(AD)创新药企</button>
+                        <button onclick="filterCompetitors('global')" data-filter="global" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">全球特许制药同行</button>
+                    </div>
+                </div>
+
+                <!-- 横向对比矩阵表格 -->
+                <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                                    <th class="py-4 px-5 min-w-[180px]">竞争厂商与核心代表药</th>
+                                    <th class="py-4 px-4 min-w-[130px]">主营赛道与核心产品</th>
+                                    <th class="py-4 px-4 min-w-[140px]">市值与估值特征</th>
+                                    <th class="py-4 px-4 min-w-[135px]">AD药物进展</th>
+                                    <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞争评估</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                                <tr data-category="ad" class="bg-eisaired-500/5 dark:bg-eisaired-500/10 font-medium">
+                                    <td class="py-4 px-5">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-0.5 rounded bg-eisaired-500 text-white text-[10px] font-extrabold">行业先锋</span>
+                                            <span class="font-bold text-slate-900 dark:text-white">卫材 Eisai (OTCMKTS: ESAIY)</span>
+                                        </div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Leqembi (lecanemab) 联手 Biogen</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">神经科学、肿瘤学、抗AD疗法</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">市值 ~$9.1B (ADR) · P/E 32.1x</td>
+                                    <td class="py-4 px-4 font-mono font-bold text-eisaired-600 dark:text-eisaired-400">全球首款商业化大面积获批</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>先发商业化优势显著：</strong>全球多国医保准入领先，销售预期强劲，BBM 脑健康生态布局长远。
+                                    </td>
+                                </tr>
+
+                                <tr data-category="ad" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">礼来 Eli Lilly and Company (LLY)</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kisunla (donanemab) 核心竞品</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">内分泌代谢、神经退行性疾病、肿瘤</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">全球制药市值前列 · 高估值</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">Kisunla 获批并同台竞技</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>强大资金与渠道实力：</strong>凭借在美代谢与神经科的深厚学术推广能力，与 Leqembi 构成双雄争霸格局。
+                                    </td>
+                                </tr>
+
+                                <tr data-category="global" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">渤健 Biogen (BIIB)</div>
+                                        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Leqembi 全球联合开发伙伴</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">神经与神经退行性罕见病专科</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">大型生物技术公司</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">深度绑定 Leqembi 收益</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <strong>战略紧密同盟：</strong>与卫材共享 Leqembi 损益与全球商业化红利，共同分享数十亿美元级别市场蛋糕。
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 配套 Chart.js 横向条形图：营收与增速对比 -->
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">卫材年度营业收入增长趋势（单位：亿日元）</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">FY26 营收创历史新高达到 ¥825.4B（同比增长 4.56%），创新药 Leqembi 成为核心增长引擎</p>
+                        </div>
+                        <span class="text-xs font-semibold text-eisaired-600 dark:text-eisaired-400 bg-eisaired-500/15 px-2.5 py-1 rounded">营收稳健突破历史纪录</span>
+                    </div>
+                    <div class="relative h-60 w-full">
+                        <canvas id="compMarginChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            四、 财务健康度与估值体系解析 (Financial Health & Valuation)
+            ========================================================= -->
+            <section id="sec-fin" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与估值体系：创纪录营收与稳健技术面买入信号</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">动态 P/E ~32.1x · StockInvest 评级：Buy Candidate</span>
+                </div>
+
+                <!-- 1. 财务健康度四大硬核指标卡 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-eisaired-600 dark:text-eisaired-400 uppercase">Revenue (FY26)</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">¥825.4B</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            财年总营收实现 8,254 亿日元（同比增长 4.56%），创下公司历史最高纪录。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Valuation P/E</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~32.1x</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            动态市盈率约 32.1x，反映出市场对阿尔茨海默病首创药物长期成长潜力的乐观定价。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Technical Score</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">Buy Signal</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            StockInvest 评级为 Buy Candidate，3 个月短期上升通道预测目标最高可达 $8.81。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase">52-Week Range</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$5.69 – $8.58</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            当前 ADR 报收 $8.11，逼近 52 周高点，买盘支撑有力且上升趋势稳固。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. 交互式 Chart.js 财务演进双轴图 -->
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2026 营收与盈利（Earnings）演进趋势</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Leqembi 全球商业化元年驱动营收稳步触及 ¥825.4B 历史新高</p>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-eisaired-600 dark:text-eisaired-400 bg-eisaired-500/10 px-2.5 py-1 rounded">FY26 营收 ¥825.4B</span>
+                    </div>
+                    <div class="relative h-72 w-full">
+                        <canvas id="valEvolutionChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 3. 互动式复利推演计算器 -->
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">卫材 Eisai (ESAIY) 投资回报与复利推演器</h3>
+                            <p class="text-xs text-slate-400 mt-1">模拟在不同营收增速与 Leqembi 全球放量预期下的长期持仓市值与复合回报率</p>
+                        </div>
+                        <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-eisaired-300 border border-slate-700">交互式推演模型</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300">初始投资本金 (USD)</span>
+                                    <span id="invVal" class="font-bold text-white">$20,000</span>
+                                </div>
+                                <input id="invSlider" type="range" min="5000" max="200000" step="5000" value="20000" class="w-full accent-eisaired-400 cursor-pointer">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300">持有年限 (Years)</span>
+                                    <span id="yrVal" class="font-bold text-white">3 年</span>
+                                </div>
+                                <input id="yrSlider" type="range" min="1" max="10" step="1" value="3" class="w-full accent-eisaired-400 cursor-pointer">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-slate-300">预期年化营收/盈利增速</span>
+                                    <span id="grVal" class="font-bold text-eisaired-400">8.0%</span>
+                                </div>
+                                <input id="grSlider" type="range" min="2" max="20" step="0.5" value="8.0" class="w-full accent-eisaired-400 cursor-pointer">
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="bg-slate-800/90 p-5 rounded-xl border border-slate-700">
+                                <div class="text-xs text-slate-400">期末预计总资产市值</div>
+                                <div id="finalBalance" class="text-2xl font-bold text-white mt-2">$25,194</div>
+                                <div id="totalGainPct" class="text-xs text-eisaired-400 mt-1">累计总回报 +26.0%</div>
+                            </div>
+                            <div class="bg-slate-800/90 p-5 rounded-xl border border-slate-700">
+                                <div class="text-xs text-slate-400">期末对应隐含 ADR 股价</div>
+                                <div id="impliedPrice" class="text-2xl font-bold text-teal-400 mt-2">$10.20</div>
+                                <div class="text-xs text-slate-400 mt-1">基于 Leqembi 放量与价值重估</div>
+                            </div>
+                            <div class="bg-slate-800/90 p-5 rounded-xl border border-slate-700">
+                                <div class="text-xs text-slate-400">隐含复合年化回报 (CAGR)</div>
+                                <div id="cagrVal" class="text-2xl font-bold text-amber-400 mt-2">8.0%</div>
+                                <div class="text-xs text-slate-400 mt-1">创新药全球渗透率持续提升</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            五、 投资决策与风险配置框架 (Investment Decision & Risk)
+            ========================================================= -->
+            <section id="sec-inv" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-eisaired-600 dark:text-eisaired-400">Section 05 · Investment Decision & Risk Allocation</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演与核心风险评估</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：医疗健康与脑健康创新组合的核心增持标的</span>
+                </div>
+
+                <!-- 1. 三情景估值推演卡片 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-eisaired-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-eisaired-500/15 text-eisaired-600 dark:text-eisaired-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                                <span class="font-mono text-xs font-bold text-eisaired-600 dark:text-eisaired-400">概率：30%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价格：$11.00 – $13.00</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>Leqembi 全球销售额远超 ¥143.5 亿预期，主要国家医保报销全面放开，肿瘤管线授权合作密集兑现，净利润重回高增长轨道。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-eisaired-600 dark:text-eisaired-400">
+                            潜在上行空间：+35% 至 +60%
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-accent-500/15 text-accent-600 dark:text-accent-400 text-xs font-bold">基准情景 (Base Case)</span>
+                                <span class="font-mono text-xs font-bold text-accent-600 dark:text-accent-400">概率：50%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价格：$8.80 – $10.00</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>Leqembi 按既定曲线放量，营收保持 4%–6% 稳健增长，技术面上升通道持续，投资者平稳获取创新药溢价回报。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-accent-600 dark:text-accent-400">
+                            潜在上行空间：+15% 至 +25%
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+                            </div>
+                            <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防御底线：$6.80 – $7.30</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>AD药物临床推广速度或患者筛查流程受医疗体系制约不及预期，短期营业利润因一次性收益减少出现波动。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+                            潜在下行回撤：-10% 至 -15% (受 52周低点支撑)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 四大核心风险评估矩阵 -->
+                <div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构应对策略</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · AD 药物临床推广与诊断瓶颈风险</span>
+                                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">早期AD患者筛查与PET/脊髓液检测普及度</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                Leqembi 适用于早期阿尔茨海默病患者，临床使用前必须进行淀粉样蛋白确认（PET或CSF），医疗体系筛查能力直接影响用药放量速度。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 医保报销谈判与药价压制风险</span>
+                                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">全球各国立体医保与报销限制</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                尽管美、日等国已相继准入，但各国医保机构对高单价创新生物药的报销审核及患者自付比例依然严格，可能对短期销量产生约束。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 商业化竞争白热化风险</span>
+                                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">礼来等同类竞品的正面交锋</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                面对礼来 Kisunla 等同靶点竞品的全球上市，两家医药巨头将在医生学术推广、患者教育及医院准入上展开激烈竞争。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 一次性收益基数调整风险</span>
+                                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">非经常性损益对利润同比的高基数影响</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                营业利润在前期曾因一次性收益减少出现阶段性波动，需持续关注核心内生业务（Organic Profit）的纯净贡献比例。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+            ========================================================= -->
+            <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+                    </div>
+                    <div class="flex items-center space-x-2 no-print">
+                        <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-eisaired-500/15 text-eisaired-600 dark:text-eisaired-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+                        <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        点击勾选机构财报追踪已验证达标的核心指标（状态自动本地保存），用高频基本面事实动态校准投资逻辑：
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+                        <!-- KPI 1 -->
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D91424] focus:ring-eisaired-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">1. Leqembi 全球销售额能否顺利达成 ¥143.5 亿年度预期</span>
+                                    <span class="text-[11px] font-mono text-eisaired-600 dark:text-eisaired-400 font-semibold shrink-0">核心产品放量</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    追踪每季度 Leqembi 全球销售额（如单季突破 ¥32.2 亿），验证美、日、欧及新兴市场的渗透速度。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- KPI 2 -->
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D91424] focus:ring-eisaired-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">2. 全年总营收突破 ¥825.4B 历史纪录后的持续增长</span>
+                                    <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">营收历史大关</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    监控 3L 核心产品线及新药群组的销售表现，确保创纪录营收规模实现进一步稳步巩固。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- KPI 3 -->
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D91424] focus:ring-eisaired-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">3. 生物标记物与诊断生态（BBM）的落地与全球扩展</span>
+                                    <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">脑健康生态布局</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    评估血液/脊髓液检测及数字诊断工具在打破患者筛查瓶颈上的实际临床渗透率。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- KPI 4 -->
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D91424] focus:ring-eisaired-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">4. 肿瘤学 in-licensing 合作项目的临床与商业化进展</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">肿瘤第二增长极</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    跟踪引进项目（如 Serplulimab 等抗PD-1抗体）在日本及全球的注册审评与商业化落地。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- KPI 5 -->
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D91424] focus:ring-eisaired-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">5. 成本改革与新财务政策对核心营业利润的兑现度</span>
+                                    <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">费用控制与利润率</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    评估新财务政策及数字化转型对管理费用的持续压降效果，防范重组成本过高。
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- KPI 6 -->
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D91424] focus:ring-eisaired-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">6. 国际医学会议（如 CTAD）上公布的最新临床长期数据</span>
+                                    <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">学术背书与疗效</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    监控国际临床试验大会（如 CTAD）发布的 Leqembi 长期认知获益与安全性数据，强化医生成处方信心。
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================
+            页脚免责声明 (Disclaimer Footer)
+            ========================================================= -->
+            <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+                    <span>卫材株式会社 Eisai Co., Ltd. (OTCMKTS: ESAIY) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+                    <span>数据基准：FY2026 年报及 2026 年 11 月最新市场行情与技术分析</span>
+                </div>
+                <p class="leading-relaxed">
+                    <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告、PR Newswire 新闻稿及市场公开数据与技术指标整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的财务预测、三情景估值模型及推演数据均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+                </p>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+    <script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        html.classList.toggle('dark');
+        updateChartsTheme();
+    }
+
+    function toggleMobileMenu() {
+        const drawer = document.getElementById('mobile-drawer');
+        drawer.classList.toggle('hidden');
+    }
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+        let currentId = 'sec-exec';
+        sections.forEach(sec => {
+            const top = sec.offsetTop - 160;
+            if (scrollTop >= top) {
+                currentId = sec.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const numSpan = link.querySelector('span span');
+            if (numSpan) {
+                numSpan.classList.remove('text-eisaired-400');
+                numSpan.classList.add('text-slate-500');
+            }
+            if (link.dataset.target === currentId) {
+                link.classList.add('active');
+                if (numSpan) {
+                    numSpan.classList.remove('text-slate-500');
+                    numSpan.classList.add('text-eisaired-400');
+                }
+            }
+        });
+    });
+
+    function filterCompetitors(category) {
+        document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+            if (btn.dataset.filter === category) {
+                btn.classList.add('bg-eisaired-500', 'text-white', 'font-semibold', 'shadow-sm');
+                btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+            } else {
+                btn.classList.remove('bg-eisaired-500', 'text-white', 'font-semibold', 'shadow-sm');
+                btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+            }
+        });
+
+        const rows = document.querySelectorAll('#comp-table-body tr');
+        rows.forEach(row => {
+            const rowCat = row.dataset.category;
+            if (category === 'all' || rowCat === category) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    const KPI_STORAGE_KEY = 'esaiy_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+        try {
+            const saved = localStorage.getItem(KPI_STORAGE_KEY);
+            if (saved) {
+                const stateMap = JSON.parse(saved);
+                document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+                    if (typeof stateMap[cb.id] === 'boolean') {
+                        cb.checked = stateMap[cb.id];
+                    }
+                });
+            }
+        } catch (e) {}
+        updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+        const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+        const total = checkboxes.length;
+        let checkedCount = 0;
+        const stateMap = {};
+
+        checkboxes.forEach(cb => {
+            stateMap[cb.id] = cb.checked;
+            if (cb.checked) checkedCount++;
+        });
+
+        const pct = Math.round((checkedCount / total) * 100);
+        document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+        try {
+            localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+        } catch (e) {}
+    }
+
+    function resetKpiChecklist() {
+        document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
+        updateKpiChecklist();
+    }
+
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'revenue';
+
+    function getChartColors() {
+        const isDark = document.documentElement.classList.contains('dark');
+        return {
+            text: isDark ? '#CBD5E1' : '#475569',
+            grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+            radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+        };
+    }
+
+    function initBizChart() {
+        const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+        const colors = getChartColors();
+
+        const revConfig = {
+            type: 'bar',
+            data: {
+                labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026'],
+                datasets: [
+                    {
+                        label: '卫材全年营业收入 (¥B)',
+                        data: [740.0, 759.8, 789.4, 789.4, 825.4],
+                        backgroundColor: '#D91424',
+                        borderRadius: 4,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `营收: ¥${ctx.parsed.y}B`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                    },
+                    y: {
+                        max: 950,
+                        grid: { color: colors.grid },
+                        ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'B' }
+                    }
+                }
+            }
+        };
+
+        const segConfig = {
+            type: 'bar',
+            data: {
+                labels: ['美国美洲医药业务', '日本本土制药业务', '中国及其他新兴市场'],
+                datasets: [
+                    {
+                        label: '地区收入占比权数 (%)',
+                        data: [48, 35, 17],
+                        backgroundColor: [
+                            '#D91424',
+                            '#3B82F6',
+                            '#06B6D4'
+                        ],
+                        borderRadius: 6,
+                        barThickness: 28
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `地区收入权重: ${ctx.parsed.y}%`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                    },
+                    y: {
+                        max: 60,
+                        grid: { color: colors.grid },
+                        ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+                    }
+                }
+            }
+        };
+
+        if (bizChartInstance) bizChartInstance.destroy();
+        bizChartInstance = new Chart(ctx, currentBizMode === 'revenue' ? revConfig : segConfig);
+    }
+
+    function switchBizChart(mode) {
+        currentBizMode = mode;
+        const btnRev = document.getElementById('btn-chart-rev');
+        const btnSeg = document.getElementById('btn-chart-seg');
+        const titleEl = document.getElementById('biz-chart-title');
+        const subEl = document.getElementById('biz-chart-sub');
+
+        if (mode === 'revenue') {
+            btnRev.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-eisaired-600 dark:text-eisaired-400 shadow-sm transition';
+            btnSeg.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+            titleEl.textContent = '2022–2026 年度营收与盈利结构演进';
+            subEl.textContent = 'FY26 营收创历史新高（¥825.4B），Leqembi 进入全球商业化爆发期';
+        } else {
+            btnSeg.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-eisaired-600 dark:text-eisaired-400 shadow-sm transition';
+            btnRev.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+            titleEl.textContent = '卫材全球主要地区医药业务收入权重分布';
+            subEl.textContent = '美国市场为主导，日本本土及亚洲新兴市场为辅的全球化布局';
+        }
+        initBizChart();
+    }
+
+    function initRadarChart() {
+        const ctx = document.getElementById('moatRadarChart').getContext('2d');
+        const colors = getChartColors();
+
+        if (radarChartInstance) radarChartInstance.destroy();
+        radarChartInstance = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'AD创新药先发与商业化壁垒',
+                    'Biogen全球战略联盟协同',
+                    '神经科学研发管线与BBM生态',
+                    '财务政策纪律与成本改革',
+                    '美日成熟医药渠道准入网'
+                ],
+                datasets: [
+                    {
+                        label: '卫材 Eisai (ESAIY)',
+                        data: [9.7, 9.5, 9.4, 9.0, 9.2],
+                        borderColor: '#D91424',
+                        backgroundColor: 'rgba(217, 20, 36, 0.22)',
+                        pointBackgroundColor: '#D91424',
+                        borderWidth: 2.5
+                    },
+                    {
+                        label: '大型综合药企平均水平',
+                        data: [7.5, 8.0, 8.2, 7.8, 8.5],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.14)',
+                        pointBackgroundColor: '#3B82F6',
+                        borderWidth: 1.8
+                    },
+                    {
+                        label: '传统仿制/中小型药企',
+                        data: [4.0, 4.5, 5.0, 6.0, 5.0],
+                        borderColor: '#94A3B8',
+                        backgroundColor: 'rgba(148, 163, 184, 0.12)',
+                        pointBackgroundColor: '#94A3B8',
+                        borderWidth: 1.5,
+                        borderDash: [4, 4]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+                    }
+                },
+                scales: {
+                    r: {
+                        min: 0,
+                        max: 10,
+                        ticks: { display: false, stepSize: 2 },
+                        grid: { color: colors.grid },
+                        angleLines: { color: colors.radarAngle },
+                        pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+                    }
+                }
+            }
+        });
+    }
+
+    function initCompMarginChart() {
+        const ctx = document.getElementById('compMarginChart').getContext('2d');
+        const colors = getChartColors();
+
+        if (compMarginChartInstance) compMarginChartInstance.destroy();
+        compMarginChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026'],
+                datasets: [{
+                    label: '卫材全年总营收 (¥B)',
+                    data: [740.0, 759.8, 789.4, 789.4, 825.4],
+                    backgroundColor: '#D91424',
+                    borderRadius: 6,
+                    barThickness: 28
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `财年营收: ¥${ctx.parsed.x}B`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        max: 950,
+                        grid: { color: colors.grid },
+                        ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'B' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                    }
+                }
+            }
+        });
+    }
+
+    function initValEvolutionChart() {
+        const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+        const colors = getChartColors();
+
+        if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+        valEvolutionChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026'],
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: '全年总营收 (¥B)',
+                        data: [740.0, 759.8, 789.4, 789.4, 825.4],
+                        backgroundColor: 'rgba(217, 20, 36, 0.85)',
+                        borderRadius: 5,
+                        barThickness: 26,
+                        yAxisID: 'y'
+                    },
+                    {
+                        type: 'bar',
+                        label: '全年净利润 / Earnings (¥B)',
+                        data: [42.0, 39.5, 41.2, 46.4, 38.56],
+                        backgroundColor: 'rgba(59, 130, 246, 0.85)',
+                        borderRadius: 5,
+                        barThickness: 26,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => ctx.dataset.yAxisID === 'y'
+                                ? `${ctx.dataset.label}: ¥${ctx.parsed.y}B`
+                                : `${ctx.dataset.label}: ¥${ctx.parsed.y}B`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+                    },
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        max: 950,
+                        grid: { color: colors.grid },
+                        ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'B' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        min: 0,
+                        max: 60,
+                        grid: { drawOnChartArea: false },
+                        ticks: { color: '#3B82F6', font: { size: 11, weight: '600' }, callback: v => '¥' + v + 'B' }
+                    }
+                }
+            }
+        });
+    }
+
+    function updateChartsTheme() {
+        initBizChart();
+        initRadarChart();
+        initCompMarginChart();
+        initValEvolutionChart();
+    }
+
+    // Calculator Logic
+    const invSlider = document.getElementById('invSlider');
+    const yrSlider = document.getElementById('yrSlider');
+    const grSlider = document.getElementById('grSlider');
+
+    function updateCalculator() {
+        const principal = parseFloat(invSlider.value);
+        const years = parseInt(yrSlider.value);
+        const growthRate = parseFloat(grSlider.value) / 100;
+
+        document.getElementById('invVal').textContent = '$' + principal.toLocaleString();
+        document.getElementById('yrVal').textContent = years + ' 年';
+        document.getElementById('grVal').textContent = (growthRate * 100).toFixed(1) + '%';
+
+        const finalVal = principal * Math.pow(1 + growthRate, years);
+        const totalGain = finalVal - principal;
+        const gainPct = (totalGain / principal) * 100;
+        const impliedPrice = 8.11 * Math.pow(1 + growthRate * 0.9, years);
+
+        document.getElementById('finalBalance').textContent = '$' + Math.round(finalVal).toLocaleString();
+        document.getElementById('totalGainPct').textContent = '累计总回报 +' + gainPct.toFixed(1) + '%';
+        document.getElementById('impliedPrice').textContent = '$' + impliedPrice.toFixed(2);
+        document.getElementById('cagrVal').textContent = (growthRate * 100).toFixed(1) + '%';
+    }
+
+    [invSlider, yrSlider, grSlider].forEach(el => el.addEventListener('input', updateCalculator));
+
+    window.addEventListener('DOMContentLoaded', () => {
+        loadKpiChecklist();
+        initBizChart();
+        initRadarChart();
+        initCompMarginChart();
+        initValEvolutionChart();
+        updateCalculator();
+    });
+    </script>
+</body>
+</html>

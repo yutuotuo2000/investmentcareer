@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>亚马逊公司 Amazon.com Inc. (NASDAQ: AMZN) 深度研究报告：AWS 云计算与 AI 算力加速、广告高毛利生态与自由现金流深度解析</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            amazonorange: {
+              400: '#F59E0B',
+              500: '#FF9900',
+              600: '#E68A00',
+            },
+            accent: {
+              500: '#FF9900',
+              600: '#E68A00',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(255, 153, 0, 0.22) 0%, rgba(6, 182, 212, 0.06) 100%);
+      border-left: 3px solid #FF9900;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-amazonorange-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-amazonorange-500 via-amber-400 to-teal-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amazonorange-500 to-amazonorange-600 flex items-center justify-center font-extrabold text-white shadow">
+        AM
+      </div>
+      <div>
+        <div class="text-[11px] text-amazonorange-400 font-semibold tracking-wider uppercase">NASDAQ: AMZN · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">亚马逊公司 Amazon 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">AMZN 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 三大业务支柱与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球科技与云计算研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (Q3 FY26)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amazonorange-500 to-amazonorange-600 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-amazonorange-500/25">
+            AM
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-amazonorange-400 bg-amazonorange-500/15 px-2 py-0.5 rounded">NASDAQ: AMZN</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">亚马逊公司深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          AWS 云计算与 AI 加速 · 广告与电商飞轮 · 宽护城河价值重估
+        </p>
+      </div>
+
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">Q3 最新单季营收</span>
+          <span class="font-mono font-bold text-white">$201.94B <span class="text-amazonorange-400">(+12%)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">AWS 云业务增速</span>
+          <span class="font-mono font-bold text-teal-400">+39.3% <span class="text-slate-400">(年化$184B)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">估值倍数 (P/E)</span>
+          <span class="font-mono font-bold text-amazonorange-400">~21.5x · 目标价 $324.90</span>
+        </div>
+      </div>
+
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-amazonorange-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>三大业务支柱与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-amazonorange-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-amazonorange-500 hover:bg-amazonorange-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-amazonorange-500/15 text-amazonorange-600 dark:text-amazonorange-400 font-bold border border-amazonorange-500/30">评级：强烈买入 / 核心科技云旗舰底仓</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：2026年Q3财报季 · AWS 增速创 5 年新高</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NASDAQ: AMZN</span>
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#FF9900 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amazonorange-500/20 border border-amazonorange-500/40 text-amazonorange-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-amazonorange-400 animate-pulse"></span>
+              <span>CORE THESIS · AWS 云业务增速跃升至 39.3%（近5年最快） × 营业利润率创历史新高 13.9% × 广告与电商飞轮完美运转</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              亚马逊公司 Amazon.com Inc. (NASDAQ: AMZN) 深度研究报告：AWS 云计算与 AI 算力加速、广告高毛利生态与自由现金流深度解析
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              亚马逊最新发布的 Q3 财报展现出震撼市场的强劲增长。公司单季总营收达到 <strong class="text-white">$201.94B (+12% YoY)</strong>，营业利润飙升至 <strong class="text-amazonorange-400">$28.1B</strong>，推动营业利润率创下公司历史新高的 <strong class="text-teal-400">13.9%</strong>。
+              核心云服务 <strong class="text-white">AWS 营收大增 39.3% 至 $46.0B</strong>（创近五年最快增速），年化运行率（Run-Rate）突破 <strong class="text-teal-400">$184B</strong>。
+              伴随华尔街一致“强烈买入”评级与目标价 <strong class="text-emerald-400">~$324.90</strong>，亚马逊凭借 AWS 算力底座与高利润广告矩阵，构筑了极具竞争力的宽护城河。
+            </p>
+
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">AWS 云业务爆发</div>
+                <div class="text-white font-semibold">Q3 营收 $46.0B（+39.3% YoY），创近 5 年最快增速，年化运行率达 $184B</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">盈利能力历史新高</div>
+                <div class="text-amazonorange-400 font-semibold">营业利润达 $28.1B，营业利润率达到公司史上最高的 13.9%</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">估值与分析师目标价</div>
+                <div class="text-teal-400 font-semibold">P/E ~21.5x，华尔街一致目标价 $324.90，具备约 21.5% 上行空间</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>季度总营收 (Net Sales)</span>
+              <span class="p-1.5 rounded-lg bg-amazonorange-500/15 text-amazonorange-600 dark:text-amazonorange-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$201.94B</span>
+              <span class="text-xs font-bold text-amazonorange-600 dark:text-amazonorange-400 bg-amazonorange-500/15 px-2 py-0.5 rounded">+12% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              AWS 与广告业务强势驱动，推动单季总营收首次突破 2000 亿美元大关。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>AWS 云业务营收与增速</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h10a4 4 0 004-4M3 9a4 4 0 014-4h10a4 4 0 014 4M12 12v9m0-9l-3 3m3-3l3 3"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$46.0B</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">+39.3% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              AI 算力需求爆发带动 AWS 增速达到近 5 年最快水平，年化运行率达 $1840 亿。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>单季营业利润与利润率</span>
+              <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$28.1B</span>
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">Margin 13.9%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              高利润率的 AWS（营业利润 $17.8B）与广告业务拉动整体营业利润率创下历史最高纪录。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>估值与机构一致评级</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">Strong Buy</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">目标价 $324.90</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              华尔街一致评级为“强烈买入”，兼具云计算的高成长性与全球电商广告的现金流优势。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 三大业务支柱与收入架构
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amazonorange-600 dark:text-amazonorange-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 三大业务支柱与收入架构：AWS 云计算、北美/国际电商与广告矩阵</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Q3 营收 $201.94B · AWS 贡献超 60% 营业利润</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">AWS、北美电商与国际电商业务营收演进</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">AWS 增速加速至 39.3%，北美与国际零售稳健增长，利润贡献结构持续优化</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-amazonorange-600 dark:text-amazonorange-400 shadow-sm transition">视图A：板块演进</button>
+                <button onclick="switchBizChart('segment_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：最新季度拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="amznBizChart"></canvas>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">亚马逊商业架构三大支柱解析</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-amazonorange-500/15 text-amazonorange-600 dark:text-amazonorange-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">亚马逊云服务（AWS）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      全球云计算绝对龙头。Q3 营收达 <strong>$46.0B（同比 +39.3%）</strong>，创近 5 年最快增速；营业利润高达 <strong>$17.8B</strong>（占公司总营业利润约 63%），是绝对的利润核心。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">北美与国际零售电商（North America & International）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      北美电商 Q3 营收 $112.9B（+6% YoY），营业利润增至 $8.7B；国际业务营收 $43.1B（+5% YoY），利润显著改善至 $1.6B，物流网络优化成效显著。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">广告服务与数字生态（Advertising Services）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      Q3 广告服务营收达 $19.64B（+11% YoY，剔除汇率影响增 12%）。凭借庞大的电商消费闭环与 AI 智能推荐，成为增速极快的高毛利现金牛业务。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">核心增长引擎</span>
+              <span class="font-bold text-amazonorange-600 dark:text-amazonorange-400">AWS AI 算力云 + 高毛利广告矩阵</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amazonorange-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 rounded-md bg-amazonorange-500/15 text-amazonorange-600 dark:text-amazonorange-400 text-xs font-bold">核心增长引擎 · AWS 云算力</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">AWS +39.3% YoY</span>
+              </div>
+              <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">AWS 单季营收：$46.0B</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. AWS 云计算与生成式 AI 基础设施底座</h3>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">近 5 年最快增长记录</div>
+                <p class="leading-relaxed">
+                  受益于全球企业级客户加速向云端迁移以及大模型训练与推理需求的井喷，AWS 营收大增 39.3% 至 460 亿美元，年化运行率跃升至 1840 亿美元，连续多个季度实现增速加速。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">超大企业长期合同积压</div>
+                <p class="leading-relaxed">
+                  包括 Verizon 等行业巨头近期宣布与 AWS 达成价值数十亿美元的长期 AI 与云计算合作（如 Verizon 超 20 亿美元合同），推动亚马逊总合同积压（Backlog）实现三位数高增长。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">高毛利现金牛</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$19.64B 广告营收</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 广告服务（Advertising Services）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Q3 广告服务收入达 196.4 亿美元（同比增长 11%-12%）。凭借 Prime 视频广告植入与电商搜索广告的精准转化，第四季度广告预期将恢复至高十几的增长水平。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              Prime 视频广告 + 搜索广告双轮驱动
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sky-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">零售与物流底座</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$112.9B 北美电商</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 北美与国际零售板块（Retail & Logistics）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                北美电商实现营收 $112.9B（+6% YoY），营业利润从去年同期的 $4.8B 飙升至 $8.7B；国际业务利润同步改善至 $1.6B，区域履约中心去中心化大幅降低了配送成本。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold">
+              履约网络去中心化 · 零售利润率显著提升
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">订阅与会员生态</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Prime Loyalty</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 订阅服务（Subscription Services）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                包含 Amazon Prime 会员年费、流媒体视频、音乐及电子书订阅。为整个零售生态提供了极高的用户粘性和高粘性复购基础。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              Prime 会员体系 · 核心生态粘性基石
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-400 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-slate-500/10 text-slate-600 dark:text-slate-400 text-xs font-bold">AI 搜索未来布局</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">World Product Graph</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">5. World Product Graph 与 AI 购物搜索</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                亚马逊正着手开发名为 World Product Graph 的全新服务，旨在打造全球购物者的首选 AI 搜索目的地，巩固其在电商搜索领域的绝对统治地位。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+              打造全球购物者的首选 AI 搜索引擎
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与四重核心护城河
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：AWS 云霸权、电商飞轮与物流网络</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球云基础设施与电商绝对霸主)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amazonorange-500/15 text-amazonorange-600 dark:text-amazonorange-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">AWS 云计算绝对市场份额与技术壁垒</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                AWS 长期占据全球云服务市场约 26% 的首位份额。凭借定制化 AI 芯片（Trainium/Inferentia）与 Bedrock 多模型托管服务，构建了极其深厚的客户迁移成本与技术壁垒。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">亚马逊电商飞轮与 Prime 会员生态</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                庞大的第三方卖家生态与数亿 Prime 会员相互驱动。低价丰富的商品吸引海量买家，买家流量吸引更多商家入驻，形成极强的网络效应（Network Effects）。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全球无可匹敌的仓储物流履约网络</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                历经数十年数百亿美元资本开支打造的智能化仓储、干线运输与末端配送网络，实现全美及全球主要城市“当日达/次日达”，中小竞争者根本无法复制。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">高毛利广告闭环与消费大数据护城河</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                依托真实消费意图数据打造的数字广告平台，转化率远超传统社交媒体广告，为亚马逊贡献了极高弹性的增量利润来源。
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">科技巨头五维护城河量化雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Amazon vs Microsoft Azure vs Google Cloud vs Apple（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="amznMoatRadar"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amazonorange-600 dark:text-amazonorange-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：云基础设施与全球电商广告博弈</h2>
+          </div>
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-amazonorange-500 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('cloud')" data-filter="cloud" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">云基础设施竞争者</button>
+            <button onclick="filterCompetitors('retail')" data-filter="retail" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">电商与科技巨头</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[180px]">竞争厂商与核心代表</th>
+                  <th class="py-4 px-4 min-w-[130px]">云与电商平台矩阵</th>
+                  <th class="py-4 px-4 min-w-[140px]">AI 算力与广告定位</th>
+                  <th class="py-4 px-4 min-w-[135px]">全球市场地位</th>
+                  <th class="py-4 px-4 min-w-[115px]">营业利润率</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞合关系评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <tr data-category="core" class="bg-amazonorange-500/5 dark:bg-amazonorange-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-amazonorange-500 text-white text-[10px] font-extrabold">行业旗舰</span>
+                      <span class="font-bold text-slate-900 dark:text-white">Amazon (AMZN)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">AWS / Prime / 广告服务</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">全球云服务与电商广告双料霸主</span>
+                  </td>
+                  <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">AWS 算力底座 + 消费意图广告</td>
+                  <td class="py-4 px-4 font-bold text-amazonorange-600 dark:text-amazonorange-400">全球云计算市占率第一 (26%)</td>
+                  <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~13.9% (Q3创纪)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>云与零售完美协同：</strong>AWS 增速加速至 39.3% 提供澎湃利润，零售利润率大幅优化，广告业务高速成长。
+                  </td>
+                </tr>
+
+                <tr data-category="cloud" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Microsoft (Azure)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Microsoft Azure / M365 / Copilot</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500/15 text-blue-700 dark:text-blue-400">企业级云算力与办公软件生态</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">OpenAI 独家盟友 + Copilot 变现</td>
+                  <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">全球云服务市占率第二 (19%)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~47% (集团整体)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>企业端粘性极强：</strong>凭借 Office 垄断与 Azure 紧密绑定企业客户，但在纯云计算基础设施规模上与 AWS 互有攻守。
+                  </td>
+                </tr>
+
+                <tr data-category="cloud" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Google Cloud (Alphabet)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">GCP / Gemini AI / 搜索广告</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-500/15 text-sky-700 dark:text-sky-400">GCP 基础设施 + 搜索广告垄断</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">Gemini 多模态大模型与 TPU 算力</td>
+                  <td class="py-4 px-4 font-semibold text-sky-600 dark:text-sky-400">全球云第三极 (市占率 16%)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~30% (集团整体)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>AI 技术极客首选：</strong>搜索广告极其暴利，GCP 增速迅猛，但企业级大型混合云存量合同份额仍落后于 AWS。
+                  </td>
+                </tr>
+
+                <tr data-category="retail" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Walmart (沃尔玛)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Walmart+ / Global Retail / WCP</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-700 dark:text-indigo-400">全球实体零售与全渠道巨头</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">实体仓储网络 + 零售媒体广告</td>
+                  <td class="py-4 px-4 font-semibold text-indigo-600 dark:text-indigo-400">全球线下零售绝对龙头</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~4% - 5%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>实体优势无可匹敌：</strong>在美国本土拥有庞大密集的实体门店网络，全面发力线上电商与 Walmart Connect 广告，对亚马逊核心零售构成直接竞争。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值体系解析
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与估值体系：13.9% 历史最高利润率与 AI 资本开支解析</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Trailing P/E ~21.5x · 目标价 $324.90</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-amazonorange-600 dark:text-amazonorange-400 uppercase">Operating Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">13.9%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              得益于高利润率 AWS 云业务（利润 $17.8B）与物流效率优化，Q3 营业利润率创下公司历史最高纪录。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Forward P/E Multiple</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~21.5x</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              基于 2026 年一致预期 EPS 约 $12.90 与当前股价，前瞻市盈率合理，具备显著估值吸引力。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Cash Capital Expenditures</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~$220B (FY26)</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              全年在 AI 数据中心与算力基础设施上的现金资本开支预计达 2200 亿美元，短期对自由现金流造成阶段性压力。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase">Analyst Target Price</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$324.90</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              华尔街共识给予“强烈买入”评级，平均目标价 $324.90，隐含约 21.5% 的潜在上涨空间。
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2023–FY2026 营收、营业利润与利润率演进趋势</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">AWS 持续高增长与广告高毛利推动利润率不断攀升，彰显卓越的经营杠杆释放效应</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Analyst Consensus: Strong Buy</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="amznValuationChart"></canvas>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">AWS 加速与高利润广告</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>AWS 增速跃升至 39.3%：</strong>AI 算力需求推动云业务创下近 5 年最快增速，年化运行率达 $184B，盈利奶牛地位稳固。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>营业利润率创历史新高（13.9%）：</strong>物流去中心化与高毛利广告服务（$19.64B）协同发力，盈利质量持续显著改善。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>超大订单积压（Backlog）三位数增长：</strong>长期企业合同锁定未来数年云算力收入能见度。</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">巨额资本开支与自由现金流</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>巨额 AI 资本开支（Capex）：</strong>2026 年全年资本开支预计高达 $220B，短期对自由现金流（FCF）造成明显压制。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>宏观消费增速放缓风险：</strong>若全球宏观经济出现波动，可能对零售电商和可选消费品需求产生阶段性抑制。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>云市场竞争白热化：</strong>来自微软 Azure 和 Google Cloud 在 AI 基础设施领域的激烈竞争仍需持续警惕。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amazonorange-600 dark:text-amazonorange-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景目标价推演与机构风控纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：全球科技核心底仓 · 目标均价 $324.90</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amazonorange-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-amazonorange-500/15 text-amazonorange-600 dark:text-amazonorange-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-amazonorange-600 dark:text-amazonorange-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价位：$370 – $390</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>AWS 增速维持在 40% 以上，AI 算力和企业大模型变现超预期，广告收入加速突破，营业利润率稳步抬升至 15%，市场给予 26x 估值。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-amazonorange-600 dark:text-amazonorange-400">
+              潜在上行空间：+35% 至 +45%
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">概率：55%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价位：$310 – $330</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>AWS 维持 35%-38% 稳健增长，广告业务保持高十几增长，华尔街一致目标价 $324.90 顺利达成，基本面按照既定轨道扎实兑现。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-teal-600 dark:text-teal-400">
+              潜在上行空间：+15% 至 +25%（核心驱动力兑现）
+            </div>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：15%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守价位：$210 – $230</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>宏观经济衰退导致电商零售毛利承压，AI 巨额资本开支未能带来预期的高回报引发市场质疑，估值倍数阶段性收缩。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+              潜在下行回撤：-15% 至 -20%（龙头地位提供强力估值底部）
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-amazonorange-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>机构级资产配置与投资组合建议</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white mb-1">1. 核心科技云旗舰底仓</div>
+              <p class="text-slate-300 leading-relaxed">
+                作为全球云计算与电商广告的双料霸主，建议在各类科技成长与均衡型资产组合中保持<strong>标配至超配（Overweight）</strong>。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-amazonorange-400 mb-1">2. 逢市场情绪波动分批吸纳</div>
+              <p class="text-slate-300 leading-relaxed">
+                针对短期资本开支或宏观杂音引发的股价回调，建议采取左侧分批建仓策略，充分享受 AWS 加速与广告高毛利带来的复利回报。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-teal-400 mb-1">3. 动态跟踪 AWS 增速与广告收入</div>
+              <p class="text-slate-300 leading-relaxed">
+                将 AWS 云增速（锚定 35%-40% 区间）及广告服务营收增速作为核心跟踪指标，高频动态校验基本面景气度。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-amazonorange-500/15 text-amazonorange-600 dark:text-amazonorange-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构财报追踪已验证达标的指标（状态自动本地保存），用高频基本面事实动态校准投资逻辑：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FF9900] focus:ring-amazonorange-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. AWS 云计算营收增速是否保持在 35%–40% 高位</span>
+                  <span class="text-[11px] font-mono text-amazonorange-600 dark:text-amazonorange-400 font-semibold shrink-0">核心云景气锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监控 AWS 单季增速（当前达 39.3%），验证 AI 算力需求对云业务的持续驱动强度。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FF9900] focus:ring-amazonorange-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 营业利润率是否稳守 12%–14% 黄金区间</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">盈利质量晴雨表</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查整体营业利润率（当前创历史新高 13.9%），评估广告与云高毛利业务的利润拉动效应。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FF9900] focus:ring-amazonorange-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 广告服务营收保持高十几（High-Teens）增速</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">高毛利广告指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪 Prime 视频广告及电商搜索广告的营收扩张速度（当前单季 $19.64B）。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FF9900] focus:ring-amazonorange-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 现金资本开支（Capex）节奏与自由现金流恢复</span>
+                  <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">资本效率指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监控全年约 $220B 资本开支的落地效率及数据中心投入带来的直接收入回报率。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FF9900] focus:ring-amazonorange-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 零售履约网络效率与北岸/国际利润改善</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">零售经营杠杆</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪区域履约中心去中心化对零售板块营业利润率持续扩张的贡献。
+                </p>
+              </div>
+            </label>
+
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#FF9900] focus:ring-amazonorange-500">
+              <div class="flex1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. World Product Graph 与 AI 购物搜索进展</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">AI 搜索创新指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  评估亚马逊在 AI 搜索与新一代产品图谱研发上对传统电商搜索壁垒的加固。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 页脚免责声明 -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>亚马逊公司 Amazon.com Inc. (NASDAQ: AMZN) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2026 Q3 最新财报及 2026 年 11 月市场一致预期</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于亚马逊公司公开财务报告、云计算与电商行业调研及华尔街分析师一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的未来业绩预测、目标价及三情景估值模型均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-amazonorange-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-amazonorange-400');
+          }
+        }
+      });
+    });
+
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-amazonorange-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-amazonorange-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    const KPI_STORAGE_KEY = 'amzn_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {}
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {}
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    let bizChartInstance = null;
+    let moatRadarInstance = null;
+    let valuationChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('amznBizChart').getContext('2d');
+      const colors = getChartColors();
+
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026 (Est)'],
+          datasets: [
+            {
+              label: 'AWS 云服务 (Cloud)',
+              data: [80.1, 90.8, 105.3, 128.4, 165.5],
+              backgroundColor: '#FF9900',
+              borderRadius: 4,
+            },
+            {
+              label: '北美电商 (North America)',
+              data: [315.9, 352.8, 381.2, 412.5, 450.0],
+              backgroundColor: '#00A4EF',
+              borderRadius: 4,
+            },
+            {
+              label: '国际电商与广告 (Intl & Ads)',
+              data: [118.0, 131.2, 145.6, 168.0, 195.0],
+              backgroundColor: '#64748B',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 820,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '北美电商业务 (North America)',
+            'AWS 云计算业务 (AWS Cloud)',
+            '国际电商业务 (International)'
+          ],
+          datasets: [
+            {
+              label: '最新财年各板块营收 ($B)',
+              data: [450.0, 165.5, 195.0],
+              backgroundColor: [
+                '#00A4EF',
+                '#FF9900',
+                '#64748B'
+              ],
+              borderRadius: 6,
+              barThickness: 28
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `营收规模: $${ctx.parsed.x}B (占比 ${(ctx.parsed.x / 810.5 * 100).toFixed(1)}%)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 520,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-amazonorange-600 dark:text-amazonorange-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'AWS、北美电商与国际电商业务营收演进';
+        subEl.textContent = 'AWS 增速加速至 39.3%，北美与国际零售稳健增长，利润贡献结构持续优化';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-amazonorange-600 dark:text-amazonorange-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '最新财年三大核心业务板块营收结构拆解';
+        subEl.textContent = '北美电商规模最大，AWS 利润贡献最高，国际业务稳步改善';
+      }
+      initBizChart();
+    }
+
+    function initMoatRadar() {
+      const ctx = document.getElementById('amznMoatRadar').getContext('2d');
+      const colors = getChartColors();
+
+      if (moatRadarInstance) moatRadarInstance.destroy();
+      moatRadarInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            'AWS 云计算市场份额与技术壁垒',
+            'Prime 会员与电商飞轮网络效应',
+            '智能化仓储与全球物流履约网',
+            '高毛利消费意图广告平台闭环',
+            '企业级客户粘性与开发者生态'
+          ],
+          datasets: [
+            {
+              label: 'Amazon (AMZN)',
+              data: [9.9, 9.8, 9.9, 9.7, 9.6],
+              borderColor: '#FF9900',
+              backgroundColor: 'rgba(255, 153, 0, 0.22)',
+              pointBackgroundColor: '#FF9900',
+              borderWidth: 2.5
+            },
+            {
+              label: 'Microsoft (Azure)',
+              data: [9.8, 8.0, 8.2, 8.8, 9.8],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.14)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: 'Google Cloud (Alphabet)',
+              data: [9.4, 8.5, 8.0, 9.9, 9.0],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValuationChart() {
+      const ctx = document.getElementById('amznValuationChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valuationChartInstance) valuationChartInstance.destroy();
+      valuationChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026 (Est)'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年总营收 ($B)',
+              data: [574.8, 620.2, 680.5, 750.2],
+              backgroundColor: 'rgba(255, 153, 0, 0.85)',
+              borderRadius: 5,
+              barThickness: 32,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: '全年营业利润 ($B)',
+              data: [36.9, 47.7, 68.5, 95.0],
+              backgroundColor: 'rgba(6, 182, 212, 0.85)',
+              borderRadius: 5,
+              barThickness: 32,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '市盈率 P/E (x)',
+              data: [42.5, 36.2, 28.5, 21.5],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}x`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 850,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 60,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initMoatRadar();
+      initValuationChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initMoatRadar();
+      initValuationChart();
+    });
+  </script>
+</body>
+</html>

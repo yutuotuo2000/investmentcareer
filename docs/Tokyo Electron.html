@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>东京电子 Tokyo Electron (TYO: 8035) 深度研究报告：半导体涂布显影与刻蚀设备全球双巨头</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+                    mono: ['JetBrains Mono', 'monospace'],
+                },
+                colors: {
+                    navy: {
+                        950: '#070B14',
+                        900: '#0F172A',
+                        800: '#1E293B',
+                        700: '#334155',
+                    },
+                    telblue: {
+                        500: '#0047AB',
+                        600: '#003366',
+                    },
+                    accent: {
+                        500: '#3B82F6',
+                        600: '#2563EB',
+                    },
+                    teal: {
+                        500: '#06B6D4',
+                        600: '#0891B2',
+                    }
+                }
+            }
+        }
+    }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+        @media print {
+            #sidebar, #mobile-header, #theme-toggle-btn, .no-print { display: none !important; }
+            main { margin-left: 0 !important; padding: 0 !important; }
+            section { break-inside: avoid; }
+        }
+
+        .report-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(90deg, rgba(0, 71, 171, 0.22) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border-left: 3px solid #0047AB;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-telblue-500 selection:text-white transition-colors duration-200">
+
+    <!-- 顶部全局阅读进度条 -->
+    <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+        <div id="reading-progress" class="h-full bg-gradient-to-r from-telblue-500 via-sky-400 to-teal-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- 移动端顶部导航栏 -->
+    <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+        <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-telblue-500 to-telblue-600 flex items-center justify-center font-extrabold text-white shadow">
+                TEL
+            </div>
+            <div>
+                <div class="text-[11px] text-sky-400 font-semibold tracking-wider uppercase">TYO: 8035 · Equity Research</div>
+                <div class="text-sm font-bold leading-tight">东京电子 Tokyo Electron 深度研报</div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+                <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </button>
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 移动端折叠抽屉菜单 -->
+    <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+        <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+        <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <span class="font-bold text-white text-base">TEL 研报目录导航</span>
+                    <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <ul class="mt-4 space-y-1.5 text-sm">
+                    <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+                    <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与涂布显影技术架构</a></li>
+                    <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 涂布垄断与四重护城河</a></li>
+                    <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 半导体设备同行竞争格局</a></li>
+                    <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+                    <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+                    <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+                </ul>
+            </div>
+            <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <p>全球半导体设备与先进制程研究组</p>
+                <p class="mt-1">数据基准：2026年最新财报 (FY26 / FY27E)</p>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 桌面端左侧固定侧边导航栏 -->
+    <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+        <div>
+            <!-- 机构品牌头 -->
+            <div class="p-5 border-b border-slate-800/80">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-telblue-500 to-sky-500 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-telblue-500/25">
+                        TEL
+                    </div>
+                    <div>
+                        <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-sky-400 bg-telblue-500/15 px-2 py-0.5 rounded">TYO: 8035</span>
+                        <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">东京电子深度研报</h2>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                    全球涂布显影机垄断者 · 尖端刻蚀与先进封装核心赋能者
+                </p>
+            </div>
+
+            <!-- 股票实时快照徽章 -->
+            <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">全年营业收入</span>
+                    <span class="font-mono font-bold text-white">~¥2.4T - ¥2.6T</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">毛利率水平</span>
+                    <span class="font-mono font-bold text-sky-400">~46% - 48%</span>
+                </div>
+                <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+                    <span class="text-slate-400">核心垄断地位</span>
+                    <span class="font-mono font-bold text-teal-400">涂布显影 &gt;88% 市占率</span>
+                </div>
+            </div>
+
+            <!-- 目录导航 -->
+            <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+                <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+                <nav id="desktop-nav" class="space-y-1 text-[13px]">
+                    <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-sky-400 mr-2">00</span>执行摘要与核心指标</span>
+                    </a>
+                    <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与涂布显影架构</span>
+                    </a>
+                    <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>涂布垄断与四重护城河</span>
+                    </a>
+                    <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>半导体设备同行竞争格局</span>
+                    </a>
+                    <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+                    </a>
+                    <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+                    </a>
+                    <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+                        <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- 侧边栏底部工具栏 -->
+        <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-slate-400">阅读模式切换</span>
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+                    <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-3.5 h-3.5 text-sky-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="dark:hidden">深色护眼模式</span>
+                    <span class="hidden dark:inline">机构亮色模式</span>
+                </button>
+            </div>
+            <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-telblue-500 hover:bg-telblue-600 text-white text-xs font-extrabold transition shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                <span>打印 / 导出 PDF 研报</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+            <!-- =================00. 执行摘要================ -->
+            <section id="sec-exec" class="scroll-mt-20">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-telblue-500/15 text-sky-600 dark:text-sky-400 font-bold border border-telblue-500/30">评级：强烈买入 / 尖端制程设备核心配置</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">驱动：EUV 涂布显影垄断 + GAA 刻蚀机放量</span>
+                    </div>
+                    <div class="flex items-center space-x-3 font-mono">
+                        <span>覆盖时间：2026年最新</span>
+                        <span>TYO: 8035</span>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+                    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#38BDF8 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-telblue-500/20 border border-telblue-500/40 text-sky-400 text-xs font-semibold mb-4">
+                            <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                            <span>CORE THESIS · 全球半导体涂布显影设备绝对霸主（市占率超 88%），ASML EUV 光刻机不可或缺的黄金搭档</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+                            东京电子 Tokyo Electron (TYO: 8035) 深度研究报告：半导体涂布显影全球垄断、尖端刻蚀与先进封装核心赋能者
+                        </h1>
+                        <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+                            东京电子（Tokyo Electron, TEL）作为全球顶尖的半导体制造设备巨头，在人工智能（AI）与先进制程演进中扮演着不可替代的角色。公司在<strong class="text-white">涂布显影机（Coater/Developer）</strong>细分市场占据全球 <strong class="text-sky-400">&gt;88% 的绝对垄断份额</strong>，每一台 ASML 的 EUV 光刻机进厂均需与其涂布系统无缝联动。
+                            同时，TEL 在等离子刻蚀（Etch）、沉积及清洗设备领域位居全球前列，伴随 2nm GAA 晶体管与 3D NAND 堆叠层数不断攀升，公司正迎来业绩与估值的共振向上周期。
+                        </p>
+
+                        <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">涂布显影绝对垄断</div>
+                                <div class="text-white font-semibold">全球市占率超 88%，与 ASML EUV 形成“光刻-涂布”黄金物理绑定闭环</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">先进制程刻蚀突破</div>
+                                <div class="text-sky-400 font-semibold">面向 2nm GAA 及 3D NAND 的高选择比等离子刻蚀机订单大幅放量</div>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                                <div class="text-slate-400 font-medium mb-1">极佳的盈利与现金流</div>
+                                <div class="text-teal-400 font-semibold">毛利率稳居 46%-48% 区间，研发投入占比高，技术护城河深不可测</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4个核心快照指标 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>全年营业收入规模</span>
+                            <span class="p-1.5 rounded-lg bg-telblue-500/15 text-sky-600 dark:text-sky-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~¥2.4T+</span>
+                            <span class="text-xs font-bold text-sky-600 dark:text-sky-400 bg-telblue-500/15 px-2 py-0.5 rounded">全球设备巨头</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            晶圆制造设备（WFE）及现场服务双轮驱动，受益于全球先进制程Capex回暖。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>毛利率 (Gross Margin)</span>
+                            <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~47.0%</span>
+                            <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">垄断级定价权</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            涂布显影与高端刻蚀设备的不可替代性带来极强的毛利支撑。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>研发投入强度 (R&D)</span>
+                            <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~¥200B+</span>
+                            <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">高额持续投入</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            每年将大量资金投入尖端制程、极紫外光刻配套材料及三维集成电路研发。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                            <span>全球客户覆盖</span>
+                            <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </span>
+                        </div>
+                        <div class="mt-3 flex items-baseline space-x-2">
+                            <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">全覆盖</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">台积电/三星/海力士</span>
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            与全球各大顶级晶圆代工厂及存储器厂商保持深度协同开发关系。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================01. 业务与涂布显影架构================ -->
+            <section id="sec-biz" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 01 · Business & Coater/Developer Architecture</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与涂布显影架构：涂布显影机、等离子刻蚀与菲尔德服务</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">核心产品：CLEAN TRACK / Tactras / Triasee</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-base">东京电子主要产品线营收贡献分布</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">涂布显影与刻蚀设备构筑核心硬件大盘，场地服务（FSI）提供稳定现金流</p>
+                            </div>
+                        </div>
+                        <div class="relative h-72 w-full">
+                            <canvas id="bizMatrixChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">三大核心产品板块拆解</h3>
+                            <ul class="space-y-4 text-sm">
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-telblue-500/15 text-sky-600 dark:text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">涂布显影机（Coater/Developer, CLEAN TRACK）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            全球市场份额超过 88%。在光刻前后为晶圆均匀涂抹光刻胶并进行显影，是 EUV 光刻机能够正常运转必不可少的前置与后置核心系统。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">等离子刻蚀设备（Plasma Etch Systems）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            面向逻辑芯片（GAA 纳米片）与 3D NAND 存储器的高深宽比刻蚀需求，提供高精度的原子级微观雕刻技术。
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                    <div>
+                                        <div class="font-semibold text-slate-900 dark:text-white">薄膜沉积与表面处理设备（Deposition & Clean）</div>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                            用于制造原子级薄膜和晶圆表面超洁净处理，保障先进制程中的低缺陷率与高良率。
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-500 dark:text-slate-400">核心竞争力</span>
+                            <span class="font-bold text-sky-600 dark:text-sky-400">涂布绝对垄断 · 刻蚀全球前三</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================02. 涂布垄断与四重护城河================ -->
+            <section id="sec-moat" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-sky-400">Section 02 · Coater Monopoly & Economic Moat</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 涂布绝对垄断与四重核心护城河：光刻协同、精密机械与专利壁垒</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 细分赛道无解垄断)</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-telblue-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">01</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">涂布显影机全球 &gt;88% 绝对垄断地位</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                TEL 的 CLEAN TRACK 系统是全球各大晶圆厂的唯一默认选择。由于涂布厚度需精确至纳米级且必须与 ASML 的光刻机进行物理在线联机（Track-Scanner Interface），新进入者几乎无法攻克这一极高的工程闭环。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">02</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">与 ASML EUV 光刻机的深度联合协同</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                每一代 High-NA 或标准 EUV 光刻机的光学特性、光刻胶灵敏度均需与 TEL 的涂布显影系统进行长达数年的底层研发对接，这种先发绑定令任何竞争对手在技术迭代上望尘莫及。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">精密机械与微环境控制专利群</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                晶圆高速传输、纳米级流体涂布、烘烤温度控制以及极其严苛的洁净室微环境控制，TEL 拥有数万项核心专利，构筑了厚重的知识产权护城河。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center space-x-2.5 mb-2.5">
+                                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">04</span>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全球化现场工程师与高毛利服务网络</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                在台积电、三星、英特尔等全球各大超级晶圆厂旁均驻扎有 TEL 的资深技术工程师，提供全天候的维护与良率优化，保障设备开机率接近 100%。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">东京电子五维护城河量化雷达图</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">对比国际半导体设备平均水平（满分 10 分）</p>
+                        <div class="relative h-72 w-full">
+                            <canvas id="moatRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================03. 半导体设备同行竞争格局================ -->
+            <section id="sec-comp" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 03 · Global Competitive Landscape</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 半导体设备同行竞争格局：涂布无敌手，刻蚀与 AMAT/LRCX 鼎立</h2>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                                    <th class="py-4 px-5 min-w-[170px]">竞争厂商与代码</th>
+                                    <th class="py-4 px-4 min-w-[130px]">核心优势领域</th>
+                                    <th class="py-4 px-4 min-w-[140px]">与 TEL 关系</th>
+                                    <th class="py-4 px-4 min-w-[130px]">毛利率水平</th>
+                                    <th class="py-4 px-5 min-w-[220px]">核心差异与市场地位评估</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm">
+                                <tr class="bg-telblue-500/5 dark:bg-telblue-500/10 font-medium">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">Tokyo Electron (TEL, 8035)</div>
+                                        <div class="text-xs text-slate-500 mt-0.5">涂布显影、刻蚀、沉积</div>
+                                    </td>
+                                    <td class="py-4 px-4 font-bold text-sky-600 dark:text-sky-400">涂布显影机全球第一 (&gt;88%)</td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">行业绝对标杆</td>
+                                    <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~47.0%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300"><strong>涂布垄断者：</strong>光刻产线不可或缺的咽喉设备，刻蚀与沉积实力位居全球前三。</td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">ASML (阿斯麦)</div>
+                                        <div class="text-xs text-slate-500 mt-0.5">EUV / DUV 光刻机</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">光刻系统绝对垄断 (100% EUV)</td>
+                                    <td class="py-4 px-4 text-slate-600 dark:text-slate-300">黄金物理联盟</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~50% - 52%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300"><strong>光刻霸主：</strong>ASML 负责曝光，TEL 负责涂布显影，两家公司共同构成了人类先进制程的基石。</td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">Applied Materials (AMAT)</div>
+                                        <div class="text-xs text-slate-500 mt-0.5">薄膜沉积、CMP、封装</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">沉积与材料工程全球第一</td>
+                                    <td class="py-4 px-4 text-slate-600 dark:text-slate-300">全方位直接竞争</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~47.5%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300"><strong>综合设备巨头：</strong>在沉积和平面化领域与 TEL 形成全球双雄竞争。</td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                                    <td class="py-4 px-5">
+                                        <div class="font-bold text-slate-900 dark:text-white">Lam Research (泛林集团, LRCX)</div>
+                                        <div class="text-xs text-slate-500 mt-0.5">等离子刻蚀与清洗</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700 dark:text-slate-300">导体刻蚀与 3D NAND 刻蚀领先</td>
+                                    <td class="py-4 px-4 text-slate-600 dark:text-slate-300">刻蚀赛道主要对手</td>
+                                    <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~46% - 48%</td>
+                                    <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300"><strong>刻蚀双雄：</strong>在刻蚀机市场上与 TEL 展开激烈的技术与订单争夺。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================04. 财务健康与估值体系================ -->
+            <section id="sec-fin" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-sky-400">Section 04 · Financial Health & Valuation</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康与估值体系：高盈利质量、充沛自由现金流与日股治理改革红利</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">高ROE · 积极股东回报</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase">Gross Margin</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~47.0%</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            涂布显影机的绝对定价权结合先进制程刻蚀升级，毛利率表现极为稳健。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Operating Margin</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~25% – 28%</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            在保持每年百亿日元级高研发投入的同时，依然交出优异的营业利润率。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Free Cash Flow</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">强劲稳健</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            半导体设备超级周期带来充沛的自由现金流，资产负债表极其健康。
+                        </p>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase">Shareholder Return</div>
+                        <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">高分红与回购</div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                            响应东京证交所治理改革，大幅提升分红派息率与股份回购力度，显著提升股东权益回报（ROE）。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">TEL 近年营业收入与净利润演进趋势</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">伴随全球 AI 芯片与逻辑先进制程资本开支放量稳步增长</p>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 bg-telblue-500/10 px-2.5 py-1 rounded">周期成长兼备</span>
+                    </div>
+                    <div class="relative h-72 w-full">
+                        <canvas id="finTrendChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================05. 投资决策与风险配置================ -->
+            <section id="sec-inv" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 05 · Investment Decision & Risk Framework</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景推演、风险评估与资产定位</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">配置策略：全球半导体设备核心底仓</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-telblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-telblue-500/15 text-sky-600 dark:text-sky-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                                <span class="font-mono text-xs font-bold text-sky-600">概率：30%</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm mt-2">AI 浪潮引爆 2nm GAA 与 High-NA EUV 普及</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>各大代工厂 2nm 及以下先进制程扩产超预期，High-NA EUV 配套涂布显影需求爆发，刻蚀机市占率进一步上升。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-sky-600">
+                            潜在上行空间：+35% 至 +50%
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">基准情景 (Base Case)</span>
+                                <span class="font-mono text-xs font-bold text-teal-600">概率：50%</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm mt-2">半导体资本开支温和回升，稳健增长</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>全球晶圆厂资本开支（WFE）保持稳健中速增长，涂布显影机垄断地位稳固，毛利率维持 47% 左右。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-teal-600">
+                            潜在收益率：+15% 至 +25%
+                        </div>
+                    </div>
+
+                    <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                                <span class="font-mono text-xs font-bold text-rose-600">概率：20%</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm mt-2">宏观周期下行与半导体库存调整</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                                <strong>核心假设：</strong>下游消费电子与部分工业需求疲软导致晶圆厂推迟扩产计划，出口管制政策边际收紧影响部分海外区域出货。
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600">
+                            潜在下行回撤：-15% 至 -25%
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 四大核心风险 -->
+                <div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与关注要点</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 text-xs font-bold">01 · 半导体周期性波动风险</span>
+                                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">全球晶圆厂资本开支（CapEx）循环</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                半导体设备行业受宏观经济与下游需求周期影响明显，存储及逻辑扩产节奏变化将直接传导至设备订单。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 text-xs font-bold">02 · 地缘政治与出口管制风险</span>
+                                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中高</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">跨国出口合规政策的动态调整</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                作为日本本土的半导体设备龙头，受日本及盟国对先进制程设备出口管制政策的合规约束较大。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 text-xs font-bold">03 · 客户集中度较高</span>
+                                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">头部代工与存储巨头的采购变动</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                全球前几大晶圆制造厂商贡献了 TEL 绝大部分营收，个别大客户的建厂与扩产节奏调整会对季度业绩产生扰动。
+                            </p>
+                        </div>
+
+                        <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 text-xs font-bold">04 · 汇率波动风险</span>
+                                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">日元汇率剧烈波动对财报确认的影响</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                                由于公司大部分海外营收折算为日元财报，日元汇率的大幅波动会在财务报表层面产生汇兑损益。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================06. 季度跟踪 KPI 清单================ -->
+            <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-sky-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+                    </div>
+                    <div class="flex items-center space-x-2 no-print">
+                        <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-telblue-500/15 text-sky-600 dark:text-sky-400 text-xs font-bold">已核查 2 / 5 项 (40%)</span>
+                        <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                        点击勾选财报季报追踪已验证达标的指标（状态自动本地保存）：
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0047AB] focus:ring-telblue-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">1. 涂布显影机（CLEAN TRACK）出货与全球市占率维持 &gt;88%</span>
+                                    <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">核心垄断指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    验证全球逻辑和存储晶圆厂在新建 EUV 产线时对 TEL 涂布显影系统的持续垄断采购。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0047AB] focus:ring-telblue-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">2. 综合毛利率是否稳守 46%–48% 黄金区间</span>
+                                    <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">盈利防线</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    核查先进制程设备溢价及供应链成本变动对毛利率的综合影响。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-3" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0047AB] focus:ring-telblue-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">3. 现场服务与技术支持（FSI）收入稳健增长</span>
+                                    <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">高粘性现金流</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    监测设备装机基数扩大带来的备件、升级和维护服务收入占比。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0047AB] focus:ring-telblue-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">4. 2nm GAA 刻蚀机与 3D NAND 新设备订单落地进度</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">未来成长引擎</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    跟踪面向下一代逻辑与存储芯片的新款刻蚀和沉积设备在客户产线中的导入份额。
+                                </p>
+                            </div>
+                        </label>
+
+                        <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                            <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0047AB] focus:ring-telblue-500">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="font-bold text-sm text-slate-900 dark:text-white">5. 股东回报执行力度（分红派息率与回购额度）</span>
+                                    <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">治理改革指标</span>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    评估管理层在日股治理新政下提升股东权益回报（ROE）的实际落地情况。
+                                </p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 页脚免责声明 -->
+            <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+                    <span>东京电子 Tokyo Electron (TYO: 8035) 深度商业与投资价值分析报告</span>
+                    <span>数据基准：最新财报与全球半导体设备行业一致预期</span>
+                </div>
+                <p class="leading-relaxed">
+                    <strong>免责声明：</strong>本报告基于公开财务数据与半导体设备行业研究框架整理生成，旨在提供结构化的商业分析参考。不构成任何证券买卖建议或投资承诺。投资者在做出资产配置前，应结合自身风险承受能力独立决策。
+                </p>
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- 交互与 Chart.js 脚本 -->
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            updateChartsTheme();
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-drawer').classList.toggle('hidden');
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+            let currentId = 'sec-exec';
+            document.querySelectorAll('section[id]').forEach(sec => {
+                if (scrollTop >= sec.offsetTop - 160) currentId = sec.getAttribute('id');
+            });
+
+            document.querySelectorAll('#desktop-nav .nav-link').forEach(link => {
+                link.classList.remove('active');
+                const ns = link.querySelector('span span');
+                if (ns) { ns.classList.remove('text-sky-400'); ns.classList.add('text-slate-500'); }
+                if (link.dataset.target === currentId) {
+                    link.classList.add('active');
+                    if (ns) { ns.classList.remove('text-slate-500'); ns.classList.add('text-sky-400'); }
+                }
+            });
+        });
+
+        const KPI_KEY = 'tel_research_kpi_state_v1';
+        function loadKpiChecklist() {
+            try {
+                const s = localStorage.getItem(KPI_KEY);
+                if (s) {
+                    const map = JSON.parse(s);
+                    document.querySelectorAll('#kpi-checklist input').forEach(cb => {
+                        if (typeof map[cb.id] === 'boolean') cb.checked = map[cb.id];
+                    });
+                }
+            } catch (e) {}
+            updateKpiChecklist();
+        }
+
+        function updateKpiChecklist() {
+            const cbs = document.querySelectorAll('#kpi-checklist input');
+            let cnt = 0; const map = {};
+            cbs.forEach(cb => { map[cb.id] = cb.checked; if (cb.checked) cnt++; });
+            document.getElementById('kpi-progress-badge').textContent = `已核查 ${cnt} / ${cbs.length} 项 (${Math.round(cnt/cbs.length*100)}%)`;
+            try { localStorage.setItem(KPI_KEY, JSON.stringify(map)); } catch (e) {}
+        }
+
+        function resetKpiChecklist() {
+            document.querySelectorAll('#kpi-checklist input').forEach(cb => cb.checked = false);
+            updateKpiChecklist();
+        }
+
+        let bizChart = null, radarChart = null, finChart = null;
+
+        function getColors() {
+            const isDark = document.documentElement.classList.contains('dark');
+            return {
+                text: isDark ? '#CBD5E1' : '#475569',
+                grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+                radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+            };
+        }
+
+        function initBizChart() {
+            const ctx = document.getElementById('bizMatrixChart').getContext('2d');
+            const c = getColors();
+            if (bizChart) bizChart.destroy();
+            bizChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['涂布显影机 (Coater/Developer)', '等离子刻蚀 (Etch Systems)', '薄膜沉积与清洗 (Deposition/Clean)', '现场服务与其它 (FSI & Other)'],
+                    datasets: [{
+                        label: '业务板块相对营收贡献比 (%)',
+                        data: [45, 28, 14, 13],
+                        backgroundColor: ['#0047AB', '#38BDF8', '#06B6D4', '#6366F1'],
+                        borderRadius: 6,
+                        barThickness: 28
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (ctx) => `占总营收约 ${ctx.parsed.y}%` } }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: c.text, font: { size: 11, weight: '600' } } },
+                        y: { max: 55, grid: { color: c.grid }, ticks: { color: c.text, font: { size: 11 }, callback: v => v + '%' } }
+                    }
+                }
+            });
+        }
+
+        function initRadarChart() {
+            const ctx = document.getElementById('moatRadarChart').getContext('2d');
+            const c = getColors();
+            if (radarChart) radarChart.destroy();
+            radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['涂布显影全球垄断(>88%)', 'ASML EUV光刻机深度协同', '精密微环境与流体专利', '全球驻厂工程师服务网络', '刻蚀与沉积技术迭代能力'],
+                    datasets: [
+                        {
+                            label: 'Tokyo Electron (TEL)',
+                            data: [9.9, 9.7, 9.5, 9.3, 9.1],
+                            borderColor: '#0047AB',
+                            backgroundColor: 'rgba(0, 71, 171, 0.2)',
+                            pointBackgroundColor: '#0047AB',
+                            borderWidth: 2.5
+                        },
+                        {
+                            label: '国际半导体设备行业平均',
+                            data: [7.2, 7.5, 8.0, 7.8, 8.1],
+                            borderColor: '#94A3B8',
+                            backgroundColor: 'rgba(148, 163, 184, 0.1)',
+                            pointBackgroundColor: '#94A3B8',
+                            borderWidth: 1.5,
+                            borderDash: [4, 4]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: c.text, font: { size: 11 }, usePointStyle: true } }
+                    },
+                    scales: {
+                        r: {
+                            min: 0, max: 10,
+                            ticks: { display: false },
+                            grid: { color: c.grid },
+                            angleLines: { color: c.radarAngle },
+                            pointLabels: { color: c.text, font: { size: 10, weight: '600' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initFinChart() {
+            const ctx = document.getElementById('finTrendChart').getContext('2d');
+            const c = getColors();
+            if (finChart) finChart.destroy();
+            finChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E'],
+                    datasets: [
+                        {
+                            label: '营业收入 (万亿日元 ¥T)',
+                            data: [2.00, 2.21, 1.83, 2.25, 2.48],
+                            borderColor: '#0047AB',
+                            backgroundColor: '#0047AB',
+                            borderWidth: 3,
+                            tension: 0.2,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '毛利率 (%)',
+                            data: [45.2, 44.8, 46.1, 46.8, 47.2],
+                            borderColor: '#06B6D4',
+                            backgroundColor: '#06B6D4',
+                            borderWidth: 2,
+                            borderDash: [4, 4],
+                            tension: 0.2,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: c.text, font: { size: 11 }, usePointStyle: true } }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: c.text, font: { size: 11, weight: '600' } } },
+                        y: { type: 'linear', position: 'left', max: 3.5, grid: { color: c.grid }, ticks: { color: c.text, font: { size: 11 }, callback: v => '¥' + v + 'T' } },
+                        y1: { type: 'linear', position: 'right', min: 35, max: 60, grid: { drawOnChartArea: false }, ticks: { color: '#06B6D4', font: { size: 11 }, callback: v => v + '%' } }
+                    }
+                }
+            });
+        }
+
+        function updateChartsTheme() {
+            initBizChart();
+            initRadarChart();
+            initFinChart();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadKpiChecklist();
+            initBizChart();
+            initRadarChart();
+            initFinChart();
+        });
+    </script>
+</body>
+</html>

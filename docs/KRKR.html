@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>36氪 (NASDAQ: KRKR) 2026年中期深度财务与业务重估报告：AI营销驱动高毛利飙升、扭亏为盈与新经济商业媒体赋能平台</title>
+ <!-- Tailwind CSS -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ <!-- Chart.js -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+ tailwind.config = {
+ darkMode: 'class',
+ theme: {
+ extend: {
+ fontFamily: {
+ sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+ mono: ['JetBrains Mono', 'monospace'],
+ },
+ colors: {
+ navy: {
+ 950: '#070B14',
+ 900: '#0F172A',
+ 800: '#1E293B',
+ 700: '#334155',
+ },
+ krgold: {
+ 300: '#FCD34D',
+ 400: '#FBBF24',
+ 500: '#F59E0B',
+ 600: '#D97706',
+ 700: '#B45309',
+ },
+ emerald: {
+ 400: '#34D399',
+ 500: '#10B981',
+ 600: '#059669',
+ },
+ teal: {
+ 400: '#22D3EE',
+ 500: '#06B6D4',
+ 600: '#0891B2',
+ }
+ }
+ }
+ }
+ }
+ </script>
+
+ <style>
+ ::-webkit-scrollbar {
+ width: 6px;
+ height: 6px;
+ }
+ ::-webkit-scrollbar-track {
+ background: transparent;
+ }
+ ::-webkit-scrollbar-thumb {
+ background: #94A3B8;
+ border-radius: 3px;
+ }
+ .dark ::-webkit-scrollbar-thumb {
+ background: #475569;
+ }
+
+ @media print {
+ #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+ display: none !important;
+ }
+ main {
+ margin-left: 0 !important;
+ padding: 0 !important;
+ }
+ section {
+ break-inside: avoid;
+ }
+ }
+
+ .report-card {
+ transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+ }
+ .report-card:hover {
+ transform: translateY(-2px);
+ }
+
+ .nav-link.active {
+ background: linear-gradient(90deg, rgba(245, 158, 11, 0.24) 0%, rgba(16, 185, 129, 0.06) 100%);
+ border-left: 3px solid #F59E0B;
+ color: #FFFFFF;
+ font-weight: 600;
+ }
+ </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-krgold-500 selection:text-navy-950 transition-colors duration-200">
+
+ <!-- 顶部阅读进度条 -->
+ <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+ <div id="reading-progress" class="h-full bg-gradient-to-r from-krgold-600 via-krgold-400 to-emerald-500 w-0 transition-all duration-150"></div>
+ </div>
+
+ <!-- 移动端顶部导航栏 -->
+ <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+ <div class="flex items-center space-x-2.5">
+ <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-krgold-400 to-krgold-600 flex items-center justify-center font-extrabold text-navy-950 text-xs shadow">
+ 36Kr
+ </div>
+ <div>
+ <div class="text-[11px] text-krgold-400 font-semibold tracking-wider uppercase">NASDAQ: KRKR · New Economy</div>
+ <div class="text-sm font-bold leading-tight">36氪 2026中期深度研究报告</div>
+ </div>
+ </div>
+ <div class="flex items-center space-x-2">
+ <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+ <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ </button>
+ <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+ </button>
+ </div>
+ </header>
+
+ <!-- 移动端折叠抽屉菜单 -->
+ <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+ <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+ <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+ <div>
+ <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+ <span class="font-bold text-white text-base">KRKR 研报目录导航</span>
+ <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ </button>
+ </div>
+ <ul class="mt-4 space-y-1.5 text-sm">
+ <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+ <li><a href="#sec-h1" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 2026上半年业绩飙升与盈利突围</a></li>
+ <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 商业架构与三大主营业务拆解</a></li>
+ <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. AI营销驱动与新经济生态护城河</a></li>
+ <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与现金流复利推演</a></li>
+ <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与三情景估值配置</a></li>
+ <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+ </ul>
+ </div>
+ <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+ <p>新经济内容与 AI 营销研究组</p>
+ <p class="mt-1">数据基准：2026年11月 (H1 2026 / FY26E)</p>
+ </div>
+ </nav>
+ </div>
+
+ <!-- 桌面端左侧固定侧边导航栏 -->
+ <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+ <div>
+ <div class="p-5 border-b border-slate-800/80">
+ <div class="flex items-center space-x-3">
+ <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-krgold-400 via-krgold-500 to-krgold-600 flex items-center justify-center text-navy-950 font-extrabold text-base shadow-lg shadow-krgold-500/25">
+ 36Kr
+ </div>
+ <div>
+ <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-krgold-400 bg-krgold-500/15 px-2 py-0.5 rounded">NASDAQ: KRKR</span>
+ <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">36氪深度研报</h2>
+ </div>
+ </div>
+ <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+ 新经济创投与 AI 营销龙头 · 营收同比大增 33.7% · 毛利率飙升至 66.4% 并成功扭亏为盈
+ </p>
+ </div>
+
+ <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">参考股价 (52周区间)</span>
+ <span class="font-mono font-bold text-white">~$2.72 <span class="text-slate-400 text-[10px]">($2.5-$5.6)</span></span>
+ </div>
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">H1 2026 总营收</span>
+ <span class="font-mono font-bold text-emerald-400">RMB 1.246B <span class="text-slate-400">(+33.7%)</span></span>
+ </div>
+ <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+ <span class="text-slate-400">H1 净利润表现</span>
+ <span class="font-mono font-bold text-krgold-400">RMB 15.4M (扭亏为盈)</span>
+ </div>
+ </div>
+
+ <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+ <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+ <nav id="desktop-nav" class="space-y-1 text-[13px]">
+ <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-krgold-400 mr-2">00</span>执行摘要与核心指标</span>
+ </a>
+ <a href="#sec-h1" data-target="sec-h1" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>2026上半年业绩超预期与盈利突围</span>
+ </a>
+ <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>商业架构与三大主营业务拆解</span>
+ </a>
+ <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>AI营销驱动与新经济生态护城河</span>
+ </a>
+ <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与现金流复利推演</span>
+ </a>
+ <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与三情景估值配置</span>
+ </a>
+ <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+ </a>
+ </nav>
+ </div>
+ </div>
+
+ <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+ <div class="flex items-center justify-between">
+ <span class="text-xs text-slate-400">阅读模式切换</span>
+ <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition cursor-pointer">
+ <svg class="w-3.5 h-3.5 text-krgold-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ <svg class="w-3.5 h-3.5 text-krgold-500 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <span class="dark:hidden">深色护眼模式</span>
+ <span class="hidden dark:inline">机构亮色模式</span>
+ </button>
+ </div>
+ <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-gradient-to-r from-krgold-500 to-krgold-600 hover:from-krgold-600 hover:to-krgold-700 text-navy-950 text-xs font-extrabold transition shadow-sm cursor-pointer">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+ <span>打印 / 导出 PDF 研报</span>
+ </button>
+ </div>
+ </aside>
+
+ <!-- 主内容区 -->
+ <main class="lg:ml-[280px] min-h-screen">
+ <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+ <!-- =========================================================
+ 00. Hero 研报封面区与执行摘要
+ ========================================================= -->
+ <section id="sec-exec" class="scroll-mt-20">
+ <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+ <div class="flex flex-wrap items-center gap-2">
+ <span class="px-2.5 py-1 rounded-md bg-krgold-500/15 text-krgold-700 dark:text-krgold-400 font-bold border border-krgold-500/30">评级：买入 / 新经济AI营销重估标的</span>
+ <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：H1 2026 财报超预期与 AI 商业化兑现期</span>
+ </div>
+ <div class="flex items-center space-x-3 font-mono">
+ <span>覆盖时间：2026年11月</span>
+ <span>NASDAQ: KRKR</span>
+ </div>
+ </div>
+
+ <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+ <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#F59E0B 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+ <div class="relative z-10">
+ <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-krgold-500/20 border border-krgold-400/40 text-krgold-300 text-xs font-semibold mb-4">
+ <span class="w-2 h-2 rounded-full bg-krgold-400 animate-pulse"></span>
+ <span>CORE THESIS · 总营收大增 33.7% × 毛利率飙升至 66.4% × 净利润达 1,540 万人民币实现扭亏为盈</span>
+ </div>
+ <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+ 36氪 (NASDAQ: KRKR) 2026年中期深度研究报告：AI营销与新经济广告驱动下实现营收大增 33.7% 与毛利率飙升至 66.4% 的盈利突围
+ </h1>
+ <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+ 36氪交出了一份惊艳市场的 2026 年上半年财报：受益于 <strong class="text-krgold-300">AI 营销工具的深度赋能与品牌广告客户复苏</strong>，公司 H1 总营收跃升至 <strong class="text-white">人民币 1.246 亿元（同比增长 +33.7%）</strong>，毛利率由去年同期的 54.4% 跨越式飙升至 <strong class="text-emerald-400">66.4%</strong>。运营效率的爆发带动净利润实现 <strong class="text-krgold-300">人民币 1,540 万元（约合 230 万美元）</strong>，成功扭转去年同期的亏损阴霾。作为中国新经济创投与数字商业的第一平台，36氪正通过 AI 驱动的广告产品创新与多元企业增值服务，展现出强劲的经营杠杆与估值重估潜力。
+ </p>
+
+ <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">营收强势高增</div>
+ <div class="text-white font-semibold">H1 2026 总营收达 RMB 1.246B（约 $18.4M），同比增长高达 +33.7%</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">毛利率跨越式跃升</div>
+ <div class="text-krgold-400 font-semibold">毛利率由 54.4% 显著扩大至 66.4%，展现极佳的 AI 营销服务运营杠杆</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">净利润扭亏为盈</div>
+ <div class="text-emerald-400 font-semibold">上半年净利润达 RMB 15.4M（约 $2.3M），扭转去年同期净亏损格局</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- 四大核心 KPI 卡片 -->
+ <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>参考股价与市值</span>
+ <span class="p-1.5 rounded-lg bg-krgold-500/15 text-krgold-600 dark:text-krgold-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~$5.1M</span>
+ <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">~$2.72</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 随着业绩实质性扭亏及 AI 营销收入放量，微盘股估值展现极高的弹性重估空间。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>H1 2026 总营业收入</span>
+ <span class="p-1.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">RMB 124.6M</span>
+ <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">+33.7% YoY</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 上半年总营收达 1.246 亿人民币（约 1,840 万美元），在线广告与企业增值服务双双劲增。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>毛利率与毛利润总额</span>
+ <span class="p-1.5 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">66.4%</span>
+ <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/15 px-2 py-0.5 rounded">RMB 82.7M 毛利</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 毛利率自去年同期的 54.4% 陡峭扩张至 66.4%，AI 营销解决方案的边际成本优势开始显现。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>归母净利润 (H1 2026)</span>
+ <span class="p-1.5 rounded-lg bg-krgold-500/15 text-krgold-600 dark:text-krgold-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">+15.4M</span>
+ <span class="text-xs font-bold text-krgold-700 dark:text-krgold-400 bg-krgold-500/15 px-2 py-0.5 rounded">扭亏为盈</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 上半年实现净利润 1,540 万人民币，彻底告别去年同期净亏损 480 万人民币的弱势，盈利质量大增。
+ </p>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 一、 2026上半年业绩超预期与盈利突围
+ ========================================================= -->
+ <section id="sec-h1" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-krgold-600 dark:text-krgold-400">Section 01 · H1 2026 Financial Results & Turnaround</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 2026上半年业绩超预期与盈利突围：总营收大增 33.7% 跨越式扭亏</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">毛利总额达 RMB 82.7M（同比大增 +63.1%）</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+ <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base" id="h1-chart-title">H1 2025 vs H1 2026 核心财务指标对比（营收、毛利、净利）</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="h1-chart-sub">总营收从 9,320 万人民币跳升至 1.246 亿人民币，净利润实现由亏转盈</p>
+ </div>
+ <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+ <button onclick="switchH1Chart('comparison')" id="btn-h1-comp" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-krgold-600 dark:text-krgold-400 shadow-sm transition cursor-pointer">核心财务对比</button>
+ <button onclick="switchH1Chart('margin')" id="btn-h1-margin" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer">毛利率与净利率演进</button>
+ </div>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="h1FinancialChart"></canvas>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">H1 2026 业绩实现爆发的三大驱动力</h3>
+ <ul class="space-y-4 text-sm">
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-krgold-500/15 text-krgold-600 dark:text-krgold-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">AI 营销工具重塑广告效率，在线广告强劲反弹</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 随着品牌客户在新经济与科技赛道的投放回暖，36氪推出基于 AI 营销算法的精准投放系统，大幅提升了广告主的转化率与客单价。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">高毛利业务结构优化，毛利率飙升至 66.4%</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 相比去年同期的 54.4%，H1 毛利率大幅跨越 12 个百分点至 66.4%，毛利总额高达 8,270 万人民币，展现出轻资产数字媒体的绝佳杠杆。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">严格的费用管控兑现盈利，实现成功扭亏</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 在总营收大增 33.7% 的同时，销售与营销费用保持平稳，促使营业利润由负转正，净利润录得 1,540 万人民币。
+ </p>
+ </div>
+ </li>
+ </ul>
+ </div>
+ <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+ <span class="text-slate-500 dark:text-slate-400">盈利质量评估</span>
+ <span class="font-bold text-krgold-600 dark:text-krgold-400">高质量主营增长驱动的实质性盈利</span>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 二、 商业架构与三大主营业务拆解
+ ========================================================= -->
+ <section id="sec-biz" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-krgold-600 dark:text-krgold-400">Section 02 · Business Architecture & Segment Breakdown</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 商业架构与三大主营业务拆解：在线广告、企业增值与订阅服务齐头并进</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">构建“内容+流量+企业服务”三位一体新经济商业生态</span>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+ <!-- 业务板块 1：在线广告 -->
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-krgold-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-krgold-500/15 text-krgold-700 dark:text-krgold-400 text-xs font-bold">核心营收支柱 · 占比超 50%</span>
+ <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">AI精准营销驱动</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 在线广告服务（Online Advertising Services）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 作为 36氪最核心的营收引擎，在线广告服务受益于 2026 年宏观与新经济品牌预算复苏。通过深度融合 AI 营销算法，36氪为科技、新能源车、消费电子及大厂客户提供定制化、高转化的原生广告与品牌营销方案，实现营收与客单价双升。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>高毛利流量变现</span>
+ <span class="text-krgold-600 dark:text-krgold-400 font-semibold">AI营销赋能转化率</span>
+ </div>
+ </div>
+
+ <!-- 业务板块 2：企业增值服务 -->
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 text-xs font-bold">高成长引擎 · 整合营销与活动</span>
+ <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">创投生态赋能</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. 企业增值服务（Enterprise Value-Added Services）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 涵盖线下峰会、WISE 大会、行业榜单发布、企业咨询及定制化内容营销。36氪凭借在中国新经济创投圈数十年的深厚影响力，为初创企业、独角兽及地方产业园区提供全方位的品牌塑造与招商引资赋能，成为上半年高增长的重要驱动力。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>线下IP与产业咨询</span>
+ <span class="text-emerald-600 dark:text-emerald-400 font-semibold">品牌塑造与园区招商</span>
+ </div>
+ </div>
+
+ <!-- 业务板块 3：订阅服务 -->
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-teal-500/15 text-teal-700 dark:text-teal-400 text-xs font-bold">高黏性基石 · 专业内容与数据</span>
+ <span class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">ARR 稳定蓄水池</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">3. 订阅服务（Subscription Services）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 为投资机构、企业高管及专业研究员提供深度行业数据库、商业内参、付费专栏及数字化研究报告。订阅服务保持了稳定的客户续费率与高质量现金流，为平台构筑了穿越周期的专业付费壁垒。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>专业数据库与内参</span>
+ <span class="text-teal-600 dark:text-teal-400 font-semibold">高黏性付费用户群</span>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 三、 AI营销驱动与新经济生态护城河
+ ========================================================= -->
+ <section id="sec-moat" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 03 · AI Marketing Driver & Economic Moat</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 AI营销驱动与新经济生态护城河：算法重构毛利、全网亿级流量与创投心智壁垒</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">核心优势：中国新经济第一内容IP与 AI 商业化先锋</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-krgold-500/15 text-krgold-600 dark:text-krgold-400 flex items-center justify-center font-bold text-sm">01</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">AI 营销工具赋能广告转化率倍增</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 36氪全面引入生成式 AI 与精准投放算法，智能生成创意内容、精准匹配受众标签，大幅缩短广告交付周期并降低运营成本，直接将整体毛利率推高至 66.4% 的历史高位。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">02</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">无可替代的新经济创投心智 IP</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 经过十余年深耕，36氪已成为中国创业者、投资人及科技巨头高管获取商业洞察与品牌发声的首选阵地，构筑起极深的内容品牌护城河与公信力。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">全网矩阵亿级年轻高净值流量分发</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 矩阵账号覆盖微信、微博、抖音、B站等全网主流平台，精准触达数千万对科技、商业、职场及消费升级高度敏感的高净值年轻人群，广告主预算复投率极高。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">轻资产高运营杠杆的财务模型</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 随着 AI 工具替代部分标准内容与广告生产环节，36氪展现出显著的经营杠杆效应——营收增长 33.7% 时，毛利总额大增 63.1%，净利润实现爆发式扭亏。
+ </p>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">36氪商业竞争力与护城河五维雷达图</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">36氪 (KRKR) vs 传统财经媒体 vs 新媒体营销矩阵（满分 10 分）</p>
+ <div class="relative h-72 w-full">
+ <canvas id="moatRadarChart"></canvas>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 四、 财务健康与现金流复利推演
+ ========================================================= -->
+ <section id="sec-fin" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 04 · Financial Health & Cash Flow Simulation</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与现金流复利推演：毛利跳升至 66.4% 与轻资产盈利模型</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">无长期重负债 · 现金流稳健回正</span>
+ </div>
+
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-krgold-600 dark:text-krgold-400 uppercase">Gross Profit Margin</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">66.4%</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 较去年同期的 54.4% 显著扩大 12pp，AI 营销工具大幅优化了成本结构，毛利总额达 8,270 万人民币。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">H1 Net Income Turnaround</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">+RMB 15.4M</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 成功扭转去年同期净亏损 480 万人民币的局面，归母净利润达到 1,497 万人民币（约 221 万美元）。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Operating Leverage</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">极高弹性</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 营业利润由去年同期的亏损 516 万人民币跃升至盈利 2,308 万人民币，边际经营杠杆极为明显。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase">Balance Sheet Health</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">净现金结构</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 轻资产轻债务运营，现金及现金等价物充裕，无长期沉重债务负担，抗风险能力扎实。
+ </p>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base">H1 2025 vs H1 2026 核心盈利指标演进（营业利润与净利润扭亏对比）</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">直观展现 36氪在 AI 营销与降本增效驱动下实现的跨越式经营成果</p>
+ </div>
+ <span class="text-xs font-mono font-bold text-krgold-700 dark:text-krgold-400 bg-krgold-500/15 px-2.5 py-1 rounded">营业利润达 RMB 23.1M</span>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="valEvolutionChart"></canvas>
+ </div>
+ </div>
+
+ <!-- 互动模拟器：36氪营收与估值情景推演器 -->
+ <div class="bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 rounded-2xl p-6 sm:p-8 text-white border border-slate-700 shadow-xl space-y-6 no-print">
+ <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-700/80">
+ <div>
+ <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-krgold-400 font-bold">
+ <span>VALUATION SIMULATOR · 营收增长与估值敏感性模拟器</span>
+ </div>
+ <h3 class="text-lg sm:text-xl font-bold text-white mt-1">36氪全年生长动能与市值估值推演模拟器</h3>
+ <p class="text-xs text-slate-400 mt-0.5">基准参数：H1 营收 RMB 124.6M | 假设全年营收达 ~RMB 2.6B | 净利润率 ~10% | 支持调整全年增速与市盈率测算潜在市值</p>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+ <div class="lg:col-span-5 space-y-4 text-xs">
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">全年营收同比增长预期 (YoY)</span>
+ <span id="sim-kr-growth-label" class="font-mono font-bold text-krgold-400 text-sm">30.0%</span>
+ </div>
+ <input id="sim-kr-growth" type="range" min="15" max="50" step="1" value="30" oninput="updateKrSimulator()" class="w-full accent-[#F59E0B] cursor-pointer">
+ </div>
+
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">目标净利润率 (Net Margin)</span>
+ <span id="sim-kr-margin-label" class="font-mono font-bold text-white text-sm">10.0%</span>
+ </div>
+ <input id="sim-kr-margin" type="range" min="5" max="20" step="1" value="10" oninput="updateKrSimulator()" class="w-full accent-[#F59E0B] cursor-pointer">
+ </div>
+
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">目标市盈率估值倍数 (P/E)</span>
+ <span id="sim-kr-pe-label" class="font-mono font-bold text-emerald-400 text-sm">15x</span>
+ </div>
+ <input id="sim-kr-pe" type="range" min="8" max="30" step="1" value="15" oninput="updateKrSimulator()" class="w-full accent-[#10B981] cursor-pointer">
+ </div>
+ </div>
+
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">全年预计总营收 (RMB)</div>
+ <div id="sim-end-rev" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1.5">RMB 242.0M</div>
+ <div class="text-xs text-slate-400 mt-1.5">基于设定增速推算的全年收入</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">全年预计净利润 (RMB)</div>
+ <div id="sim-end-net" class="text-2xl sm:text-3xl font-mono font-extrabold text-krgold-400 mt-1.5">RMB 24.2M</div>
+ <div class="text-xs text-slate-400 mt-1.5">按目标净利润率折算</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">理论目标市值 ($ USD)</div>
+ <div id="sim-target-cap" class="text-2xl sm:text-3xl font-mono font-extrabold text-emerald-400 mt-1.5">$50.4M</div>
+ <div class="text-xs text-slate-400 mt-1.5">对应设定 P/E 倍数的理论市值</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">当前市值重估上升空间</div>
+ <div id="sim-upside" class="text-2xl sm:text-3xl font-mono font-extrabold text-teal-400 mt-1.5">+889%</div>
+ <div id="sim-upside-sub" class="text-xs text-slate-400 mt-1.5">微盘股估值弹性爆发空间</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">AI 营销红利 + 扭亏为盈</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>AI 营销驱动毛利率暴增至 66.4%：</strong>技术创新有效降低获客与内容生产成本，毛利总额大增 63.1%，展现极佳盈利弹性。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>实质性扭亏为盈：</strong>H1 净利润达 1,540 万人民币，彻底摆脱亏损，证明商业模式具备可持续的造血能力。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>微盘股估值极具弹性：</strong>当前市值处于历史低位，随着业绩连续超预期，极易迎来强劲的估值修复行情。</span></li>
+ </ul>
+ </div>
+
+ <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">宏观波动 + 流动性制约</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>宏观广告预算波动风险：</strong>若下游新经济客户（如初创企业、科技大厂）营销预算收紧，可能对在线广告增速带来扰动。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>美股微盘股流动性限制：</strong>日成交量相对较低，机构大资金建仓或退出时可能面临一定的价格冲击。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>行业竞争白热化：</strong>垂直新经济赛道面临各大社交媒体与 AI 原生自媒体的持续分流挑战。</span></li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 五、 投资决策与风险配置框架
+ ========================================================= -->
+ <section id="sec-inv" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-krgold-600 dark:text-krgold-400">Section 05 · Investment Decision & Risk Allocation</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景目标价推演与微盘股配置策略</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：微盘股高弹性左侧布局 · 严格控制仓位比例</span>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+ <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">概率：25%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">Target: $4.50–$6.00</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>AI 营销解决方案全面爆发，下半年营收增速超 40%，全年净利润突破 3,000 万人民币，市场情绪回暖给予 20x P/E 估值溢价。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+ 潜在回报率：+65% 至 +120%
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-krgold-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-krgold-500/15 text-krgold-700 dark:text-krgold-400 text-xs font-bold">基准情景 (Base Case)</span>
+ <span class="font-mono text-xs font-bold text-krgold-600 dark:text-krgold-400">概率：55%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">Target: $3.20–$4.00</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>全年营收稳健增长 30%，毛利率维持在 65% 左右，全年顺利实现双位数净利润，估值向 12x–15x P/E 修复。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-krgold-600 dark:text-krgold-400">
+ 潜在回报率：+18% 至 +45%
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+ <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">Target: $2.00–$2.40</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>宏观广告需求复苏不及预期，下半年增速回落至低个位数，净利润微幅收窄，估值面临阶段性压缩。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+ 潜在回撤风险：-12% 至 -26%（轻资产净现金构筑底部）
+ </div>
+ </div>
+ </div>
+
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心潜在风险评估与跟踪边界</h3>
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 宏观广告主预算复苏的可持续性</span>
+ <span class="text-xs font-mono text-rose-500 font-semibold">关注度：高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">新经济客户投放意愿受宏观与一级市场投融资景气度影响</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 36氪的广告主高度集中于科技、新能源及互联网新经济企业，若一级市场创投热度波动，可能对大单广告投放产生连锁反应。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 美股微盘股流动性与合规监管要求</span>
+ <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">纳斯达克上市合规与微盘股日成交量较低的波动风险</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 作为市值较小的中概股，KRKR 需持续满足纳斯达克各项合规指标，且日常交易流动性相对薄弱，投资者需注意仓位管理。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">03 · AI 营销工具的迭代与竞争加剧</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">AI 广告技术壁垒与各大数字营销平台的竞争</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 营销领域的 AI 算法更新迭代极快，36氪需确保其 AI 营销工具持续领先，以维持 66.4% 的高毛利优势。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">04 · 媒体内容矩阵的流量分流与版权监管</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">短视频与新兴自媒体对专业财经媒体注意力的分流</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 随着短视频及 AI 摘要工具普及，深度财经与创投内容的阅读场景正在演变，要求公司加快全网多模态视频与社群转化布局。
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+ <h3 class="text-base font-bold text-krgold-400 mb-4 flex items-center space-x-2">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ <span>机构级组合配置纪律与 36氪策略定位</span>
+ </h3>
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-white mb-1">1. 微盘股高弹性“卫星仓位”配置</div>
+ <p class="text-slate-300 leading-relaxed">
+ 将 36氪作为美股微盘股中兼具 AI 概念、扭亏为盈与高毛利特征的高弹性卫星配置标的，严格控制整体投资组合权重。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-krgold-400 mb-1">2. 业绩兑现期的右侧跟踪</div>
+ <p class="text-slate-300 leading-relaxed">
+ 鉴于 H1 已成功实现 1,540 万人民币净利与 66.4% 毛利率，重点追踪下半年财报是否能延续高增长态势以验证长期盈利趋势。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-emerald-400 mb-1">3. AI 商业化落地核心KPI锚定</div>
+ <p class="text-slate-300 leading-relaxed">
+ 密切关注 AI 营销工具在在线广告业务中的渗透率及客单价提升幅度，确保技术红利持续转化为真金白银的净利润。
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 六、 季度基本面跟踪 KPI 交互式核查清单
+ ========================================================= -->
+ <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+ </div>
+ <div class="flex items-center space-x-2 no-print">
+ <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-krgold-500/15 text-krgold-700 dark:text-krgold-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+ <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition cursor-pointer">重置清单</button>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+ 点击勾选季度财报中已验证达标的经营与财务指标（勾选状态自动本地保存），持续检验 36氪的业绩复苏与盈利质量：
+ </p>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D97706] focus:ring-krgold-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">1. 总营收保持双位数以上同比增长（H1 达 +33.7%）</span>
+ <span class="text-[11px] font-mono text-krgold-600 dark:text-krgold-400 font-semibold shrink-0">营收增长底线</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 监控每个季度总营收是否能延续双位数复苏势头（H1 达 1.246 亿人民币）。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D97706] focus:ring-krgold-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">2. 毛利率稳守 60%–65%+ 高位（H1 飙升至 66.4%）</span>
+ <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">AI营销红利验证</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 确认 AI 营销工具在广告交付中的效率优势是否持续兑现，维持高毛利结构。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D97706] focus:ring-krgold-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">3. 净利润保持正向盈利状态（H1 实现 1,540 万人民币扭亏）</span>
+ <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">盈利可持续性</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 检验公司在费用管控与营收扩张下的综合盈利能力，确保扭亏为盈态势稳固。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D97706] focus:ring-krgold-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">4. 在线广告服务板块的季度环比与同比复苏势头</span>
+ <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">核心引擎动能</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 追踪科技与新经济品牌在 36氪平台的广告预算投放规模及大客户续签率。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D97706] focus:ring-krgold-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">5. 企业增值服务与线下峰会（如 WISE 大会）IP 变现进展</span>
+ <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">多元变现支柱</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 观察线下大型商业活动与产业招商咨询服务的订单饱满度与毛利贡献。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#D97706] focus:ring-krgold-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">6. 订阅服务 ARR 客户续费率与专业数据库付费黏性</span>
+ <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">高黏性蓄水池</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 监控机构与专业投资人对 36氪商业内参与创投数据库的订阅续费表现。
+ </p>
+ </div>
+ </label>
+ </div>
+ </div>
+ </section>
+
+ <!-- 页脚免责声明 -->
+ <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+ <span>36Kr Holdings Inc. (NASDAQ: KRKR) 2026年中期深度商业与投资价值分析报告 · 机构研究框架版</span>
+ <span>数据基准：H1 2026 财报及 2026 年 11 月市场一致预期</span>
+ </div>
+ <p class="leading-relaxed">
+ <strong>免责声明：</strong>本深度研究报告基于 36氪公开财务报告（6-K/20-F）、H1 业绩公告及新经济媒体行业调研资料整理生成，旨在提供结构化的产业分析与微盘股估值框架。报告中涉及的营收预测、净利润率模拟、三情景目标价及估值推演均基于特定假设条件，不构成任何证券买卖建议、投资决策或收益承诺。微盘股流动性与市场波动较大，请在独立核实后审慎决策。
+ </p>
+ </footer>
+
+ </div>
+ </main>
+
+ <!-- 交互逻辑与 Chart.js 脚本 -->
+ <script>
+ function toggleTheme() {
+ const html = document.documentElement;
+ html.classList.toggle('dark');
+ updateChartsTheme();
+ }
+
+ function toggleMobileMenu() {
+ const drawer = document.getElementById('mobile-drawer');
+ drawer.classList.toggle('hidden');
+ }
+
+ const sections = document.querySelectorAll('section[id]');
+ const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+ window.addEventListener('scroll', () => {
+ const scrollTop = window.scrollY;
+ const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+ const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+ document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+ let currentId = 'sec-exec';
+ sections.forEach(sec => {
+ const top = sec.offsetTop - 160;
+ if (scrollTop >= top) {
+ currentId = sec.getAttribute('id');
+ }
+ });
+
+ navLinks.forEach(link => {
+ link.classList.remove('active');
+ const numSpan = link.querySelector('span span');
+ if (numSpan) {
+ numSpan.classList.remove('text-krgold-400');
+ numSpan.classList.add('text-slate-500');
+ }
+ if (link.dataset.target === currentId) {
+ link.classList.add('active');
+ if (numSpan) {
+ numSpan.classList.remove('text-slate-500');
+ numSpan.classList.add('text-krgold-400');
+ }
+ }
+ });
+ });
+
+ function updateKrSimulator() {
+ const growth = parseFloat(document.getElementById('sim-kr-growth').value) / 100;
+ const margin = parseFloat(document.getElementById('sim-kr-margin').value) / 100;
+ const pe = parseFloat(document.getElementById('sim-kr-pe').value);
+
+ document.getElementById('sim-kr-growth-label').textContent = (growth * 100).toFixed(0) + '%';
+ document.getElementById('sim-kr-margin-label').textContent = (margin * 100).toFixed(0) + '%';
+ document.getElementById('sim-kr-pe-label').textContent = pe + 'x';
+
+ const h1Rev = 124.6; // RMB 124.6M in H1 2026
+ const estFullYearRev = h1Rev * (1 + growth * 0.5); // 简单年度化与增长加权
+ const estNetIncome = estFullYearRev * margin;
+ const estMarketCapUsd = (estNetIncome * pe) / 7.1; // 假设汇率 7.1
+ const currentMarketCapUsd = 5.1; // 当前大约 510 万美元市值
+ const upside = ((estMarketCapUsd - currentMarketCapUsd) / currentMarketCapUsd) * 100;
+
+ document.getElementById('sim-end-rev').textContent = 'RMB ' + estFullYearRev.toFixed(1) + 'M';
+ document.getElementById('sim-end-net').textContent = 'RMB ' + estNetIncome.toFixed(1) + 'M';
+ document.getElementById('sim-target-cap').textContent = '$' + estMarketCapUsd.toFixed(1) + 'M';
+ document.getElementById('sim-upside').textContent = (upside >= 0 ? '+' : '') + upside.toFixed(0) + '%';
+ document.getElementById('sim-upside-sub').textContent = `对应理论市值 $${estMarketCapUsd.toFixed(1)}M 的爆发弹性空间`;
+ }
+
+ const KPI_STORAGE_KEY = 'krkr_research_kpi_state_v1';
+
+ function loadKpiChecklist() {
+ try {
+ const saved = localStorage.getItem(KPI_STORAGE_KEY);
+ if (saved) {
+ const stateMap = JSON.parse(saved);
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ if (typeof stateMap[cb.id] === 'boolean') {
+ cb.checked = stateMap[cb.id];
+ }
+ });
+ }
+ } catch (e) {}
+ updateKpiChecklist();
+ }
+
+ function updateKpiChecklist() {
+ const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+ const total = checkboxes.length;
+ let checkedCount = 0;
+ const stateMap = {};
+
+ checkboxes.forEach(cb => {
+ stateMap[cb.id] = cb.checked;
+ if (cb.checked) checkedCount++;
+ });
+
+ const pct = Math.round((checkedCount / total) * 100);
+ document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+ try {
+ localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+ } catch (e) {}
+ }
+
+ function resetKpiChecklist() {
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ cb.checked = false;
+ });
+ updateKpiChecklist();
+ }
+
+ let h1ChartInstance = null;
+ let radarChartInstance = null;
+ let valEvolutionChartInstance = null;
+ let currentH1Mode = 'comparison';
+
+ function getChartColors() {
+ const isDark = document.documentElement.classList.contains('dark');
+ return {
+ text: isDark ? '#CBD5E1' : '#475569',
+ grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+ radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+ };
+ }
+
+ function initH1Chart() {
+ const ctx = document.getElementById('h1FinancialChart').getContext('2d');
+ const colors = getChartColors();
+
+ const compConfig = {
+ type: 'bar',
+ data: {
+ labels: ['H1 2025', 'H1 2026 (最新财报)'],
+ datasets: [
+ {
+ label: '总营收 (RMB 百万元)',
+ data: [93.2, 124.6],
+ backgroundColor: '#F59E0B',
+ borderRadius: 6,
+ barThickness: 36
+ },
+ {
+ label: '毛利总额 (RMB 百万元)',
+ data: [50.7, 82.7],
+ backgroundColor: '#10B981',
+ borderRadius: 6,
+ barThickness: 36
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: RMB ${ctx.parsed.y}M`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 12, weight: '600' } }
+ },
+ y: {
+ min: 0,
+ max: 150,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => 'RMB ' + v + 'M' }
+ }
+ }
+ }
+ };
+
+ const marginConfig = {
+ type: 'bar',
+ data: {
+ labels: ['H1 2025', 'H1 2026 (最新财报)'],
+ datasets: [
+ {
+ label: '毛利率 (%)',
+ data: [54.4, 66.4],
+ backgroundColor: '#06B6D4',
+ borderRadius: 6,
+ barThickness: 45
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: { display: false },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `毛利率: ${ctx.parsed.y}%`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 12, weight: '600' } }
+ },
+ y: {
+ min: 0,
+ max: 80,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+ }
+ }
+ }
+ };
+
+ if (h1ChartInstance) h1ChartInstance.destroy();
+ h1ChartInstance = new Chart(ctx, currentH1Mode === 'comparison' ? compConfig : marginConfig);
+ }
+
+ function switchH1Chart(mode) {
+ currentH1Mode = mode;
+ const btnComp = document.getElementById('btn-h1-comp');
+ const btnMargin = document.getElementById('btn-h1-margin');
+ const titleEl = document.getElementById('h1-chart-title');
+ const subEl = document.getElementById('h1-chart-sub');
+
+ if (mode === 'comparison') {
+ btnComp.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-krgold-600 dark:text-krgold-400 shadow-sm transition cursor-pointer';
+ btnMargin.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+ titleEl.textContent = 'H1 2025 vs H1 2026 核心财务指标对比（营收、毛利）';
+ subEl.textContent = '总营收从 9,320 万人民币跳升至 1.246 亿人民币，毛利大增 63.1%';
+ } else {
+ btnMargin.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-krgold-600 dark:text-krgold-400 shadow-sm transition cursor-pointer';
+ btnComp.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+ titleEl.textContent = 'H1 2025 vs H1 2026 毛利率跨越式飙升对比';
+ subEl.textContent = 'AI 营销服务驱动毛利率从 54.4% 跨越式跃升至 66.4%';
+ }
+ initH1Chart();
+ }
+
+ function initRadarChart() {
+ const ctx = document.getElementById('moatRadarChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (radarChartInstance) radarChartInstance.destroy();
+ radarChartInstance = new Chart(ctx, {
+ type: 'radar',
+ data: {
+ labels: [
+ '新经济创投心智与 IP 公信力',
+ 'AI 营销算法与广告转化率',
+ '全网年轻高净值流量矩阵',
+ '轻资产高毛利运营杠杆',
+ '企业增值服务变现矩阵'
+ ],
+ datasets: [
+ {
+ label: '36氪 (KRKR)',
+ data: [9.6, 9.0, 9.2, 9.4, 8.8],
+ borderColor: '#F59E0B',
+ backgroundColor: 'rgba(245, 158, 11, 0.24)',
+ pointBackgroundColor: '#F59E0B',
+ borderWidth: 2.5
+ },
+ {
+ label: '传统财经媒体',
+ data: [7.5, 5.0, 6.0, 6.5, 7.0],
+ borderColor: '#10B981',
+ backgroundColor: 'rgba(16, 185, 129, 0.14)',
+ pointBackgroundColor: '#10B981',
+ borderWidth: 2.0
+ },
+ {
+ label: '新媒体广告矩阵',
+ data: [6.0, 8.5, 9.0, 7.0, 6.0],
+ borderColor: '#06B6D4',
+ backgroundColor: 'rgba(6, 182, 212, 0.12)',
+ pointBackgroundColor: '#06B6D4',
+ borderWidth: 1.8,
+ borderDash: [4, 4]
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+ }
+ },
+ scales: {
+ r: {
+ min: 0,
+ max: 10,
+ ticks: { display: false, stepSize: 2 },
+ grid: { color: colors.grid },
+ angleLines: { color: colors.radarAngle },
+ pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ });
+ }
+
+ function initValEvolutionChart() {
+ const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+ valEvolutionChartInstance = new Chart(ctx, {
+ type: 'bar',
+ data: {
+ labels: ['H1 2025 (同比)', 'H1 2026 (最新财报)'],
+ datasets: [
+ {
+ label: '营业利润 / (亏损) (RMB 百万元)',
+ data: [-5.16, 23.08],
+ backgroundColor: ['#F43F5E', '#10B981'],
+ borderRadius: 6,
+ barThickness: 32
+ },
+ {
+ label: '净利润 / (亏损) (RMB 百万元)',
+ data: [-4.80, 15.40],
+ backgroundColor: ['#FB7185', '#F59E0B'],
+ borderRadius: 6,
+ barThickness: 32
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: RMB ${ctx.parsed.y}M`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 12, weight: '600' } }
+ },
+ y: {
+ min: -10,
+ max: 30,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => 'RMB ' + v + 'M' }
+ }
+ }
+ }
+ });
+ }
+
+ function updateChartsTheme() {
+ initH1Chart();
+ initRadarChart();
+ initValEvolutionChart();
+ }
+
+ window.addEventListener('DOMContentLoaded', () => {
+ loadKpiChecklist();
+ updateKrSimulator();
+ initH1Chart();
+ initRadarChart();
+ initValEvolutionChart();
+ });
+ </script>
+</body>
+</html>

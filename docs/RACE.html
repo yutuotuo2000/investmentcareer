@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>法拉利 Ferrari N.V. (NYSE: RACE) 深度研究报告：超豪华汽车绝对定价权霸主、个性化定制印钞机与无烟/电动化转型突围</title>
+ <!-- Tailwind CSS -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ <!-- Chart.js -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+ tailwind.config = {
+ darkMode: 'class',
+ theme: {
+ extend: {
+ fontFamily: {
+ sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+ mono: ['JetBrains Mono', 'monospace'],
+ },
+ colors: {
+ navy: {
+ 950: '#070B14',
+ 900: '#0F172A',
+ 800: '#1E293B',
+ 700: '#334155',
+ },
+ ferrari: {
+ 300: '#FCA5A5',
+ 400: '#F87171',
+ 500: '#DC2626', // 法拉利红
+ 600: '#B91C1C',
+ 700: '#991B1B',
+ },
+ gold: {
+ 400: '#FBBF24',
+ 500: '#F59E0B',
+ 600: '#D97706',
+ },
+ emerald: {
+ 400: '#34D399',
+ 500: '#10B981',
+ 600: '#059669',
+ },
+ teal: {
+ 400: '#22D3EE',
+ 500: '#06B6D4',
+ 600: '#0891B2',
+ }
+ }
+ }
+ }
+ }
+ </script>
+
+ <style>
+ ::-webkit-scrollbar {
+ width: 6px;
+ height: 6px;
+ }
+ ::-webkit-scrollbar-track {
+ background: transparent;
+ }
+ ::-webkit-scrollbar-thumb {
+ background: #94A3B8;
+ border-radius: 3px;
+ }
+ .dark ::-webkit-scrollbar-thumb {
+ background: #475569;
+ }
+
+ @media print {
+ #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+ display: none !important;
+ }
+ main {
+ margin-left: 0 !important;
+ padding: 0 !important;
+ }
+ section {
+ break-inside: avoid;
+ }
+ }
+
+ .report-card {
+ transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+ }
+ .report-card:hover {
+ transform: translateY(-2px);
+ }
+
+ .nav-link.active {
+ background: linear-gradient(90deg, rgba(220, 38, 38, 0.24) 0%, rgba(245, 158, 11, 0.06) 100%);
+ border-left: 3px solid #DC2626;
+ color: #FFFFFF;
+ font-weight: 600;
+ }
+ </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-ferrari-500 selection:text-white transition-colors duration-200">
+
+ <!-- 顶部全局阅读进度条 -->
+ <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+ <div id="reading-progress" class="h-full bg-gradient-to-r from-ferrari-600 via-ferrari-500 to-gold-400 w-0 transition-all duration-150"></div>
+ </div>
+
+ <!-- 移动端顶部导航栏 -->
+ <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+ <div class="flex items-center space-x-2.5">
+ <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-ferrari-500 to-ferrari-700 flex items-center justify-center font-extrabold text-white text-xs shadow">
+ SF
+ </div>
+ <div>
+ <div class="text-[11px] text-ferrari-400 font-semibold tracking-wider uppercase">NYSE: RACE · Luxury Tier</div>
+ <div class="text-sm font-bold leading-tight">法拉利 Ferrari 深度研究报告</div>
+ </div>
+ </div>
+ <div class="flex items-center space-x-2">
+ <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+ <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ </button>
+ <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+ </button>
+ </div>
+ </header>
+
+ <!-- 移动端折叠抽屉菜单 -->
+ <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+ <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+ <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+ <div>
+ <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+ <span class="font-bold text-white text-base">RACE 研报目录导航</span>
+ <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ </button>
+ </div>
+ <ul class="mt-4 space-y-1.5 text-sm">
+ <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+ <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+ <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 品牌定价权与四重护城河</a></li>
+ <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 全球超豪华与车企横向对比</a></li>
+ <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与现金流模型</a></li>
+ <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+ <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+ </ul>
+ </div>
+ <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+ <p>全球超豪华奢侈品与汽车资产研究组</p>
+ <p class="mt-1">数据基准：2026年11月 (Q3 26 / FY26E)</p>
+ </div>
+ </nav>
+ </div>
+
+ <!-- 桌面端左侧固定侧边导航栏 -->
+ <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+ <div>
+ <div class="p-5 border-b border-slate-800/80">
+ <div class="flex items-center space-x-3">
+ <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-ferrari-500 via-ferrari-600 to-ferrari-700 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-ferrari-500/25">
+ SF
+ </div>
+ <div>
+ <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-ferrari-400 bg-ferrari-500/15 px-2 py-0.5 rounded">NYSE: RACE</span>
+ <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">法拉利深度研报</h2>
+ </div>
+ </div>
+ <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+ 全球超豪华汽车定价权之王 · 39.7% 奢侈品级利润率与 2028 年超长订单储备
+ </p>
+ </div>
+
+ <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">参考股价 (52周区间)</span>
+ <span class="font-mono font-bold text-white">~$419.70 <span class="text-slate-400 text-[10px]">($312.5-$437.2)</span></span>
+ </div>
+ <div class="flex items-center justify-between">
+ <span class="text-slate-400">2026E 调整后稀释 EPS</span>
+ <span class="font-mono font-bold text-emerald-400">≥ €9.85 <span class="text-slate-400">(Q3大超预期)</span></span>
+ </div>
+ <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+ <span class="text-slate-400">远期估值与利润率</span>
+ <span class="font-mono font-bold text-ferrari-400">~39.7x P/E · EBITDA率 39.7%</span>
+ </div>
+ </div>
+
+ <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+ <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+ <nav id="desktop-nav" class="space-y-1 text-[13px]">
+ <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-ferrari-400 mr-2">00</span>执行摘要与核心指标</span>
+ </a>
+ <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+ </a>
+ <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>品牌定价权与四重护城河</span>
+ </a>
+ <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>全球超豪华与车企横向对比</span>
+ </a>
+ <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与现金流模型</span>
+ </a>
+ <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+ </a>
+ <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+ <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+ </a>
+ </nav>
+ </div>
+ </div>
+
+ <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+ <div class="flex items-center justify-between">
+ <span class="text-xs text-slate-400">阅读模式切换</span>
+ <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition cursor-pointer">
+ <svg class="w-3.5 h-3.5 text-gold-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+ <svg class="w-3.5 h-3.5 text-ferrari-500 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+ <span class="dark:hidden">深色护眼模式</span>
+ <span class="hidden dark:inline">机构亮色模式</span>
+ </button>
+ </div>
+ <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-gradient-to-r from-ferrari-500 to-ferrari-600 hover:from-ferrari-600 hover:to-ferrari-700 text-white text-xs font-extrabold transition shadow-sm cursor-pointer">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+ <span>打印 / 导出 PDF 研报</span>
+ </button>
+ </div>
+ </aside>
+
+ <!-- 主内容区 -->
+ <main class="lg:ml-[280px] min-h-screen">
+ <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+ <!-- =========================================================
+ 00. Hero 研报封面区与执行摘要
+ ========================================================= -->
+ <section id="sec-exec" class="scroll-mt-20">
+ <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+ <div class="flex flex-wrap items-center gap-2">
+ <span class="px-2.5 py-1 rounded-md bg-ferrari-500/15 text-ferrari-700 dark:text-ferrari-400 font-bold border border-ferrari-500/30">评级：买入 / 超豪华奢侈品核心底仓</span>
+ <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：2026Q3 业绩大超预期与上调全年指引期</span>
+ </div>
+ <div class="flex items-center space-x-3 font-mono">
+ <span>覆盖时间：2026年11月</span>
+ <span>NYSE: RACE</span>
+ </div>
+ </div>
+
+ <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+ <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#DC2626 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+ <div class="relative z-10">
+ <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-ferrari-500/20 border border-ferrari-400/40 text-ferrari-300 text-xs font-semibold mb-4">
+ <span class="w-2 h-2 rounded-full bg-ferrari-400 animate-pulse"></span>
+ <span>CORE THESIS · 订单已排至 2028 年 × 39.7% 奢侈品级 EBITDA 利润率 × 利润大超预期的超级跑车印钞机</span>
+ </div>
+ <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+ 法拉利 Ferrari N.V. (NYSE: RACE) 深度研究报告：超豪华汽车绝对定价权霸主、个性化定制印钞机与无烟/电动化转型突围
+ </h1>
+ <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+ 法拉利交出惊艳的 <strong class="text-white">2026Q3 财报</strong>：季度净营收达 <strong class="text-ferrari-300">€19亿（同比+7.4% / 常定汇率+9.9%）</strong>，EBITDA 达 <strong class="text-white">€7.53亿（同比+20%常定汇率）</strong>，创下 <strong class="text-emerald-400">39.7%</strong> 的恐怖利润率；工业自由现金流飙升至 <strong class="text-white">€5.67亿（同比+43%）</strong>。
+ 公司顺势再次上调 2026 全年指引：净营收增至 <strong class="text-gold-400">~€76.5亿</strong>，调整后 EBITDA 升至 <strong class="text-white">≥€30亿（利润率 ≥39.2%）</strong>，调整后稀释 EPS 提升至 <strong class="text-emerald-400">≥€9.85</strong>。凭借全系列车型的持续抢购、个性化率突破 21% 以及排至 2028 年的超长订单簿，法拉利再次证明其作为全球资本市场最强奢侈品底仓的绝对统治力。
+ </p>
+
+ <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">奢侈品级盈利能力</div>
+ <div class="text-white font-semibold">Q3 EBITDA 利润率高达 39.7%，EBIT 利润率达 30.0%，完全超越传统车企向顶级奢侈品牌看齐</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">超长订单与定制壁垒</div>
+ <div class="text-gold-400 font-semibold">订单簿已强势延伸至 2028 年，个性化定制率超 21%，F80 跑车与全新发布车型持续火爆</div>
+ </div>
+ <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+ <div class="text-slate-400 font-medium mb-1">现金流与股东回报</div>
+ <div class="text-emerald-400 font-semibold">工业自由现金流单季达 €5.67亿，多年期 €35亿股票回购计划稳步推进中</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- 4个核心 KPI 卡片 -->
+ <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>总市值与最新股价</span>
+ <span class="p-1.5 rounded-lg bg-ferrari-500/15 text-ferrari-600 dark:text-ferrari-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~$74B+</span>
+ <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">~$419.70</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ Q3 财报超预期助推股价稳居 $419 高位附近，52 周区间在 $312.5 至 $437.2 之间。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>2026E 调整后稀释 EPS</span>
+ <span class="p-1.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">≥ €9.85</span>
+ <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">指引再次上调</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ Q3 单季稀释 EPS 达 €2.44（净利润 €4.31亿，同比+13%），全年盈利目标稳步超越年初规划。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>EBITDA 利润率 & 工业 FCF</span>
+ <span class="p-1.5 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">39.7%</span>
+ <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/15 px-2 py-0.5 rounded">FCF €5.67B(Q3)</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 凭借极为强劲的产品组合和个性化增收，Q3 EBITDA 高达 €7.53亿，工业自由现金流暴增 43%。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+ <span>订单储备与回购力度</span>
+ <span class="p-1.5 rounded-lg bg-gold-500/15 text-gold-600 dark:text-gold-400">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+ </span>
+ </div>
+ <div class="mt-3 flex items-baseline space-x-2">
+ <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">2028</span>
+ <span class="text-xs font-bold text-gold-700 dark:text-gold-400 bg-gold-500/15 px-2 py-0.5 rounded">订单排期至 2028</span>
+ </div>
+ <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+ 订单排期横跨多年，10月单月继续回购超 17.6 万股（年内已累计回购 215 万股共计 €6.68亿）。
+ </p>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 一、 业务与收入架构 (Business & Revenue Architecture)
+ ========================================================= -->
+ <section id="sec-biz" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-ferrari-600 dark:text-ferrari-400">Section 01 · Business & Revenue Architecture</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：跑车制造、高端个性化与赛车/生活方式生态双轮驱动</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">FY26E 净营收目标 ~€76.5亿 · 调整后 EBITDA 约 €30亿</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+ <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">2022–2026E 净营收与 EBITDA 利润率演进趋势</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">净营收逐年稳步攀升突破 €76亿大关，EBITDA 利润率稳居 39% 以上行业巅峰</p>
+ </div>
+ <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+ <button onclick="switchBizChart('revenue_ebitda')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-ferrari-600 dark:text-ferrari-400 shadow-sm transition cursor-pointer">视图A：营收与EBITDA演进</button>
+ <button onclick="switchBizChart('shipments_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer">视图B：产品与个性化交付结构</button>
+ </div>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="bizArchitectureChart"></canvas>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">2026Q3 业绩超预期三大核心支柱</h3>
+ <ul class="space-y-4 text-sm">
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-ferrari-500/15 text-ferrari-600 dark:text-ferrari-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">高利润率产品组合与特别版矩阵放量</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 尽管正处于车型密集切换期（Q3 交付 3,368 辆，849 Testarossa Spider 开始初期的少量交付，F80 顶级超跑推进），得益于更丰富的车型结构与特别版（Special Series 占比达 22%），营收逆势增长。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">个性化定制（Personalization）突破 21% 天花板</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 全球高净值客户对专属涂装、碳纤维套件及 Tailor Made 定制需求极为旺盛，个性化率已超越全年 20% 的既定目标，直接驱动单车毛利与利润率暴增。
+ </p>
+ </div>
+ </li>
+ <li class="flex items-start space-x-3">
+ <span class="w-6 h-6 rounded-full bg-gold-500/15 text-gold-600 dark:text-gold-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+ <div>
+ <div class="font-semibold text-slate-900 dark:text-white">赛车运动、赞助商及生活方式收入强劲增厚</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 依托 F1 锦标赛暂居第二的优异竞技表现、不断扩大的商业赞助协议以及品牌服装、生活方式及引擎租赁业务的协同，非汽车制造板块贡献了可观的高毛利增量。
+ </p>
+ </div>
+ </li>
+ </ul>
+ </div>
+ <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+ <span class="text-slate-500 dark:text-slate-400">订单排期可见度</span>
+ <span class="font-bold text-ferrari-600 dark:text-ferrari-400">已全面延伸锁定至 2028 年</span>
+ </div>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-ferrari-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-ferrari-500/15 text-ferrari-700 dark:text-ferrari-400 text-xs font-bold">核心现金牛支柱 · 占总营收 ~85%+</span>
+ <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">EBITDA率 ~39.7%</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 跑车制造与个性化板块（Cars and Spare Parts）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 涵盖全系内燃机（ICE）、插电混动（PHEV）及即将亮相的纯电超跑（如电动 Luce 预订火爆，2027 年交付配额已全满）。通过严格控制产能（坚持“少生产一台”的飢饿营销策略）与源源不断的特别版跑车发布，确保二手车保值率与新车订购权成为全球富豪身份的象征。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>Q3 交付 3,368 辆 / 特别版占比 22%</span>
+ <span class="text-ferrari-600 dark:text-ferrari-400 font-semibold">个性化率 >21% 创新高</span>
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-gold-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+ <span class="px-2.5 py-1 rounded-md bg-gold-500/15 text-gold-700 dark:text-gold-400 text-xs font-bold">高毛利增长引擎 · 赞助与生活方式</span>
+ <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">F1 竞技表现强势</span>
+ </div>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. 赛车运动、赞助商与品牌周边（Sponsorship & Lifestyle）</h3>
+ <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ 包括 F1 世界锦标赛与 WEC 耐力赛的厂商及商业赞助分成、法拉利品牌服装、奢侈品联名系列、精品店授权，以及向其他 F1 车队出租高性能赛车引擎获得的稳定租金收益，为集团构建了纯正的奢侈品品牌溢价。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+ <span>F1 积分榜稳定高位</span>
+ <span class="text-gold-600 dark:text-gold-400 font-semibold">奢侈品化品牌赋能</span>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 二、 品牌定价权与四重核心护城河 (Moat)
+ ========================================================= -->
+ <section id="sec-moat" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 02 · Brand Pricing Power & Economic Moat</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 品牌定价权与四重核心护城河：饥饿营销、赛车图腾与奢侈品估值逻辑</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球公认最强汽车奢侈品牌)</span>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-ferrari-500/15 text-ferrari-600 dark:text-ferrari-400 flex items-center justify-center font-bold text-sm">01</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">绝对的产能压制与饥饿营销（Volume Control）</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 法拉利始终坚持“永远比市场实际需求少生产一台车”的纪律。通过人为制造供不应求的稀缺性，使其新车落地即保值、二手车拍卖屡创新高，彻底打破了传统车企通过降价促销去库存的周期魔咒。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">02</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">赛车图腾（Motorsport Heritage）与顶级粉丝信仰</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 作为 F1 历史上参赛时间最长、底蕴最深厚的传奇车队（Scuderia Ferrari），跃马图腾承载了全球数亿车迷的精神信仰。这种赛场上的顶级声誉转化为消费者对品牌无条件的情感溢价。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-gold-500/15 text-gold-600 dark:text-gold-400 flex items-center justify-center font-bold text-sm">03</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">严苛的客户筛选机制与阶梯购买权</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 购买限量版或旗舰超级跑车（如 LaFerrari、F80）并非仅凭财力，客户必须先拥有过多台常规法拉利并保持良好信用记录。这种独特的会员准入壁垒令车主产生强烈的专属尊贵感与社交阶层认同。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center space-x-2.5 mb-2.5">
+ <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">04</span>
+ <h3 class="font-bold text-slate-900 dark:text-white text-sm">高达 39.7% 的奢侈品级 EBITDA 利润率天花板</h3>
+ </div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ 得益于超过 21% 的个性化定制率和超高的单车创收，法拉利的盈利能力不亚于爱马仕或路易威登等顶级奢侈品集团，远超传统豪华车企（如保时捷、奔驰、宝马）。
+ </p>
+ </div>
+ </div>
+
+ <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">超豪华汽车与奢侈品巨头五维护城河雷达图</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">法拉利 (RACE) vs 保时捷 (PAH3) vs 爱马仕 (RMS)（满分 10 分）</p>
+ <div class="relative h-72 w-full">
+ <canvas id="moatRadarChart"></canvas>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 三、 全球超豪华与车企横向对比 (Competitive Landscape)
+ ========================================================= -->
+ <section id="sec-comp" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-ferrari-600 dark:text-ferrari-400">Section 03 · Luxury & Automotive Competitive Landscape</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 全球超豪华与车企横向对比：断层领先的 39.7% EBITDA 利润率与奢侈品估值</h2>
+ </div>
+ <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+ <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-ferrari-500 text-white shadow-sm transition cursor-pointer">全部对标对象</button>
+ <button onclick="filterCompetitors('luxury')" data-filter="luxury" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">超豪华与跑车同行</button>
+ <button onclick="filterCompetitors('tier1')" data-filter="tier1" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">传统豪华车企</button>
+ <button onclick="filterCompetitors('goods')" data-filter="goods" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">顶级奢侈品同行参考</button>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+ <div class="overflow-x-auto">
+ <table class="w-full text-left border-collapse">
+ <thead>
+ <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+ <th class="py-4 px-5 min-w-[180px]">企业名称与核心品牌</th>
+ <th class="py-4 px-4 min-w-[130px]">核心市场与定位</th>
+ <th class="py-4 px-4 min-w-[140px]">年交付量规模</th>
+ <th class="py-4 px-4 min-w-[100px]">远期 P/E</th>
+ <th class="py-4 px-4 min-w-[115px]">股息率 / 回报</th>
+ <th class="py-4 px-4 min-w-[115px]">EBITDA 利润率</th>
+ <th class="py-4 px-5 min-w-[230px]">核心优劣势与估值逻辑评估</th>
+ </tr>
+ </thead>
+ <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+ <tr data-category="luxury" class="bg-ferrari-500/5 dark:bg-ferrari-500/10 font-medium">
+ <td class="py-4 px-5">
+ <div class="flex items-center space-x-2">
+ <span class="px-2 py-0.5 rounded bg-ferrari-500 text-white text-[10px] font-extrabold">超豪华霸主</span>
+ <span class="font-bold text-slate-900 dark:text-white">法拉利 (RACE)</span>
+ </div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ferrari / Scuderia / 纯血跑车</div>
+ </td>
+ <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">全球富裕阶层 (美/欧/亚均衡)</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~1.3万 - 1.4万辆/年 (极度稀缺)</td>
+ <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~39.7x</td>
+ <td class="py-4 px-4 font-mono font-bold text-ferrari-600 dark:text-ferrari-400">€35亿回购计划持续</td>
+ <td class="py-4 px-4 font-mono font-bold text-emerald-600 dark:text-emerald-400">~39.7% (断层第一)</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>汽车股外衣下的爱马仕：</strong>享有资本市场最高的汽车股估值，订单排至 2028 年，完全免疫传统汽车价格战。
+ </td>
+ </tr>
+
+ <tr data-category="luxury" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">保时捷 (Porsche AG / PAH3)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">911 / Taycan / Macan</div>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">全球豪华跑车与SUV市场</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~30万辆/年</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~14.5x</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~4.5%</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~22.5%</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>规模更大但弹性受限：</strong>产销量为法拉利的 20 倍以上，受供应链、中国市场电动化转型及大众集团内部协同制约，估值倍数远低于 RACE。
+ </td>
+ </tr>
+
+ <tr data-category="tier1" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">梅赛德斯-奔驰 / 宝马 (MBG / BMW)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">S-Class / 7 Series / AMG</div>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">全球高端与主流豪华车市场</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">200万+ 辆/年</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~6.5x – 8.0x</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~6.0% – 7.5%</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~12.0% – 15.0%</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>传统周期股定位：</strong>深受宏观经济周期、经销商库存及价格战影响，盈利随经济波动，缺乏奢侈品定价权。
+ </td>
+ </tr>
+
+ <tr data-category="goods" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+ <td class="py-4 px-5">
+ <div class="font-bold text-slate-900 dark:text-white">爱马仕国际 (Hermès / RMS.PA)</div>
+ <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Birkin / Kelly / 顶级奢侈品</div>
+ </td>
+ <td class="py-4 px-4 text-slate-700 dark:text-slate-300">全球顶级硬奢侈品与手袋</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">极度限量配货制</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~45.0x+</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~1.2%</td>
+ <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~42.0%</td>
+ <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ <strong>终极对标资产：</strong>法拉利在资本市场被公认为“带四个轮子的爱马仕”，其商业模式（配货机制、零库存、超高毛利）与爱马仕如出一辙。
+ </td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base">全球顶级超豪华车企与奢侈品同行 EBITDA 利润率与远期估值多维对比</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">法拉利以接近 40% 的 EBITDA 利润率在汽车行业中独树一帜，完全比肩顶级奢侈品集团</p>
+ </div>
+ <span class="text-xs font-semibold text-ferrari-700 dark:text-ferrari-400 bg-ferrari-500/15 px-2.5 py-1 rounded">39.7% EBITDA 利润率断层领先</span>
+ </div>
+ <div class="relative h-64 w-full">
+ <canvas id="compMarginChart"></canvas>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 四、 财务健康与现金流模型 (Financial Health & FCF)
+ ========================================================= -->
+ <section id="sec-fin" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 04 · Financial Health & Cash Flow Model</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与现金流模型：€5.67亿单季工业自由现金流与净现金架构</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">工业净现金达 €2.19亿 · 持续推进多年期股票回购</span>
+ </div>
+
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-ferrari-600 dark:text-ferrari-400 uppercase">Q3 EBITDA Margin</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">39.7%</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 单季 EBITDA 高达 €7.53亿（同比大增 +20% 常定汇率），展现出顶级奢侈品级别的强大创收与成本控制能力。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Industrial FCF (Q3)</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">€567M</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 工业自由现金流单季飙升 43% 至 €5.67亿，全年自由现金流指引上调至高达 €16.5亿，现金生成能力极为恐怖。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Industrial Net Cash</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">€219M</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 截至 2026 年 9 月 30 日，工业净现金转正至 €2.19亿（对比 6 月底为净负债 €1.31亿），充分吸收了单季 €1.73亿的回购支出。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="text-xs font-bold text-gold-600 dark:text-gold-400 uppercase">Share Buyback Pace</div>
+ <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">€668.7M</div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+ 截至 10 月底年内已累计回购 215 万股（占总股本约 1.2%），在宏观波动中坚定执行总额 €35亿的多 年期股票回购计划。
+ </p>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base">2021–2026E 净营收与自由现金流（FCF）增长演进矩阵</h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">营收稳步跨越 €76亿平台，工业自由现金流同步攀升至 €16.5亿历史新高</p>
+ </div>
+ <span class="text-xs font-mono font-bold text-ferrari-700 dark:text-ferrari-400 bg-ferrari-500/15 px-2.5 py-1 rounded">现金流持续超预期</span>
+ </div>
+ <div class="relative h-72 w-full">
+ <canvas id="valEvolutionChart"></canvas>
+ </div>
+ </div>
+
+ <div class="bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 rounded-2xl p-6 sm:p-8 text-white border border-slate-700 shadow-xl space-y-6 no-print">
+ <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-700/80">
+ <div>
+ <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-ferrari-400 font-bold">
+ <span>LUXURY COMPOUNDING ENGINE · 法拉利长期持股复利模拟器</span>
+ </div>
+ <h3 class="text-lg sm:text-xl font-bold text-white mt-1">法拉利 (RACE) 长期持有资产增值与分红/回购复利模拟器</h3>
+ <p class="text-xs text-slate-400 mt-0.5">基准参数：当前参考股价 $419.70 | 预计 EPS 复合增长率 | 支持不同地区美股/欧股预扣税率测算</p>
+ </div>
+ <label class="inline-flex items-center space-x-2.5 px-3.5 py-2 rounded-xl bg-ferrari-500/15 border border-ferrari-400/30 text-xs font-semibold text-ferrari-300 cursor-pointer shrink-0">
+ <input type="checkbox" id="drip-toggle" checked onchange="updateDividendSimulator()" class="w-4 h-4 rounded accent-[#DC2626] cursor-pointer">
+ <span>开启资本再投资 / 回购增厚模拟</span>
+ </label>
+ </div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+ <div class="lg:col-span-5 space-y-4 text-xs">
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">初始投入本金 (USD)</span>
+ <span id="sim-principal-label" class="font-mono font-bold text-white text-sm">$50,000</span>
+ </div>
+ <input id="sim-principal" type="range" min="10000" max="300000" step="10000" value="50000" oninput="updateDividendSimulator()" class="w-full accent-[#DC2626] cursor-pointer">
+ </div>
+
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">长期持有年限 (Years)</span>
+ <span id="sim-years-label" class="font-mono font-bold text-white text-sm">10 年</span>
+ </div>
+ <input id="sim-years" type="range" min="1" max="20" step="1" value="10" oninput="updateDividendSimulator()" class="w-full accent-[#DC2626] cursor-pointer">
+ </div>
+
+ <div>
+ <div class="flex justify-between mb-1.5">
+ <span class="text-slate-300 font-medium">年均 EPS 与市值复合增长率</span>
+ <span id="sim-growth-label" class="font-mono font-bold text-emerald-400 text-sm">10.0%</span>
+ </div>
+ <input id="sim-growth" type="range" min="5" max="18" step="0.5" value="10" oninput="updateDividendSimulator()" class="w-full accent-[#10B981] cursor-pointer">
+ </div>
+
+ <div class="pt-1">
+ <div class="text-slate-300 font-medium mb-2">持股账户税务情景：</div>
+ <div class="grid grid-cols-3 gap-2" id="tax-btn-group">
+ <button type="button" onclick="setTaxRate(0)" data-tax="0" class="tax-btn px-2 py-2 rounded-lg text-[11px] font-medium bg-navy-950/70 text-slate-300 border border-slate-700 hover:border-ferrari-400 transition cursor-pointer">
+ 0% 免税账户<br><span class="text-[10px] text-slate-400">IRA/养老金</span>
+ </button>
+ <button type="button" onclick="setTaxRate(0.15)" data-tax="0.15" class="tax-btn active px-2 py-2 rounded-lg text-[11px] font-bold bg-ferrari-500 text-white border border-ferrari-400 shadow transition cursor-pointer">
+ 15% 标准股息税<br><span class="text-[10px] text-white">一般经纪账户</span>
+ </button>
+ <button type="button" onclick="setTaxRate(0.30)" data-tax="0.3" class="tax-btn px-2 py-2 rounded-lg text-[11px] font-medium bg-navy-950/70 text-slate-300 border border-slate-700 hover:border-ferrari-400 transition cursor-pointer">
+ 30% 最高预扣<br><span class="text-[10px] text-slate-400">跨境标准税率</span>
+ </button>
+ </div>
+ </div>
+ </div>
+
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">期末预计总资产估值</div>
+ <div id="sim-final-value" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-1.5">$129,687</div>
+ <div id="sim-total-return" class="text-xs font-semibold text-emerald-400 mt-1.5">累计税后总回报 +159.4%</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">期末预计持仓市值增长</div>
+ <div id="sim-annual-div" class="text-2xl sm:text-3xl font-mono font-extrabold text-gold-400 mt-1.5">$79,687</div>
+ <div id="sim-monthly-div" class="text-xs text-slate-400 mt-1.5">年化复合资本增值回报</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">隐含复合年化收益率 (CAGR)</div>
+ <div id="sim-yoc" class="text-2xl sm:text-3xl font-mono font-extrabold text-teal-400 mt-1.5">10.00%</div>
+ <div class="text-xs text-slate-400 mt-1.5">基于所设定的 EPS 与盈利增长假设</div>
+ </div>
+
+ <div class="bg-navy-950/80 rounded-xl p-5 border border-slate-800">
+ <div class="text-xs text-slate-400">期末预计持仓总股数</div>
+ <div id="sim-cum-div" class="text-2xl sm:text-3xl font-mono font-extrabold text-emerald-400 mt-1.5">119.1 股</div>
+ <div id="sim-shares-end" class="text-xs text-slate-400 mt-1.5">起始持仓股数：119.1 股 (股价 $419.7)</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">奢侈品护城河 + 订单锁定</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>订单已排至 2028 年：</strong>超豪华需求极具韧性，完全不受全球汽车价格战及宏观周期波动冲击。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>个性化定制突破 21%：</strong>高净值客户对 Tailor Made 及专属碳纤维配置的热情推高单车盈利。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>强劲的回购与现金流增厚：</strong>€35亿股票回购计划持续注销股本，工业净现金转正至 €2.19亿。</span></li>
+ </ul>
+ </div>
+
+ <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+ <div class="flex items-center justify-between mb-3">
+ <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+ <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">高估值承压 + 电动化转型成本</span>
+ </div>
+ <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>近 40x 远期 P/E 估值容错率低：</strong>作为奢侈品估值标的，任何宏观流动性收紧或微小的业绩miss均可能引发估值杀。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>纯电与混动转型期折旧上升：</strong>随着全新纯电 Luce 和工厂改造推进，D&A（折旧与摊销）成本相应增加，对短期利润率构成一定考验。</span></li>
+ <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>外汇逆风与关税潜在扰动：</strong>美元和日元对欧元的汇率波动以及地缘供应链成本仍需持续监控。</span></li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 五、 投资决策与风险配置框架 (Investment Decision & Risk)
+ ========================================================= -->
+ <section id="sec-inv" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-ferrari-600 dark:text-ferrari-400">Section 05 · Investment Decision & Risk Allocation</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景估值推演与奢侈品资产配置策略</h2>
+ </div>
+ <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：顶级奢侈品底仓 · 逢大盘回调分批长线吸纳</span>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+ <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">概率：25%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">45.0x–48.0x P/E ($480–$520)</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>纯电跑车 Luce 上市即遭全球抢购，订单排期延长至 2029 年；个性化率攀升至 25% 以上；全球高净值资产持续扩张，市场完全将其按照爱马仕级顶级奢侈品估值重定价。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+ 潜在年化回报：+18% 至 +24%
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-ferrari-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-ferrari-500/15 text-ferrari-700 dark:text-ferrari-400 text-xs font-bold">基准情景 (Base Case)</span>
+ <span class="font-mono text-xs font-bold text-ferrari-600 dark:text-ferrari-400">概率：55%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">38.0x–41.0x P/E ($410–$450)</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>2026–2028 战略目标完美兑现，EBITDA 利润率稳定在 39%–40% 区间，EPS 保持 10% 左右稳健复合增长，股票回购持续注销股本，估值在中枢平稳运行。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-ferrari-600 dark:text-ferrari-400">
+ 稳健年化回报：+10% 至 +12%（确定性极高）
+ </div>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+ <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+ </div>
+ <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">30.0x–33.0x P/E ($320–$350)</div>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+ <strong>核心假设：</strong>宏观经济严重衰退导致全球富裕阶层 discretionary spending 阶段性缩减；纯电车型市场接受度不及预期，研发与折旧大幅攀升拖累短期利润率。
+ </p>
+ </div>
+ <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+ 潜在回撤风险：-15% 至 -22%（强劲品牌壁垒构筑坚实底部）
+ </div>
+ </div>
+ </div>
+
+ <div>
+ <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心潜在风险评估与跟踪边界</h3>
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 高估值回调与宏观流动性风险</span>
+ <span class="text-xs font-mono text-rose-500 font-semibold">关注度：高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">近 40x P/E 面对无风险利率波动的敏感性</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 作为高估值成长型奢侈品标的，若美债收益率超预期飙升，市场可能对其估值倍数进行阶段性压缩，带来短期股价震荡。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 纯电超跑（EV）技术路线与客户接受度</span>
+ <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">传统跃马死忠粉对纯电动力（如 Luce）的情感过渡</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 法拉利正在坚定推进电气化转型；如何在无声的纯电时代完美复刻内燃机（V8/V12）的咆哮声浪与驾驶灵魂，是产品口碑成败的关键。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">03 · 全球供应链、关税与外汇汇率波动</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">美元/日元兑欧元汇率波动及碳中和法规成本</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 尽管法拉利通过滚动套期保值（Hedging）对冲了部分汇率风险，但美元和日元对欧元的持续波动仍会通过财务折算影响最终财报表现。
+ </p>
+ </div>
+
+ <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <div class="flex items-center justify-between mb-2">
+ <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">04 · 产能纪律松动与二级市场保值率波动</span>
+ <span class="text-xs font-mono text-slate-500 font-semibold">关注度：低中</span>
+ </div>
+ <h4 class="font-bold text-slate-900 dark:text-white text-sm">若盲目扩产可能侵蚀品牌长线稀缺性护城河</h4>
+ <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+ 管理层必须严格恪守“少生产一台”的克制原则；若未来为追求短期财报好看而过度增产，将直接削弱二手车保值率和品牌的奢侈品神话。
+ </p>
+ </div>
+ </div>
+ </div>
+
+ <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+ <h3 class="text-base font-bold text-ferrari-400 mb-4 flex items-center space-x-2">
+ <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ <span>机构级投资组合配置纪律与“顶级奢侈品”策略</span>
+ </h3>
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-white mb-1">1. 奢侈品与科技资产组合配置</div>
+ <p class="text-slate-300 leading-relaxed">
+ <strong>RACE</strong> 在资产配置中应归类为“硬奢侈品资产”（与爱马仕、LVMH 类似），可作为科技股组合的强力对冲，提供超高定价权与抗通胀属性。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-ferrari-400 mb-1">2. 估值波动时的分批左侧加仓</div>
+ <p class="text-slate-300 leading-relaxed">
+ 鉴于其 ~39.7x P/E 处于历史估值中上沿，短期追高风险较大；建议设立价格警报，若因美股大盘回调导致估值回落至 <strong>32x–34x P/E 区间</strong>，则果断加大长线配置权重。
+ </p>
+ </div>
+ <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+ <div class="font-bold text-emerald-400 mb-1">3. 跨国税务与账户优化摆放</div>
+ <p class="text-slate-300 leading-relaxed">
+ 纽约交易所代码 RACE 为普通美股 ADR/股票结构，优先置于免税或税收协定优惠账户中，以最大化其长期股票回购与资本增值复利。
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- =========================================================
+ 六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+ ========================================================= -->
+ <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+ <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+ <div>
+ <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+ <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+ </div>
+ <div class="flex items-center space-x-2 no-print">
+ <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-ferrari-500/15 text-ferrari-700 dark:text-ferrari-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+ <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition cursor-pointer">重置清单</button>
+ </div>
+ </div>
+
+ <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+ 点击勾选季度财报中已验证达标的经营指标（勾选状态自动本地保存），持续校验法拉利的奢侈品定价权与现金流底座：
+ </p>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#DC2626] focus:ring-ferrari-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">1. EBITDA 利润率是否稳守 39%–40% 奢侈品标杆线</span>
+ <span class="text-[11px] font-mono text-ferrari-600 dark:text-ferrari-400 font-semibold shrink-0">盈利能力核心锚</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 2026Q3 EBITDA 利润率达 39.7%（EBITDA €7.53亿），需持续追踪产品组合及个性化带来的利润率弹性。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#DC2626] focus:ring-ferrari-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">2. 订单簿（Order Book）能见度是否维持跨年锁定至 2028 年</span>
+ <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">需求景气度晴雨表</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 确认全球富裕阶层对全系新车及特别版（Special Series 占比 22%）的强劲预订需求是否毫无衰减迹象。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#DC2626] focus:ring-ferrari-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">3. 工业自由现金流（Industrial FCF）达成 €15.5亿–€16.5亿 指引</span>
+ <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">现金生成发动机</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 监督 Q3 单季 €5.67亿现金流的强劲势头能否顺利贯穿全年，确保资本开支与工厂升级在预算之内。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#DC2626] focus:ring-ferrari-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">4. 个性化定制率（Personalization Rate）稳定在 20%–22%+ 高位</span>
+ <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">单车溢价增厚器</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 追踪 Tailor Made 及个性化选配在总营收中的占比，验证客户对高附加值定制服务的持续热情。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#DC2626] focus:ring-ferrari-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">5. 纯电超跑（Luce）交付准备进度与 2027 年订单配额锁定情况</span>
+ <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">电动化转型催化</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 关注首款纯电车型量产交付节点、新喷漆车间竣工验收及市场对法拉利电动化首秀的反馈。
+ </p>
+ </div>
+ </label>
+
+ <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+ <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#DC2626] focus:ring-ferrari-500">
+ <div class="flex-1">
+ <div class="flex items-center justify-between gap-2">
+ <span class="font-bold text-sm text-slate-900 dark:text-white">6. 多年期 €35亿股票回购计划的每季度执行力度与注销股数</span>
+ <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">股东回报放大器</span>
+ </div>
+ <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+ 监督公司按计划在公开市场回购股票（如 10 月单月回购 €6,150万），持续为长期股东增厚每股收益。
+ </p>
+ </div>
+ </label>
+ </div>
+ </div>
+ </section>
+
+ <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+ <span>法拉利 Ferrari N.V. (NYSE: RACE) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+ <span>数据基准：2026Q3 财报及 2026 年 11 月市场一致预期 (FY26E)</span>
+ </div>
+ <p class="leading-relaxed">
+ <strong>免责声明：</strong>本深度研究报告基于法拉利集团公开财务报告（Form 6-K / 20-F）、2026Q3 业绩发布会披露数据及全球超豪华汽车行业调研资料整理生成，旨在提供结构化的产业分析与奢侈品资产估值框架。报告中涉及的盈利预测、自由现金流生成、三情景目标价及长期复合增长模拟均基于特定假设条件推演，不构成任何证券买卖建议、税务规划意见或收益承诺。请在独立核实后审慎决策。
+ </p>
+ </footer>
+
+ </div>
+ </main>
+
+ <script>
+ function toggleTheme() {
+ const html = document.documentElement;
+ html.classList.toggle('dark');
+ updateChartsTheme();
+ }
+
+ function toggleMobileMenu() {
+ const drawer = document.getElementById('mobile-drawer');
+ drawer.classList.toggle('hidden');
+ }
+
+ const sections = document.querySelectorAll('section[id]');
+ const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+ window.addEventListener('scroll', () => {
+ const scrollTop = window.scrollY;
+ const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+ const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+ document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+ let currentId = 'sec-exec';
+ sections.forEach(sec => {
+ const top = sec.offsetTop - 160;
+ if (scrollTop >= top) {
+ currentId = sec.getAttribute('id');
+ }
+ });
+
+ navLinks.forEach(link => {
+ link.classList.remove('active');
+ const numSpan = link.querySelector('span span');
+ if (numSpan) {
+ numSpan.classList.remove('text-ferrari-400');
+ numSpan.classList.add('text-slate-500');
+ }
+ if (link.dataset.target === currentId) {
+ link.classList.add('active');
+ if (numSpan) {
+ numSpan.classList.remove('text-slate-500');
+ numSpan.classList.add('text-ferrari-400');
+ }
+ }
+ });
+ });
+
+ function filterCompetitors(category) {
+ document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+ if (btn.dataset.filter === category) {
+ btn.classList.add('bg-ferrari-500', 'text-white', 'font-semibold', 'shadow-sm');
+ btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+ } else {
+ btn.classList.remove('bg-ferrari-500', 'text-white', 'font-semibold', 'shadow-sm');
+ btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+ }
+ });
+
+ const rows = document.querySelectorAll('#comp-table-body tr');
+ rows.forEach(row => {
+ const rowCat = row.dataset.category;
+ if (category === 'all' || rowCat === category) {
+ row.style.display = '';
+ } else {
+ row.style.display = 'none';
+ }
+ });
+ }
+
+ let currentTaxRate = 0.15;
+
+ function setTaxRate(rate) {
+ currentTaxRate = rate;
+ document.querySelectorAll('#tax-btn-group .tax-btn').forEach(btn => {
+ const btnRate = parseFloat(btn.dataset.tax);
+ if (Math.abs(btnRate - rate) < 0.001) {
+ btn.className = 'tax-btn active px-2 py-2 rounded-lg text-[11px] font-bold bg-ferrari-500 text-white border border-ferrari-400 shadow transition cursor-pointer';
+ } else {
+ btn.className = 'tax-btn px-2 py-2 rounded-lg text-[11px] font-medium bg-navy-950/70 text-slate-300 border border-slate-700 hover:border-ferrari-400 transition cursor-pointer';
+ }
+ });
+ updateDividendSimulator();
+ }
+
+ function updateDividendSimulator() {
+ const principal = parseFloat(document.getElementById('sim-principal').value);
+ const years = parseInt(document.getElementById('sim-years').value, 10);
+ const growthPct = parseFloat(document.getElementById('sim-growth').value);
+
+ document.getElementById('sim-principal-label').textContent = '$' + principal.toLocaleString('en-US');
+ document.getElementById('sim-years-label').textContent = years + ' 年';
+ document.getElementById('sim-growth-label').textContent = growthPct.toFixed(1) + '%';
+
+ const initPrice = 419.70;
+ const g = growthPct / 100;
+ const initialShares = principal / initPrice;
+
+ let finalVal = principal * Math.pow(1 + g, years);
+ // 扣除适当资本利得/持股税务损耗模拟
+ const totalGain = finalVal - principal;
+ const netGain = totalGain * (1 - currentTaxRate);
+ const netFinalVal = principal + netGain;
+
+ const totalReturnPct = ((netFinalVal - principal) / principal) * 100;
+ const annualGain = netFinalVal - principal;
+
+ document.getElementById('sim-final-value').textContent = '$' + Math.round(netFinalVal).toLocaleString('en-US');
+ document.getElementById('sim-total-return').textContent = `累计税后总回报 +${totalReturnPct.toFixed(1)}%`;
+ document.getElementById('sim-annual-div').textContent = '+$' + Math.round(annualGain / years).toLocaleString('en-US') + '/年';
+ document.getElementById('sim-monthly-div').textContent = `折合每月资产净增值 ~$${Math.round(annualGain / years / 12).toLocaleString('en-US')}`;
+ document.getElementById('sim-yoc').textContent = growthPct.toFixed(2) + '%';
+ document.getElementById('sim-cum-div').textContent = initialShares.toFixed(1) + ' 股';
+ document.getElementById('sim-shares-end').textContent = `起始持仓股数：${initialShares.toFixed(1)} 股 (股价 $419.7)`;
+ }
+
+ const KPI_STORAGE_KEY = 'race_research_kpi_state_v1';
+
+ function loadKpiChecklist() {
+ try {
+ const saved = localStorage.getItem(KPI_STORAGE_KEY);
+ if (saved) {
+ const stateMap = JSON.parse(saved);
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ if (typeof stateMap[cb.id] === 'boolean') {
+ cb.checked = stateMap[cb.id];
+ }
+ });
+ }
+ } catch (e) {}
+ updateKpiChecklist();
+ }
+
+ function updateKpiChecklist() {
+ const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+ const total = checkboxes.length;
+ let checkedCount = 0;
+ const stateMap = {};
+
+ checkboxes.forEach(cb => {
+ stateMap[cb.id] = cb.checked;
+ if (cb.checked) checkedCount++;
+ });
+
+ const pct = Math.round((checkedCount / total) * 100);
+ document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+ try {
+ localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+ } catch (e) {}
+ }
+
+ function resetKpiChecklist() {
+ document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+ cb.checked = false;
+ });
+ updateKpiChecklist();
+ }
+
+ let bizChartInstance = null;
+ let radarChartInstance = null;
+ let compMarginChartInstance = null;
+ let valEvolutionChartInstance = null;
+ let currentBizMode = 'revenue_ebitda';
+
+ function getChartColors() {
+ const isDark = document.documentElement.classList.contains('dark');
+ return {
+ text: isDark ? '#CBD5E1' : '#475569',
+ grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+ radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+ };
+ }
+
+ function initBizChart() {
+ const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+ const colors = getChartColors();
+
+ const evoConfig = {
+ type: 'bar',
+ data: {
+ labels: ['2022', '2023', '2024', '2025', '2026E'],
+ datasets: [
+ {
+ label: '调整后 EBITDA (€B)',
+ data: [1.77, 2.28, 2.53, 2.77, 3.00],
+ backgroundColor: '#DC2626',
+ borderRadius: 4,
+ stack: 'ebitda'
+ },
+ {
+ type: 'line',
+ label: '净营收 Net Revenue (€B)',
+ data: [5.09, 5.97, 6.46, 7.15, 7.65],
+ borderColor: '#F59E0B',
+ backgroundColor: '#F59E0B',
+ borderWidth: 2.5,
+ pointRadius: 4,
+ tension: 0.25
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: €${ctx.parsed.y.toFixed(2)}B`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ },
+ y: {
+ min: 0,
+ max: 9,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => '€' + v + 'B' }
+ }
+ }
+ }
+ };
+
+ const splitConfig = {
+ type: 'bar',
+ data: {
+ labels: [
+ 'Q3 净营收同比增速 (常定汇率)',
+ 'Q3 EBITDA 利润率',
+ 'Q3 工业自由现金流同比增速',
+ '个性化定制率 (Personalization Rate)',
+ '特别版车型占交付量比例',
+ '订单排期能见度锁定年份'
+ ],
+ datasets: [
+ {
+ label: '关键经营指标 (%) / 年份',
+ data: [9.9, 39.7, 43.0, 21.0, 22.0, 2028],
+ backgroundColor: [
+ '#DC2626',
+ '#B91C1C',
+ '#10B981',
+ '#F59E0B',
+ '#06B6D4',
+ '#3B82F6'
+ ],
+ borderRadius: 6,
+ barThickness: 22
+ }
+ ]
+ },
+ options: {
+ indexAxis: 'y',
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: { display: false },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `指标数值: ${ctx.parsed.x}${ctx.dataIndex < 5 ? '%' : '年'}`
+ }
+ }
+ },
+ scales: {
+ x: {
+ min: 0,
+ max: 2030,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 } }
+ },
+ y: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ };
+
+ if (bizChartInstance) bizChartInstance.destroy();
+ bizChartInstance = new Chart(ctx, currentBizMode === 'revenue_ebitda' ? evoConfig : splitConfig);
+ }
+
+ function switchBizChart(mode) {
+ currentBizMode = mode;
+ const btnEvo = document.getElementById('btn-chart-evo');
+ const btnSplit = document.getElementById('btn-chart-split');
+ const titleEl = document.getElementById('biz-chart-title');
+ const subEl = document.getElementById('biz-chart-sub');
+
+ if (mode === 'revenue_ebitda') {
+ btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-ferrari-600 dark:text-ferrari-400 shadow-sm transition cursor-pointer';
+ btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+ titleEl.textContent = '2022–2026E 净营收与 EBITDA 利润率演进趋势';
+ subEl.textContent = '净营收逐年稳步攀升突破 €76亿大关，EBITDA 利润率稳居 39% 以上行业巅峰';
+ } else {
+ btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-ferrari-600 dark:text-ferrari-400 shadow-sm transition cursor-pointer';
+ btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+ titleEl.textContent = '2026Q3 核心经营与奢侈品化指标结构拆解';
+ subEl.textContent = 'Q3 常定汇率营收增速达 +9.9%，EBITDA 利润率创下 39.7% 纪录，订单锁定至 2028 年';
+ }
+ initBizChart();
+ }
+
+ function initRadarChart() {
+ const ctx = document.getElementById('moatRadarChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (radarChartInstance) radarChartInstance.destroy();
+ radarChartInstance = new Chart(ctx, {
+ type: 'radar',
+ data: {
+ labels: [
+ '品牌稀缺性与定价权',
+ 'EBITDA 利润率与盈利能力',
+ '赛车图腾与粉丝忠诚度',
+ '客户准入与配货壁垒',
+ '自由现金流转化效率'
+ ],
+ datasets: [
+ {
+ label: '法拉利 (RACE)',
+ data: [9.9, 9.8, 10.0, 9.6, 9.7],
+ borderColor: '#DC2626',
+ backgroundColor: 'rgba(220, 38, 38, 0.24)',
+ pointBackgroundColor: '#DC2626',
+ borderWidth: 2.5
+ },
+ {
+ label: '保时捷 (PAH3)',
+ data: [8.2, 7.5, 7.8, 7.0, 8.0],
+ borderColor: '#F59E0B',
+ backgroundColor: 'rgba(245, 158, 11, 0.14)',
+ pointBackgroundColor: '#F59E0B',
+ borderWidth: 2.0
+ },
+ {
+ label: '爱马仕 (RMS)',
+ data: [10.0, 10.0, 6.0, 9.9, 9.8],
+ borderColor: '#06B6D4',
+ backgroundColor: 'rgba(6, 182, 212, 0.12)',
+ pointBackgroundColor: '#06B6D4',
+ borderWidth: 1.8,
+ borderDash: [4, 4]
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+ }
+ },
+ scales: {
+ r: {
+ min: 0,
+ max: 10,
+ ticks: { display: false, stepSize: 2 },
+ grid: { color: colors.grid },
+ angleLines: { color: colors.radarAngle },
+ pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ });
+ }
+
+ function initCompMarginChart() {
+ const ctx = document.getElementById('compMarginChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (compMarginChartInstance) compMarginChartInstance.destroy();
+ compMarginChartInstance = new Chart(ctx, {
+ type: 'bar',
+ data: {
+ labels: [
+ '法拉利 (RACE · 超豪华霸主)',
+ '爱马仕 (RMS · 顶级硬奢侈品)',
+ '保时捷 (PAH3 · 豪华跑车同行)',
+ '梅赛德斯-奔驰 (MBG · 传统豪华车)',
+ '宝马集团 (BMW · 高端车企)'
+ ],
+ datasets: [
+ {
+ label: 'EBITDA 利润率 (%)',
+ data: [39.7, 42.0, 22.5, 14.5, 13.0],
+ backgroundColor: '#DC2626',
+ borderRadius: 5,
+ barThickness: 16
+ }
+ ]
+ },
+ options: {
+ indexAxis: 'y',
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x}%`
+ }
+ }
+ },
+ scales: {
+ x: {
+ max: 50,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+ },
+ y: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ }
+ }
+ }
+ });
+ }
+
+ function initValEvolutionChart() {
+ const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+ const colors = getChartColors();
+
+ if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+ valEvolutionChartInstance = new Chart(ctx, {
+ type: 'bar',
+ data: {
+ labels: ['2021', '2022', '2023', '2024', '2025', '2026E'],
+ datasets: [
+ {
+ type: 'bar',
+ label: '净营收 Net Revenue (€B)',
+ data: [4.27, 5.09, 5.97, 6.46, 7.15, 7.65],
+ backgroundColor: 'rgba(220, 38, 38, 0.85)',
+ borderRadius: 5,
+ barThickness: 28,
+ yAxisID: 'y'
+ },
+ {
+ type: 'line',
+ label: '工业自由现金流 Industrial FCF (€B)',
+ data: [0.77, 0.75, 1.17, 1.25, 1.54, 1.65],
+ borderColor: '#10B981',
+ backgroundColor: '#10B981',
+ borderWidth: 3,
+ pointRadius: 5,
+ pointHoverRadius: 7,
+ tension: 0.25,
+ yAxisID: 'y1'
+ }
+ ]
+ },
+ options: {
+ responsive: true,
+ maintainAspectRatio: false,
+ plugins: {
+ legend: {
+ position: 'bottom',
+ labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+ },
+ tooltip: {
+ callbacks: {
+ label: (ctx) => `${ctx.dataset.label}: €${ctx.parsed.y.toFixed(2)}B`
+ }
+ }
+ },
+ scales: {
+ x: {
+ grid: { display: false },
+ ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+ },
+ y: {
+ type: 'linear',
+ position: 'left',
+ min: 0,
+ max: 9,
+ grid: { color: colors.grid },
+ ticks: { color: colors.text, font: { size: 11 }, callback: v => '€' + v.toFixed(1) + 'B' },
+ title: { display: true, text: '净营收 (€B)', color: colors.text, font: { size: 11 } }
+ },
+ y1: {
+ type: 'linear',
+ position: 'right',
+ min: 0,
+ max: 2.0,
+ grid: { drawOnChartArea: false },
+ ticks: { color: '#10B981', font: { size: 11, weight: '600' }, callback: v => '€' + v.toFixed(2) + 'B' },
+ title: { display: true, text: '工业自由现金流 FCF (€B)', color: '#10B981', font: { size: 11 } }
+ }
+ }
+ }
+ });
+ }
+
+ function updateChartsTheme() {
+ initBizChart();
+ initRadarChart();
+ initCompMarginChart();
+ initValEvolutionChart();
+ }
+
+ window.addEventListener('DOMContentLoaded', () => {
+ loadKpiChecklist();
+ updateDividendSimulator();
+ initBizChart();
+ initRadarChart();
+ initCompMarginChart();
+ initValEvolutionChart();
+ });
+ </script>
+</body>
+</html>

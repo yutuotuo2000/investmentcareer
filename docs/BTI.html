@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>英美烟草 British American Tobacco (NYSE: BTI / LSE: BATS) 深度研究报告：从传统烟草现金牛到 Velo 驱动的无烟尼古丁复利巨头</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            btiblue: {
+              400: '#38BDF8',
+              500: '#0284C7',
+              600: '#0369A1',
+            },
+            emerald: {
+              400: '#34D399',
+              500: '#10B981',
+              600: '#059669',
+            },
+            teal: {
+              400: '#22D3EE',
+              500: '#06B6D4',
+              600: '#0891B2',
+            },
+            amber: {
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微上移 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(2, 132, 199, 0.25) 0%, rgba(16, 185, 129, 0.08) 100%);
+      border-left: 3px solid #38BDF8;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-btiblue-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-btiblue-500 via-emerald-500 to-teal-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-btiblue-400 to-emerald-500 flex items-center justify-center font-extrabold text-navy-950 text-xs shadow">
+        BTI
+      </div>
+      <div>
+        <div class="text-[11px] text-btiblue-400 font-semibold tracking-wider uppercase">NYSE: BTI · LSE: BATS</div>
+        <div class="text-sm font-bold leading-tight">英美烟草深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">BTI 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球必需消费与新型尼古丁研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (H1 26 / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-btiblue-400 via-btiblue-500 to-emerald-500 flex items-center justify-center text-navy-950 font-extrabold text-base shadow-lg shadow-btiblue-500/25">
+            BTI
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-btiblue-400 bg-btiblue-500/15 px-2 py-0.5 rounded">NYSE: BTI · LSE: BATS</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">英美烟草深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球传统烟草现金牛 · Velo 口含烟高增与无烟转型复利巨头
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">参考股价 / 市值</span>
+          <span class="font-mono font-bold text-white">$61.45 <span class="text-slate-400">/ ~$132.5B</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">2026 H1 无烟增速</span>
+          <span class="font-mono font-bold text-emerald-400">+18.0% <span class="text-btiblue-400">(Velo +66%)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">远期估值与回报</span>
+          <span class="font-mono font-bold text-amber-400">~12.0x P/E · 总回报 ~6.8%</span>
+        </div>
+      </div>
+
+      <!-- 七大核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-btiblue-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-btiblue-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-gradient-to-r from-btiblue-500 to-emerald-500 hover:from-btiblue-600 hover:to-emerald-600 text-white text-xs font-extrabold transition shadow-sm cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-btiblue-500/15 text-btiblue-600 dark:text-btiblue-400 font-bold border border-btiblue-500/30">评级：买入 / 防御复利核心配置</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：2026–2030 无烟转型与估值重估</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NYSE: BTI · LSE: BATS</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景科技电光蓝点阵纹理 -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#38BDF8 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-btiblue-500/20 border border-btiblue-400/40 text-btiblue-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>CORE THESIS · 美国薄荷醇禁令警报解除 × Velo 口含烟暴增 66% × ~6.8% 免预扣税股东总回报</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              英美烟草 British American Tobacco (NYSE: BTI) 深度研究报告：从传统烟草现金牛到 Velo 驱动的无烟尼古丁复利巨头
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              历经高负债压制、美国资产减值及监管阴霾后，BTI 在 2025–2026 年迎来<strong class="text-white">基本面修复与估值重估（Re-rating）</strong>双重拐点。2025 年初美国正式撤回薄荷醇（Menthol）禁令提案保住核心利润池；2026 上半年集团固定汇率营收增长 <strong class="text-white">+2.9%</strong>，调整后营业利润率提升至 <strong class="text-emerald-400">43.7% (+30 bps)</strong>，调整后摊薄 EPS 增长 <strong class="text-btiblue-400">+7.9%</strong>。
+              无烟新型品类整体大增 <strong class="text-white">+18.0%（占收比达 19.8%）</strong>，其中 <strong class="text-emerald-400">Velo 口含尼古丁袋暴增 +66%</strong>。叠加净杠杆率回归 2.0x–2.5x 健康区间、5.35% 零预扣税股息与 £13 亿回购，<strong class="text-amber-400">12.0x 远期 P/E</strong> 较菲利普莫里斯（PM，23.0x）仍具显著折价与配置吸引力。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">政策最大尾部风险出清</div>
+                <div class="text-white font-semibold">美国撤回 FDA 薄荷醇卷烟禁令提案，稳固贡献约 30% 营业利润的 Newport 等核心现金牛</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">第二增长曲线盈利放量</div>
+                <div class="text-emerald-400 font-semibold">无烟消费者达 3,500 万，Velo H1 暴增 +66%，预计 2030 年单品牌营收剑指 £43 亿</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">高确定性现金回报壁垒</div>
+                <div class="text-btiblue-400 font-semibold">英国 ADR 享 0% 股息预扣税优势，5.35% 股息率叠加 £13 亿回购构筑 ~6.8% 综合回报</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>总市值 & 参考股价</span>
+              <span class="p-1.5 rounded-lg bg-btiblue-500/15 text-btiblue-600 dark:text-btiblue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$132.5B</span>
+              <span class="text-xs font-bold text-btiblue-600 dark:text-btiblue-400 bg-btiblue-500/15 px-2 py-0.5 rounded">$61.45/ADS</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              52 周股价区间 $52.06–$67.30，随着降债达标与无烟放量，估值逐步脱离极端困境折价。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>无烟新型品类营收增速</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">+18.0%</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">占总营收 19.8%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              2026 H1 Velo 口含烟暴增 +66%，新型品类跨越盈亏平衡点后品类贡献利润率持续扩张。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>调整后营业利润率 & 现金转化</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">43.7%</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/15 px-2 py-0.5 rounded">OCF 转化 &gt;95%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              2026 H1 营业利润率同比提升 30 bps，固定汇率下调整后摊薄 EPS 稳健增长 +7.9%。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>远期估值 & 股东总回报</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~12.0x</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded">总回报 ~6.8%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              含 5.35% 免预扣税股息率（季息 ~$0.8349/ADS）及 2026 年 £13 亿股份回购注销计划。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-btiblue-600 dark:text-btiblue-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：传统烟草现金牛托底，Velo 领衔无烟第二曲线放量</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">2026 H1 固定汇率营收 +2.9% · 无烟新型品类占比升至 19.8%</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">2022–2027E 集团营收结构演进（可燃烟草 vs 新型无烟品类）</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">新型无烟品类（New Categories）占总营收比重由 2022 年 10.5% 稳步迈向 2027E ~23.4%</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-btiblue-600 dark:text-btiblue-400 shadow-sm transition cursor-pointer">视图A：营收结构演进</button>
+                <button onclick="switchBizChart('h1_growth')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer">视图B：2026 H1 增速拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业基本面三大结构性拐点</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-btiblue-500/15 text-btiblue-600 dark:text-btiblue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">超强提价权对冲传统卷烟销量自然衰减</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      2026 H1 传统可燃烟销量虽同比下滑 4.7%，但依靠全球品牌组合提价与价格组合优化（Price/Mix +6.8%），板块营收依然实现 <strong>+2.1%</strong> 正增长，持续充当集团自由现金流底座。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">Velo Plus 引爆美国口含烟，驱动无烟业务高质量盈利</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      现代口含烟（Velo）H1 营收暴增 <strong>+66%</strong>。升级版 <em>Velo Plus</em> 凭借湿法缓释体验在美国市场份额翻倍爬坡，推动集团无烟消费者总数达 <strong>3,500 万</strong>。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">美国严打非法一次性电子烟，合规龙头 Vuse 边际复苏</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      2025 年底至 2026 年美国 DOJ 与 FDA 多部门联合升级边境查扣与零售清剿执法，有效遏制非法调味电子烟泛滥，推动 Vuse 上半年恢复 <strong>+5.3%</strong> 正增长。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">2026–2030 中期增长算法</span>
+              <span class="font-bold text-btiblue-600 dark:text-btiblue-400">营收 +3%~5% · 调整后 EPS +5%~8%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 五大业务与资产分部详细卡片矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 分部 1：传统可燃烟草 (跨两列) -->
+          <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-btiblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 rounded-md bg-btiblue-500/15 text-btiblue-600 dark:text-btiblue-400 text-xs font-bold">核心现金牛底座 · 营收占比 ~80.2%</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">+2.1% YoY (固定汇率)</span>
+              </div>
+              <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">全球四大旗舰品牌矩阵</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 传统可燃烟草（Combustibles：Newport / Dunhill / Kent / Lucky Strike / Pall Mall）</h3>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">美国市场企稳 & 薄荷醇禁令正式撤回</div>
+                <p class="leading-relaxed">
+                  美国市场拥有 Newport（全美第一薄荷醇卷烟）、Natural American Spirit（超高端有机烟）及 Camel。2025 年 1 月美国正式撤回 FDA 薄荷醇禁令提案，彻底保住贡献集团约 30% 营业利润的核心利润池。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">美洲与欧亚新兴市场（AME & APMEA）定价引擎</div>
+                <p class="leading-relaxed">
+                  在欧洲、拉美、中东及亚太地区，Lucky Strike 与 Pall Mall 精准承接中端消费需求，凭借极低的价格敏感度持续提价，源源不断为集团分红与无烟研发提供百亿英镑级现金流。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 分部 2：现代口含烟 Velo -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">头号成长引擎 · +66.0% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-emerald-600 dark:text-emerald-400">2030E £4.3B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 现代口含尼古丁袋（Velo）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                稳居欧洲现代口含烟绝对龙头（市占率超 60%）；升级产品 <em>Velo Plus</em> 在美国市场高速抢占份额。管理层预计 2030 年全球口含烟规模将翻近三倍至 £110 亿，Velo 单品牌目标剑指 <strong>£43 亿</strong>。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+              高毛利、高复购 · 估值重估第一驱动力
+            </div>
+          </div>
+
+          <!-- 分部 3：雾化电子烟 Vuse -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">合规雾化龙头 · +5.3% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">全美市占第一</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 雾化电子烟（Vuse Alto / Go）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                手握稀缺的美国 FDA PMTA 营销授权（含薄荷醇口味授权）。随着美国联邦与各州目录法（Directory Laws）铺开并严查非法一次性电子烟，合规封闭式换弹需求稳步回流。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              执法红利逐步兑现 · 盈利贡献持续提升
+            </div>
+          </div>
+
+          <!-- 分部 4：加热不燃烧 glo -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">转型短板承压 · -12.0% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-rose-600 dark:text-rose-400">HNB 份额受挤压</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 加热不燃烧制品（glo）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                在日本与欧洲等核心市场直面菲利普莫里斯 IQOS Iluma 的强势专利与用户心智壁垒压制，叠加渠道去库存影响，上半年营收下滑 12%，高端新机 <em>glo Hilo</em> 仍处爬坡验证期。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-rose-600 dark:text-rose-400">
+              直面 IQOS 垄断 · 高端化破局仍需观察
+            </div>
+          </div>
+
+          <!-- 分部 5：战略股权与去杠杆缓冲 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amber-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-bold">隐蔽资产安全垫 · 高流动性</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">ITC 战略持股</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">5. 印度 ITC Limited 战略股权缓冲</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                此前通过部分减持印度消费与烟草巨头 ITC 股权成功回笼超 <strong>$20 亿</strong>资金加速降债与重启回购；目前剩余持有的逾 20% ITC 股权市值依然庞大，提供极强的资产负债表机动性。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold">
+              分享印度人口红利 · 资本配置灵活蓄水池
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与四重核心护城河 (Industry Position & Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：成瘾定价权、监管壁垒与全球渠道霸权</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：宽阔 (Wide Moat · 全球地域最均衡的跨国尼古丁寡头)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重护城河深度解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 护城河 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-btiblue-500/15 text-btiblue-600 dark:text-btiblue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">成瘾性消费与抗周期超强定价权</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                尼古丁制品具有极高的生理与心理粘性，消费者品牌忠诚度高、需求价格弹性极低（通常在 -0.3 至 -0.5 之间），使 BTI 数十年如一日能够通过每年 <strong>5%–8% 的提价幅度</strong>轻松对冲通胀与销量下滑。
+              </p>
+            </div>
+
+            <!-- 护城河 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">严苛监管壁垒与 FDA PMTA 牌照护城河</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                全球烟草广告禁令使新玩家无法通过营销建立品牌心智；同时美国 FDA 漫长且耗资数亿美元的 <strong>PMTA 上市前烟草产品申请</strong>制度，实质上为存量合规寡头构筑了难以逾越的法定准入高墙。
+              </p>
+            </div>
+
+            <!-- 护城河 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全球百万终端分销与多品类货架统治力</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                业务覆盖逾 <strong>180 个国家和地区</strong>（行业地域分散度第一）。依托传统卷烟掌控的加油站与便利店黄金收银台货架协议，Velo Plus 与 Vuse 能够以极低边际获客成本迅速实现全渠道铺货。
+              </p>
+            </div>
+
+            <!-- 护城河 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">95%–100% 现金转化与 0% 股息预扣税优势</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                极低的资本开支需求造就常年 <strong>95%–100% 的经营现金流转化率</strong>；叠加英国注册 ADR 对非居民通常<strong>免征股息预扣税（0% Withholding Tax）</strong>，较纯美股同行具备显著的税后复利优势。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">全球烟草三巨头五维竞争力雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">英美烟草 (BTI) vs 菲利普莫里斯 (PM) vs 奥驰亚 (MO)（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比 (Competitive Landscape)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-btiblue-600 dark:text-btiblue-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：估值折价近半，攻守平衡性冠绝同业</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-btiblue-500 text-white shadow-sm transition cursor-pointer">全部阵营</button>
+            <button onclick="filterCompetitors('global_ngp')" data-filter="global_ngp" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">全球跨国无烟龙头</button>
+            <button onclick="filterCompetitors('us_yield')" data-filter="us_yield" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">北美本土高息</button>
+            <button onclick="filterCompetitors('eurasia_val')" data-filter="eurasia_val" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition cursor-pointer">欧亚价值烟草</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[185px]">烟草巨头与核心品牌</th>
+                  <th class="py-4 px-4 min-w-[130px]">无烟业务营收占比</th>
+                  <th class="py-4 px-4 min-w-[115px]">远期市盈率</th>
+                  <th class="py-4 px-4 min-w-[155px]">股息率与预扣税特征</th>
+                  <th class="py-4 px-4 min-w-[115px]">营业利润率</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优劣势与配置定位评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：英美烟草 BTI 基准 -->
+                <tr data-category="core" class="bg-btiblue-500/5 dark:bg-btiblue-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-btiblue-500 text-white text-[10px] font-extrabold">核心标的</span>
+                      <span class="font-bold text-slate-900 dark:text-white">英美烟草 (BTI)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Velo / Vuse / Newport / Dunhill</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">19.8% (Velo +66%)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono font-bold text-btiblue-600 dark:text-btiblue-400">~12.0x</td>
+                  <td class="py-4 px-4 font-semibold text-amber-600 dark:text-amber-400">~5.35% (英国 0% 预扣税)</td>
+                  <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">43.7%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>攻守兼备首选：</strong>全球地域最均衡，估值仅为 PM 一半，兼具 5.35% 免税高息、£13亿回购及 Velo 口含烟高增重估弹性。
+                  </td>
+                </tr>
+
+                <!-- 行 2：菲利普莫里斯 PM -->
+                <tr data-category="global_ngp" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">菲利普莫里斯国际 (PM)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">IQOS / Zyn / Marlboro(非美)</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-btiblue-500/15 text-btiblue-700 dark:text-btiblue-400">~40%+ (行业第一)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~23.0x</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">~3.20% (美股税制/部分80-20豁免)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~40.5%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>行业成长标杆：</strong>手握 IQOS（HNB绝对霸主）与 Zyn（美国口含烟第一）两大王牌，无烟转型最彻底，但 23x P/E 估值溢价已相当饱满。
+                  </td>
+                </tr>
+
+                <!-- 行 3：奥驰亚 MO -->
+                <tr data-category="us_yield" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">奥驰亚 (MO)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Marlboro(美国) / on! / NJOY</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">~12% (转型偏慢)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~13.2x</td>
+                  <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">~6.55% (美股 15%-30% 预扣税)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~58.0%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>纯美股高息代表：</strong>100% 集中于美国本土，营业利润率极高但缺乏国际市场缓冲与强力无烟爆款，主要依赖传统万宝路持续提价。
+                  </td>
+                </tr>
+
+                <!-- 行 4：帝国品牌 IMB -->
+                <tr data-category="eurasia_val" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">帝国品牌 (IMB / IMBBY)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Winston / Davidoff / blu / Zone</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">~4% - 5% (聚焦传统)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~9.8x</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">~5.80% (英国 0% 预扣税+大额回购)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~44.0%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>深度价值回购机器：</strong>战略收缩聚焦五大核心可燃烟市场，激进回购注销推升每股收益，但长期缺乏无烟第二曲线估值想象空间。
+                  </td>
+                </tr>
+
+                <!-- 行 5：日本烟草 JT -->
+                <tr data-category="eurasia_val" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">日本烟草 (JT / 2914.T)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mevius / Winston / Ploom X</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">~4% (Ploom X 追赶中)</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~13.8x</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">~4.65% (日本股息预扣税 ~15.3%)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~26.5%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>亚欧传统烟稳健巨头：</strong>收购美国 Vector Group 后补强北美低价烟版图，HNB 产品 Ploom X 在日本本土稳步提份额，受日元汇率影响较大。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 配套 Chart.js 横向条形图：五大烟草巨头估值倍数与股息率对比 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">全球五大烟草巨头：远期市盈率（Forward P/E）与远期股息率（Dividend Yield）对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">BTI 以 ~12.0x 合理低估值提供 5.35% 零预扣税股息，且具备同业仅次于 PM 的无烟收入体量</p>
+            </div>
+            <span class="text-xs font-semibold text-btiblue-600 dark:text-btiblue-400 bg-btiblue-500/15 px-2.5 py-1 rounded">估值折价 + 高息复利黄金交汇点</span>
+          </div>
+          <div class="relative h-64 w-full">
+            <canvas id="compPeerChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值体系解析 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与估值体系：去杠杆圆满收官，重回 5%–8% EPS 复利走廊</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">净债务/EBITDA 回归 2.0x–2.5x · 远期 P/E ~12.0x</span>
+        </div>
+
+        <!-- 1. 财务健康度四大硬核指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-btiblue-600 dark:text-btiblue-400 uppercase">Adjusted Operating Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">43.7%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              2026 H1 同比提升 30 bps；叠加 2026 年 6 月启动的 <strong>Fit2Win</strong> 降本增效与 AI 转型计划，利润率扩张具备持续支撑。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Cash Conversion</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">95% – 100%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              经营现金流转化率连续多年超越 95%，极强的自由现金流生成能力为渐进分红与持续回购提供坚实保障。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">Net Debt / EBITDA</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">2.0x – 2.5x</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              历经多年主动降债及减持部分 ITC 股权回笼资金，2026 年底净杠杆率正式回到目标健康走廊中段，财务枷锁解除。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase">Total Shareholder Yield</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">~6.8% / 年</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              由 <strong>5.35% 远期股息率</strong>（英镑基准连续逾 25 年增长）叠加 2026 全年 <strong>£13 亿</strong>注销式股票回购共同构成。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 财务与估值演进双轴图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">2022–2027E 调整后摊薄 EPS 增长、净杠杆率下降与远期 P/E 估值重估轨迹</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">净债务/EBITDA 从 2.89x 稳步降至 ~2.10x，驱动远期市盈率从 8.2x 困境底部稳健修复至 ~12.0x</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-btiblue-600 dark:text-btiblue-400 bg-btiblue-500/15 px-2.5 py-1 rounded">较 PM (23.0x) 仍折价约 48%</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 3. 估值体系演进三阶段卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-500">STAGE 01 · 2022–2024 上半年</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-mono font-semibold">7.5x–9.0x P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">高息负债、资产减值与禁令恐慌期</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              受高利率压制雷诺并购债务、£273 亿美国传统品牌会计减值暂停回购及 FDA 薄荷醇禁令阴霾冲击，市场按“夕阳价值陷阱”给出极端折价。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-emerald-500/30 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">STAGE 02 · 2024 下半年–2025</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-[11px] font-mono font-semibold">9.5x–11.0x P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">减持 ITC 重启回购与空头逻辑瓦解期</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              果断变现部分 ITC 股权重启可持续回购，叠加 2025 年 1 月美国正式撤回薄荷醇卷烟禁令提案，核心空头叙事瓦解驱动首轮估值修复。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-gradient-to-br from-btiblue-500/10 to-emerald-500/10 border border-btiblue-500/40 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-btiblue-600 dark:text-btiblue-400">STAGE 03 · 2026 年底当前视角</span>
+              <span class="px-2 py-0.5 rounded bg-btiblue-500/20 text-btiblue-700 dark:text-btiblue-300 text-[11px] font-mono font-semibold">~12.0x Fwd P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">无烟盈利加速与稳健复利重估期</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              重回 3%–5% 营收与 5%–8% EPS 中期增长算法，Velo 暴增 66% 验证第二曲线成色，估值稳步向全球优质必需消费品中枢（13x–15x）靠拢。
+            </p>
+          </div>
+        </div>
+
+        <!-- 华尔街多空分歧对比 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-emerald-700 dark:text-emerald-400 text-base">多头核心论点 (Bull Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">Velo 超预期 + 回购扩容</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>Velo Plus 美国份额持续超预期：</strong>全美口含尼古丁袋渗透率快速提升，Velo 成为紧随 Zyn 之后的最大受益者，高毛利显著拉动集团整体利润率。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>去杠杆达标释放 2027+ 回购空间：</strong>净债务/EBITDA 回到 2.0x–2.5x 后，每年庞大的超额自由现金流与剩余 ITC 股权可支持更大规模回购注销。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-emerald-600 font-bold">✓</span><span><strong>较 PM 仍存在近 50% 估值折价：</strong>随着无烟收入占比在 2027–2028 迈过 25%，12.0x P/E 仍具备向 14x–15x 温和重估的戴维斯双击潜力。</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">修复斜率放缓 + HNB 短板</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>极端低估修复最快阶段已过：</strong>股息率已从前两年的 8.5%+ 收敛至 5.35%，后续回报将回归“业绩+股息”的慢牛复利模式，难以重现单年暴涨。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>glo 在加热不燃烧（HNB）赛道持续失血：</strong>HNB 是单客价值最高的新型烟草品类，但 glo 同比下滑 12%，迟迟无法打破 IQOS 垄断。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>消费降级与汇率/诉讼摩擦：</strong>美国低收入烟民转向深度折扣卷烟压制销量；强势英镑造成约 3% EPS 折算逆风，且加拿大子公司现金受诉讼和解锁定。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-btiblue-600 dark:text-btiblue-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景估值推演与免税股息复利策略</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：防御型红利底仓 · 紧盯 11x–12.5x 舒适击球区</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：14.5x – 15.5x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>Velo 美国口含烟市占率突破 18%+，FDA 铁腕清剿非法电子烟带动 Vuse 重回双位数增长，无烟营收占比提前突破 25%，2027 年回购规模上调至 £20 亿+。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              含息潜在上行空间：+25% 至 +35%（估值重估+盈利提速）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-btiblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-btiblue-500/15 text-btiblue-600 dark:text-btiblue-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-btiblue-600 dark:text-btiblue-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：12.0x – 13.0x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>公司稳健兑现 3%–5% 有机营收与 5%–8% 调整后 EPS 中期增长算法，传统烟提价平稳对冲销量下滑，维持 5.35% 股息渐进增长及 £13 亿–£15 亿常规回购。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-btiblue-600 dark:text-btiblue-400">
+              年化稳健综合回报：+11% 至 +14%（EPS增长+免税股息）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：9.5x – 10.5x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>美国传统卷烟销量加速下滑超 7%，北美现代口含烟爆发激烈促销价格战压缩利润率，叠加英镑大幅升值带来超预期汇兑损益冲击。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+              含息潜在回撤：-8% 至 -15%（高股息提供坚实下档保护）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心潜在风险评估与机构缓释视角</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">01 · 估值倍数扩张边际放缓风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">深度折价修复红利已兑现大半，预期差门槛抬升</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                股价从前两年低谷大幅反弹后，Forward P/E 已回到 12.0x 合理区间下沿。若后续季度无烟品类增速出现波动，短期估值倍数可能面临盘整消化。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">02 · 加热不燃烧（HNB）赛道掉队风险</span>
+                <span class="text-xs font-mono text-rose-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">glo 持续负增长（-12%），难以撼动 IQOS 生态壁垒</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                在利润率丰厚的加热不燃烧市场，glo 在日欧份额持续流失。若新一代高端设备 <em>glo Hilo</em> 未能扭转颓势，BTI 将长期错失 HNB 高端烟民转化红利。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-btiblue-500/10 text-btiblue-600 dark:text-btiblue-400 text-xs font-bold">03 · 非法雾化竞争与底层消费降级</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">灰色一次性电子烟屡禁不止与低端折扣烟分流</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                尽管美国加强执法，但低成本非法调味电子烟供应链转换迅速，难以彻底清零；同时累积通胀仍促使部分低收入烟民向四线廉价卷烟降级。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 汇率折算逆风与区域诉讼摩擦</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">约 3% 折算汇率逆风及加拿大诉讼和解现金锁定</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                BTI 以英镑编制报表而收入遍及全球，预计 2026 全年面临约 3% 的调整后 EPS 汇率逆风；此外加拿大烟草诉讼和解要求当地传统业务大部分利润优先用于分期赔付。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 机构级仓位配置建议 + 交互式免税股息复利速算小组件 -->
+        <div class="bg-gradient-to-r from-navy-900 via-navy-800 to-slate-900 rounded-2xl p-6 text-white border border-slate-700 shadow-md space-y-6">
+          <div>
+            <h3 class="text-base font-bold text-btiblue-400 mb-4 flex items-center space-x-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>机构级组合仓位配置纪律与免预扣税股息复利模拟器</span>
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div class="font-bold text-white mb-1">1. 防御红利底仓定位（Core Income）</div>
+                <p class="text-slate-300 leading-relaxed">
+                  在高科技与高波动资产之外，BTI 凭借低 Beta、抗周期现金流与 ~6.8% 综合股东回报，是全球低波红利与跨资产组合理想的<strong>压舱石底仓</strong>。
+                </p>
+              </div>
+              <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div class="font-bold text-emerald-400 mb-1">2. 非美税务账户 0% 预扣税优享配置</div>
+                <p class="text-slate-300 leading-relaxed">
+                  作为英国 ADR，非美税务居民（如加拿大普通应税/TFSA账户或港澳新加坡投资者）通常享 <strong>0% 股息预扣税</strong>，税后实际到手收益率显著优于 MO 等纯美股高息股。
+                </p>
+              </div>
+              <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                <div class="font-bold text-btiblue-400 mb-1">3. “BTI + PM” 哑铃型行业配置策略</div>
+                <p class="text-slate-300 leading-relaxed">
+                  机构投资者可采用 <strong>60% BTI（高息折价 + Velo 追赶弹性）+ 40% PM（IQOS/Zyn 双霸主成长确定性）</strong> 构建兼顾高现金流与无烟垄断红利的组合。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 交互式股息复利速算小组件 -->
+          <div class="pt-5 border-t border-slate-700/80 no-print">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold">DRIP Compounding Simulator · 免预扣税股息再投资速算（起始股息率 5.35%）</span>
+              <label class="inline-flex items-center space-x-2 text-xs text-slate-300 cursor-pointer">
+                <input type="checkbox" id="drip-toggle" checked onchange="updateDripCalc()" class="rounded accent-[#38BDF8] w-3.5 h-3.5 cursor-pointer">
+                <span>开启股息自动再投资 (DRIP)</span>
+              </label>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center bg-navy-950/60 rounded-xl p-4 border border-slate-800">
+              <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div>
+                  <div class="flex justify-between text-slate-300 mb-1">
+                    <span>初始本金</span>
+                    <span id="calc-principal-label" class="font-mono font-bold text-white">$50,000</span>
+                  </div>
+                  <input id="calc-principal" type="range" min="10000" max="300000" step="10000" value="50000" oninput="updateDripCalc()" class="w-full accent-[#38BDF8] cursor-pointer">
+                </div>
+                <div>
+                  <div class="flex justify-between text-slate-300 mb-1">
+                    <span>持有年限</span>
+                    <span id="calc-years-label" class="font-mono font-bold text-white">10 年</span>
+                  </div>
+                  <input id="calc-years" type="range" min="1" max="20" step="1" value="10" oninput="updateDripCalc()" class="w-full accent-[#38BDF8] cursor-pointer">
+                </div>
+                <div>
+                  <div class="flex justify-between text-slate-300 mb-1">
+                    <span>EPS/股价年增</span>
+                    <span id="calc-growth-label" class="font-mono font-bold text-emerald-400">6.5%</span>
+                  </div>
+                  <input id="calc-growth" type="range" min="0" max="10" step="0.5" value="6.5" oninput="updateDripCalc()" class="w-full accent-[#10B981] cursor-pointer">
+                </div>
+              </div>
+              <div class="lg:col-span-5 grid grid-cols-3 gap-3 text-center border-t lg:border-t-0 lg:border-l border-slate-800 pt-3 lg:pt-0 lg:pl-4">
+                <div>
+                  <div class="text-[11px] text-slate-400">期末预估总资产</div>
+                  <div id="calc-final-val" class="text-base sm:text-lg font-mono font-extrabold text-emerald-400 mt-0.5">$158,420</div>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-400">期末年免税股息</div>
+                  <div id="calc-annual-div" class="text-base sm:text-lg font-mono font-extrabold text-amber-400 mt-0.5">$7,195</div>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-400">成本股息率 (YoC)</div>
+                  <div id="calc-yoc" class="text-base sm:text-lg font-mono font-extrabold text-btiblue-400 mt-0.5">14.39%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-btiblue-500/15 text-btiblue-600 dark:text-btiblue-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition cursor-pointer">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选半年度/季度财报中已验证达标的经营指标（勾选状态自动本地持久化保存），动态检验 BTI 估值重估与股息安全性逻辑：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-btiblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. Velo Plus 美国市场份额与口含烟复购率</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">核心成长锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪美国现代口含烟市占率向双位数中段爬坡进度，验证 Velo 维持超高速增长及 2030 年 £43 亿单品牌营收目标路径。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-btiblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 美国合规电子烟执法成效与 Vuse 销量回流</span>
+                  <span class="text-[11px] font-mono text-btiblue-600 dark:text-btiblue-400 font-semibold shrink-0">边际修复锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监测美国 FDA / DOJ 联合查扣非法一次性调味电子烟及各州目录法落地后，Vuse 营收增速能否在 +5.3% 基础上进一步提速。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-btiblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 净债务 / 调整后 EBITDA 稳守 2.0x–2.5x 走廊</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">资产负债表锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查 2026 年底净杠杆率正式回到 2.0x–2.5x 中段目标区间，确认利息支出占比下降对净利润的释放效应。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-btiblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 新型无烟品类营收占比向 25%+ 目标迈进</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">转型兑现度</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  当前无烟占比已达 19.8%，持续追踪无烟板块品类贡献利润（Category Contribution）的扩张斜率及 glo Hilo 止跌企稳信号。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-btiblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 2027 财年股份回购规模扩容信号</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">股东回报催化剂</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  在 2026 年 £13 亿回购基础上，关注降债达标后管理层是否将更多自由现金流或部分 ITC 变现资金倾斜至常态化大额回购。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0284C7] focus:ring-btiblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. Fit2Win 降本增效计划与传统烟定价弹性</span>
+                  <span class="text-[11px] font-mono text-btiblue-600 dark:text-btiblue-400 font-semibold shrink-0">利润率晴雨表</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查传统可燃烟提价能否持续覆盖 4%–5% 的销量自然下滑，并确保集团调整后营业利润率稳居 43.5%–44.5% 高位。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>英美烟草 British American Tobacco (NYSE: BTI / LSE: BATS) 深度研究报告 · 机构研究框架版</span>
+          <span>数据基准：2026 上半年财报及 2026 年 11 月市场一致预期</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开定期财务报告、投资者日指引及全球烟草行业公开调研数据整理生成，旨在提供结构化的产业分析与估值研究框架。报告中涉及的 2026E–2030E 收入结构预测、三情景估值模型及股息再投资复利模拟均基于特定假设推演，不构成任何证券买卖邀约、税务咨询或具体投资建议。英国 ADR 免征股息预扣税规则可能因投资者税务居民身份及券商账户类型而异，请以独立专业顾问意见为准。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-btiblue-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-btiblue-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-btiblue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-btiblue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. 免预扣税股息再投资 (DRIP) 速算小组件
+    // ==========================================
+    function updateDripCalc() {
+      const principal = parseFloat(document.getElementById('calc-principal').value);
+      const years = parseInt(document.getElementById('calc-years').value, 10);
+      const epsGrowthPct = parseFloat(document.getElementById('calc-growth').value);
+      const drip = document.getElementById('drip-toggle').checked;
+
+      document.getElementById('calc-principal-label').textContent = '$' + principal.toLocaleString('en-US');
+      document.getElementById('calc-years-label').textContent = years + ' 年';
+      document.getElementById('calc-growth-label').textContent = epsGrowthPct.toFixed(1) + '%';
+
+      const initPrice = 61.45;
+      const initYield = 0.0535;
+      const priceGrowth = epsGrowthPct / 100;
+      const divGrowth = epsGrowthPct === 0 ? 0.01 : priceGrowth * 0.70;
+
+      let shares = principal / initPrice;
+      let price = initPrice;
+      let dps = initPrice * initYield;
+      let cashAccumulated = 0;
+
+      for (let y = 1; y <= years; y++) {
+        const annualDiv = shares * dps;
+        price = price * (1 + priceGrowth);
+        if (drip) {
+          const avgBuyPrice = price / (1 + priceGrowth * 0.5);
+          shares += annualDiv / avgBuyPrice;
+        } else {
+          cashAccumulated += annualDiv;
+        }
+        if (y < years) {
+          dps = dps * (1 + divGrowth);
+        }
+      }
+
+      const finalTotal = (shares * price) + cashAccumulated;
+      const endYearDiv = shares * dps;
+      const yoc = (endYearDiv / principal) * 100;
+
+      document.getElementById('calc-final-val').textContent = '$' + Math.round(finalTotal).toLocaleString('en-US');
+      document.getElementById('calc-annual-div').textContent = '$' + Math.round(endYearDiv).toLocaleString('en-US');
+      document.getElementById('calc-yoc').textContent = yoc.toFixed(2) + '%';
+    }
+
+    // ==========================================
+    // 6. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'bti_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略本地存储读取权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略本地存储写入权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 7. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compPeerChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：2022–2027E 营收结构演进（单位：十亿英镑 £B）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['2022', '2023', '2024', '2025', '2026E', '2027E'],
+          datasets: [
+            {
+              label: '传统可燃烟草及其他 (£B)',
+              data: [24.8, 23.9, 22.2, 21.3, 21.1, 21.2],
+              backgroundColor: '#0284C7',
+              borderRadius: 4,
+            },
+            {
+              label: '新型无烟品类 New Categories (£B)',
+              data: [2.9, 3.3, 3.6, 4.3, 5.4, 6.5],
+              backgroundColor: '#10B981',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  const total = ctx.chart.data.datasets.reduce((sum, ds) => sum + ds.data[ctx.dataIndex], 0);
+                  const share = ((ctx.parsed.y / total) * 100).toFixed(1);
+                  return `${ctx.dataset.label}: £${ctx.parsed.y}B (占总营收 ${share}%)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 32,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '£' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：2026 H1 板块固定汇率同比增速拆解 (%)
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            'Velo 现代口含尼古丁袋',
+            '新型无烟品类整体 (New Categories)',
+            '调整后摊薄 EPS (固定汇率)',
+            'Vuse 雾化电子烟',
+            '集团总营收 (固定汇率)',
+            '传统可燃烟草 (Combustibles)',
+            'glo 加热不燃烧制品'
+          ],
+          datasets: [
+            {
+              label: '2026 H1 固定汇率同比增速 (%)',
+              data: [66.0, 18.0, 7.9, 5.3, 2.9, 2.1, -12.0],
+              backgroundColor: [
+                '#10B981',
+                '#06B6D4',
+                '#F59E0B',
+                '#38BDF8',
+                '#0284C7',
+                '#64748B',
+                '#F43F5E'
+              ],
+              borderRadius: 6,
+              barThickness: 22
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `2026 H1 同比增速: ${ctx.parsed.x > 0 ? '+' : ''}${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              min: -20,
+              max: 75,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-btiblue-600 dark:text-btiblue-400 shadow-sm transition cursor-pointer';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+        titleEl.textContent = '2022–2027E 集团营收结构演进（可燃烟草 vs 新型无烟品类）';
+        subEl.textContent = '新型无烟品类（New Categories）占总营收比重由 2022 年 10.5% 稳步迈向 2027E ~23.4%';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-btiblue-600 dark:text-btiblue-400 shadow-sm transition cursor-pointer';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition cursor-pointer';
+        titleEl.textContent = '2026 H1 各核心板块固定汇率同比增速拆解';
+        subEl.textContent = 'Velo 口含烟暴增 +66% 领跑全集团，glo 加热不燃烧下滑 -12% 仍待破局';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '全球地域分散度',
+            '口含烟增长动能',
+            '传统烟定价与现金转化',
+            '估值安全边际与税后股息',
+            '加热不燃烧(HNB)壁垒'
+          ],
+          datasets: [
+            {
+              label: '英美烟草 (BTI)',
+              data: [9.6, 9.2, 9.3, 9.5, 5.2],
+              borderColor: '#0284C7',
+              backgroundColor: 'rgba(2, 132, 199, 0.22)',
+              pointBackgroundColor: '#0284C7',
+              borderWidth: 2.5
+            },
+            {
+              label: '菲利普莫里斯 (PM)',
+              data: [8.8, 9.6, 9.0, 6.2, 9.9],
+              borderColor: '#10B981',
+              backgroundColor: 'rgba(16, 185, 129, 0.15)',
+              pointBackgroundColor: '#10B981',
+              borderWidth: 2.0
+            },
+            {
+              label: '奥驰亚 (MO)',
+              data: [4.2, 6.8, 9.2, 8.2, 3.5],
+              borderColor: '#F59E0B',
+              backgroundColor: 'rgba(245, 158, 11, 0.12)',
+              pointBackgroundColor: '#F59E0B',
+              borderWidth: 1.6,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompPeerChart() {
+      const ctx = document.getElementById('compPeerChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (compPeerChartInstance) compPeerChartInstance.destroy();
+      compPeerChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            '英美烟草 (BTI · 攻守平衡核心)',
+            '菲利普莫里斯 (PM · 无烟成长溢价)',
+            '奥驰亚 (MO · 纯美股高息)',
+            '帝国品牌 (IMB · 传统深度价值)',
+            '日本烟草 (JT · 亚欧稳健龙头)'
+          ],
+          datasets: [
+            {
+              label: '远期市盈率 Forward P/E (倍)',
+              data: [12.0, 23.0, 13.2, 9.8, 13.8],
+              backgroundColor: '#0284C7',
+              borderRadius: 5,
+              barThickness: 14
+            },
+            {
+              label: '远期股息率 Dividend Yield (%)',
+              data: [5.35, 3.20, 6.55, 5.80, 4.65],
+              backgroundColor: '#10B981',
+              borderRadius: 5,
+              barThickness: 14
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.datasetIndex === 0
+                  ? `远期市盈率: ${ctx.parsed.x}x`
+                  : `远期股息率: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 25,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 } }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['2022', '2023', '2024', '2025', '2026E', '2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '调整后摊薄 EPS ($/ADS 折算)',
+              data: [4.52, 4.68, 4.60, 4.78, 5.12, 5.50],
+              backgroundColor: 'rgba(2, 132, 199, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: '净债务 / 调整后 EBITDA 杠杆率 (x)',
+              data: [2.89, 2.65, 2.52, 2.44, 2.28, 2.12],
+              backgroundColor: 'rgba(16, 185, 129, 0.82)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '远期市盈率 Forward P/E (x)',
+              data: [9.4, 8.2, 8.6, 10.4, 12.0, 12.6],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  if (ctx.datasetIndex === 0) return `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}`;
+                  return `${ctx.dataset.label}: ${ctx.parsed.y}x`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 0,
+              max: 7,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 } },
+              title: { display: true, text: 'EPS ($/ADS) & 净杠杆倍数 (x)', color: colors.text, font: { size: 11 } }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 16,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + 'x' },
+              title: { display: true, text: 'Forward P/E (倍)', color: '#F59E0B', font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompPeerChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      updateDripCalc();
+      initBizChart();
+      initRadarChart();
+      initCompPeerChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

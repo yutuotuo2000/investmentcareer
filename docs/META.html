@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta Platforms (NASDAQ: META) 深度研究报告：从全球社交广告帝国到 Llama 开源生态与 AI 超级智能变现核心引擎</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            metablue: {
+              400: '#38BDF8',
+              500: '#0668E1',
+              600: '#0051B8',
+            },
+            accent: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(6, 104, 225, 0.28) 0%, rgba(56, 189, 248, 0.08) 100%);
+      border-left: 3px solid #38BDF8;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-metablue-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-metablue-500 via-sky-400 to-teal-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-metablue-500 to-sky-400 flex items-center justify-center font-extrabold text-white shadow">
+        MT
+      </div>
+      <div>
+        <div class="text-[11px] text-metablue-400 font-semibold tracking-wider uppercase">NASDAQ: META · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">Meta Platforms 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">META 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康与估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球互联网媒体与 AI 应用变现研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY25 / FY26E / FY27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-metablue-500 to-sky-400 flex items-center justify-center text-white font-extrabold text-base shadow-lg shadow-metablue-500/30">
+            META
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-metablue-400 bg-metablue-500/15 px-2 py-0.5 rounded">NASDAQ: META</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">Meta 深度研究报告</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          35.4亿日活社交矩阵 · AI 推荐变现引擎与智能穿戴/开源大模型生态领航者
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY26E 营收共识</span>
+          <span class="font-mono font-bold text-white">~$246.5B <span class="text-metablue-400">(+22.6%)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY27E 营收共识</span>
+          <span class="font-mono font-bold text-teal-400">~$292.0B <span class="text-slate-400">(+18.5%)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">远期估值锚</span>
+          <span class="font-mono font-bold text-metablue-400">~21.5x P/E · 营业利润率 42%+</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-metablue-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-metablue-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-metablue-500 hover:bg-metablue-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-metablue-500/15 text-metablue-600 dark:text-metablue-400 font-bold border border-metablue-500/30">评级：买入 / 核心超配 (Outperform)</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 AI 变现收获与端侧硬件破局期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NASDAQ: META</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-slate-900 to-[#061A3A] text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景科技蓝神经网络点阵纹理 -->
+          <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#38BDF8 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-metablue-500/20 border border-metablue-400/40 text-metablue-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-metablue-400 animate-pulse"></span>
+              <span>CORE THESIS · 全球唯一将千亿级 AI 算力 CapEx 直接转化为广告 ROI 提效的超级应用帝国</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              Meta Platforms (NASDAQ: META) 深度研究报告：从全球社交广告帝国到 Llama 开源生态与 AI 超级智能变现核心引擎
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              依托全球超过 <strong class="text-metablue-400">35.4 亿家族日活跃用户（DAP）</strong>的无可替代社交图谱，Meta 凭借全栈自研 <strong class="text-white">Andromeda / GEM 统一大模型推荐系统</strong>与 <strong class="text-sky-300">Advantage+ AI 广告自动化套件</strong>，成功在两千亿美元体量上维持 <strong class="text-metablue-400">20%+ 营收增速</strong>（FY26E 营收共识达 <strong class="text-white">~$246.5B</strong>）。
+              与此同时，Meta AI 助手月活突破 <strong class="text-teal-400">10 亿大关</strong>，WhatsApp 商业消息与 Threads 商业化加速放量，叠加 <strong class="text-sky-300">Ray-Ban Meta / Orion 智能眼镜</strong>打开下一代人机交互入口，使千亿美元级基础设施资本开支（FY26 CapEx ~$125B）具备清晰可验证的高 ROI 商业闭环。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">AI 广告飞轮“量价齐升”</div>
+                <div class="text-white font-semibold">GEM 大模型驱动 Facebook/Instagram 用户时长与广告转化率双位数跃升</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">第二增长曲线全面接棒</div>
+                <div class="text-metablue-400 font-semibold">WhatsApp 商业化、Threads 广告与 Meta AI 10亿月活打开千亿级增量空间</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">AI 眼镜定义下一代端侧入口</div>
+                <div class="text-teal-400 font-semibold">Ray-Ban Meta 智能眼镜年销量破千万副，成为多模态 AI 最佳物理载体</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2026E 全年总营收</span>
+              <span class="p-1.5 rounded-lg bg-metablue-500/15 text-metablue-600 dark:text-metablue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$246.5B</span>
+              <span class="text-xs font-bold text-metablue-600 dark:text-metablue-400 bg-metablue-500/15 px-2 py-0.5 rounded">+22.6% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              继 FY25 突破 $201.0B 后延续 22%+ 强劲扩张，广告展示量与单价（CPM）实现双轮驱动。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>家族日活跃用户 (DAP)</span>
+              <span class="p-1.5 rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">35.4亿</span>
+              <span class="text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded">+6.0% YoY</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              覆盖全球超 43% 人口；Threads 月活突破 3.5 亿，Meta AI 助手月活突破 10 亿大关。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>营业利润率 & 经营现金流</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">42.8%</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">OCF $118B+</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              尽管算力折旧攀升，AI 提效与高毛利广告使营业利润突破 $105B，内部现金流完全覆盖千亿 CapEx。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2027E 预期 & 远期估值</span>
+              <span class="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~$292B</span>
+              <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Fwd P/E ~21.5x</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              低于纳斯达克 100 科技龙头均值，且拥有全球最强的消费级 AI 变现确定性，估值安全边际充足。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-metablue-600 dark:text-metablue-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：AI 驱动的超级应用矩阵 + 端侧智能硬件双轮驱动</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">FY2026E 总营收 ~$246.5B · 应用家族广告占比 ~97.2%</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2022–FY2027E 分部营收演进与广告复利加速</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">应用家族营收从 $114.5B 跃升至 FY26E $242.5B，Reality Labs 在 AI 眼镜带动下重回高增</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-metablue-600 dark:text-metablue-400 shadow-sm transition">视图A：营收演进</button>
+                <button onclick="switchBizChart('foa_split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：区域与产品拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业架构三大结构性增长引擎</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-metablue-500/15 text-metablue-600 dark:text-metablue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">GEM 统一大模型重构推荐与广告转化</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      自研生成式广告推荐模型（GEM）与 Andromeda 检索架构全面替代传统小模型，使 Reels 观看时长与广告点击转化率（CVR）双位数提升，<strong>Advantage+ 自动化广告年化流水突破 $60B+</strong>。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">WhatsApp 商业消息与 Threads 货币化提速</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      Click-to-WhatsApp 广告及企业 AI 客服代理（Business AI Agents）在拉美、亚太与欧美中小商户快速渗透，<strong>应用家族“其他非广告收入”同比暴增 50%+</strong>。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">AI 智能眼镜引爆端侧硬件破局</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      联合依视路陆逊梯卡推出的 <strong>Ray-Ban Meta / Oakley Meta 智能眼镜</strong>供不应求，搭配轻量化光波导显示版，确立 Meta 在下一代“无屏/轻显示端侧 AI 入口”的全球绝对领先地位。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">核心商业化催化剂</span>
+              <span class="font-bold text-metablue-600 dark:text-metablue-400">GEM 大模型全面部署 & Threads 全球广告放量</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 五大核心业务板块详细卡片矩阵 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- 板块 1：核心社交与短视频广告矩阵 (占两列宽度以突出核心地位) -->
+          <div class="md:col-span-2 report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-metablue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-1 rounded-md bg-metablue-500/15 text-metablue-600 dark:text-metablue-400 text-xs font-bold">核心现金牛 · 占比 ~97.2%</span>
+                <span class="font-mono text-xs font-bold text-sky-600 dark:text-sky-400">+22.4% YoY</span>
+              </div>
+              <span class="text-base font-extrabold font-mono text-slate-900 dark:text-white">FY26E 营收：~$239.5B</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 应用家族数字广告（Instagram + Facebook + Reels + Threads）</h3>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">流量与时长引擎：Instagram & Reels</div>
+                <p class="leading-relaxed">
+                  Instagram 全球月活超 25 亿，<strong>Reels 短视频日播放量突破 2,200 亿次</strong>。AI 跨平台推荐使未关注账号的优质内容分发占比超 50%，带动广告展示量（Ad Impressions）保持 12%+ 稳健增长。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                <div class="font-bold text-slate-900 dark:text-white mb-1">广告主 ROI 工具：Advantage+ 全自动投放</div>
+                <p class="leading-relaxed">
+                  集成生成式 AI 素材扩展、自动受众寻优与跨渠道归因，使广告主单次获客成本（CPA）平均下降 18%–22%，推动单条广告均价（Price per Ad）持续同比正增长 10%+。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 板块 2：WhatsApp 商业通信与 AI 客服代理 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">高增第二曲线 · +52% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">~$3.0B+ (非广告)</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. WhatsApp 商业消息与 AI 代理</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                全球月活超 30 亿。结合 Click-to-WhatsApp 引流广告（年化流水超 $15B）与付费商业 API、AI 导购对话机器人，正快速复制亚洲超级应用的商业闭环模式。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+              全球 30亿月活 · 企业 AI 客服商业化爆发
+            </div>
+          </div>
+
+          <!-- 板块 3：Meta AI 与 Llama 开源生态 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">10亿月活 · 开源标准制定者</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">Llama 4 旗舰矩阵</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. Meta AI 助手与 Llama 开源大模型</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                原生嵌入 WhatsApp、Instagram、Facebook 与 Messenger 搜索框，月活突破 10 亿。通过开源 <strong>Llama 4</strong> 建立全球开发者标准，倒逼云计算巨头共同分担模型优化与推理生态成本。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">
+              10亿 MAU · 全球下载量破 12 亿次
+            </div>
+          </div>
+
+          <!-- 板块 4：Reality Labs 智能眼镜与 XR -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">占比 ~1.6% · +45% YoY</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">FY26E ~$4.0B</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. Reality Labs（AI 眼镜 + Quest + Orion）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <strong>Ray-Ban Meta 智能眼镜</strong>凭借第一视角多模态视觉识别与实时翻译成为现象级爆款，联合 Oakley 等品牌矩阵放量，摆脱手机操作系统底层限制，抢占下一代个人计算平台制高点。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              智能眼镜市占率 &gt;70% · 下一代端侧入口
+            </div>
+          </div>
+
+          <!-- 板块 5：Threads 实时社交与创作者经济 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sky-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">3.5亿+ MAU · 商业化元年</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">增量广告池</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">5. Threads 公共对话与实时信息流</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                全球月活突破 3.5 亿、日活破亿，已全面向全球品牌广告主开放信息流广告投放。凭借与 Instagram 账号体系无缝互通，成为品牌实时热点营销的核心新阵地。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-500">
+              对标 X (Twitter) · 零边际获客成本扩张
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与四重核心护城河 (Industry Position & Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与四重核心护城河：35亿人社交图谱 + AI 算法双轮壁垒</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球数字效果广告双寡头之一)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重护城河深度解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 护城河 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-metablue-500/15 text-metablue-600 dark:text-metablue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">35.4 亿日活真实社交关系图谱</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                跨 Facebook、Instagram、WhatsApp、Messenger 构建人类历史上最庞大的真实社交与兴趣关系网络，强双边网络效应锁定用户社交关系链与高切换成本，新入局者几乎无法从零重建同量级关系网络。
+              </p>
+            </div>
+
+            <!-- 护城河 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">第一方闭环数据 + GEM 推荐飞轮</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在苹果 ATT 隐私新政后，Meta 投入数百亿美元重构底层 AI 算力集群（超 130 万颗等效 H100/Blackwell 算力），利用万亿级站内行为信号训练 <strong>GEM 统一推荐模型</strong>，实现“越用越懂你 → 转化率越高 → 广告主预算越集中”的正向飞轮。
+              </p>
+            </div>
+
+            <!-- 护城河 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Llama 开源生态反制闭源模型壁垒</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                通过开源 <strong>Llama 系列大模型</strong>将基础模型能力“商品化”，有效防止 OpenAI、Anthropic 或 Google 通过闭源模型垄断 AI 入口并向 Meta 征收“模型税”，同时吸引全球开发者共建高效推理工具链反哺内部算力效率。
+              </p>
+            </div>
+
+            <!-- 护城河 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">千万级广告主长尾生态与端侧硬件卡位</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                全球超 <strong>1,000 万家活跃中小广告主</strong>高度依赖 Meta 进行低门槛、高 ROAS（广告支出回报率）获客，单一客户占比极低；叠加 Ray-Ban Meta 智能眼镜提前卡位下一代 AI 硬件终端。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">数字广告与消费级 AI 五维护城河量化雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Meta Platforms vs Alphabet (Google) vs TikTok / Snap（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比 (Competitive Landscape)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-metablue-600 dark:text-metablue-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：效果广告双寡头统治，社交视频份额持续回流</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-metablue-500 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('ad_giant')" data-filter="ad_giant" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">数字广告巨头</button>
+            <button onclick="filterCompetitors('social')" data-filter="social" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">社交与短视频竞品</button>
+            <button onclick="filterCompetitors('ai_model')" data-filter="ai_model" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">消费级 AI 助手竞争</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[180px]">竞争厂商与核心平台</th>
+                  <th class="py-4 px-4 min-w-[130px]">全球活跃用户体量</th>
+                  <th class="py-4 px-4 min-w-[140px]">AI 推荐与变现引擎</th>
+                  <th class="py-4 px-4 min-w-[135px]">全球数字广告份额</th>
+                  <th class="py-4 px-4 min-w-[115px]">营业利润率</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞合关系评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：Meta 基准 -->
+                <tr data-category="core" class="bg-metablue-500/5 dark:bg-metablue-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-metablue-500 text-white text-[10px] font-extrabold">核心基准</span>
+                      <span class="font-bold text-slate-900 dark:text-white">Meta Platforms (META)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">IG / FB / WhatsApp / Threads / Llama</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/15 text-sky-700 dark:text-sky-400">35.4亿 DAP · 10亿 AI MAU</span>
+                  </td>
+                  <td class="py-4 px-4 font-semibold text-slate-900 dark:text-white">GEM 大模型 + Advantage+</td>
+                  <td class="py-4 px-4 font-bold text-metablue-600 dark:text-metablue-400">~22%–24% (社交霸主)</td>
+                  <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~42.8%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>社交效果广告绝对统治者：</strong>“发现式推荐（Discovery Engine）”精准捕捉用户潜在消费意图，无需依赖搜索关键词即可高效转化，ROAS 领先全行业。
+                  </td>
+                </tr>
+
+                <!-- 行 2：Alphabet (Google / YouTube) -->
+                <tr data-category="ad_giant" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Alphabet (Google / YouTube)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Search / YouTube Shorts / Gemini</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">25亿+ 月活 · 搜索垄断</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">Performance Max + AI Overviews</td>
+                  <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">~27%–29% (全球第一)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~32%–34%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>搜索意图霸主但面临 AI 分流：</strong>在主动搜索与长视频（YouTube）占优，但传统搜索链接正面临 ChatGPT/Perplexity 与 AI 摘要分流，而 Meta 社交沉浸场景抗 AI 替代性更强。
+                  </td>
+                </tr>
+
+                <!-- 行 3：Amazon Ads -->
+                <tr data-category="ad_giant" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Amazon Ads (亚马逊广告)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Retail Media + Prime Video 广告</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">3亿+ 高净值购物活跃户</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">零售交易闭环归因算法</td>
+                  <td class="py-4 px-4 font-semibold text-amber-600 dark:text-amber-400">~8%–9% (零售媒体第一)</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">零售业务整体 ~11%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>交易转化闭环极强但流量上限明确：</strong>聚焦站内货架与流媒体，Meta 则占据用户日均数小时高频社交通信时间，二者在品牌种草与独立站电商投放上形成互补与竞合。
+                  </td>
+                </tr>
+
+                <!-- 行 4：ByteDance / TikTok -->
+                <tr data-category="social" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">TikTok (字节跳动海外)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">短视频信息流 + TikTok Shop</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/15 text-indigo-700 dark:text-indigo-400">海外 ~16亿+ 月活</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">单列沉浸式算法 + 闭环电商</td>
+                  <td class="py-4 px-4 font-semibold text-slate-700 dark:text-slate-300">~4%–5% (海外增速放缓)</td>
+                  <td class="py-4 px-4 font-mono text-slate-500 dark:text-slate-400">未公开 (海外投入大)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>核心短视频劲敌，但地缘合规掣肘明显：</strong>Reels 已成功追平短视频时长份额；受欧美监管不确定性影响，大量品牌预算持续回流至更稳健的 Instagram 与 Facebook。
+                  </td>
+                </tr>
+
+                <!-- 行 5：Snap / Pinterest / X -->
+                <tr data-category="social" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Snap / Pinterest / X</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">垂直社交与视觉发现平台</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">4亿–8亿 垂直月活</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">中小规模机器学习模型</td>
+                  <td class="py-4 px-4 text-rose-600 dark:text-rose-400 font-semibold">合计 &lt;2.5% (边缘化)</td>
+                  <td class="py-4 px-4 font-mono text-rose-600 dark:text-rose-400">-5% 至 +8%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>算力军备竞赛下代差拉大：</strong>无力承担千亿美元级 AI 基础设施投入，广告主在测试后普遍将预算重新集中至算法精度更高的 Meta Advantage+。
+                  </td>
+                </tr>
+
+                <!-- 行 6：OpenAI (ChatGPT) -->
+                <tr data-category="ai_model" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">OpenAI (ChatGPT)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">GPT 系列闭源前沿模型 + 订阅/广告</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-500/15 text-teal-700 dark:text-teal-400">8亿+ 周活 · 独立 App 龙头</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">推理对话订阅 + 商业导流</td>
+                  <td class="py-4 px-4 font-semibold text-teal-600 dark:text-teal-400">新兴 AI 入口广告试水</td>
+                  <td class="py-4 px-4 font-mono text-rose-600 dark:text-rose-400">高算力亏损扩张期</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>消费级 AI 心智领跑者，但无自有社交分发护城河：</strong>Meta 凭借 WhatsApp/IG/FB 原生零成本分发使 Meta AI 迅速突破 10 亿月活，并用社交广告现金流全额反哺研发。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 配套 Chart.js 横向条形图：营业利润率与每用户平均收入/盈利能力对比 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">全球主要数字媒体与社交平台营业利润率（Operating Margin）横向对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Meta 凭借 35.4 亿用户规模效应与 AI 自动化投放，在承担每年百亿级 Reality Labs 研发投入后营业利润率仍高达 ~42.8%</p>
+            </div>
+            <span class="text-xs font-semibold text-metablue-600 dark:text-metablue-400 bg-metablue-500/15 px-2.5 py-1 rounded">应用家族单体营业利润率更超 51%</span>
+          </div>
+          <div class="relative h-60 w-full">
+            <canvas id="compMarginChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值体系解析 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与估值体系：千亿级 CapEx 周期下的强现金流自造血与估值锚点</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">远期 P/E ~21.5x · ROIC &gt;32%（全球顶级现金流机器）</span>
+        </div>
+
+        <!-- 1. 财务健康度四大硬核指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-metablue-600 dark:text-metablue-400 uppercase">Gross Margin</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">81.2%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              软件与数字广告商业模式赋予极高毛利率；尽管 AI 数据中心折旧攀升，毛利率仍稳居 80% 以上黄金线。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase">Operating Profit</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$105.5B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              FY2026E 全年营业利润突破千亿美元（营业利润率 ~42.8%），其中核心应用家族（FoA）营业利润率高达 51%+。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase">OCF & CapEx Cycle</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$118.0B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              全年经营现金流（OCF）近 $1,200 亿，完全依靠内生造血即可覆盖 ~$125B AI 算力与定制 MTIA 芯片资本开支。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase">Balance Sheet & Buyback</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$70B+ 现金</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              资产负债表极为稳健，常态化季度股息发放叠加百亿美元级股票回购授权，持续增厚长期每股收益（EPS）。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 财务与估值演进双轴图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 营收/营业利润复利扩张与远期 P/E 估值走势</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">2023“效率年”后盈利重回高速通道，当前 ~21.5x 远期 P/E 兼具 18%–22% 营收增速，性价比凸显</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-metablue-600 dark:text-metablue-400 bg-metablue-500/10 px-2.5 py-1 rounded">远期 P/E ~21.5x (低于科技七巨头均值)</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 3. 估值体系演进三阶段 + 华尔街多空分歧面板 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-500">STAGE 01 · 2022 隐私与元宇宙低谷</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-mono font-semibold">10x–14x P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">ATT 冲击与盲目元宇宙开支折价期</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              苹果隐私政策削弱广告归因，叠加 Reality Labs 无节制烧钱，市场一度担忧社交广告增长见顶，给予历史最低折价倍数。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-white dark:bg-navy-900 border border-sky-500/30 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-sky-600 dark:text-sky-400">STAGE 02 · 2023–2024 效率年与 Reels 逆袭</span>
+              <span class="px-2 py-0.5 rounded bg-sky-500/15 text-sky-700 dark:text-sky-300 text-[11px] font-mono font-semibold">22x–26x P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">组织瘦身与 AI 推荐重估阶段</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              裁员提效推动营业利润率重返 40%+，Reels 商业化破百亿且 Advantage+ 验证 AI 变现能力，估值向科技蓝筹中枢修复。
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-gradient-to-br from-metablue-500/10 to-teal-500/10 border border-metablue-500/40 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-metablue-600 dark:text-metablue-400">STAGE 03 · 2026 年底当前视角</span>
+              <span class="px-2 py-0.5 rounded bg-metablue-500/20 text-metablue-700 dark:text-metablue-300 text-[11px] font-mono font-semibold">~21.5x Fwd P/E</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">消费级 AI 超级平台与智能眼镜期权定价</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              市场对千亿 CapEx 短期自由现金流（FCF）压缩已有充分定价（~21.5x Fwd P/E），一旦 2027 年 CapEx 增速放缓且 AI 新业务变现加速，有望迎来估值上移。
+            </p>
+          </div>
+        </div>
+
+        <!-- 华尔街多空分歧对比 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-sky-50/70 dark:bg-sky-950/20 rounded-2xl p-6 border border-sky-200 dark:border-sky-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-metablue-700 dark:text-metablue-400 text-base">多头核心论点 (Bull Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-metablue-500/15 text-metablue-700 dark:text-metablue-300">AI 变现确定性最高</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-metablue-600 font-bold">✓</span><span><strong>唯一用真实利润证明 AI ROI 的应用巨头：</strong>每一美元算力投入都通过 GEM 推荐与 Advantage+ 转化为广告主可量化的订单转化。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-metablue-600 font-bold">✓</span><span><strong>三大未充分变现的“十亿级金矿”：</strong>WhatsApp 商业 AI 代理、Threads 全球广告及 Meta AI 搜索信息流商业化均处于放量初期。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-metablue-600 font-bold">✓</span><span><strong>智能眼镜定义下一代计算终端：</strong>Ray-Ban Meta 率先跑通大众消费级智能眼镜商业模式，有望摆脱苹果 iOS 生态抽成与限制。</span></li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-rose-700 dark:text-rose-400 text-base">空头担忧论点 (Bear Thesis)</span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">千亿 CapEx 折旧压力</span>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>千亿美元级 CapEx 推高未来折旧费用：</strong>2026–2027 年连续超 $120B–$140B 基础设施支出，将在未来 3–5 年转化为沉重折旧，阶段性压制利润率弹性。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>Reality Labs 长期经营亏损拖累：</strong>尽管 AI 眼镜热销，但底层 AR/VR 光学与操作系统研发每年仍带来 $17B–$19B 营业亏损。</span></li>
+              <li class="flex items-start space-x-2"><span class="text-rose-600 font-bold">!</span><span><strong>宏观消费周期与欧洲 DSA 监管罚款：</strong>全球零售与跨境电商广告主预算对宏观利率及欧美数据隐私监管高度敏感。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-metablue-600 dark:text-metablue-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置框架：三情景估值推演与风控纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：AI 应用层核心底仓 · 紧盯 18x–22x 估值锚点</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-metablue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-metablue-500/15 text-metablue-600 dark:text-metablue-400 text-xs font-bold">牛市情景 (Bull Case)</span>
+                <span class="font-mono text-xs font-bold text-metablue-600 dark:text-metablue-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：26x – 28x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>GEM 推荐算法推动 FY27E 营收超预期突破 $305B+，WhatsApp AI 客服与 Threads 商业化贡献超 $15B 增量，AI 眼镜年出货破 1,500 万副，市场重估其端侧 AI 平台地位。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-metablue-600 dark:text-metablue-400">
+              潜在上行空间：+35% 至 +45%（业绩+估值双升）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">基准情景 (Base Case)</span>
+                <span class="font-mono text-xs font-bold text-teal-600 dark:text-teal-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标估值：22x – 24x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>FY27E 营收稳健兑现 ~$292B 共识预期（+18.5% YoY），营业利润率克服折旧攀升稳守 41%–43%，自由现金流随 CapEx 增速趋缓显著回升。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-teal-600 dark:text-teal-400">
+              潜在上行空间：+18% 至 +25%（EPS 复利驱动）
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">熊市情景 (Bear Case)</span>
+                <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：16x – 17x P/E</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>全球宏观消费走弱导致数字广告增速放缓至 10% 以下，而 2027 年基础设施 CapEx 仍维持 $140B+ 高位，折旧激增拉低营业利润率至 36% 左右。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+              潜在下行回撤：-15% 至 -20%（受 $70B 现金与回购托底）
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构对冲缓释策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 千亿资本开支与折旧爬坡风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">AI 基础设施投入产出比（ROI）与自由现金流承压</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                公司持续大幅上调 AI 数据中心及自研 MTIA 芯片资本开支，若新业务（Meta AI、WhatsApp 商业化）变现速度滞后于折旧增长速度，将短期压制自由现金流与市场估值倍数。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 全球反垄断与数字隐私监管风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">欧盟 DMA/DSA 罚款及青少年网络安全立法制约</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                欧盟委员会对“付费或同意”个性化广告模式的严苛审查，以及欧美多国对青少年社交媒体使用时长与推荐算法的合规限制，可能抬高合规成本并限制部分定向广告精度。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 宏观经济与跨境广告主周期波动</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">电商、消费品与跨境出海广告投放弹性变化</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                全球电商与消费品牌占据 Meta 广告大盘核心份额，若关税政策变动或消费信贷收紧导致广告主削减获客预算，将直接传导至广告竞价（CPM）增速。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 新一代 AI 交互入口竞争风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">独立 AI 原生代理与 Apple Intelligence 生态竞争</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                若用户日常信息检索与消费决策加速向系统级 OS 代理（如苹果 iOS 底层 AI）或第三方原生 Agent 迁移，可能分流部分传统社交信息流浏览时长。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 机构级仓位配置建议 -->
+        <div class="bg-gradient-to-r from-navy-900 to-[#081F44] rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-metablue-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>机构级投资组合仓位配置与交易纪律建议</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white mb-1">1. AI 应用层核心底仓（Core Holding）</div>
+              <p class="text-slate-300 leading-relaxed">
+                与硬件算力霸主 NVIDIA 形成完美“软硬互补”：建议作为科技组合中<strong>AI 应用层与数字广告变现的第一核心底仓（超配）</strong>，分享 AI 提效带来的内生现金流复利。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-metablue-400 mb-1">2. 财报 CapEx 指引回调买点（18x–21x P/E）</div>
+              <p class="text-slate-300 leading-relaxed">
+                历史经验表明，市场常在季报公布上调 CapEx 指引时因短期 FCF 担忧出现脉冲式回调，<strong>当远期 P/E 回落至 18x–20x 区间时是极具胜率的逆向加仓窗口</strong>。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-teal-400 mb-1">3. 算力基建与端侧光学联动对冲</div>
+              <p class="text-slate-300 leading-relaxed">
+                Meta 千亿美元级 CapEx 直接转化为上游 AI 芯片与高速光互联订单，组合中与上游算力硬件龙头形成天然的资金循环对冲，平滑单季 CapEx 波动影响。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-metablue-500/15 text-metablue-600 dark:text-metablue-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），用高频运营指标动态验证 AI 变现飞轮与资本开支效率：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="meta-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0668E1] focus:ring-metablue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 广告展示量（Impressions）与单价（Price per Ad）双升</span>
+                  <span class="text-[11px] font-mono text-metablue-600 dark:text-metablue-400 font-semibold shrink-0">核心引擎锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  验证展示量同比保持 10%–13% 稳健扩张，同时单条广告均价（CPM）因 AI 转化率提升维持 +8%–11% 正向增长。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="meta-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0668E1] focus:ring-metablue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 家族日活跃用户（DAP）稳步突破 35.4 亿并保持增速</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">流量基本盘</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪全球 DAP 同比保持 5%–6% 增长，重点关注欧美成熟市场年轻用户群在 Instagram Reels 与 Threads 的使用时长变化。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="meta-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0668E1] focus:ring-metablue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 应用家族“其他收入”（WhatsApp 商业化）增速 &gt;45%</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">第二增长极</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  监测 WhatsApp 商业消息付费 API 及企业 AI 客服代理收入放量节奏，验证非传统展示广告的增量商业化空间。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="meta-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0668E1] focus:ring-metablue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 合并营业利润率是否稳守 41%–43% 黄金区间</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">盈利韧性锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查在数据中心折旧费用同比大幅上升的背景下，公司能否通过自研 MTIA 推理芯片降本及人均产出提升稳住 41%+ 营业利润率。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="meta-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0668E1] focus:ring-metablue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 年度资本开支（CapEx）指引边际变化与 FCF 转化</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">估值敏感指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  关注管理层对 2027 年基础设施 CapEx 增速是否进入温和放缓期（Deceleration），从而释放百亿美元级自由现金流弹性。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="meta-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0668E1] focus:ring-metablue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. Reality Labs 营收增速（AI 眼镜放量）与亏损收窄信号</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">端侧期权验证</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪 Ray-Ban Meta 等智能眼镜季度营收贡献是否持续实现 40%+ 同比增长，以及分部亏损率是否见顶回落。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>Meta Platforms (NASDAQ: META) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2025 财报及 2026 年 11 月市场一致预期 (FY26E / FY27E)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财务报告、全球数字广告与端侧穿戴供应链调研及市场一致预期数据整理生成，旨在提供结构化的产业分析与机构估值研究框架。报告中涉及的 FY2026E/FY2027E 营收预测、广告转化率测算、三情景估值模型及概率分布均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-metablue-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-metablue-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-metablue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-metablue-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'meta_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 6. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2022–FY2027E 分部营收演进（堆叠柱状图）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              label: '应用家族广告 (FoA Advertising)',
+              data: [113.6, 131.9, 160.6, 195.8, 239.5, 282.5],
+              backgroundColor: '#0668E1',
+              borderRadius: 4,
+            },
+            {
+              label: '应用家族其他 (WhatsApp 商业/订阅)',
+              data: [0.8, 1.1, 1.7, 2.4, 3.0, 4.2],
+              backgroundColor: '#06B6D4',
+              borderRadius: 4,
+            },
+            {
+              label: 'Reality Labs (AI 智能眼镜与 XR)',
+              data: [2.2, 1.9, 2.1, 2.8, 4.0, 5.3],
+              backgroundColor: '#6366F1',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 320,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：FY2026E 营收区域分布与增量驱动拆分（横向柱状图）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '区域：北美市场 (US & Canada)',
+            '区域：欧洲市场 (Europe)',
+            '区域：亚太市场 (Asia-Pacific)',
+            '区域：世界其他地区 (Rest of World)',
+            '引擎：Advantage+ AI 自动化年化流水'
+          ],
+          datasets: [
+            {
+              label: 'FY2026E 营收/流水规模 ($B)',
+              data: [108.5, 58.2, 50.8, 29.0, 68.0],
+              backgroundColor: [
+                '#0668E1',
+                '#3B82F6',
+                '#06B6D4',
+                '#10B981',
+                '#6366F1'
+              ],
+              borderRadius: 6,
+              barThickness: 26
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `规模: $${ctx.parsed.x}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 130,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-metablue-600 dark:text-metablue-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022–FY2027E 分部营收演进与广告复利加速';
+        subEl.textContent = '应用家族营收从 $114.5B 跃升至 FY26E $242.5B，Reality Labs 在 AI 眼镜带动下重回高增';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-metablue-600 dark:text-metablue-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2026E 全球区域营收分布与 AI 自动化广告体量';
+        subEl.textContent = '北美稳居核心压舱石，亚太与新兴市场保持高双位数扩张，Advantage+ 流水破 $68B';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '真实社交网络效应 (35.4亿 DAP)',
+            '第一方闭环行为与意图数据',
+            'AI 推荐与广告 ROAS 转化力',
+            '千万级长尾广告主生态黏性',
+            '消费级 AI 入口与端侧眼镜卡位'
+          ],
+          datasets: [
+            {
+              label: 'Meta Platforms (META)',
+              data: [9.9, 9.5, 9.7, 9.8, 9.4],
+              borderColor: '#0668E1',
+              backgroundColor: 'rgba(6, 104, 225, 0.22)',
+              pointBackgroundColor: '#38BDF8',
+              borderWidth: 2.5
+            },
+            {
+              label: 'Alphabet (Google / YouTube)',
+              data: [7.6, 9.6, 9.4, 9.5, 8.8],
+              borderColor: '#10B981',
+              backgroundColor: 'rgba(16, 185, 129, 0.14)',
+              pointBackgroundColor: '#10B981',
+              borderWidth: 1.8
+            },
+            {
+              label: 'TikTok / Snap 等社交竞品',
+              data: [7.8, 7.5, 7.6, 6.8, 6.2],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      const ctx = document.getElementById('compMarginChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Meta Platforms (META · 社交广告帝国)',
+            'Alphabet (GOOGL · 搜索与 YouTube)',
+            'Spotify / 流媒体音频平台',
+            'Pinterest (PINS · 视觉发现社交)',
+            'Snap (SNAP · 即时影像社交)'
+          ],
+          datasets: [{
+            label: '营业利润率 Operating Margin (%)',
+            data: [42.8, 33.2, 11.5, 7.8, -6.5],
+            backgroundColor: [
+              '#0668E1',
+              '#3B82F6',
+              '#06B6D4',
+              '#64748B',
+              '#F43F5E'
+            ],
+            borderRadius: 6,
+            barThickness: 22
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `营业利润率: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              min: -10,
+              max: 55,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年总营收 ($B)',
+              data: [116.6, 134.9, 164.5, 201.0, 246.5, 292.0],
+              backgroundColor: 'rgba(6, 104, 225, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: '全年营业利润 ($B)',
+              data: [28.9, 46.8, 69.4, 86.2, 105.5, 126.5],
+              backgroundColor: 'rgba(6, 182, 212, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '远期市盈率 Forward P/E (x)',
+              data: [13.5, 22.8, 25.4, 23.8, 21.5, 18.2],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: $${ctx.parsed.y}B`
+                  : `${ctx.dataset.label}: ${ctx.parsed.y}x`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 330,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 35,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

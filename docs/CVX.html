@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>雪佛龙 (NYSE: CVX) 深度商业研究报告：全球综合能源巨头的深水高现金流资产整合与 AI 算力供电新范式</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#060B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            cvxblue: {
+              400: '#38BDF8',
+              500: '#0066B2',
+              600: '#004E8A',
+              700: '#003865',
+            },
+            cvxred: {
+              400: '#F87171',
+              500: '#E21836',
+              600: '#B91C1C',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(0, 102, 178, 0.30) 0%, rgba(226, 24, 54, 0.14) 100%);
+      border-left: 3px solid #0066B2;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-cvxblue-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-cvxblue-500 via-cvxred-500 to-sky-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cvxblue-500 to-cvxred-500 flex items-center justify-center font-extrabold text-white shadow text-xs">
+        CVX
+      </div>
+      <div>
+        <div class="text-[11px] text-cvxblue-400 font-semibold tracking-wider uppercase">NYSE: CVX · CHEVRON</div>
+        <div class="text-sm font-bold leading-tight">雪佛龙深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">CVX 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构（上游油气 + 下游炼化）</a></li>
+          <li><a href="#sec-comm" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. Hess 协同与 AI 算力供电新引擎</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 低成本油田与全产业链护城河</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 自由现金流与股东回报模型</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与油价情景配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球能源与大宗商品投资研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (Q3 2026 财报后)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cvxblue-500 to-cvxred-500 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-cvxblue-500/30">
+            CVX
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-cvxblue-400 bg-cvxblue-500/15 px-2 py-0.5 rounded">NYSE: CVX · CHEVRON</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">雪佛龙深度研究报告</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球综合能源巨头 · 圭亚那深水与二叠纪盆地高现金流 × 数据中心 2.67GW 供电
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章 -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">Q3 2026 油气日产量</span>
+          <span class="font-mono font-bold text-white">3.98M boe/d <span class="text-cvxblue-400">(美产破200万)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">TTM 股东现金回报</span>
+          <span class="font-mono font-bold text-cvxred-400">$25.1B <span class="text-slate-400">(分红+回购)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">资本回报率 (Q3 ROCE)</span>
+          <span class="font-mono font-bold text-amber-400">17.7% (净负债率仅 9.6%)</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-cvxblue-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构（上游油气 + 下游炼化）</span>
+          </a>
+          <a href="#sec-comm" data-target="sec-comm" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>Hess 协同与 AI 算力供电新引擎</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>低成本油田与全产业链护城河</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>自由现金流与股东回报模型</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与油价情景配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-cvxblue-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-cvxblue-500 hover:bg-cvxblue-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元数据标签栏 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400 font-bold border border-cvxblue-500/30">评级：买入 / 全球高现金流综合能源与算力基础设施供电龙头</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">周期：FY2026–FY2027 Hess 协同兑现与长期股息增长周期</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>NYSE: CVX</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#0A2540] to-[#360912] text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <!-- 背景 雪佛龙蓝红矩阵纹理 -->
+          <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#0066B2 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cvxblue-500/20 border border-cvxblue-400/40 text-cvxblue-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-cvxblue-400 animate-pulse"></span>
+              <span>CORE THESIS · 圭亚那深水与二叠纪高利润资产整合 × 炼厂 98% 满负荷运行 × 微软 2.67GW 数据中心供电新赛道</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              雪佛龙 (NYSE: CVX) 深度研究报告：全球综合能源巨头的深水高现金流资产整合与 AI 算力供电新范式
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              随着对赫斯（Hess）的收购整合全面超越预期，雪佛龙（Chevron）已成功构建起全球最具成本优势的上游油气资产组合——涵盖 <strong class="text-cvxblue-400">圭亚那 Stabroek 深水油田、美国二叠纪盆地（Permian）及巴肯（Bakken）</strong>。
+              2026 年第三季度，公司实现调整后净利润 <strong class="text-white">$104 亿</strong>，美国本土原油加工量创历史新高，同时凭借与微软签署的 <strong class="text-cvxred-400">2.67GW 数据中心直供电协议</strong>，将富余天然气转化为 AI 基础设施的长期确定性现金流。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">Hess 整合超预期与成本压降</div>
+                <div class="text-white font-semibold">提前半年实现 $15 亿协同效应（超原目标 50%），并提前达成 $30 亿结构性成本削减</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">上下游一体化抗周期对冲</div>
+                <div class="text-cvxblue-400 font-semibold">Q3 美国炼油厂原油利用率高达 98%，下游业务单季贡献 $49 亿利润形成强力缓冲</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">堡垒级资产负债表与高派息</div>
+                <div class="text-cvxred-400 font-semibold">净负债率降至 9.6%，季度股息提升至 $1.78/股，过去 12 个月回馈股东 $251 亿</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Q3 2026 调整后净利润</span>
+              <span class="p-1.5 rounded-lg bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$10.4B</span>
+              <span class="text-xs font-bold text-cvxblue-600 dark:text-cvxblue-400 bg-cvxblue-500/15 px-2 py-0.5 rounded">EPS $5.28</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              单季营收与收益达 $678 亿（+36.3% YoY），资本回报率（ROCE）跃升至 17.7%。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>全球油气当量日产量</span>
+              <span class="p-1.5 rounded-lg bg-cvxred-500/15 text-cvxred-600 dark:text-cvxred-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">3.98M</span>
+              <span class="text-xs font-bold text-cvxred-600 dark:text-cvxred-400 bg-cvxred-500/15 px-2 py-0.5 rounded">boe/d</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              美国本土产量连续第五个季度稳居 200 万桶油当量/日以上，较两年前大增 27%。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Q3 经营性现金流 (CFFO)</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$16.0B</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">FCF $12.0B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              充沛现金流推动净债务由年底的 $345 亿大幅压降至 $207 亿，财务安全垫极厚。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>TTM 股东现金回报总额</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$25.1B</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">股息 $1.78/季</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              过去 12 个月派息 $139 亿 + 回购 $112 亿（占 TTM 自由现金流的 74%），连续多年稳定派息。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-cvxblue-600 dark:text-cvxblue-400">Section 01 · Business & Production Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与产能架构：美国本土产量突破 200 万桶/日 + 下游炼化创纪录高负荷</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Q3 2026 总营收 $67.8B · 上下游盈利双轮驱动（Upstream $5.7B + Downstream $4.9B）</span>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图切换面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：双视图图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2022–FY2027E 全球油气日产量结构演进（百万桶油当量/日）</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">随 Hess 并表及二叠纪扩产，美国本土产量跨越 200 万桶/日大关，与国际资产形成均衡双支柱</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('evolution')" id="btn-chart-evo" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-cvxblue-600 dark:text-cvxblue-400 shadow-sm transition">视图A：产量结构演进</button>
+                <button onclick="switchBizChart('split')" id="btn-chart-split" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">视图B：Q3 板块盈利拆解</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解核心洞察 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">全球核心资产布局与一体化协同洞察</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">美国上游核心引擎（Permian + Bakken + 墨西哥湾）</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      Q3 美国上游日产量达 <strong class="text-slate-800 dark:text-slate-200">2,043 千桶油当量/日</strong>，连续五个季度突破 200 万桶大关，单季贡献盈利 $32.9 亿。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-cvxred-500/15 text-cvxred-600 dark:text-cvxred-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">国际高毛利深水与 LNG 旗舰资产</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      涵盖 <strong class="text-slate-800 dark:text-slate-200">圭亚那 Stabroek 区块</strong>、哈萨克斯坦 Tengiz（FGP 扩建投产后总产能近百万桶/日）、澳大利亚 Gorgon/Wheatstone LNG 及委内瑞拉合资油田。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-sky-500/15 text-sky-600 dark:text-sky-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">下游炼化创历史最高加工量与裂解价差红利</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      Q3 美国炼油厂原油加工量创历史新高（1,093 千桶/日，产能利用率高达 <strong class="text-slate-800 dark:text-slate-200">98%</strong>），下游全球单季净利润飙升至 $49.3 亿，几乎与上游比肩。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">油价敏感度（Brent 每变动 $1/桶）</span>
+              <span class="font-bold text-cvxblue-600 dark:text-cvxblue-400">年度盈利与现金流变动约 $6 亿</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 四大核心区域与业务板块卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- 板块 1：美国上游 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-cvxblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400 text-xs font-bold">产量占比 ~51%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">2.04M boe/d</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">1. 美国上游油气（U.S. Upstream）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                二叠纪盆地（Permian）、巴肯（Bakken）页岩区与墨西哥湾深水资产协同发力，Q3 贡献净利润 $32.9 亿。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-cvxblue-600 dark:text-cvxblue-400 font-semibold">
+              两年产量增长 +27% · 短周期高弹性
+            </div>
+          </div>
+
+          <!-- 板块 2：国际上游 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-cvxred-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-cvxred-500/15 text-cvxred-600 dark:text-cvxred-400 text-xs font-bold">产量占比 ~49%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">1.94M boe/d</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">2. 国际上游（圭亚那 / 哈萨克斯坦 / 澳洲）</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                圭亚那 Stabroek 深水油田持续放量，澳洲 LNG 创历史最高产量，委内瑞拉合资区块加速扩产。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-cvxred-600 dark:text-cvxred-400 font-semibold">
+              低盈亏平衡点 · 长生命周期现金牛
+            </div>
+          </div>
+
+          <!-- 板块 3：美国下游炼化 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sky-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-sky-500/15 text-sky-600 dark:text-sky-400 text-xs font-bold">满负荷运转 · 98%</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$3.59B 净利</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">3. 美国下游炼化与成品油营销</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Q3 原油日加工量达 109.3 万桶创历史记录，高裂解价差带动单季利润同比激增，成为重要盈利增长极。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold">
+              天然对冲上游油价波动 · 现金流稳健
+            </div>
+          </div>
+
+          <!-- 板块 4：国际下游与化工 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">亚太中东网络</span>
+                <span class="text-sm font-extrabold font-mono text-slate-900 dark:text-white">$1.35B 净利</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">4. 国际下游与雪佛龙菲利普斯化工</h3>
+              <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                依托韩国 GS Caltex、新加坡炼厂及 CPChem 烯烃与聚烯烃合资企业，深度服务亚洲高增长石化与燃料市场。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+              高附加值化工品延伸 · 区域协同显著
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 Hess 协同与 AI 算力供电新引擎 (Strategic Catalysts)
+      ========================================================= -->
+      <section id="sec-comm" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-cvxred-600 dark:text-cvxred-400">Section 02 · Hess Integration & New Growth Catalysts</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 Hess 协同兑现与战略新引擎：从传统油气巨头向 AI 算力供电与全球深水勘探跃迁</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">2026年四季度战略主线：中游资产剥离优化 + 委内瑞拉扩产 + 微软 2.67GW 电力协议</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大战略新引擎 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Hess 整合超额完成：$15 亿协同与中游资产剥离</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                收购 Hess 一周年即实现 $15 亿年化协同效应（超出原目标 50%，提前 6 个月达成）；2026 年 10 月宣布剥离 Hess Midstream 与 DJ 盆地中游资产，换取更优商业条款并聚焦高回报上游。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-cvxred-500/15 text-cvxred-600 dark:text-cvxred-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">Project Kilby：微软西德州 2.67GW 数据中心供电协议</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                与微软达成 2.67 吉瓦（GW）长期购电协议（PPA），直接利用二叠纪盆地富余天然气发电并配备碳捕集（CCUS），为 AI 数据中心提供低延迟基荷电力，开辟长期稳定现金流新曲线。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">委内瑞拉合资油田翻倍计划（2031 年冲刺 60 万桶/日）</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                管理层在 Q3 财报会上重点披露委内瑞拉扩产蓝图：2026 年底总产量预计达 30 万桶/日，2031 年翻倍至 60 万桶/日，资本加运营总成本低于 $20/桶，无需巨额新增基建即可实现自我造血。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">前沿深水勘探预算大增 50% 延伸 2030s 增长跑道</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                相比 2025 年将全球前沿勘探支出大幅提高 50%，2026 年 8 月在安哥拉 Block 0 区块取得重要油气发现，并持续推进东地中海天然气与深水区块储备。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：战略演进对比卡片 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">雪佛龙价值重估的双重叙事跃迁</h3>
+            <div class="space-y-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-slate-700">
+                <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                  <span>传统周期股折价（2024–2025 仲裁博弈与高资本开支期）</span>
+                  <span class="text-slate-500 font-mono">受制于油价与并购不确定性</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  市场曾担忧 Hess 仲裁拖延以及哈萨克斯坦 Tengiz 扩建项目的资本开支高峰挤压自由现金流。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-cvxblue-500/10 border border-cvxblue-500/30">
+                <div class="flex justify-between font-bold text-cvxblue-600 dark:text-cvxblue-400 mb-1">
+                  <span>结构性高现金流与能源基础设施重估（2026–2030s）</span>
+                  <span class="font-mono">低盈亏平衡 · 算力供电溢价</span>
+                </div>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+                  随着 Tengiz 投产回款（Q3 偿还雪佛龙 $10 亿贷款）、圭亚那深水与二叠纪高利润放量，叠加 $30 亿结构性成本削减与微软 2.67GW 数据中心供电合同，公司正转化为兼具防御派息与 AI 电力成长性的超级现金奶牛。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 低成本油田与全产业链护城河 (Global Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-cvxblue-600 dark:text-cvxblue-400">Section 03 · Low-Cost Reserves & Integrated Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 低成本油田与全产业链护城河：顶尖资源禀赋与资本纪律壁垒</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：宽护城河 (Wide Moat · 全球极低桶油盈亏平衡成本 + 百年下游网络)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四大护城河解析 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">圭亚那深水与二叠纪世界级低成本资源池</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                圭亚那 Stabroek 区块拥有超过 110 亿桶油当量可采资源，桶油盈亏平衡成本低至 $25–$35/桶；二叠纪盆地拥有广阔的零/低特许权使用费（Royalty-free）矿区，具备极强抗低油价韧性。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-cvxred-500/15 text-cvxred-600 dark:text-cvxred-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">上下游深度一体化与 98% 炼化装置可靠性</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                拥有全球领先的炼油、润滑油（Havoline / Delo）与零售加油站网络。当国际原油价格波动时，下游高利用率炼厂与化工业务可有效捕获成品油裂解价差，平滑周期波动。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">严苛的资本纪律与 $60–$70 亿结构性降本能力</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在完成 $30 亿结构性成本削减基础上，管理层进一步设定 2026 年额外 $30–$40 亿降本目标，并将全年资本开支严格控制在 $180–$190 亿（占营收不足 8%），杜绝盲目扩产。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">连续 39 年股息增长的“股息贵族”信用背书</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                跨越数轮原油暴跌与宏观危机，雪佛龙始终将稳健分红置于资本配置首位，目前季度股息达 $1.78/股（年化 $7.12/股），吸引全球主权基金与长线养老金长期重仓。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">全球大型油气巨头五维竞争力雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">雪佛龙 (CVX) vs 美国独立页岩油企 vs 欧洲综合能源同业</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 自由现金流与股东回报模型 (Financial Health & Returns)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 04 · Free Cash Flow & Shareholder Return Model</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 自由现金流与股东回报模型：净负债率降至 9.6% 下的高比例派息与回购</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">TTM 自由现金流 $34.1B · 74% 自由现金流直接回馈股东</span>
+        </div>
+
+        <!-- 1. 财务健康度四大指标卡 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-cvxblue-600 dark:text-cvxblue-400 uppercase">Net Debt Ratio</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">9.6%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              净债务由 2025 年底的 $345 亿大幅下降至 2026 年 9 月底的 $207 亿（Net Debt/CFFO 仅 0.4x）。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-cvxred-600 dark:text-cvxred-400 uppercase">TTM Free Cash Flow</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$34.1B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              单季 Q3 自由现金流高达 $120 亿（调整后 $142 亿），资本开支纪律保障极高现金转化率。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase">TTM Buybacks + Divs</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">$25.1B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              过去 12 个月派发股息 $139 亿 + 回购股票 $112 亿，总股本稳步缩减至 19.5 亿股。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase">Q3 2026 ROCE</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 dark:text-white mt-1">17.7%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+              高回报深水项目投产叠加中游非核心资产剥离，推动资本使用回报率稳居行业第一梯队。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互式 Chart.js 自由现金流与股东回报演进图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 经营性现金流 (CFFO) 与年度股东现金回报（$十亿）</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">展示雪佛龙在扩产并购周期中始终保持每年超 $200 亿的稳健派息与回购能力</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-cvxblue-600 dark:text-cvxblue-400 bg-cvxblue-500/10 px-2.5 py-1 rounded">连续 18 个季度股东现金回报超 $50 亿</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valEvolutionChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与油价情景配置框架 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-cvxblue-600 dark:text-cvxblue-400">Section 05 · Investment Decision & Oil Price Scenarios</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与油价情景配置框架：三情景推演与核心风险应对</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置建议：能源板块核心底仓，兼具通胀对冲、稳健股息与 AI 电力期权</span>
+        </div>
+
+        <!-- 1. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 牛市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-cvxblue-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400 text-xs font-bold">牛市情景 (Bull Case · Brent $90+)</span>
+                <span class="font-mono text-xs font-bold text-cvxblue-600 dark:text-cvxblue-400">概率：30%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标股价：$260 – $280</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>地缘供应偏紧推动 Brent 原油维持 $90/桶上方，圭亚那与二叠纪产量超预期放量，委内瑞拉扩产顺利推进，季度回购恢复至 $30–$40 亿上限。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-cvxblue-600 dark:text-cvxblue-400">
+              潜在总回报：+15% 至 +25%（含 ~3.3% 股息率）
+            </div>
+          </div>
+
+          <!-- 基准情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-sky-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-sky-500/15 text-sky-600 dark:text-sky-400 text-xs font-bold">基准情景 (Base Case · Brent $75–$85)</span>
+                <span class="font-mono text-xs font-bold text-sky-600 dark:text-sky-400">概率：50%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标股价：$235 – $255</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>Brent 油价中枢稳定在 $75–$85/桶，2026 年实现 $30–$40 亿新增降本目标，每年稳定派息 $140 亿+ 并回购 $100–$120 亿股票。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-sky-600 dark:text-sky-400">
+              核心收益来源：稳健高股息 + 股本持续注销推升 EPS
+            </div>
+          </div>
+
+          <!-- 熊市情景 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-slate-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-0.5 rounded bg-slate-500/15 text-slate-600 dark:text-slate-300 text-xs font-bold">熊市情景 (Bear Case · Brent $55–$65)</span>
+                <span class="font-mono text-xs font-bold text-slate-600 dark:text-slate-300">概率：20%</span>
+              </div>
+              <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守估值：$190 – $210</div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                <strong>核心假设：</strong>全球宏观需求走弱叠加 OPEC+ 增产导致油价下探，股票回购放缓，但凭借 9.6% 超低净负债率与炼化业务对冲，股息安全无虞。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300">
+              下行保护：堡垒级资产负债表保障股息零削减风险
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构应对策略</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 国际原油与天然气价格剧烈波动风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">Brent 油价每波动 $1/桶影响年度利润约 $6 亿美元</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                2026 年三季度油价曾出现高达 $64/桶的宽幅震荡。若全球原油供应过剩导致油价长期跌破 $60/桶，上游盈利将显著承压（但下游炼化与低负债率可提供缓冲）。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 地缘政治与海外产区政策变动风险</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">委内瑞拉许可政策、中东局势及哈萨克斯坦出口管道稳定度</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                公司将委内瑞拉作为 2031 年产量翻倍的重点区域，该国受美国制裁许可政策与本土政局影响较大；同时需关注中东地缘冲突对国际上游产量的短期扰动。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 炼油裂解价差周期回落风险</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">美国炼厂 98% 超高利用率与高裂解利润的常态化回归</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                2026 年 Q3 下游单季贡献 $49 亿超高利润，随着全球新增炼能投放及季节性检修窗口开启，下游利润率存在向历史均值回归的可能。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 大型项目交付与资产剥离会计减值扰动</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">Hess Midstream 退出预计带来 $30–$40 亿一次性税后账面亏损</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                2026 年底完成 Hess Midstream 剥离将产生非现金特殊项目亏损（Non-cash Special Item），虽不影响自由现金流与调整后盈利，但需警惕财报公布日的短期情绪波动。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           六、 季度基本面跟踪 KPI 交互式核查清单 (Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Section 06 · Quarterly Fundamental Tracking KPIs</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">六、 季度基本面跟踪 KPI 交互式核查清单（Checklist）</h2>
+          </div>
+          <div class="flex items-center space-x-2 no-print">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-cvxblue-500/15 text-cvxblue-600 dark:text-cvxblue-400 text-xs font-bold">已核查 3 / 6 项 (50%)</span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            点击勾选机构季报追踪已验证达标的指标（状态自动本地保存），动态追踪雪佛龙的产量兑现、降本进度与股东回报质量：
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="cvx-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0066B2] focus:ring-cvxblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. 美国上游油气日产量是否稳固维持在 2.0M boe/d 以上</span>
+                  <span class="text-[11px] font-mono text-cvxblue-600 dark:text-cvxblue-400 font-semibold shrink-0">核心产量锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  重点追踪二叠纪盆地、巴肯页岩区及墨西哥湾深水新井投产对单井递减率的对冲能力。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="cvx-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0066B2] focus:ring-cvxblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 净负债率（Net Debt Ratio）是否稳步控制在 10% 以下</span>
+                  <span class="text-[11px] font-mono text-cvxred-600 dark:text-cvxred-400 font-semibold shrink-0">财务安全锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查季度净债务规模及 Tengiz 合资企业还贷回款进度，确保资产负债表维持堡垒级稳健。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="cvx-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0066B2] focus:ring-cvxblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 季度股票回购规模是否稳居 $2.5B–$3.0B 目标区间</span>
+                  <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-semibold shrink-0">股东回报锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  叠加每季 $1.78/股稳定派息，核查总股本注销速度对每股自由现金流（FCF/Share）的增厚效果。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="cvx-kpi-4" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0066B2] focus:ring-cvxblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. 2026 年新增 $30–$40 亿结构性降本目标兑现进度</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">桶油成本锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪单位桶油运营成本（Opex/boe）及巴肯中游资产剥离后的成本结构改善幅度。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="cvx-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0066B2] focus:ring-cvxblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 委内瑞拉合资区块年底 30 万桶/日产能目标达成情况</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">增量产量锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪 2027 年 1 月年报披露的委内瑞拉实际提油量与扩产进度，验证 2031 年翻倍计划可行性。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="cvx-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#0066B2] focus:ring-cvxblue-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. 微软 2.67GW 数据中心供电项目建设与并网里程碑</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">AI 电力期权锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪西德州天然气发电与碳捕集设施的工程进度，以及后续与超大规模云厂商的新增 PPA 签约动态。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>雪佛龙 (NYSE: CVX) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：雪佛龙 2026 Q3 财报（2026年10月30日披露）及市场一致预期</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于雪佛龙（Chevron Corporation）公开披露的 2026 年第三季度业绩报告、SEC 备案文件及市场一致预期数据整理生成，旨在提供结构化的能源产业分析与机构估值研究框架。报告中涉及的 FY2026E/FY2027E 产量预测、现金流展望及三情景估值推演均基于特定国际油价与宏观假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步刷新所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-cvxblue-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-cvxblue-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'cvx_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 5. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let valEvolutionChartInstance = null;
+    let currentBizMode = 'evolution';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 视图 A：FY2022–FY2027E 全球油气日产量结构演进（堆叠柱状图）
+      const evoConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              label: '美国上游产量 (U.S. Upstream - Permian/Bakken/GoM)',
+              data: [1.18, 1.34, 1.58, 1.85, 2.05, 2.18],
+              backgroundColor: '#0066B2',
+              borderRadius: 3,
+            },
+            {
+              label: '国际上游产量 (International - 圭亚那/哈萨克斯坦/澳洲等)',
+              data: [1.82, 1.78, 1.76, 1.88, 1.95, 2.04],
+              backgroundColor: '#E21836',
+              borderRadius: 3,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}M boe/d`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              max: 5.0,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + 'M' }
+            }
+          }
+        }
+      };
+
+      // 视图 B：Q3 2026 各业务板块净利润贡献拆解（横向柱状图）
+      const splitConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '美国下游炼化与营销 (U.S. Downstream)',
+            '美国上游油气勘探开发 (U.S. Upstream)',
+            '国际上游油气勘探开发 (Intl Upstream)',
+            '国际下游与化工业务 (Intl Downstream)'
+          ],
+          datasets: [
+            {
+              label: 'Q3 2026 板块净利润贡献 ($十亿)',
+              data: [3.59, 3.29, 2.41, 1.35],
+              backgroundColor: [
+                '#0EA5E9',
+                '#0066B2',
+                '#E21836',
+                '#6366F1'
+              ],
+              borderRadius: 6,
+              barThickness: 28
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `单季板块净利润: $${ctx.parsed.x}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 4.5,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'evolution' ? evoConfig : splitConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnEvo = document.getElementById('btn-chart-evo');
+      const btnSplit = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'evolution') {
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-cvxblue-600 dark:text-cvxblue-400 shadow-sm transition';
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2022–FY2027E 全球油气日产量结构演进（百万桶油当量/日）';
+        subEl.textContent = '随 Hess 并表及二叠纪扩产，美国本土产量跨越 200 万桶/日大关，与国际资产形成均衡双支柱';
+      } else {
+        btnSplit.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-cvxblue-600 dark:text-cvxblue-400 shadow-sm transition';
+        btnEvo.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'Q3 2026 经营业务板块净利润拆解（未含企业总部及抵消项）';
+        subEl.textContent = '美国下游炼厂 98% 满负荷运行带来 $3.59B 盈利，与上游油气形成强大上下游对冲闭环';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '低盈亏平衡成本深水/页岩资源池',
+            '上下游炼化一体化周期对冲能力',
+            '资产负债表稳健度 (9.6% 净负债率)',
+            '连续 39 年股息增长与股东回报纪律',
+            'AI 数据中心供电与天然气变现新赛道'
+          ],
+          datasets: [
+            {
+              label: '雪佛龙 (CVX)',
+              data: [9.6, 9.5, 9.7, 9.8, 9.3],
+              borderColor: '#0066B2',
+              backgroundColor: 'rgba(0, 102, 178, 0.24)',
+              pointBackgroundColor: '#0066B2',
+              borderWidth: 2.5
+            },
+            {
+              label: '北美独立页岩油气生产商 (纯上游)',
+              data: [8.4, 4.5, 7.6, 7.2, 6.8],
+              borderColor: '#0EA5E9',
+              backgroundColor: 'rgba(14, 165, 233, 0.14)',
+              pointBackgroundColor: '#0EA5E9',
+              borderWidth: 1.8
+            },
+            {
+              label: '欧洲传统综合能源同业',
+              data: [8.0, 8.8, 7.8, 7.5, 7.9],
+              borderColor: '#E21836',
+              backgroundColor: 'rgba(226, 24, 54, 0.10)',
+              pointBackgroundColor: '#E21836',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      const ctx = document.getElementById('valEvolutionChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '年度股东现金回报：派息 + 回购 ($十亿)',
+              data: [22.2, 26.3, 27.0, 24.5, 25.5, 26.8],
+              backgroundColor: 'rgba(0, 102, 178, 0.85)',
+              borderRadius: 5,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '年度经营性现金流 CFFO ($十亿)',
+              data: [49.6, 35.6, 31.5, 34.8, 46.5, 48.0],
+              borderColor: '#E21836',
+              backgroundColor: '#E21836',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 0,
+              max: 40,
+              grid: { color: colors.grid },
+              ticks: { color: '#0066B2', font: { size: 11, weight: '600' }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 10,
+              max: 60,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#E21836', font: { size: 11, weight: '600' }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

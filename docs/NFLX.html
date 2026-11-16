@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netflix (NASDAQ: NFLX) 深度研究报告：从全球流媒体霸主到“订阅+广告+体育直播”双引擎现金流机器</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter & Noto Sans SC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            netflix: {
+              500: '#E50914',
+              600: '#B81D24',
+            },
+            accent: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            },
+            teal: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(229, 9, 20, 0.22) 0%, rgba(59, 130, 246, 0.06) 100%);
+      border-left: 3px solid #E50914;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-netflix-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/60 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-netflix-500 via-rose-500 to-accent-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-netflix-500 to-rose-700 flex items-center justify-center font-extrabold text-white shadow">
+        N
+      </div>
+      <div>
+        <div class="text-[11px] text-rose-400 font-semibold tracking-wider uppercase">NASDAQ: NFLX · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">Netflix 深度投资研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">NFLX 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康度与估值重置</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球互联网与数字娱乐研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY25 / 26E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-72 bg-navy-900 text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-6 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-netflix-500 to-rose-700 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-netflix-500/25">
+            N
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-rose-400 bg-rose-500/15 px-2 py-0.5 rounded">NASDAQ: NFLX</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">Netflix 深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+          全球流媒体霸主 · 订阅提价 + 广告变现 + 体育直播双引擎现金流机器
+        </p>
+      </div>
+
+      <!-- 实时行情快照栏 -->
+      <div class="px-5 py-3 bg-navy-950/60 border-b border-slate-800/80 grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <span class="text-slate-500 block">参考股价 (2026.11)</span>
+          <span class="font-mono font-bold text-white">$62.95</span>
+          <span class="text-emerald-400 text-[11px] ml-1">市值 ~$260B</span>
+        </div>
+        <div>
+          <span class="text-slate-500 block">远期估值锚</span>
+          <span class="font-mono font-bold text-teal-400">~18.0x P/E</span>
+          <span class="text-slate-400 text-[11px] ml-1">PEG 0.39</span>
+        </div>
+      </div>
+
+      <!-- 目录导航 -->
+      <div class="px-3 py-4">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">报告章节目录</div>
+        <nav id="desktop-nav" class="space-y-1 text-sm">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-rose-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值重置</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-5 border-t border-slate-800/80 bg-navy-950/40 space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-teal-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色研报模式</span>
+          <span class="hidden dark:inline">亮色机构模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-netflix-500 hover:bg-netflix-600 text-white text-xs font-semibold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-72 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. 执行摘要与核心指标 (Executive Summary)
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元信息条 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-1 rounded-md bg-netflix-500/10 text-netflix-600 dark:text-rose-400 font-semibold border border-netflix-500/20">深度覆盖报告 · 全球流媒体与数字娱乐</span>
+            <span>标的：Netflix, Inc. (NASDAQ: NFLX)</span>
+          </div>
+          <div class="flex items-center space-x-4 font-mono">
+            <span>覆盖时间：2026年11月</span>
+            <span>股价：~$62.95 | 市值：~$260B</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/60">
+          <!-- 背景点阵纹理 -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#E50914 1px, transparent 1px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-netflix-500/20 border border-netflix-500/40 text-rose-300 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-netflix-500 animate-pulse"></span>
+              <span>CORE THESIS · 现金流壁垒持续拓宽 × 2026 估值深度重置下的黄金赔率</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              Netflix (NASDAQ: NFLX) 深度研究报告：从全球流媒体霸主到“订阅+广告+体育直播”双引擎现金流机器
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              历经“流媒体战争”残酷洗牌，Netflix 已确立行业唯一的规模化盈利霸主地位。2025 全年公司实现营收 <strong class="text-white">$45.18B (+15.85%)</strong> 与自由现金流 <strong class="text-teal-400">$9.46B</strong>，ROIC 攀升至 <strong class="text-white">30.1%</strong>。
+              随着 2026 年广告业务向 <strong class="text-rose-400">$30 亿大关</strong>冲刺、WWE Raw 与 NFL 体育直播引爆用户时长，叠加远期 P/E 从 40x 峰值深度压缩至 <strong class="text-emerald-400">~18x (PEG 0.39)</strong>，基本面与估值的显著背离正创造罕见的机构配置窗口。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">商业模式进化</div>
+                <div class="text-white font-semibold">由“纯付费订阅平台”升级为“高ARPU提价 + $3B广告 + 体育直播”双引擎机器</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">资本效率拐点</div>
+                <div class="text-teal-400 font-semibold">自由现金流跃升至 $9.46B，ROIC 高达 30.1%，碾压传统好莱坞竞争对手</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">2026 估值重置机遇</div>
+                <div class="text-emerald-400 font-semibold">远期 P/E 回调至 ~18x（较峰值腰斩超 50%），PEG 仅 0.39，具备极高安全边际</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心指标 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>2026E 预测全年营收</span>
+              <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white">~$51.2B</span>
+              <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">TTM $49.74B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              继 2025 全年实现 $45.18B (+15.85%) 后，提价红利与广告放量驱动双位数稳健扩张。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>2025 全年自由现金流 (FCF)</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white">$9.46B</span>
+              <span class="text-xs font-semibold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">ROIC 30.1%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              净利润达 $10.9B（净利率 24.3%），内容投入进入高效产出期，现金流转化率行业断层领先。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>全球付费用户基数</span>
+              <span class="p-1.5 rounded-lg bg-netflix-500/10 text-netflix-600 dark:text-rose-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white">3.25亿+</span>
+              <span class="text-xs font-semibold text-rose-600 dark:text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">覆盖超7亿观众</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              付费共享打击成功转化为长期留存，广告版套餐在开通市场贡献超 50% 新增注册。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>当前远期 P/E 估值</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white">~18.0x</span>
+              <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">较峰值压缩 &gt;50%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              较 2025 年中 40x 估值高点深度消化，当前 PEG 仅 0.39，兼具成长性与价值安全边际。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-netflix-600 dark:text-rose-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：区域基本盘与广告/直播双引擎</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">收入结构升级：单轨订阅 → 区域量价齐升 + $3B 广告 + 体育直播</span>
+        </div>
+
+        <!-- 交互式可视化面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：交互式 Chart.js 图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">全球四大区域营收结构与月均 ARPU 对比</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">UCAN 贡献核心现金流，EMEA 与 APAC 驱动全球渗透率扩张</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+                <button onclick="switchBizChart('region')" id="btn-chart-region" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-netflix-600 dark:text-white shadow-sm transition">区域营收与 ARPU</button>
+                <button onclick="switchBizChart('growth')" id="btn-chart-growth" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">2021-2026E 营收与 FCF</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性拆解要点 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业变现模型核心拆解</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-netflix-500/15 text-netflix-600 dark:text-rose-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">欧美提价兑现 + 亚太拉美放量</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      UCAN（北美，占营收 44.2%）与 EMEA（欧洲中东非洲，32.1%）依托强定价权持续提升 ARPU；LATAM（11.9%）与 APAC（11.8%）则以低价广告套餐快速收割增量家庭。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">自研广告技术栈驱动 $30 亿新引擎</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      全面切换至自研第一方广告平台（Netflix Ads Suite），结合程序化购买与精准受众标签，广告层级综合变现效率正追平甚至反超标准无广告套餐。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-accent-500/15 text-accent-600 dark:text-accent-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">大事件直播与互动生态锁定黄金时段</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      《WWE Raw》每周常态化直播、NFL 圣诞大战以及重磅拳击/综合格斗赛事，精准补齐传统点播在“实时并发与品牌广告主高溢价”上的最后一块拼图。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">2026E 广告业务目标</span>
+              <span class="font-bold text-netflix-600 dark:text-rose-400">冲刺 ~$3.0B (成为核心第二增长曲线)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 三大核心业务引擎卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 引擎 1：区域订阅基本盘 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-netflix-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-netflix-500/10 text-netflix-600 dark:text-rose-400 text-xs font-bold">核心现金流基石</span>
+              <span class="text-xs font-mono text-slate-400">01 / GLOBAL SUBSCRIPTIONS</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">全球区域订阅基本盘</h3>
+            <div class="mt-3 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <p><strong class="text-slate-900 dark:text-white">区域收入分布：</strong>北美 UCAN 占比 <strong>44.2%</strong>（月均 ARPU 领跑全球）、EMEA 占比 <strong>32.1%</strong>、拉美 LATAM 占比 <strong>11.9%</strong>、亚太 APAC 占比 <strong>11.8%</strong>。</p>
+              <p><strong class="text-slate-900 dark:text-white">增长驱动力：</strong>付费密码共享整治实现用户基数跃升至 3.25 亿+，阶梯式提价策略直接转化为高确定性经常性收入（ARR）。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">UCAN 44.2%</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">EMEA 32.1%</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">APAC 渗透率高增</span>
+            </div>
+          </div>
+
+          <!-- 引擎 2：广告支持层级 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">高速扩张第二曲线</span>
+              <span class="text-xs font-mono text-slate-400">02 / AD-SUPPORTED TIER</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">广告支持层级（Ad-Tier）</h3>
+            <div class="mt-3 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <p><strong class="text-slate-900 dark:text-white">变现里程碑：</strong>2025 年广告收入实现翻倍以上增长，2026 年正全力冲刺 <strong>$30 亿（$3B）</strong>收入体量，成为拉动整体增速的核心引擎。</p>
+              <p><strong class="text-slate-900 dark:text-white">商业飞轮：</strong>较低入场月费有效降低价格敏感型用户门槛，同时通过全球自研广告技术栈提升 CPM 单价与填充率，实现“低月费+高广告分成”双收。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">2026E 冲刺 $3B</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">自研广告技术栈</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">低流失率漏斗</span>
+            </div>
+          </div>
+
+          <!-- 引擎 3：体育直播与互动娱乐 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-accent-500/10 text-accent-600 dark:text-accent-400 text-xs font-bold">高溢价生态增量</span>
+              <span class="text-xs font-mono text-slate-400">03 / LIVE SPORTS & GAMING</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">体育直播与互动娱乐</h3>
+            <div class="mt-3 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <p><strong class="text-slate-900 dark:text-white">事件型直播策略：</strong>聚焦《WWE Raw》全年周播权、NFL 圣诞大战等现象级体育与文娱直播，避开天价传统联赛版权通胀，同时最大化广告库存价值。</p>
+              <p><strong class="text-slate-900 dark:text-white">泛娱乐矩阵：</strong>拓展基于热门剧集 IP 的移动与云端游戏、视频播客及线下体验馆，延长用户生命周期价值（LTV）。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">WWE Raw 周播</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">NFL 圣诞大战</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-[11px] font-medium">IP 互动游戏/播客</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与护城河 (Industry Position & Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与护城河：内容飞轮与 30.1% ROIC 统治力</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球唯一规模化盈利流媒体)</span>
+        </div>
+
+        <!-- 四重核心护城河网格 + 雷达图 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 壁垒 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-netflix-500/15 text-netflix-600 dark:text-rose-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全球化本地原创内容飞轮</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                超过 <strong>60%</strong> 的原创剧集与电影产自美国以外地区（韩国、西班牙、英国、日本、拉美等）。“本地制作、全球分发”模式使单部非英语爆款（如《鱿鱼游戏》系列）的投入产出比远超好莱坞大片。
+              </p>
+            </div>
+
+            <!-- 壁垒 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">强提价权与行业最低流失率</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                即便美国区标准版月费上调至 <strong>$19.99</strong>，Netflix 仍保持全球流媒体最低的用户月度流失率（Churn Rate &lt; 2%）。高频更新的内容库使其成为家庭娱乐的“水电煤级”刚需配置。
+              </p>
+            </div>
+
+            <!-- 壁垒 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">推荐算法与 3.25 亿数据规模效应</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                基于 3.25 亿+付费家庭的实时完播率、暂停与弃剧行为数据，精准指导新剧立项绿灯（Greenlight）与千人千面封面分发，有效降低单部作品的商业扑街风险。
+              </p>
+            </div>
+
+            <!-- 壁垒 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">极致的资本回报率 (ROIC 30.1%)</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                内容摊销与现金支出比趋于稳态，庞大用户分母摊薄单集固定制作成本，推动公司投入资本回报率（ROIC）跃升至 <strong>30.1%</strong>，远超传统传媒集团的个位数回报水平。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：护城河五维雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">流媒体行业护城河多维量化雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Netflix vs 传统好莱坞流媒体 vs 科技巨头综合平台（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- 盈利效率横向对比柱状图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">流媒体业务营业利润率（Operating Margin）横向统治力对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Netflix 凭借规模效应实现近 30% 营业利润率，而多数传统传媒流媒体仍处于盈亏平衡线挣扎期</p>
+            </div>
+            <span class="text-xs font-semibold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded">规模效应带来的盈利断层</span>
+          </div>
+          <div class="relative h-56 w-full">
+            <canvas id="marginComparisonChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比 (Competitive Landscape)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-netflix-600 dark:text-rose-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：传统传媒收缩，双寡头格局成型</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-netflix-500 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('hollywood')" data-filter="hollywood" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">传统好莱坞传媒</button>
+            <button onclick="filterCompetitors('bigtech')" data-filter="bigtech" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">科技巨头生态</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[180px]">竞争阵营与代表平台</th>
+                  <th class="py-4 px-4 min-w-[135px]">核心商业模式</th>
+                  <th class="py-4 px-4 min-w-[130px]">年内容投入规模</th>
+                  <th class="py-4 px-4 min-w-[135px]">流媒体盈利能力</th>
+                  <th class="py-4 px-4 min-w-[130px]">美国电视时长占比</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优劣势与竞争态势评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：Netflix 行业基准 -->
+                <tr data-category="core" class="bg-netflix-500/5 dark:bg-netflix-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-netflix-500 text-white text-[10px] font-bold">行业基准</span>
+                      <span class="font-bold text-slate-900 dark:text-white">Netflix (NFLX)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">纯粹专注长视频+直播+广告</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">独立 SVOD + AVOD 双引擎</span>
+                  </td>
+                  <td class="py-4 px-4 font-bold text-slate-900 dark:text-white">~$17B - $18B / 年</td>
+                  <td class="py-4 px-4 font-bold text-emerald-600 dark:text-emerald-400">极强 (营业利润率 ~29%)</td>
+                  <td class="py-4 px-4 font-bold text-slate-900 dark:text-white">~8.0% - 8.5% (付费榜首)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>全赛道统治者：</strong>无传统有线电视衰退包袱，全球本地化内容工业体系最成熟，甚至反向接收传统好莱坞授权剧集实现双赢。
+                  </td>
+                </tr>
+
+                <!-- 行 2：Disney+ / Hulu / ESPN -->
+                <tr data-category="hollywood" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Disney+ / Hulu / ESPN</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">传统好莱坞头部 (DIS)</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">捆绑包 (Bundle) + 体育</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">~$23B+ (含体育版权)</td>
+                  <td class="py-4 px-4 text-amber-600 dark:text-amber-400 font-semibold">刚跨过盈亏平衡 (利润率 &lt;8%)</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">~4.8% - 5.2% (合并计算)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>核心挑战：</strong>合家欢 IP 与 ESPN 体育底蕴深厚，但传统有线电视（Linear TV）利润持续萎缩，制约其流媒体激进扩张空间。
+                  </td>
+                </tr>
+
+                <!-- 行 3：Max / Paramount+ / Peacock -->
+                <tr data-category="hollywood" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Max / Paramount+ / Peacock</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">二线好莱坞传媒集团 (WBD/PARA)</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-500/10 text-rose-600 dark:text-rose-400">战略收缩 / 寻找并购整合</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">$8B - $12B (持续削减)</td>
+                  <td class="py-4 px-4 text-rose-600 dark:text-rose-400 font-semibold">微利或持续亏损</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">各自 1.2% - 1.8%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>结构性劣势：</strong>海外发行网络薄弱、资产负债表承压，已被迫放弃“独立挑战 Netflix”，重新向 Netflix 授权经典片库回血。
+                  </td>
+                </tr>
+
+                <!-- 行 4：YouTube (Alphabet) -->
+                <tr data-category="bigtech" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">YouTube / YouTube TV</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Alphabet 旗下视频霸主 (GOOGL)</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-500/15 text-accent-700 dark:text-accent-400">UGC 免费广告 + 虚拟有线电视</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">创作者分成模式 (轻资产)</td>
+                  <td class="py-4 px-4 text-emerald-600 dark:text-emerald-400 font-semibold">极强 (广告印钞机)</td>
+                  <td class="py-4 px-4 font-bold text-accent-600 dark:text-accent-400">~10.5%+ (电视端总时长第一)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>最大时空争夺者：</strong>在客厅大屏观看总时长上稳居榜首，与 Netflix 在用户注意力与品牌电视广告预算上形成“双寡头”直接竞争。
+                  </td>
+                </tr>
+
+                <!-- 行 5：Amazon Prime Video & Apple TV+ -->
+                <tr data-category="bigtech" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Prime Video / Apple TV+</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">科技万亿巨头附属生态 (AMZN/AAPL)</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-300">主业生态引流补贴工具</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">$7B - $15B (不计短期 ROI)</td>
+                  <td class="py-4 px-4 text-slate-500 dark:text-slate-400 font-medium">附属业务 (Prime 引入默认广告)</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">Prime ~3.5% / Apple &lt;1%</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>生态打法：</strong>Prime Video 凭借默认开启广告迅速切入广告市场，但内容更新频次与独立用户心智黏性仍显著逊于 Netflix。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值重置 (Financial Health & Valuation Reset)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & 2026 Valuation Reset</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与估值体系：现金流爆发与估值深度重置</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">核心看点：FCF $9.46B 历史新高 vs 远期 P/E 压缩至 ~18x</span>
+        </div>
+
+        <!-- 1. 财务健康度核心指标看板 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">Free Cash Flow Inflection</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">自由现金流历史性跨越</h3>
+            <div class="mt-3 text-2xl font-extrabold text-slate-900 dark:text-white font-mono">-$0.16B → +$9.46B</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              自 2021 年自由现金流微幅为负后，随内容支出增速收敛至 ~$17-18B 稳态区间，2025 全年 FCF 飙升至 <strong>$9.46B</strong>，现金流自我造血与股票回购能力极强。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Profitability & Capital Efficiency</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">净利润率与 ROIC 跃升</h3>
+            <div class="mt-3 text-2xl font-extrabold text-slate-900 dark:text-white font-mono">净利率 24.3% · ROIC 30.1%</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              2025 全年净利润高达 <strong>$10.9B</strong>，经营杠杆持续释放。资产负债表高度健康，净杠杆率低，具备充裕的现金储备进行股份注销回购以增厚 EPS。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-netflix-600 dark:text-rose-400 uppercase tracking-wider">2026 Valuation Reset</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">估值泡沫出清，PEG 仅 0.39</h3>
+            <div class="mt-3 text-2xl font-extrabold text-slate-900 dark:text-white font-mono">40.0x → ~18.0x Fwd P/E</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              截至 2026 年 11 月（股价 ~$62.95，市值 ~$260B），市场对成熟期增速放缓的过度担忧已将远期 P/E 压制至 <strong>~18x</strong>，动态 PEG 低至 <strong>0.39</strong>，显著低于标普500及大型科技股均值。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 估值体系演进三阶段阶梯图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Netflix 估值体系与市场定价逻辑演进阶梯</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">从早期“烧钱换用户”的 P/S 估值，向“高确定性现金流+广告平台”的 DCF 与 PEG 价值重估过渡</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- 阶段 1 -->
+            <div class="p-5 rounded-xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-slate-500 dark:text-slate-400">STAGE 01 · 2015-2021</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-navy-700 text-[11px] font-mono font-semibold">EV/Sub · P/S</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">跑马圈地与净增用户叙事</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  市场仅关注季度净增订阅用户数（Net Adds），容忍巨额负自由现金流与举债拍片，一旦用户增速波动即引发剧烈估值杀跌。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500">
+                估值特征：高波动、纯用户增长驱动
+              </div>
+            </div>
+
+            <!-- 阶段 2 -->
+            <div class="p-5 rounded-xl bg-accent-500/5 dark:bg-accent-500/10 border border-accent-500/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-accent-600 dark:text-accent-400">STAGE 02 · 2023-2025</span>
+                  <span class="px-2 py-0.5 rounded bg-accent-500/20 text-accent-700 dark:text-accent-300 text-[11px] font-mono font-semibold">Fwd P/E 35x-40x</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">打击共享与 FCF 爆发溢价期</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  付费共享整治释放一次性用户红利，叠加利润率快速扩张，市场给予其长达两年的业绩上修周期，2025 年中远期 P/E 一度冲高至 40x 峰值。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-accent-500/20 text-xs font-semibold text-accent-600 dark:text-accent-400">
+                估值特征：确定性溢价拉满，估值处于历史高位
+              </div>
+            </div>
+
+            <!-- 阶段 3 -->
+            <div class="p-5 rounded-xl bg-gradient-to-br from-netflix-500/10 to-teal-500/10 border border-netflix-500/40 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-netflix-600 dark:text-rose-400">STAGE 03 · 2026 当前重置期</span>
+                  <span class="px-2 py-0.5 rounded bg-netflix-500/20 text-netflix-700 dark:text-rose-300 text-[11px] font-mono font-semibold">~18x P/E · PEG 0.39</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">双引擎现金流复利与估值修复</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  停止披露季度用户数后，市场情绪阶段性降温并完成估值重置。当前 ~18x 远期 P/E 已充分计入温和增速预期，而 $3B 广告与体育直播兑现将驱动戴维斯双击。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-netflix-500/20 text-xs font-semibold text-netflix-600 dark:text-rose-400">
+                估值锚：DCF 自由现金流折现 + EPS 回购复利
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 估值敏感性与多空分歧对比面板 (Bull Case vs Bear Case) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Bull Case -->
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center space-x-1.5 text-emerald-700 dark:text-emerald-400 font-bold text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                <span>乐观重估视角 (Bull Case · 目标 24x-26x P/E)</span>
+              </span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">戴维斯双击潜力</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                <span><strong>广告业务超预期放量：</strong>自研广告平台全面铺开后，广告收入在 2026-2027 年连续翻倍，推动整体营收维持 13%-15% 复合增速。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                <span><strong>持续提价与回购增厚 EPS：</strong>每年近百亿美元 FCF 用于高效股票回购，推动 EPS 维持 20%+ 增长，当前 18x P/E 具备 35% 以上估值修复空间。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                <span><strong>传统传媒退潮红利：</strong>二线好莱坞流媒体放弃独立扩张，源源不断向 Netflix 输送低成本高热度片库。</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Bear Case -->
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center space-x-1.5 text-rose-700 dark:text-rose-400 font-bold text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+                <span>谨慎压制视角 (Bear Case · 维持 15x-17x P/E)</span>
+              </span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">成熟期增速换挡</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-600 font-bold mt-0.5">!</span>
+                <span><strong>北美与西欧渗透率见顶：</strong>打击密码共享的一次性红利消退后，成熟市场净增用户趋缓，市场可能将其按“传统成熟电信/传媒股”给予较低倍数。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-600 font-bold mt-0.5">!</span>
+                <span><strong>短视频与 YouTube 持续分流注意力：</strong>TikTok 与 YouTube 抢占年轻群体碎片化时间，限制电视大屏总观看时长份额进一步突破 10%。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-600 font-bold mt-0.5">!</span>
+                <span><strong>体育直播版权通胀隐忧：</strong>若未来被迫卷入高价体育联赛长期版权竞标，可能侵蚀好不容易建立的 30%+ ROIC 资本效率。</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置分析 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-netflix-600 dark:text-rose-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置分析：背离中的安全边际与风险纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置策略：互联网消费核心底仓 · 逢估值回调分批布局</span>
+        </div>
+
+        <!-- 1. 核心投资逻辑双引擎 -->
+        <div class="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-rose-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>核心投资逻辑（Why Invest in NFLX at ~18x Forward P/E）</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white text-base mb-1.5">1. 基本面持续创历史新高与估值深度压缩的罕见背离</div>
+              <p class="text-slate-300 leading-relaxed">
+                公司 2025-2026 年营收、营业利润率、ROIC（30.1%）及自由现金流（$9.46B）均处于历史最佳状态，但远期 P/E 却从 40x 回落至 ~18x（PEG 0.39），为中长期机构资金提供了极高的安全边际与赔率优势。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white text-base mb-1.5">2. 全球娱乐消费最确定的“现金流印钞机”</div>
+              <p class="text-slate-300 leading-relaxed">
+                跨越了最烧钱的全球基建期后，Netflix 已进入轻边际成本扩张阶段。提价权、$3B 广告业务与低成本事件型体育直播共同保障了未来三年 15%-20% 的稳健 EPS 复利增长。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险评估与机构缓释机制</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 风险 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 用户时长竞争风险</span>
+                  <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm">北美观看时长见顶与短视频/YouTube 分流</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  成熟市场家庭每日娱乐总时长有限，YouTube、TikTok 及游戏持续争夺年轻用户注意力，若观看时长停滞可能削弱后续提价与广告库存扩张空间。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                <strong class="text-accent-600 dark:text-accent-400">缓释机制：</strong>切入 WWE/NFL 等必看直播大事件，并扩展播客与移动游戏，抢占非传统剧集消费场景。
+              </div>
+            </div>
+
+            <!-- 风险 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 成本与版权通胀风险</span>
+                  <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm">头部内容制作成本与体育版权通胀</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  顶级主创片酬上涨及现场体育赛事版权竞标溢价，若未能匹配相应的广告或新增订阅变现，可能阶段性压制营业利润率扩张斜率。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                <strong class="text-accent-600 dark:text-accent-400">缓释机制：</strong>严格控制年度内容现金支出在 ~$17-18B 纪律红线内，优先采购高性价比非英语本地剧集。
+              </div>
+            </div>
+
+            <!-- 风险 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 汇率与新兴市场 ARPU 瓶颈</span>
+                  <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm">强势美元汇兑损益与新兴市场消费力</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  超 55% 营收来自海外市场，美元走强直接影响合并报表美元计价增速；同时亚太与拉美新兴市场人均付费能力显著低于欧美，存在 ARPU 天花板。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                <strong class="text-accent-600 dark:text-accent-400">缓释机制：</strong>推行外汇对冲策略，并在新兴市场通过“超低月费+高广告变现”提升单用户综合贡献。
+              </div>
+            </div>
+
+            <!-- 风险 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 宏观消费降级风险</span>
+                  <span class="text-xs font-mono text-slate-500 font-semibold">关注度：低-中</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm">全球宏观经济放缓引发可选消费削减</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  若全球通胀黏性或就业放缓导致家庭缩减娱乐预算，部分高价无广告套餐用户可能面临降级或退订压力。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                <strong class="text-accent-600 dark:text-accent-400">缓释机制：</strong>兼具“口红效应”（居家替代外出高价消费）与低价广告套餐承接网，流失率大幅低于同类产品。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 仓位配置建议与季度基本面跟踪 KPI 交互核查清单 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 仓位配置建议 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">机构投资组合仓位配置建议</h3>
+            <div class="space-y-4 text-xs sm:text-sm">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/70 border border-slate-200 dark:border-slate-700">
+                <div class="font-bold text-netflix-600 dark:text-rose-400 mb-1">仓位定位：美股科技与消费互联网核心底仓</div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  凭借 30.1% ROIC 与近百亿美元年自由现金流，NFLX 已具备防御与进攻双重属性。在当前 ~18x 远期 P/E 区间，建议作为<strong>数字媒体与全球互联网消费赛道的超配核心持仓</strong>。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-navy-800/70 border border-slate-200 dark:border-slate-700">
+                <div class="font-bold text-teal-600 dark:text-teal-400 mb-1">建仓与再平衡纪律</div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  建议在 16x-19x 远期 P/E 区间采取分批左侧布局策略；若后续广告增速超预期推动估值修复至 25x 以上，再结合季度营业利润率边际变化进行动态止盈平衡。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 可交互的季度基本面跟踪 KPI 核查清单 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">季度基本面跟踪 KPI 核查清单 (Checklist)</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">由于公司已停止披露季度用户数，机构需重点核查以下四大核心指标</p>
+              </div>
+              <span id="kpi-progress-badge" class="px-2.5 py-1 rounded-full bg-netflix-500/10 text-netflix-600 dark:text-rose-400 text-xs font-bold">已核查 2 / 4 项</span>
+            </div>
+
+            <div class="space-y-2.5 mt-4" id="kpi-checklist">
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                <input type="checkbox" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-netflix-600 focus:ring-netflix-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">01. 恒定汇率下营收增速（FX-Neutral Revenue Growth）</span>
+                    <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">核心增长锚</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">剔除美元汇率扰动后，监测全公司营收是否稳健保持在 12%-15% 双位数增长通道。</p>
+                </div>
+              </label>
+
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                <input type="checkbox" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-netflix-600 focus:ring-netflix-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">02. 营业利润率（Operating Margin）扩张斜率</span>
+                    <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold">经营杠杆指标</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">跟踪全年营业利润率能否在 ~29%-30% 基础上每年稳步提升 150-200 个基点。</p>
+                </div>
+              </label>
+
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                <input type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-netflix-600 focus:ring-netflix-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">03. 广告层级（Ad-Tier）变现进度与 $3B 目标兑现</span>
+                    <span class="text-[11px] font-mono text-rose-600 dark:text-rose-400 font-semibold">第二曲线催化剂</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">监测自研广告技术栈在欧美及亚太主要市场的广告填充率、CPM 单价及广告收入翻倍进度。</p>
+                </div>
+              </label>
+
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+                <input type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-netflix-600 focus:ring-netflix-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">04. 年度自由现金流（FCF）转化与股票回购执行力度</span>
+                    <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold">股东回报指标</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">核查内容现金支出纪律（~$17-18B）以及管理层在低估值区间加大股票回购注销的节奏。</p>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>Netflix (NASDAQ: NFLX) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2025 财报及 2026 年 11 月市场一致预期</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公开公司财报、流媒体行业第三方收视监测数据及财务估值模型整理生成，旨在提供结构化的商业模式与投资逻辑参考。报告中涉及的 2026E 预测营收、广告收入目标及估值倍数均基于特定假设与市场一致预期，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与侧边导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-rose-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-rose-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-netflix-500', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border');
+        } else {
+          btn.classList.remove('bg-netflix-500', 'text-white', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. KPI 核查清单进度统计
+    // ==========================================
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${checkboxes.length} 项`;
+    }
+
+    // ==========================================
+    // 6. Chart.js 数据可视化初始化与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let marginChartInstance = null;
+    let currentBizMode = 'region';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // 模式 1：区域营收占比与月均 ARPU 对比（双轴混合图）
+      const regionConfig = {
+        type: 'bar',
+        data: {
+          labels: ['北美 (UCAN)', '欧洲中东非洲 (EMEA)', '拉丁美洲 (LATAM)', '亚太地区 (APAC)'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '营收贡献占比 (%)',
+              data: [44.2, 32.1, 11.9, 11.8],
+              backgroundColor: ['#E50914', '#3B82F6', '#06B6D4', '#6366F1'],
+              borderRadius: 6,
+              barThickness: 38,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '月均单用户收入 ARPU ($)',
+              data: [17.4, 11.3, 8.4, 7.6],
+              borderColor: '#10B981',
+              backgroundColor: '#10B981',
+              borderWidth: 2.5,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `营收占比: ${ctx.parsed.y}%`
+                  : `月均 ARPU: $${ctx.parsed.y}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 55,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              max: 22,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#10B981', font: { size: 11 }, callback: v => '$' + v }
+            }
+          }
+        }
+      };
+
+      // 模式 2：2021 - 2026E 营收与自由现金流 (FCF) 增长趋势
+      const growthConfig = {
+        type: 'bar',
+        data: {
+          labels: ['2021', '2022', '2023', '2024', '2025', '2026E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '全年总营收 ($B)',
+              data: [29.70, 31.62, 33.72, 39.00, 45.18, 51.20],
+              backgroundColor: 'rgba(59, 130, 246, 0.85)',
+              borderRadius: 5,
+              barThickness: 28,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '自由现金流 FCF ($B)',
+              data: [-0.16, 1.62, 6.93, 6.92, 9.46, 10.80],
+              borderColor: '#E50914',
+              backgroundColor: '#E50914',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}B`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 60,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: -2,
+              max: 14,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#E50914', font: { size: 11 }, callback: v => '$' + v + 'B' }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'region' ? regionConfig : growthConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnRegion = document.getElementById('btn-chart-region');
+      const btnGrowth = document.getElementById('btn-chart-growth');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'region') {
+        btnRegion.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-netflix-600 dark:text-white shadow-sm transition';
+        btnGrowth.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '全球四大区域营收结构与月均 ARPU 对比';
+        subEl.textContent = 'UCAN 贡献核心现金流，EMEA 与 APAC 驱动全球渗透率扩张';
+      } else {
+        btnGrowth.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-netflix-600 dark:text-white shadow-sm transition';
+        btnRegion.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '2021 - 2026E 营业收入与自由现金流 (FCF) 跃升趋势';
+        subEl.textContent = '2025 FCF 达 $9.46B 历史新高，2026E 营收迈向 $51.2B 大关';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '全球本地原创内容飞轮',
+            '提价权与低流失率',
+            '推荐算法与数据规模',
+            'ROIC 资本回报效率',
+            '广告与体育直播变现'
+          ],
+          datasets: [
+            {
+              label: 'Netflix (NFLX)',
+              data: [9.6, 9.5, 9.4, 9.7, 8.8],
+              borderColor: '#E50914',
+              backgroundColor: 'rgba(229, 9, 20, 0.20)',
+              pointBackgroundColor: '#E50914',
+              borderWidth: 2.5
+            },
+            {
+              label: '科技巨头生态 (YouTube/Prime)',
+              data: [6.8, 7.2, 9.0, 8.2, 9.3],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.14)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: '传统好莱坞流媒体 (Disney+/Max)',
+              data: [7.5, 6.2, 5.5, 4.2, 6.5],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initMarginChart() {
+      const ctx = document.getElementById('marginComparisonChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (marginChartInstance) marginChartInstance.destroy();
+      marginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Netflix (全球流媒体龙头)',
+            'Disney DTC (流媒体分部)',
+            'Warner Bros. Discovery (DTC)',
+            'Paramount+ / 二线传媒平均'
+          ],
+          datasets: [{
+            label: '流媒体业务营业利润率 (%)',
+            data: [29.2, 6.5, 3.8, -4.5],
+            backgroundColor: [
+              '#E50914',
+              '#3B82F6',
+              '#64748B',
+              '#94A3B8'
+            ],
+            borderRadius: 6,
+            barThickness: 24
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `估算营业利润率: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              min: -10,
+              max: 35,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initMarginChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initBizChart();
+      initRadarChart();
+      initMarginChart();
+    });
+  </script>
+</body>
+</html>

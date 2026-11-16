@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birkenstock (NYSE: BIRK) 深度研究报告：从250年德国骨科制鞋工坊到全球奢侈品级功能消费巨头</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#0B1120',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            cork: {
+              300: '#E5A37E',
+              400: '#D88556',
+              500: '#C26D3D',
+              600: '#A5562A',
+            },
+            accent: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            },
+            teal: {
+              500: '#0D9488',
+              600: '#0F766E',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(194, 109, 61, 0.25) 0%, rgba(59, 130, 246, 0.06) 100%);
+      border-left: 3px solid #C26D3D;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#0F172A] dark:bg-navy-950 dark:text-[#F1F5F9] antialiased selection:bg-cork-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 (Birkenstock 软木赤陶主色 #C26D3D) -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-cork-500 via-amber-600 to-teal-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cork-500 to-cork-600 flex items-center justify-center font-extrabold text-white shadow border border-white/15">
+        BIRK
+      </div>
+      <div>
+        <div class="text-[11px] text-cork-300 font-semibold tracking-wider uppercase">NYSE: BIRK · Equity Research</div>
+        <div class="text-sm font-bold leading-tight">Birkenstock 深度投资研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">BIRK 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康度与估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度基本面跟踪 KPI 清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球奢侈品与功能消费品研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY25 / FY26E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px, Deep Navy #0F172A) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cork-500 to-cork-600 flex items-center justify-center text-white font-extrabold text-sm shadow-lg shadow-cork-500/25 border border-white/15">
+            BIRK
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-cork-300 bg-cork-500/15 px-2 py-0.5 rounded border border-cork-500/30">NYSE: BIRK</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">Birkenstock 深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          250年德国骨科制鞋工坊 · 奢侈品级定价权与高利润率复利标杆
+        </p>
+      </div>
+
+      <!-- 侧边栏关键财务快照卡片 -->
+      <div class="px-5 py-3 bg-navy-950/80 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY2025 实际营收</span>
+          <span class="font-mono font-bold text-white">€2.10B <span class="text-cork-400">(+16% YoY)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">FY2026E 共识营收</span>
+          <span class="font-mono font-bold text-teal-400">~€2.40B <span class="text-slate-400">(+14.5%)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">毛利率 / Adj. EBITDA率</span>
+          <span class="font-mono font-bold text-emerald-400">~59.5% / ~31.8%</span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">估值 & 净杠杆率</span>
+          <span class="font-mono font-bold text-cork-300">Fwd P/E ~18.5x · ~1.5x</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-335px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-cork-400 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康度与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度基本面跟踪 KPI 清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-cork-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-cork-500 hover:bg-cork-600 text-white text-xs font-bold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           顶部机构研报核心摘要 Hero 看板 (Executive Overview)
+      ========================================================= -->
+      <div class="space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-cork-500/15 text-cork-600 dark:text-cork-300 font-bold border border-cork-500/30">评级：增持 / 稀缺消费复利核心资产</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">主线：德国垂直制造壁垒 × 闭趾化全季破圈 × 债务去杠杆</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖基准：FY2025 / FY2026E</span>
+            <span>NYSE: BIRK</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#192236] to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#C26D3D 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cork-500/20 border border-cork-500/40 text-cork-300 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-cork-400 animate-pulse"></span>
+              <span>CORE THESIS · 跨越 250 年历史的“骨科解剖鞋床 + 静奢风文化图腾”双驱动巨头</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              Birkenstock (NYSE: BIRK) 深度研究报告：从250年德国骨科制鞋工坊到全球奢侈品级功能消费巨头
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              起源于 1774 年德国的 Birkenstock，已成功实现从功能性骨科凉鞋向全球“静奢风（Quiet Luxury）”与日常全季候时尚消费符号的跨代跃迁。凭借 100% 德国本土垂直一体化制造与 <strong class="text-white">&gt;90% 全价售罄率</strong>，公司在 FY2025 实现营收 <strong class="text-cork-300">€2.10B (+16% YoY)</strong>，毛利率高达 <strong class="text-teal-400">~59.5%</strong>，调整后 EBITDA 利润率稳居 <strong class="text-emerald-400">~31.8%</strong>（比肩顶级欧洲奢侈品集团）。随着闭趾鞋履（Boston 等）突破三成收入、亚太及中东非（APMA）以超 30% 恒定汇率增速放量，叠加每年超 €450M 自由现金流推动净杠杆率由 3x+ 降至 <strong class="text-white">~1.5x</strong>，公司正处于盈利质量与估值重估的黄金期。
+            </p>
+
+            <!-- 核心投资结论三栏摘要 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">稀缺德国制造壁垒</div>
+                <div class="text-white font-semibold">超 95% 核心部件德国及欧盟自产，供给受控创造“天然饥饿营销”与顶级定价权</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">打破“夏季凉鞋”季节魔咒</div>
+                <div class="text-cork-300 font-semibold">Boston 包头鞋、Tokio 与 Bend 运动鞋占比达 30%–35%+，且单价显著高于经典凉鞋</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">奢侈品级利润率 × 消费品估值</div>
+                <div class="text-emerald-400 font-semibold">~31.8% Adj. EBITDA 率与 15% 内生增长，当前 Fwd P/E 仅 ~18.5x 具备显著性价比</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>FY2025 / FY2026E 营业收入</span>
+              <span class="p-1.5 rounded-lg bg-cork-500/15 text-cork-600 dark:text-cork-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">€2.10B</span>
+              <span class="text-xs font-bold text-cork-600 dark:text-cork-300 bg-cork-500/15 px-2 py-0.5 rounded">FY26E ~€2.40B</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              量价齐升驱动连续多年保持 14%–18% 高质量内生增长，远超全球鞋履行业均值。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>毛利率与 Adj. EBITDA 率</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">31.8%</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">毛利率 ~59.5%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              超 90% 全价率与持续提价能力支撑起媲美欧洲一线奢侈品的顶级盈利能力。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>自由现金流 & 净杠杆率</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~1.5x</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">年 FCF &gt;€450M</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              净债务/EBITDA 从 LBO 峰值 &gt;3.0x 快速去杠杆至 ~1.5x，利息支出大幅节约。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>远期估值倍数 (Forward Multiples)</span>
+              <span class="p-1.5 rounded-lg bg-accent-500/10 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~18.5x</span>
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded">EV/EBITDA ~13.5x</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              PEG 仅 ~1.1x，相较于同类高增长鞋履（DECK/ONON）与欧洲奢侈品存在显著重估空间。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           01. 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-cork-600 dark:text-cork-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">01. 业务与收入架构：双渠道协同、全球扩张与“闭趾化”全季突围</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">结构特征：B2B (60%) + DTC (40%) · 闭趾鞋履突破 33% 占比</span>
+        </div>
+
+        <!-- 三维度核心收入拆解卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 维度 1：渠道结构 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-cork-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-cork-500/15 text-cork-600 dark:text-cork-300 text-xs font-bold">渠道双轮驱动</span>
+              <span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">B2B 60% / DTC 40%</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">精品批发筛选与高毛利 DTC 直营</h3>
+            <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong>① 批发渠道（B2B，占 ~60%）：</strong>采取高度克制的分配制（Allocation Model），主动砍掉低端折扣店，仅与 Nordstrom、Foot Locker 高端线及 Saks Fifth Avenue 等顶级买手店合作，充当低成本品牌发现引擎；<br>
+              <strong>② 直面消费者（DTC，占 ~40%）：</strong>自有官网与全球超 70 家单品牌旗舰店，单双出厂毛利率比批发高出约 15–20 个百分点，且会员复购率极高。
+            </p>
+          </div>
+
+          <!-- 维度 2：区域结构 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">全球区域版图</span>
+              <span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">52% / 36% / 12%</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">欧美基本盘稳固，APMA 爆发增长</h3>
+            <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong>① 美洲区（Americas，占 ~52%）：</strong>全球最大单一市场，受益于时尚圈与好莱坞名流效应，保持双位数稳健增长；<br>
+              <strong>② 欧洲区（Europe，占 ~36%）：</strong>品牌发源地，正通过提价与直营门店升级推动盈利结构上移；<br>
+              <strong>③ 亚太及中东非（APMA，占 ~12%）：</strong>增速最快的黄金白地引擎，恒定汇率下保持 <strong>&gt;30% YoY</strong> 爆发增长，中国、日韩与印度门店单店坪效领跑。
+            </p>
+          </div>
+
+          <!-- 维度 3：品类矩阵进化 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-accent-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-accent-500/15 text-accent-600 dark:text-accent-400 text-xs font-bold">全季品类扩张</span>
+              <span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">闭趾鞋履 &gt;33%</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">超越经典凉鞋，迈向全年候穿戴</h3>
+            <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              在经典双扣凉鞋（Arizona、Madrid）稳固基本盘的同时，<strong>闭趾廓形（Closed-toe silhouettes）</strong>如现象级爆款 <strong>Boston 博肯包头鞋</strong>、专业职人鞋 Tokio、Bend 休闲运动鞋及 Naples 乐福鞋营收占比已攀升至 <strong>30%–35%+</strong>。闭趾鞋履不仅彻底抹平了秋冬季节性低谷，其平均售价（ASP）更比经典凉鞋高出 <strong>35%–50%</strong>，成为提振毛利的核心推手。
+            </p>
+          </div>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图面板 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2021–FY2026E 营业收入增长轨迹与 Adjusted EBITDA 利润率</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">营收由 FY21 的 €0.96B 稳步攀升至 FY26E 的 ~€2.40B（5年 CAGR ~20%），Adj. EBITDA 率稳居 31%+</p>
+            </div>
+            <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+              <button onclick="switchBizChart('trajectory')" id="btn-chart-traj" class="px-3 py-1.5 rounded-md font-semibold bg-white dark:bg-navy-700 text-cork-600 dark:text-cork-300 shadow-sm transition">营收与 EBITDA 增长轨迹</button>
+              <button onclick="switchBizChart('mix')" id="btn-chart-mix" class="px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">渠道与区域收入结构拆解</button>
+            </div>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="bizArchitectureChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           02. 行业地位与护城河 (Industry Position & Economic Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">02. 行业地位与四重核心护城河：骨科专利基因与德国垂直制造</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 无法被代工模式复制的制造与文化壁垒)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重核心壁垒卡片网格 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 壁垒 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-cork-500/15 text-cork-600 dark:text-cork-300 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">250年骨科鞋床基因与“静奢风”图腾</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                独创的天然软木乳胶解剖鞋床（Anatomical Footbed）贴合足弓生物力学，随穿着时间形成专属脚型记忆。Arizona 与 Boston 已超越季节潮流，成为跨越年龄与阶层的“静奢风（Quiet Luxury）”文化图腾，复购用户平均每人拥有 3.6 双以上。
+              </p>
+            </div>
+
+            <!-- 壁垒 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">100% 德国制造垂直一体化供应链</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                不同于耐克、Crocs 等依赖东南亚轻资产 OEM 代工的模式，Birkenstock 坚持 <strong>100% 德国本土制鞋组装</strong>，超 95% 原材料（软木、黄麻、天然皮革与搭扣）采购自德国及欧盟。随着 Pasewalk 现代化新工厂产能爬坡，既保障了顶级工艺品控，又通过自有产能节奏人为维持市场稀缺性。
+              </p>
+            </div>
+
+            <!-- 壁垒 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">&gt;90% 全价售罄率与奢侈品级定价权</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在欧美零售普遍深陷打折促销泥潭的背景下，Birkenstock 保持超过 <strong>90% 的全价售罄率（Full-Price Realization）</strong>，从不参与大型折扣清仓。公司每年稳健执行中个位数提价（ASP 持续上移）且几乎不损失销量，展现极强的价格刚性。
+              </p>
+            </div>
+
+            <!-- 壁垒 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">克制的双渠道管控与高端联名生态</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                与 Dior、Manolo Blahnik、Rick Owens 及 Stüssy 等顶级奢侈时尚品牌限量联名拉升品牌调性（1774 高端支线定价超 €400+），同时以 B2B 严选渠道承接大众发现流量、引导高粘性客户沉淀至高毛利 DTC 官网。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河量化雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">全球鞋履巨头五维护城河量化雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Birkenstock vs 传统功能休闲鞋 vs 轻奢与传统制鞋品牌（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           03. 同行竞争格局横向对比 (Competitive Landscape & Peer Matrix)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-cork-600 dark:text-cork-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">03. 同行竞争格局横向对比：奢侈品盈利体魄与鞋履高增长典范</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-cork-500 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('casual')" data-filter="casual" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">功能休闲鞋巨头</button>
+            <button onclick="filterCompetitors('athletic')" data-filter="athletic" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">户外与运动潮流品牌</button>
+            <button onclick="filterCompetitors('luxury')" data-filter="luxury" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">轻奢与传统制鞋</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[185px]">竞争品牌与代码</th>
+                  <th class="py-4 px-4 min-w-[140px]">核心品牌定位</th>
+                  <th class="py-4 px-4 min-w-[110px]">毛利率</th>
+                  <th class="py-4 px-4 min-w-[135px]">Adj. EBITDA / 营业利润率</th>
+                  <th class="py-4 px-4 min-w-[155px]">供应链生产模式</th>
+                  <th class="py-4 px-4 min-w-[120px]">全价率与估值</th>
+                  <th class="py-4 px-5 min-w-[215px]">核心优劣势评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：Birkenstock 行业基准 -->
+                <tr data-category="core" class="bg-cork-500/5 dark:bg-cork-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-cork-500 text-white text-[10px] font-bold">研究标的</span>
+                      <span class="font-bold text-slate-900 dark:text-white">Birkenstock (BIRK)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">骨科功能鞋床 + 静奢风</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-800 dark:text-slate-200">奢侈品级功能消费标杆</td>
+                  <td class="py-4 px-4 font-mono font-bold text-emerald-600 dark:text-emerald-400">~59.5%</td>
+                  <td class="py-4 px-4 font-mono font-bold text-slate-900 dark:text-white">~31.8% (EBITDA)</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cork-500/15 text-cork-700 dark:text-cork-300">100% 德国垂直自产</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">&gt;90% · ~18.5x P/E</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>稀缺护城河：</strong>自有德国制造保障顶级品控与克制供给，利润率比肩奢侈品且库存减值风险极低。
+                  </td>
+                </tr>
+
+                <!-- 行 2：Deckers Outdoor (UGG / Hoka) -->
+                <tr data-category="casual" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Deckers Outdoor (DECK)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">旗下核心：UGG & HOKA</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">雪地靴时尚 + 专业厚底跑鞋</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~56.5%</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~24.5% (EBITDA)</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">亚洲轻资产 OEM 代工</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~85% · ~24.0x P/E</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>最直接可比巨头：</strong>UGG 与 BIRK 在秋冬毛绒包头鞋赛道正面交锋，HOKA 驱动高成长；但外包代工壁垒低于德国自产。
+                  </td>
+                </tr>
+
+                <!-- 行 3：Crocs (CROX) -->
+                <tr data-category="casual" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Crocs Inc. (CROX)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">旗下：Crocs & HEYDUDE</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">大众注塑洞洞鞋与休闲鞋</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~58.0%</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~26.5% (EBITDA)</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">亚洲轻资产注塑代工</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~75% · ~9.5x P/E</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>大众平价路线：</strong>单双注塑成本极低且营销病毒传播强，但品牌定位偏向大众平价，受 HEYDUDE 拖累估值折价明显。
+                  </td>
+                </tr>
+
+                <!-- 行 4：On Holding (ONON) -->
+                <tr data-category="athletic" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">On Holding (ONON)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">瑞士高端科技跑鞋昂跑</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">高端专业运动与都市潮流</td>
+                  <td class="py-4 px-4 font-mono text-emerald-600 dark:text-emerald-400 font-semibold">~60.5%</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~17.0% (EBITDA)</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-500/15 text-accent-700 dark:text-accent-400">瑞士研发 + 越南/印尼OEM</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">&gt;90% · ~42.0x P/E</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>高速品牌势能：</strong>与 BIRK 共享高净值中产客群与强全价率，但营销与研发费用投入高，EBITDA 率显著低于 BIRK。
+                  </td>
+                </tr>
+
+                <!-- 行 5：Prada / Tod's 欧洲奢侈制鞋 -->
+                <tr data-category="luxury" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Prada Group / Tod's</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">意大利传统奢侈品与皮具鞋履</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">传统欧洲顶级奢侈品与正装鞋</td>
+                  <td class="py-4 px-4 font-mono text-emerald-600 dark:text-emerald-400 font-semibold">~75%–80%</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~28%–33% (EBITDA)</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">意大利自有工坊 + 奢侈工匠</span>
+                  </td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">&gt;95% · ~22x–26x P/E</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>盈利对标锚点：</strong>BIRK 的 EBITDA 利润率（~31.8%）与自有欧洲工坊模式已完全跻身欧洲硬奢集团第一梯队。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 互动图表 3：同行毛利率与营业/EBITDA 利润率横向对比条形图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">全球头部鞋履与奢侈品企业毛利率 vs Adjusted EBITDA 利润率横向对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Birkenstock 凭借低营销费用率与高全价率，将 ~59.5% 的毛利率高效转化为 ~31.8% 的顶级 EBITDA 利润率</p>
+            </div>
+            <span class="text-xs font-semibold text-cork-600 dark:text-cork-300 bg-cork-500/15 px-2.5 py-1 rounded">利润转化效率居鞋履行业榜首</span>
+          </div>
+          <div class="relative h-64 w-full">
+            <canvas id="compMarginChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           04. 财务健康度与估值体系 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">04. 财务健康度与估值体系：新厂产能爬坡、强势去杠杆与估值重估</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">核心看点：毛利率重返 60%+ 通道 · 净杠杆率降至 ~1.5x</span>
+        </div>
+
+        <!-- 1. 财务健康度剖析三支柱卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-cork-600 dark:text-cork-400 uppercase tracking-wider">Margin Dynamics</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">短期扩产折旧消化与长期 60%+ 毛利</h3>
+            <div class="mt-2.5 text-2xl font-extrabold font-mono text-slate-900 dark:text-white">GM ~59.5% → 60%+</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              德国 Pasewalk 新建自动化工厂初期产能爬坡与欧元汇率波动曾带来约 100–150 bps 的短期毛利率逆风；随着新厂产能利用率迈过盈亏平衡点，叠加 DTC 占比提升与闭趾高单价产品放量，毛利率正重回 <strong>60% 以上</strong>结构性扩张通道。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Rapid Deleveraging</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">充沛自由现金流驱动快速去杠杆</h3>
+            <div class="mt-2.5 text-2xl font-extrabold font-mono text-slate-900 dark:text-white">净杠杆 ~3.3x → ~1.5x</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              在 Pasewalk 资本开支峰值过去后，每年超 <strong>€450M+</strong> 的自由现金流集中用于提前偿还 L Catterton 私有化时期遗留的定期贷款（Term Loan）。净债务/EBITDA 已从上市前的 &gt;3.0x 迅速降至 <strong>~1.5x</strong>，显著压降财务利息费用并增厚 EPS。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase tracking-wider">Valuation Bridging</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">跨越“必需消费 + 高成长鞋履 + 奢侈品”</h3>
+            <div class="mt-2.5 text-2xl font-extrabold font-mono text-slate-900 dark:text-white">Fwd P/E ~18.5x · 13.5x EV/EBITDA</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              BIRK 兼具必需消费品的低周期抗跌性、Deckers/On Holding 的 ~15% 营收复合增速以及欧洲奢侈品的 ~32% EBITDA 利润率。当前 <strong>~18.5x Forward P/E</strong>（较历史高点折价约 30%）充分计入了短期股权减持担忧，具备显著估值修复空间。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互图表 4：净杠杆率去杠杆轨迹 (FY22-FY26E) 与自由现金流扩张双轴图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2026E 净杠杆率（Net Debt / EBITDA）去杠杆轨迹与自由现金流（€M）扩张</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">内生现金流持续偿债，资产负债表迅速轻量化，释放股权价值重估空间</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">2026E 净杠杆有望进一步降至 ~1.1x</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="deleveragingChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 3. 三情景估值推演卡片 (Bull / Base / Bear) -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">机构三情景估值推演矩阵（12–18 个月目标框架）</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- 乐观牛市 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">乐观牛市 (Bull Case)</span>
+                  <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">概率：30%</span>
+                </div>
+                <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价：$72 – $78 <span class="text-xs font-normal text-slate-500">(~24x Fwd P/E)</span></div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                  <strong>核心假设：</strong>APMA 亚太市场增速超 35%，闭趾鞋履占比突破 38%，Pasewalk 工厂满产带动毛利率重返 <strong>61%+</strong>，且 L Catterton 减持靴子落地后机构流动性溢价完全释放，估值向欧洲奢侈品靠拢。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                驱动逻辑：利润率扩张 + 奢侈品级估值倍数重估
+              </div>
+            </div>
+
+            <!-- 基准情景 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-cork-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2.5 py-0.5 rounded bg-cork-500/15 text-cork-600 dark:text-cork-300 text-xs font-bold">基准情景 (Base Case)</span>
+                  <span class="font-mono text-xs font-bold text-cork-600 dark:text-cork-300">概率：50%</span>
+                </div>
+                <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">目标价：$58 – $64 <span class="text-xs font-normal text-slate-500">(~20.5x Fwd P/E)</span></div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                  <strong>核心假设：</strong>FY2026E 营收稳健达成 ~€2.40B（+14%–15%），DTC 占比稳步提升至 42%，Adj. EBITDA 率维持在 <strong>31.5%–32.2%</strong>，净杠杆降至 ~1.1x–1.2x，EPS 保持 18%+ 复合增长。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-cork-600 dark:text-cork-300">
+                驱动逻辑：内生业绩复合增长 + 债务去杠杆增厚 EPS
+              </div>
+            </div>
+
+            <!-- 悲观熊市 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">悲观熊市 (Bear Case)</span>
+                  <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+                </div>
+                <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">防守位：$40 – $44 <span class="text-xs font-normal text-slate-500">(~14.5x Fwd P/E)</span></div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                  <strong>核心假设：</strong>欧美可选消费显著降温导致 B2B 零售商补库放缓，同时时尚审美风向切换使 Boston/Arizona 热度回落，营收增速放缓至高个位数，短期 PE 承压受阻。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+                防守安全垫：&gt;90% 刚性日常复购与低负债现金流护航
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           05. 投资决策与风险配置 (Investment Decision & Risk Allocation)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-cork-600 dark:text-cork-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">05. 投资决策与风险配置：核心做多逻辑、风险缓释与建仓纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">组合定位：全球消费复利核心底仓 · 利用配售波动逢低吸纳</span>
+        </div>
+
+        <!-- 1. 核心看多理由 (Why Buy) 与组合配置建议卡片 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-4 flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span>核心看多逻辑（Why Buy：四大不可替代的复利催化剂）</span>
+            </h3>
+            <ul class="space-y-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li class="flex items-start space-x-2.5">
+                <span class="font-mono font-bold text-cork-600 dark:text-cork-400 mt-0.5">01.</span>
+                <span><strong>稀缺的“15% 营收增速 + 30%+ EBITDA 率”双优组合：</strong>在全球上市鞋服企业中，极少有标的能同时兼具双位数内生增速与欧洲硬奢级别的营业利润率，业绩确定性极强。</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <span class="font-mono font-bold text-cork-600 dark:text-cork-400 mt-0.5">02.</span>
+                <span><strong>APMA 亚太白地市场渗透红利：</strong>当前亚太及中东非仅占总营收约 12%，显著低于同行（普遍 20%–30%），伴随中国、日韩与东南亚单品牌旗舰店加速落地，未来 3–5 年增量空间巨大。</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <span class="font-mono font-bold text-cork-600 dark:text-cork-400 mt-0.5">03.</span>
+                <span><strong>闭趾化与全品类延伸抬升客单价（ASP）：</strong>Boston、Tokio、Bend 等闭趾鞋履及专业医护/厨师职人系列持续破圈，有效平滑夏季凉鞋季节性并提升整体毛利结构。</span>
+              </li>
+              <li class="flex items-start space-x-2.5">
+                <span class="font-mono font-bold text-cork-600 dark:text-cork-400 mt-0.5">04.</span>
+                <span><strong>去杠杆红利向股东回报转化：</strong>随净杠杆接近 1.0x–1.5x 舒适区，未来自由现金流将由单纯偿债逐步转向股票回购，进一步增厚每股收益。</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-5 bg-gradient-to-br from-navy-900 to-slate-800 text-white rounded-2xl p-6 border border-slate-700 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="px-2.5 py-1 rounded bg-cork-500/20 border border-cork-500/40 text-cork-300 text-xs font-bold">机构组合配置与交易纪律</span>
+              <h3 class="text-lg font-bold mt-3">核心消费复利仓位（Core Compounder）</h3>
+              <p class="text-xs text-slate-300 mt-2.5 leading-relaxed">
+                <strong>建议仓位配置：</strong>在非必需消费/全球品牌组合中配置 <strong>3%–5%</strong> 核心底仓权重。<br><br>
+                <strong>择时与入场纪律：</strong>由于大股东私募股权基金 <strong>L Catterton</strong> 仍持有较高比例股份，其阶段性大宗二次配售（Secondary Offerings）往往在短期造成股价技术性承压（通常折价 3%–5%），这并非基本面恶化，反而为机构投资者提供了理想的<strong>逢低分批建仓窗口</strong>。
+              </p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-700 flex items-center justify-between text-xs">
+              <span class="text-slate-400">理想安全边际买入区间</span>
+              <span class="font-mono font-bold text-cork-300">Fwd P/E 16x – 18.5x 区间分批吸纳</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 四大核心风险矩阵 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">四大核心风险因素与机构风控缓释机制</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 私募大股东减持供给压力 (Sponsor Overhang)</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">L Catterton 阶段性二次配售带来的流动盘扩张</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                私募股权机构 L Catterton 退出周期内不定期启动大宗减持，短期易引发市场供给担忧压制股价弹性；但随其持股比例逐步降至 50% 以下，股票自由流通盘扩大反而有助于纳入更多指数基金。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 欧元/美元汇率波动与欧洲通胀成本</span>
+                <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">成本端欧元计价与收入端美元占比过半的错配</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                公司 100% 德国制造导致制造与人工成本高度集中于欧元区，而超过 50% 营收来自美元结算的美洲市场；若欧元兑美元大幅走强，将对报表毛利率造成交易性折算压力。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 德国新工厂产能利用率爬坡节奏</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">Pasewalk 自动化基地初期固定折旧摊销拖累</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                重资产德国自有工厂意味着较高的固定资产折旧与技工薪酬刚性，新产线投产初期若爬坡慢于预期会短暂拉低单季毛利率，需持续追踪单位生产效率提升。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 时尚审美周期轮动与欧美消费放缓</span>
+                <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+              </div>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm">“丑鞋风潮”退潮风险与高端凉鞋仿制品竞争</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                尽管骨科功能属性赋予其跨周期韧性，若全球时尚风潮从松弛休闲转向正装细跟，可能减缓年轻新客增长；公司正通过持续拓展职场乐福鞋、运动鞋与专业工装鞋加以对冲。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           06. 季度基本面跟踪 KPI 核查清单 (Quarterly KPI Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Quarterly Fundamental Tracking Checklist</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">06. 季度基本面跟踪 KPI 交互核查清单（Checklist）</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">机构财报季六大核心验真指标 · 勾选状态自动本地持久化</span>
+        </div>
+
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Birkenstock 财报季核心跟踪指标验证台</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">点击勾选最新季报已验证达标的指标，实时评估基本面兑现进度（状态自动保存至 localStorage）</p>
+            </div>
+            <div class="flex items-center space-x-2 no-print">
+              <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-cork-500/15 text-cork-600 dark:text-cork-300 text-xs font-bold">已核查 4 / 6 项 (67%)</span>
+              <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mt-4" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="birk-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#C26D3D] focus:ring-cork-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. DTC 渠道增速 vs B2B 批发增速剪刀差</span>
+                  <span class="text-[11px] font-mono text-cork-600 dark:text-cork-300 font-semibold shrink-0">渠道升级锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪 DTC 直营渠道营收增速是否持续领先 B2B 批发，推动 DTC 营收占比稳步向 42%–45% 迈进。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="birk-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#C26D3D] focus:ring-cork-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. APMA 亚太及中东非恒定汇率增速</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">第二增长曲线</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  验证 APMA 区域恒定汇率（Constant Currency）营收增速是否维持在 25%–35%+ 高景气区间及直营新店拓展节奏。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="birk-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#C26D3D] focus:ring-cork-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 闭趾鞋履（Closed-Toe）占比与 ASP 趋势</span>
+                  <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">全季破圈指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪 Boston、Tokio 及运动鞋等闭趾品类占比（&gt;33%）以及全集团平均销售单价（ASP）同比提价贡献。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="birk-kpi-4" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#C26D3D] focus:ring-cork-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. Pasewalk 工厂爬坡后的毛利率修复进度</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">盈利质量锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  观察随着新工厂产能利用率提升，季度毛利率是否稳步向管理层长期目标 60%+ 收敛。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="birk-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#C26D3D] focus:ring-cork-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 净杠杆率（Net Debt / EBITDA）向 1.0x 迈进</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">资产负债表指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查季度自愿提前偿债金额及净杠杆率下降幅度，评估财务利息支出节约及未来开启回购的时机。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="birk-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#C26D3D] focus:ring-cork-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. L Catterton 剩余持股比例与锁定期状态</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">筹码结构指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪大股东 L Catterton 历次二次配售后的剩余持股占比及锁定期到期日，预判二级市场短期供给节奏。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>Birkenstock Holding plc (NYSE: BIRK) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：FY2025 财报及 2026 年 11 月市场一致预期 (FY26E)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开财报（20-F / 6-K）、全球鞋履与奢侈品行业调研数据及机构估值模型整理生成，旨在提供结构化的商业模式与投资逻辑参考。文中涉及的 FY2026E 营收与现金流预测、区域及品类拆解估算以及三情景目标价推演均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步重绘所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与侧边导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-biz';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-cork-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-cork-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-cork-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-cork-500', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'birk_research_kpi_state_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 6. Chart.js 四大交互数据图表与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let deleveragingChartInstance = null;
+    let currentBizMode = 'trajectory';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // View A: FY2021–FY2026E Revenue (€B) & Adjusted EBITDA Margin (%)
+      const trajConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025', 'FY2026E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '营业收入 Revenue (€B)',
+              data: [0.96, 1.24, 1.49, 1.80, 2.10, 2.40],
+              backgroundColor: '#C26D3D',
+              borderRadius: 6,
+              barThickness: 32,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'Adjusted EBITDA 利润率 (%)',
+              data: [29.8, 35.0, 32.4, 30.8, 31.8, 32.2],
+              borderColor: '#0D9488',
+              backgroundColor: '#0D9488',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `营业收入: €${ctx.parsed.y.toFixed(2)}B`
+                  : `Adj. EBITDA 利润率: ${ctx.parsed.y.toFixed(1)}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 2.8,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '€' + v.toFixed(1) + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 20,
+              max: 40,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#0D9488', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      };
+
+      // View B: Revenue Mix by Channel (B2B vs DTC) & Regional Breakdown (Americas, Europe, APMA)
+      const mixConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '渠道结构：B2B 精品批发 vs DTC 直营',
+            '区域结构：Americas / Europe / APMA',
+            '品类结构：经典凉鞋 vs 闭趾鞋履/其他'
+          ],
+          datasets: [
+            {
+              label: '核心基本盘 (B2B 60% / 美洲 52% / 经典凉鞋 65%)',
+              data: [60, 52, 65],
+              backgroundColor: '#C26D3D',
+              borderRadius: 5,
+              barThickness: 28
+            },
+            {
+              label: '第二支柱 (DTC 40% / 欧洲 36% / 闭趾鞋履 33%)',
+              data: [40, 36, 33],
+              backgroundColor: '#0D9488',
+              borderRadius: 5,
+              barThickness: 28
+            },
+            {
+              label: '高增新引擎 (APMA 亚太中东非 12% / 配件护理 2%)',
+              data: [0, 12, 2],
+              backgroundColor: '#3B82F6',
+              borderRadius: 5,
+              barThickness: 28
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label.split(' (')[0]}: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              max: 100,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'trajectory' ? trajConfig : mixConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnTraj = document.getElementById('btn-chart-traj');
+      const btnMix = document.getElementById('btn-chart-mix');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'trajectory') {
+        btnTraj.className = 'px-3 py-1.5 rounded-md font-semibold bg-white dark:bg-navy-700 text-cork-600 dark:text-cork-300 shadow-sm transition';
+        btnMix.className = 'px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2021–FY2026E 营业收入增长轨迹与 Adjusted EBITDA 利润率';
+        subEl.textContent = '营收由 FY21 的 €0.96B 稳步攀升至 FY26E 的 ~€2.40B（5年 CAGR ~20%），Adj. EBITDA 率稳居 31%+';
+      } else {
+        btnMix.className = 'px-3 py-1.5 rounded-md font-semibold bg-white dark:bg-navy-700 text-cork-600 dark:text-cork-300 shadow-sm transition';
+        btnTraj.className = 'px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2025 渠道结构（B2B vs DTC）、区域分布与品类结构拆解';
+        subEl.textContent = 'DTC 直营占比达 40%，APMA 亚太增速超 30%，Boston 等闭趾鞋履突破 33% 占比';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '骨科鞋床功能专利与舒适度',
+            '德国本土垂直制造壁垒',
+            '全价售罄率与提价定价权',
+            '静奢文化图腾与跨代复购',
+            '双渠道纪律与库存健康度'
+          ],
+          datasets: [
+            {
+              label: 'Birkenstock (BIRK)',
+              data: [9.8, 9.7, 9.5, 9.4, 9.3],
+              borderColor: '#C26D3D',
+              backgroundColor: 'rgba(194, 109, 61, 0.24)',
+              pointBackgroundColor: '#C26D3D',
+              borderWidth: 2.5
+            },
+            {
+              label: '传统功能休闲鞋 (Deckers / Crocs)',
+              data: [8.0, 5.2, 7.6, 8.2, 7.8],
+              borderColor: '#0D9488',
+              backgroundColor: 'rgba(13, 148, 136, 0.14)',
+              pointBackgroundColor: '#0D9488',
+              borderWidth: 1.8
+            },
+            {
+              label: '轻奢与传统制鞋品牌',
+              data: [6.4, 8.2, 8.6, 8.8, 7.2],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      const ctx = document.getElementById('compMarginChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Birkenstock (BIRK · 德国自产+全价直营)',
+            'Prada Group (欧洲奢侈品与皮具鞋履标杆)',
+            'Crocs Inc. (CROX · 大众注塑洞洞鞋)',
+            'Deckers Outdoor (DECK · UGG & HOKA)',
+            'On Holding (ONON · 瑞士高端科技跑鞋)'
+          ],
+          datasets: [
+            {
+              label: '毛利率 Gross Margin (%)',
+              data: [59.5, 79.5, 58.0, 56.5, 60.5],
+              backgroundColor: '#C26D3D',
+              borderRadius: 5,
+              barThickness: 16
+            },
+            {
+              label: 'Adjusted EBITDA 利润率 (%)',
+              data: [31.8, 32.5, 26.5, 24.5, 17.0],
+              backgroundColor: '#0D9488',
+              borderRadius: 5,
+              barThickness: 16
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 90,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initDeleveragingChart() {
+      const ctx = document.getElementById('deleveragingChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (deleveragingChartInstance) deleveragingChartInstance.destroy();
+      deleveragingChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022 (LBO后)', 'FY2023 (IPO)', 'FY2024', 'FY2025', 'FY2026E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '年度自由现金流 Free Cash Flow (€M)',
+              data: [215, 245, 340, 455, 530],
+              backgroundColor: '#10B981',
+              borderRadius: 6,
+              barThickness: 34,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '净杠杆率 Net Debt / Adj. EBITDA (x)',
+              data: [3.3, 2.6, 1.9, 1.5, 1.1],
+              borderColor: '#C26D3D',
+              backgroundColor: '#C26D3D',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `年度自由现金流 FCF: €${ctx.parsed.y}M`
+                  : `净杠杆率 Net Debt/EBITDA: ${ctx.parsed.y.toFixed(1)}x`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 600,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '€' + v + 'M' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              max: 4.0,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#C26D3D', font: { size: 11, weight: '600' }, callback: v => v.toFixed(1) + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initDeleveragingChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initDeleveragingChart();
+    });
+  </script>
+</body>
+</html>

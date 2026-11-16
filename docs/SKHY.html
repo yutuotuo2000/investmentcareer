@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SK海力士 SK hynix Inc. (NASDAQ: SKHY / KRX: 000660) 深度研究报告：HBM4 与 Advanced MR-MUF 算力存储霸权、80% 营业利润率奇迹与百兆韩元股东回报</title>
+  <!-- Tailwind CSS 3.4.17 -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Chart.js 4.4.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            navy: {
+              950: '#060A12',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155'
+            },
+            skred: {
+              400: '#FB7185',
+              500: '#EA002C',
+              600: '#C80025'
+            },
+            skorange: {
+              400: '#FB923C',
+              500: '#F47721',
+              600: '#EA580C'
+            },
+            accent: {
+              500: '#06B6D4',
+              600: '#0891B2'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(234, 0, 44, 0.24) 0%, rgba(244, 119, 33, 0.08) 100%);
+      border-left: 3px solid #EA002C;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] dark:bg-navy-950 dark:text-slate-100 antialiased selection:bg-skred-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-skred-500 via-skorange-500 to-cyan-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-skred-500 to-skorange-500 flex items-center justify-center font-extrabold text-white shadow text-xs">
+        SKHY
+      </div>
+      <div>
+        <div class="text-[11px] text-skorange-400 font-semibold tracking-wider uppercase">NASDAQ: SKHY · KRX: 000660</div>
+        <div class="text-sm font-bold leading-tight">SK海力士 SK hynix 深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">SKHY 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务架构与百兆韩元营收跃升</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. HBM4 + MR-MUF 四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 存储三巨头格局与同行对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务弹性、净现金与估值模型</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与多空风险配置</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 季度跟踪 KPI 核查清单</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球半导体与 AI 算力存储研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (3Q26 季报)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-skred-500 to-skorange-500 flex items-center justify-center text-white font-extrabold text-xs shadow-lg shadow-red-500/25">
+            SKHY
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-skorange-400 bg-skred-500/15 px-2 py-0.5 rounded">NASDAQ: SKHY · 000660.KS</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">SK海力士深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球 HBM 高带宽存储绝对霸主 · TSMC 逻辑底座协同与 80% 营业利润率奇迹
+        </p>
+      </div>
+
+      <!-- 股票实时快照徽章（严格遵守门户三宫格自动提取契约） -->
+      <div class="px-5 py-3 bg-navy-950/70 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">26Q3 单季总营收</span>
+          <span class="font-mono font-bold text-white">₩104.62T (+328% YoY)</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">单季营业利润 / OPM</span>
+          <span class="font-mono font-bold text-skred-400">₩83.33T (OPM 80%)</span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">股东回报 / 远期估值</span>
+          <span class="font-mono font-bold text-cyan-400">₩100T 回报 · ~4.6x P/E</span>
+        </div>
+      </div>
+
+      <!-- 核心章节目录导航 -->
+      <div class="px-3 py-3.5 overflow-y-auto max-h-[calc(100vh-310px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-skorange-400 mr-2">00</span>执行摘要与核心指标</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务架构与百兆韩元营收跃升</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>HBM4 + MR-MUF 四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>存储三巨头格局与同行对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务弹性、净现金与估值模型</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与多空风险配置</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>季度跟踪 KPI 核查清单</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-skred-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-gradient-to-r from-skred-500 to-skorange-500 hover:from-skred-600 hover:to-skorange-600 text-white text-xs font-extrabold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. Hero 研报封面区与执行摘要
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-skred-500/15 text-skred-600 dark:text-skred-400 font-bold border border-skred-500/30">评级：强烈买入 / AI 算力显存底座核心重仓</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">拐点：26Q3 营收破百兆韩元 × 80% 营业利润率 × 26Q4 HBM4 超越 HBM3E</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖时间：2026年11月15日</span>
+            <span>NASDAQ: SKHY · KRX: 000660</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#250A14] to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-rose-900/50">
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#EA002C 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-skred-500/20 border border-skred-500/40 text-skorange-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-skred-400 animate-pulse"></span>
+              <span>AI 定制化存储超级周期 · 2027-2028 产能 50%+ 已被 14 家巨头长协锁定 · 2029 前 DRAM/HBM 全面售罄</span>
+            </div>
+
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+              SK海力士 SK hynix Inc. (NASDAQ: SKHY / KRX: 000660)<br class="hidden sm:inline" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-orange-300 to-cyan-300 text-xl sm:text-3xl font-bold">
+                HBM4 与 Advanced MR-MUF 算力存储霸权、80% 营业利润率奇迹与百兆韩元股东回报
+              </span>
+            </h1>
+
+            <p id="core-thesis" class="mt-4 text-sm sm:text-base text-slate-200 leading-relaxed max-w-4xl">
+              作为全球 AI 算力显存底座的绝对定义者，SK海力士（<a href="https://news.skhynix.com/en/q3-2026-business-results/" target="_blank" rel="noopener noreferrer" class="underline text-cyan-300 hover:text-cyan-200">SK hynix 3Q26 财报</a>）在 2026 年第三季度创下人类半导体工业史上的盈利奇迹：单季营业收入同比暴增 <strong>+328% YoY</strong>（环比 +32% QoQ）至 <strong>₩104.6155 万亿韩元</strong>（约 <strong>$71.4B</strong>，公司历史上首次单季突破百万亿韩元大关），单季营业利润高达 <strong>₩83.3338 万亿韩元</strong>（同比暴增 <strong>+632% YoY</strong>，环比 +38% QoQ），<strong>营业利润率（OPM）跃升至惊人的 80%</strong>（EBITDA 利润率达 84%）。凭借独步全球的 <strong>Advanced MR-MUF</strong> 批量回流模塑底部填充技术与 <strong>台积电（TSMC）3nm/12nm 逻辑基础裸片（Base Die）</strong> 深度协同，公司第六代 <strong>HBM4（2,048 I/O）</strong> 已于 26Q3 全面放量供货 NVIDIA Vera Rubin 等旗舰平台，并将在 <strong>26Q4 在出货量与营收占比上正式超越 HBM3E</strong>（<a href="https://www.alpha-sense.com/earnings/000660.kr" target="_blank" rel="noopener noreferrer" class="underline text-cyan-300 hover:text-cyan-200">AlphaSense 3Q26 纪要</a>）。公司不仅手握 <strong>₩98.7 万亿韩元净现金</strong>，更与 14 家核心客户签下带定金保护的多年期长期协议（LTA），锁定 2027–2028 年超 50% 产能，且宣布 2026 财年总额约 <strong>₩100 万亿韩元</strong>（含 ₩30T+ 现金分红与 ₩60T+ 股票回购注销）的史诗级股东回报计划。
+            </p>
+
+            <!-- 核心看点三支柱 (Pillars) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 pt-5 border-t border-slate-700/70 text-xs">
+              <div class="flex items-start space-x-2.5 bg-slate-900/60 p-3 rounded-xl border border-slate-700/70">
+                <span class="text-skred-400 font-bold text-base">01</span>
+                <div>
+                  <div class="font-bold text-white">HBM4 + TSMC 逻辑底座垄断卡位</div>
+                  <p class="text-slate-300 mt-0.5">26Q4 HBM4 出货与营收占比正式超越 HBM3E，清州 M15X 年底满产，NVIDIA Vera Rubin 平台 HBM4 核心主供。</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-2.5 bg-slate-900/60 p-3 rounded-xl border border-slate-700/70">
+                <span class="text-skorange-400 font-bold text-base">02</span>
+                <div>
+                  <div class="font-bold text-white">14 家巨头 LTA 锁死至 2029 产能</div>
+                  <p class="text-slate-300 mt-0.5">存储从强周期大宗商品蜕变为先签带定金合约后扩产的“类晶圆代工”高确定性商业模式，2027-2028 过半产能已锁死。</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-2.5 bg-slate-900/60 p-3 rounded-xl border border-slate-700/70">
+                <span class="text-cyan-400 font-bold text-base">03</span>
+                <div>
+                  <div class="font-bold text-white">80% 营业利润率与 ₩100T 回报</div>
+                  <p class="text-slate-300 mt-0.5">账面净现金高达 ₩98.7T，FY26 规划 ~₩100T 股东回报（₩30T+ 股息 & ₩60T+ 回购注销），纳斯达克 ADR (SKHY) 仅 ~4.6x–8.1x P/E。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 核心财务与运营 KPI 四宫格 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span>2026 Q3 单季营业收入</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono font-bold">+328% YoY</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">₩104.62T</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+              折合约 $71.4B，环比 26Q2 (₩79.32T) 大增 +32% QoQ，首次实现单季突破百万亿韩元里程碑。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span>2026 Q3 营业利润 & OPM</span>
+              <span class="px-2 py-0.5 rounded bg-skred-500/10 text-skred-600 dark:text-skred-400 font-mono font-bold">OPM 80.0%</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-skred-600 dark:text-skred-400 mt-2">₩83.33T</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+              同比暴增 +632% YoY，环比增长 +38% QoQ；单季 EBITDA 达 ₩87.7T（利润率高达 84%）。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span>资产负债表净现金储备</span>
+              <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-mono font-bold">现金 ₩114.5T</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">₩98.70T</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+              有息负债仅 ₩15.8T，净现金达 ₩98.7T；支撑 FY26 约 ₩100T 现金分红与回购注销计划。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+              <span>总市值 & 动态估值倍数</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-bold">ADR ~$134</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-cyan-600 dark:text-cyan-400 mt-2">~$935B</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+              韩股 000660 市值约 ₩888T–₩930T，纳斯达克 ADR (SKHY) 滚动 P/E 仅 ~4.6x–8.1x，极度低估。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           01. 业务与收入架构：从周期存储向高毛利 AI 定制存储跃迁
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-l-4 border-skred-500 pl-4">
+          <div class="text-xs font-mono uppercase tracking-wider text-skred-500 font-semibold">01 · Business & Revenue Architecture</div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+            业务与收入架构：单季突破百万亿韩元，HBM 与企业级 eSSD 双引擎驱动 80% 营业利润率
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- 左侧：业务拆解卡片 -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded bg-skred-500/15 text-skred-600 dark:text-skred-400 text-xs font-bold">核心利润支柱 · 营收占比 ~68%-72%</span>
+                <span class="font-mono text-xs text-slate-400">DRAM & HBM</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                AI HBM 高带宽存储与服务器 DDR5/LPDDR5T/SOCAMM
+              </h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                DRAM 业务贡献公司约 65%–72% 的营收与超 80% 的营业利润（<a href="https://www.alpha-sense.com/earnings/000660.kr" target="_blank" rel="noopener noreferrer" class="underline text-skred-500">AlphaSense 3Q26 分析</a>）。在 AI 训练与 Agentic AI 推理集群需求井喷带动下，12 层 HBM3E（36GB）与第六代 HBM4（12 层 36GB / 16 层 48GB）成为核心增长极。同时，面向 AI 服务器的 1b nm / 1c nm 大容量 128GB/256GB DDR5 RDIMM、CXL 2.0 存储扩展模块以及与 NVIDIA 联合打造的 96GB SOCAMM2 低功耗服务器模组全面放量，推动常规 DRAM 合约价在 26Q3 环比再涨 13%–18%（<a href="https://finance.biggo.com/news/a590d005-d526-4c4e-a1cd-2e67e7e011ea" target="_blank" rel="noopener noreferrer" class="underline text-skred-500">BigGo 行业数据</a>），26Q4 DRAM 位元出货量（Bit Shipments）指引环比再增约 25%（mid-20%）。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded bg-skorange-500/15 text-skorange-600 dark:text-skorange-400 text-xs font-bold">第二增长极 · 营收占比 ~26%-30%</span>
+                <span class="font-mono text-xs text-slate-400">NAND & Solidigm eSSD</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                321 层 QLC NAND、超大容量 AI eSSD 与 HBF 高带宽闪存
+              </h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                自 2021 年收购 Intel NAND 业务组建 <strong>Solidigm</strong> 以来，SK海力士跃居全球第二大 NAND 供应商（市占率约 22%）。在 AI 数据中心热数据湖与推理 KV Cache 卸载需求拉动下，公司 60TB / 122TB 超大容量 QLC 企业级 SSD（PS1012 U.2 等）与 321 层 NAND 持续供不应求（<a href="https://news.skhynix.com/en/hbm-to-essd/" target="_blank" rel="noopener noreferrer" class="underline text-skorange-500">SK hynix Full-Stack AI 战略</a>）。2026 年 8 月，公司在 FMS 2026 联合 Sandisk 首发 <strong>HBF（High-Bandwidth Flash，高带宽闪存）</strong> 标准规范，将高带宽堆叠架构延伸至大容量闪存层。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 text-xs font-bold">资本市场里程碑 · 2026年7月</span>
+                <span class="font-mono text-xs text-slate-400">NASDAQ: SKHY</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                $26.5B 纳斯达克 ADR 挂牌上市，打通全球机构配置通道
+              </h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                2026 年 7 月，SK海力士在纳斯达克完成约 265 亿美元规模的美国存托凭证（ADR，代码：<code>SKHY</code>）挂牌交易（<a href="https://www.perplexity.ai/finance/000660.KS" target="_blank" rel="noopener noreferrer" class="underline text-cyan-500">Perplexity Finance 000660.KS</a>），彻底打破此前仅限韩国 KRX（000660）与卢森堡 GDR 的流动性折价壁垒。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：交互式季度演进与结构拆解图 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 id="biz-chart-title" class="text-base font-bold text-slate-900 dark:text-white">
+                  1Q25 – 3Q26 季度营收与营业利润狂飙轨迹 (万亿韩元 ₩T)
+                </h3>
+                <p id="biz-chart-sub" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  单季营收从 ₩17.64T 暴涨近 6 倍至 ₩104.62T，营业利润率从 42% 跃升至 80%
+                </p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs">
+                <button id="btn-chart-evo" onclick="switchBizChart('quarterly')" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-skred-600 dark:text-skred-400 shadow-sm transition">
+                  季度跃迁趋势
+                </button>
+                <button id="btn-chart-split" onclick="switchBizChart('segment')" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+                  营收结构拆解
+                </button>
+              </div>
+            </div>
+
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+
+            <!-- 季度关键财务数据明细表 -->
+            <div class="mt-5 pt-4 border-t border-slate-200/80 dark:border-slate-800 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
+                    <th class="py-2 font-semibold">季度 (K-IFRS)</th>
+                    <th class="py-2 font-semibold text-right">营业收入 (₩T)</th>
+                    <th class="py-2 font-semibold text-right">营业利润 (₩T)</th>
+                    <th class="py-2 font-semibold text-right">营业利润率</th>
+                    <th class="py-2 font-semibold text-right">净利润 (₩T)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200/60 dark:divide-slate-800/70 font-mono">
+                  <tr>
+                    <td class="py-2 font-bold text-slate-700 dark:text-slate-300"><a href="https://news.skhynix.com/en/sk-hynix-announces-1q25-financial-results/" target="_blank" rel="noopener noreferrer" class="hover:underline">1Q25</a></td>
+                    <td class="py-2 text-right">17.6391</td>
+                    <td class="py-2 text-right">7.4405</td>
+                    <td class="py-2 text-right text-emerald-500">42.0%</td>
+                    <td class="py-2 text-right">8.1082</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 font-bold text-slate-700 dark:text-slate-300"><a href="https://news.skhynix.com/en/sk-hynix-announces-2q25-financial-results/" target="_blank" rel="noopener noreferrer" class="hover:underline">2Q25</a></td>
+                    <td class="py-2 text-right">22.2320</td>
+                    <td class="py-2 text-right">9.2129</td>
+                    <td class="py-2 text-right text-emerald-500">41.0%</td>
+                    <td class="py-2 text-right">7.0000</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 font-bold text-slate-700 dark:text-slate-300"><a href="https://news.skhynix.com/en/sk-hynix-announces-3q25-financial-results/" target="_blank" rel="noopener noreferrer" class="hover:underline">3Q25</a></td>
+                    <td class="py-2 text-right">24.4489</td>
+                    <td class="py-2 text-right">11.3834</td>
+                    <td class="py-2 text-right text-emerald-500">47.0%</td>
+                    <td class="py-2 text-right">12.5975</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 font-bold text-slate-700 dark:text-slate-300"><a href="https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/" target="_blank" rel="noopener noreferrer" class="hover:underline">4Q25</a></td>
+                    <td class="py-2 text-right">32.8267</td>
+                    <td class="py-2 text-right">19.1696</td>
+                    <td class="py-2 text-right text-emerald-500">58.0%</td>
+                    <td class="py-2 text-right">15.2460</td>
+                  </tr>
+                  <tr class="bg-slate-50/70 dark:bg-navy-800/40">
+                    <td class="py-2 font-bold text-slate-900 dark:text-white"><a href="https://news.skhynix.com/en/q1-2026-business-results/" target="_blank" rel="noopener noreferrer" class="hover:underline">1Q26</a></td>
+                    <td class="py-2 text-right font-semibold">52.5763</td>
+                    <td class="py-2 text-right font-semibold">37.6103</td>
+                    <td class="py-2 text-right font-bold text-cyan-500">72.0%</td>
+                    <td class="py-2 text-right">40.3459</td>
+                  </tr>
+                  <tr class="bg-slate-50/70 dark:bg-navy-800/40">
+                    <td class="py-2 font-bold text-slate-900 dark:text-white"><a href="https://news.skhynix.com/en/q2-2026-business-results/" target="_blank" rel="noopener noreferrer" class="hover:underline">2Q26</a></td>
+                    <td class="py-2 text-right font-semibold">79.3187</td>
+                    <td class="py-2 text-right font-semibold">60.5426</td>
+                    <td class="py-2 text-right font-bold text-cyan-500">76.0%</td>
+                    <td class="py-2 text-right">93.9226</td>
+                  </tr>
+                  <tr class="bg-skred-500/10">
+                    <td class="py-2 font-extrabold text-skred-600 dark:text-skred-400"><a href="https://news.skhynix.com/en/q3-2026-business-results/" target="_blank" rel="noopener noreferrer" class="hover:underline">3Q26 (最新)</a></td>
+                    <td class="py-2 text-right font-extrabold text-skred-600 dark:text-skred-400">104.6155</td>
+                    <td class="py-2 text-right font-extrabold text-skred-600 dark:text-skred-400">83.3338</td>
+                    <td class="py-2 text-right font-extrabold text-skred-600 dark:text-skred-400">80.0%</td>
+                    <td class="py-2 text-right font-bold">39.7756*</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-[11px] text-slate-400 mt-2">
+                *注：3Q26 税前利润为 ₩50.7T、净利润为 ₩39.7756T（净利率 38%），主因计提了 ₩32.6T 净营业外支出（含汇率波动汇兑损失及投资资产估值调整），核心经营现金流与 EBITDA（₩87.7T）均创历史峰值。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           02. 行业地位与四重护城河：Advanced MR-MUF 与 TSMC 逻辑底座同盟
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-l-4 border-skorange-500 pl-4">
+          <div class="text-xs font-mono uppercase tracking-wider text-skorange-500 font-semibold">02 · Industry Moat & Technology Leadership</div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+            行业地位与四重护城河：Advanced MR-MUF 封装壁垒、TSMC 3nm 逻辑底座与 2029 长协锁单
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重护城河详解 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="report-card bg-white dark:bg-navy-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="w-8 h-8 rounded-lg bg-skred-500/15 text-skred-500 flex items-center justify-center font-mono font-bold text-sm mb-3">M1</div>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Advanced MR-MUF 热管理与翘曲控制霸权</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                相比三星与美光早期沿用的 TC-NCF（热压非导电薄膜），SK海力士独创的 <strong>Advanced MR-MUF（批量回流模塑底部填充）</strong> 能在堆叠比传统芯片薄 40% 的 12 层/16 层超薄 DRAM 裸片时精准控制翘曲（Warpage Control），并将导热率提升逾 2 倍、量产周期缩短 50%，使 HBM3E/HBM4 良率稳定在 80% 以上的黄金水位（<a href="https://news.skhynix.com/en/tsmc-2025-technology-symposium-sk-hynix-showcases-hbm4/" target="_blank" rel="noopener noreferrer" class="underline text-skred-500">TSMC Symposium 报告</a>）。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="w-8 h-8 rounded-lg bg-skorange-500/15 text-skorange-500 flex items-center justify-center font-mono font-bold text-sm mb-3">M2</div>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">HBM4 2,048 I/O 架构与 TSMC 3nm/12nm 底座协同</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                从第六代 HBM4 开始，通道数翻倍至 <strong>2,048 I/O</strong>，数据传输速率突破 <strong>10 Gbps</strong>（远超 JEDEC 8 Gbps 标准）。SK海力士率先放弃自研内存工艺底座，与 <strong>台积电（TSMC）</strong> 达成战略联盟（<a href="https://www.vlsi.kr/en/sk-hynix-hbm-custom-base-die-en/" target="_blank" rel="noopener noreferrer" class="underline text-skorange-500">VLSI Korea HBM4 Base Die 拆解</a>），采用 TSMC 3nm/12nm 先进逻辑工艺定制 Base Die 并与 CoWoS 封装无缝协同，能效与性能提升 20%–30%。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="w-8 h-8 rounded-lg bg-cyan-500/15 text-cyan-500 flex items-center justify-center font-mono font-bold text-sm mb-3">M3</div>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">14 家核心客户 LTA 长协与预付定金机制</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                在 26Q3 业绩会上，管理层披露已与 <strong>14 家核心 AI 客户</strong> 签署附带定金保护条款（Safeguards such as deposits）的多年期长期协议（LTA），<strong>已锁定 2027 年与 2028 年超过 50% 的总产能</strong>，且直至 2029 年的 DRAM 与 HBM 产能实际上已全面售罄（<a href="https://shattered.io/hbm4-shortage-sk-hynix-locks-50-percent-2027-28-capacity/" target="_blank" rel="noopener noreferrer" class="underline text-cyan-500">Shattered HBM4 产能报告</a>），预计全行业供需缺口将持续至 2030 年。
+              </p>
+            </div>
+
+            <div class="report-card bg-white dark:bg-navy-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-mono font-bold text-sm mb-3">M4</div>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">M15X + 龙仁 Y2 / 清州 M17 超级晶圆厂矩阵</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                清州 <strong>M15X 晶圆厂</strong> 将于 2026 年底实现满负荷运转，同时公司正加速推进清州 P&T6 后道封装产线设备进场（<a href="https://finance.biggo.com/news/213890a9-4bfe-458a-b93b-0c81eb02449e" target="_blank" rel="noopener noreferrer" class="underline text-emerald-500">BigGo P&T6 扩产追踪</a>），并于 2026 年 8 月宣布斥资 <strong>₩54 万亿韩元</strong> 建设龙仁半导体集群 Y2 与清州 M17 基地，叠加美国印第安纳州先进封装基地动工，筑起难以逾越的产能规模壁垒。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维能力雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              2026–2027 全球三大存储巨头 AI 存储五维竞争力对比
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 mb-3">
+              SK海力士在 HBM4 量产良率、TSMC 逻辑底座协同与营业利润率维度全面领跑
+            </p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           03. 同行竞争格局：全球 HBM 与 DRAM 三寡头博弈
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-l-4 border-cyan-500 pl-4">
+          <div class="text-xs font-mono uppercase tracking-wider text-cyan-500 font-semibold">03 · Peer Comparison & Oligopoly Landscape</div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+            同行竞争格局：独占全球 50%+ HBM 营收份额，单季营业利润历史性碾压传统存储同行
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧横向柱状对比图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              2026 年全球 HBM 营收市占率与盈利转化对比 (%)
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 mb-3">
+              数据来源：Counterpoint Research / AlphaSense 2026 行业统计
+            </p>
+            <div class="relative h-72 w-full">
+              <canvas id="compMarginChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧三巨头深度对比表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-navy-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white mb-3">
+              全球 AI 存储三巨头 2026–2027 核心技术路线与最新财务数据横向对比
+            </h3>
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
+                  <th class="py-2.5 pr-3 font-semibold">对比维度</th>
+                  <th class="py-2.5 px-3 font-bold text-skred-600 dark:text-skred-400 bg-skred-500/5">SK hynix (SKHY / 000660)</th>
+                  <th class="py-2.5 px-3 font-semibold">Samsung (005930.KS)</th>
+                  <th class="py-2.5 pl-3 font-semibold">Micron (NASDAQ: MU)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200/70 dark:divide-slate-800/70">
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-700 dark:text-slate-300">2026 HBM 市场份额</td>
+                  <td class="py-2.5 px-3 font-mono font-bold text-skred-600 dark:text-skred-400 bg-skred-500/5">50% – 58% (Rubin HBM4 预计 ~70%)</td>
+                  <td class="py-2.5 px-3 font-mono">25% – 38% (追赶修复中)</td>
+                  <td class="py-2.5 pl-3 font-mono">12% – 20% (份额爬坡)</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-700 dark:text-slate-300">最新单季核心财报</td>
+                  <td class="py-2.5 px-3 font-mono font-bold bg-skred-500/5">3Q26 营收 ₩104.62T (~$71.4B)<br/>营业利润 ₩83.33T (OPM 80%)</td>
+                  <td class="py-2.5 px-3 font-mono">26Q2 DRAM 总份额 38%<br/>受代工与传统消费存储拖累利润率</td>
+                  <td class="py-2.5 pl-3 font-mono">FQ3 营收 $41.46B<br/>GAAP 净利润 $28.24B (净利率 68%)</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-700 dark:text-slate-300">HBM4 封装与堆叠工艺</td>
+                  <td class="py-2.5 px-3 font-semibold bg-skred-500/5">Advanced MR-MUF (翘曲控制/高良率)</td>
+                  <td class="py-2.5 px-3">TC-NCF 向混合键合过渡</td>
+                  <td class="py-2.5 pl-3">TC-NCF / 1-beta & 1-gamma</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-700 dark:text-slate-300">HBM4 逻辑底座 (Base Die)</td>
+                  <td class="py-2.5 px-3 font-semibold bg-skred-500/5">TSMC 3nm (定制) / 12nm (通用)</td>
+                  <td class="py-2.5 px-3">自研 4nm Foundry + 定制导入 TSMC</td>
+                  <td class="py-2.5 pl-3">已确认引入 TSMC 制造下一代 Base Die</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-700 dark:text-slate-300">企业级 NAND / eSSD</td>
+                  <td class="py-2.5 px-3 bg-skred-500/5">Solidigm 60TB/122TB QLC + 321层 + HBF</td>
+                  <td class="py-2.5 px-3">V9 QLC eSSD 全球第一大份额</td>
+                  <td class="py-2.5 pl-3">G9 TLC/QLC 数据中心 SSD</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-3 font-semibold text-slate-700 dark:text-slate-300">核心客户绑定状态</td>
+                  <td class="py-2.5 px-3 font-semibold text-emerald-600 dark:text-emerald-400 bg-skred-500/5">14 家客户签定金 LTA 锁死 27-28 过半产能</td>
+                  <td class="py-2.5 px-3">Vera Rubin HBM4 通过认证扩大出货</td>
+                  <td class="py-2.5 pl-3">2026 HBM 产能售罄，加速扩充封装</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="text-[11px] text-slate-400 mt-3">
+              参考来源：<a href="https://siliconanalysts.com/analysis/hbm4-market-share-race-2026" target="_blank" rel="noopener noreferrer" class="underline">Silicon Analysts HBM4 份额报告</a>、<a href="https://shattered.io/hbm4-shortage-sk-hynix-locks-50-percent-2027-28-capacity/" target="_blank" rel="noopener noreferrer" class="underline">Shattered 三巨头对比表</a>、<a href="https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share" target="_blank" rel="noopener noreferrer" class="underline">Counterpoint Research</a>。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           04. 财务弹性、百兆韩元股东回报与多情景估值模型
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-l-4 border-emerald-500 pl-4">
+          <div class="text-xs font-mono uppercase tracking-wider text-emerald-500 font-semibold">04 · Financial Elasticity & Valuation Anchor</div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+            财务弹性与估值锚：₩98.7T 净现金堡垒、₩100T 股东回报与极度低估的 ~4.6x–8.1x P/E
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- 左侧：年度业绩阶跃图表 -->
+          <div class="lg:col-span-6 bg-white dark:bg-navy-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              FY2023 – FY2027E 全年营收与营业利润爆炸式跃迁 (万亿韩元 ₩T)
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 mb-4">
+              2026 前三季累计营收已达 ₩236.51T、累计营业利润达 ₩181.49T，全年营业利润冲击 ~₩270T+
+            </p>
+            <div class="relative h-72 w-full">
+              <canvas id="valEvolutionChart"></canvas>
+            </div>
+            <div class="grid grid-cols-3 gap-2.5 mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800 text-center text-xs">
+              <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-navy-800/70">
+                <div class="text-slate-400">FY2024 实际</div>
+                <div class="font-mono font-bold text-slate-800 dark:text-slate-100 mt-0.5">营收 ₩66.19T</div>
+                <div class="font-mono text-[11px] text-emerald-500">营业利润 ₩23.47T</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-navy-800/70">
+                <div class="text-slate-400">FY2025 实际</div>
+                <div class="font-mono font-bold text-slate-800 dark:text-slate-100 mt-0.5">营收 ₩97.15T</div>
+                <div class="font-mono text-[11px] text-emerald-500">营业利润 ₩47.21T</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-skred-500/10 border border-skred-500/25">
+                <div class="text-skred-500 font-semibold">FY2026 9M 累计</div>
+                <div class="font-mono font-bold text-skred-600 dark:text-skred-400 mt-0.5">营收 ₩236.51T</div>
+                <div class="font-mono text-[11px] text-skred-500">营业利润 ₩181.49T</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右侧：交互式估值情景模拟器与股东回报矩阵 -->
+          <div class="lg:col-span-6 space-y-4">
+            <div class="bg-white dark:bg-navy-900 rounded-xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-base font-bold text-slate-900 dark:text-white">交互式 2027E 估值重估模拟器</h3>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">点击切换保守/基准/乐观情景，查看 ADR (SKHY) 与韩股 (000660) 隐含目标价</p>
+                </div>
+                <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs">
+                  <button id="scen-btn-bear" onclick="selectValScenario('bear')" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 transition">保守周期情景</button>
+                  <button id="scen-btn-base" onclick="selectValScenario('base')" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-skred-600 dark:text-skred-400 shadow-sm transition">基准 LTA 情景</button>
+                  <button id="scen-btn-bull" onclick="selectValScenario('bull')" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 transition">乐观超级周期</button>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-navy-950/90 border border-slate-200/80 dark:border-slate-800 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span id="scen-label" class="text-xs font-bold text-skred-500 uppercase tracking-wider">基准情景 · LTA 锁单与 HBM4 溢价延续</span>
+                  <span id="scen-pe" class="px-2 py-0.5 rounded bg-skred-500/15 text-skred-500 font-mono text-xs font-bold">目标估值：6.5x FY27E P/E</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
+                  <div>
+                    <div class="text-[11px] text-slate-400">FY27E 预计营业利润</div>
+                    <div id="scen-op" class="text-lg font-extrabold font-mono text-slate-900 dark:text-white mt-0.5">₩390.0T</div>
+                  </div>
+                  <div>
+                    <div class="text-[11px] text-slate-400">NASDAQ: SKHY 目标价</div>
+                    <div id="scen-adr" class="text-lg font-extrabold font-mono text-emerald-500 mt-0.5">$195.00 (+45%)</div>
+                  </div>
+                  <div class="col-span-2 sm:col-span-1">
+                    <div class="text-[11px] text-slate-400">KRX: 000660 目标价</div>
+                    <div id="scen-krx" class="text-lg font-extrabold font-mono text-cyan-500 mt-0.5">₩1,850,000</div>
+                  </div>
+                </div>
+                <p id="scen-desc" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed pt-2 border-t border-slate-200/70 dark:border-slate-800">
+                  基于 2027 年 DRAM 需求增长 ~25%、NAND 增长 high-teens，且 14 家核心客户 LTA 锁定 >50% 产能，叠加 ₩60T+ 股票回购注销缩减总股本约 6.5%，给予 6.5x 远期市盈率，对应总市值约 $1.35T（₩1,300T+）。
+                </p>
+              </div>
+            </div>
+
+            <!-- 史诗级股东回报拆解卡 -->
+            <div class="bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-bold text-slate-900 dark:text-white">FY2026 史诗级股东回报计划 (~₩100 万亿韩元)</h3>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-500 font-mono text-xs font-bold">>50% FCF 返还承诺</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                依托 2026 年前三季度累计 ₩181.49T 营业利润与 3Q26 末 <strong>₩98.7T 净现金</strong>（现金及等价物 ₩114.5T vs 有息负债 ₩15.8T），管理层于 2026 年 8 月宣布将股东回报目标提升至自由现金流（FCF）的 50% 以上（<a href="https://www.stocktitan.net/news/SKHY/sk-hynix-announces-1q25-financial-deyxe6fkdzlt.html" target="_blank" rel="noopener noreferrer" class="underline text-emerald-500">StockTitan 公告汇总</a>），并在 3Q26 电话会上明确 FY2026 股东总回报规划约 <strong>₩100 万亿韩元</strong>（<a href="https://www.perplexity.ai/finance/000660.KS/earnings" target="_blank" rel="noopener noreferrer" class="underline text-emerald-500">Perplexity 3Q26 纪要</a>）：
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3 rounded-lg bg-slate-50 dark:bg-navy-800/70 border border-slate-200/70 dark:border-slate-700">
+                  <div class="font-bold text-slate-900 dark:text-white">💰 现金股息：₩30 万亿韩元以上</div>
+                  <p class="text-slate-500 dark:text-slate-400 mt-1">对比 FY2025 全年 ₩2.1T 总股息（每股 ₩3,000），FY26 现金分红规模跃升超 14 倍，除息日定于 2026-11-27。</p>
+                </div>
+                <div class="p-3 rounded-lg bg-slate-50 dark:bg-navy-800/70 border border-slate-200/70 dark:border-slate-700">
+                  <div class="font-bold text-slate-900 dark:text-white">🔥 股票回购与注销：₩60 万亿韩元以上</div>
+                  <p class="text-slate-500 dark:text-slate-400 mt-1">继 2026 年 8 月加速执行 ₩40T 回购注销后，全年回购注销规模扩至 ₩60T+，直接永久性增厚每股收益（EPS）。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           05. 投资决策与多空风险配置 (Bull vs Bear)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <div class="text-xs font-mono uppercase tracking-wider text-amber-500 font-semibold">05 · Investment Thesis & Risk Matrix</div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+            投资决策与多空风险配置：存储周期律钝化 vs. 规格调整与竞争追赶风险
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 看多逻辑 (Bull Case) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-6 border-t-4 border-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">核心做多逻辑 (Bull Pillars)</span>
+              <span class="font-mono text-xs text-emerald-500">确定性：高</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-500 font-bold">✓</span>
+                <span><strong>HBM 产能虹吸造成全行业晶圆结构性短缺：</strong>每片 HBM4 晶圆消耗面积约为同容量常规 DDR5 的 3 倍以上，HBM 满载直接挤压传统服务器/PC/移动端 DRAM 晶圆供给，推动常规 DRAM 价格同步处于长牛通道，供需缺口预计持续至 2030 年（<a href="https://dbr.donga.com/kfocus/view/en/article_no/2274" target="_blank" rel="noopener noreferrer" class="underline text-emerald-500">DBR 2030 展望</a>）。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-500 font-bold">✓</span>
+                <span><strong>商业模式“去周期化”重估：</strong>14 家核心客户带定金的 LTA 锁定 2027–2028 年 >50% 产能，且 2027 年主要客户 HBM 价格与数量谈判已提前敲定，公司从“先建厂赌周期”彻底转向“先锁单后扩产”，理应摆脱传统存储 4x–6x P/E 周期顶折价。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-500 font-bold">✓</span>
+                <span><strong>₩100T 回购与分红构筑极强下行安全垫：</strong>年化约 10% 市值体量的股东回报（₩60T+ 注销回购 + ₩30T+ 分红）叠加 ₩98.7T 净现金，使股价下行空间被强力封锁。</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 风险与看空边界 (Bear Case) -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-6 border-t-4 border-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">核心风险边界与跟踪预警 (Risk Factors)</span>
+              <span class="font-mono text-xs text-rose-500">需重点监控</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-500 font-bold">!</span>
+                <span><strong>三星电子 HBM4 良率追赶与 NVIDIA 双供平衡：</strong>三星已于 2026 年 10 月下旬宣布针对 Vera Rubin 平台的 HBM4 量产并扩大销售，使得 SK海力士 HBM 整体营收份额从 26Q1 的 58% 微降至 26Q2 的 50%（<a href="https://newmarketpitch.com/blogs/news/semiconductor-best-memory-chipmaker" target="_blank" rel="noopener noreferrer" class="underline text-rose-500">New Market Pitch</a>）。同时，NVIDIA 近期将 Vera Rubin HBM4 带宽目标从 22 TB/s 下调至 19.2 TB/s，客观上降低了三星与美光的工艺达标门槛（<a href="https://shattered.io/hbm4-shortage-sk-hynix-locks-50-percent-2027-28-capacity/" target="_blank" rel="noopener noreferrer" class="underline text-rose-500">Shattered 分析</a>）。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-500 font-bold">!</span>
+                <span><strong>2027 年资本开支（CapEx）大幅跃升与折旧压力：</strong>公司已明确指引 2027 年 CapEx 将较 2026 年显著增加（龙仁 Y2 + 清州 M17 投入 ₩54T），若 2028 年后北美云厂 AI 资本开支增速放缓，高额折旧可能侵蚀 80% 的巅峰营业利润率。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-500 font-bold">!</span>
+                <span><strong>汇率与非经常性损益波动：</strong>如 3Q26 计提 ₩32.6T 汇兑与投资资产估值损失所示，韩元兑美元汇率剧烈波动会对账面净利润造成短期扰动。</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           06. 季度跟踪 KPI 核查清单 (Interactive Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-l-4 border-skred-500 pl-4">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-wider text-skred-500 font-semibold">06 · Quarterly Tracking Checklist</div>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+              26Q4 – 2027 机构核心跟踪 KPI 核查清单（支持本地勾选持久化）
+            </h2>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-skred-500/15 text-skred-600 dark:text-skred-400 font-mono text-xs font-bold">
+              已核查 0 / 6 项 (0%)
+            </span>
+            <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs text-slate-600 dark:text-slate-300 transition">
+              重置清单
+            </button>
+          </div>
+        </div>
+
+        <div id="kpi-checklist" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-skred-500/50 transition">
+            <input id="skhy_kpi_1" type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-skred-500 focus:ring-skred-500" />
+            <div class="text-xs">
+              <div class="font-bold text-slate-900 dark:text-white">01. 26Q4 HBM4 出货量与营收占比正式超越 HBM3E</div>
+              <p class="text-slate-500 dark:text-slate-400 mt-1">验证 26Q4 季报中 12 层/16 层 HBM4 在出货位元与销售额上是否如期反超 HBM3E，以及在 NVIDIA Vera Rubin 中的首发份额是否守住 ~70%。</p>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-skred-500/50 transition">
+            <input id="skhy_kpi_2" type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-skred-500 focus:ring-skred-500" />
+            <div class="text-xs">
+              <div class="font-bold text-slate-900 dark:text-white">02. 26Q4 DRAM 位元出货环比增长 ~25% (Mid-20%) 兑现度</div>
+              <p class="text-slate-500 dark:text-slate-400 mt-1">核查 26Q4 DRAM bit shipments 是否达到 mid-20% 环比增速指引，以及 NAND bit shipments 是否实现 mid-single-digit 环比增长。</p>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-skred-500/50 transition">
+            <input id="skhy_kpi_3" type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-skred-500 focus:ring-skred-500" />
+            <div class="text-xs">
+              <div class="font-bold text-slate-900 dark:text-white">03. 清州 M15X 年底满产与 P&T6 封装扩产进度</div>
+              <p class="text-slate-500 dark:text-slate-400 mt-1">跟踪 M15X 洁净室年底满负荷运转进度，以及清州 P&T6 后道封装产线在 2027 上半年的设备交付与装机节点。</p>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-skred-500/50 transition">
+            <input id="skhy_kpi_4" type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-skred-500 focus:ring-skred-500" />
+            <div class="text-xs">
+              <div class="font-bold text-slate-900 dark:text-white">04. 营业利润率 (OPM) 维持 75%–80%+ 区间能力</div>
+              <p class="text-slate-500 dark:text-slate-400 mt-1">观察 HBM4 量产初期良率爬坡与 TSMC 3nm Base Die 外采成本对毛利率的影响，确认 OPM 能否稳守 75%–80% 以上。</p>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-skred-500/50 transition">
+            <input id="skhy_kpi_5" type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-skred-500 focus:ring-skred-500" />
+            <div class="text-xs">
+              <div class="font-bold text-slate-900 dark:text-white">05. ₩100T 股东回报（₩30T+ 分红 & ₩60T+ 回购注销）执行节奏</div>
+              <p class="text-slate-500 dark:text-slate-400 mt-1">跟踪 2026-11-27 除息及 2026-12-29 派息落地情况，以及 ₩60T+ 股份回购注销对流通股本缩减的实际进度。</p>
+            </div>
+          </label>
+
+          <label class="flex items-start space-x-3 p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 cursor-pointer hover:border-skred-500/50 transition">
+            <input id="skhy_kpi_6" type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-skred-500 focus:ring-skred-500" />
+            <div class="text-xs">
+              <div class="font-bold text-slate-900 dark:text-white">06. Solidigm 122TB QLC eSSD 与 HBF 标准商业化进展</div>
+              <p class="text-slate-500 dark:text-slate-400 mt-1">核查 AI 推理集群对 321 层 QLC eSSD 的采购增速，以及与 Sandisk 联合制定的 HBF（高带宽闪存）首发产品流片节点。</p>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- 页脚免责声明与权威信源 -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-400 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p class="font-semibold text-slate-600 dark:text-slate-300">SK hynix Inc. (NASDAQ: SKHY / KRX: 000660) 机构级深度研究报告</p>
+          <p class="mt-1">权威数据来源：<a href="https://news.skhynix.com/en/q3-2026-business-results/" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-200">SK hynix IR 3Q26 财报</a> · <a href="https://www.alpha-sense.com/earnings/000660.kr" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-200">AlphaSense 3Q26 业绩会纪要</a> · <a href="https://www.vlsi.kr/en/sk-hynix-hbm-custom-base-die-en/" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-200">VLSI Korea</a> · <a href="https://shattered.io/hbm4-shortage-sk-hynix-locks-50-percent-2027-28-capacity/" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-200">Shattered Industry Research</a></p>
+        </div>
+        <div class="font-mono text-[11px]">
+          InvestmentCareer Equity Research · Updated 2026-11-15
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    const KPI_STORAGE_KEY = 'ic_skhy_kpi_v1';
+    let currentBizMode = 'quarterly';
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valEvolutionChartInstance = null;
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const isDark = root.classList.toggle('dark');
+      try {
+        localStorage.setItem('ic_report_theme', isDark ? 'dark' : 'light');
+      } catch (e) {}
+      updateChartsTheme();
+    }
+
+    (function initTheme() {
+      try {
+        const saved = localStorage.getItem('ic_report_theme');
+        if (saved === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      if (!drawer) return;
+      drawer.classList.toggle('hidden');
+    }
+
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+      const progress = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+      const bar = document.getElementById('reading-progress');
+      if (bar) bar.style.width = progress + '%';
+
+      const sections = ['sec-exec', 'sec-biz', 'sec-moat', 'sec-comp', 'sec-fin', 'sec-inv', 'sec-kpi'];
+      let currentSec = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 160) {
+          currentSec = id;
+        }
+      }
+      document.querySelectorAll('#desktop-nav .nav-link').forEach(link => {
+        if (link.getAttribute('data-target') === currentSec) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    function loadKpiChecklist() {
+      try {
+        const raw = localStorage.getItem(KPI_STORAGE_KEY);
+        if (raw) {
+          const map = JSON.parse(raw);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof map[cb.id] === 'boolean') cb.checked = map[cb.id];
+          });
+        }
+      } catch (e) {}
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const boxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = boxes.length || 1;
+      let checked = 0;
+      const map = {};
+      boxes.forEach(cb => {
+        map[cb.id] = cb.checked;
+        if (cb.checked) checked++;
+      });
+      const pct = Math.round((checked / total) * 100);
+      const badge = document.getElementById('kpi-progress-badge');
+      if (badge) badge.textContent = `已核查 ${checked} / ${boxes.length} 项 (${pct}%)`;
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(map));
+      } catch (e) {}
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    const VAL_SCENARIOS = {
+      bear: {
+        label: '保守周期情景 · 三星/美光 HBM4 分流与 27H2 价格温和回落',
+        pe: '目标估值：4.8x FY27E P/E',
+        op: '₩310.0T',
+        adr: '$142.00 (+6%)',
+        krx: '₩1,350,000',
+        desc: '假设 2027 下半年行业新增晶圆产能集中释放导致常规 DRAM 溢价收敛，但 14 家客户 LTA 与 ₩100T 回购分红仍提供坚实盈利托底。'
+      },
+      base: {
+        label: '基准情景 · LTA 锁单与 HBM4 溢价延续',
+        pe: '目标估值：6.5x FY27E P/E',
+        op: '₩390.0T',
+        adr: '$195.00 (+45%)',
+        krx: '₩1,850,000',
+        desc: '基于 2027 年 DRAM 需求增长 ~25%、NAND 增长 high-teens，且 14 家核心客户 LTA 锁定 >50% 产能，叠加 ₩60T+ 股票回购注销缩减总股本约 6.5%，给予 6.5x 远期市盈率，对应总市值约 $1.35T（₩1,300T+）。'
+      },
+      bull: {
+        label: '乐观超级周期 · AI 推理显存墙推动戴维斯双击向台积电估值靠拢',
+        pe: '目标估值：8.5x FY27E P/E',
+        op: '₩445.0T',
+        adr: '$258.00 (+92%)',
+        krx: '₩2,450,000',
+        desc: 'HBM4 / HBM4E 16 层堆叠与定制逻辑底座彻底重塑商业模式为“定制化晶圆代工”，市场将估值锚从传统存储周期股上修至 8.5x P/E。'
+      }
+    };
+
+    function selectValScenario(key) {
+      const s = VAL_SCENARIOS[key];
+      if (!s) return;
+      ['bear', 'base', 'bull'].forEach(k => {
+        const btn = document.getElementById('scen-btn-' + k);
+        if (!btn) return;
+        if (k === key) {
+          btn.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-skred-600 dark:text-skred-400 shadow-sm transition';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        }
+      });
+      document.getElementById('scen-label').textContent = s.label;
+      document.getElementById('scen-pe').textContent = s.pe;
+      document.getElementById('scen-op').textContent = s.op;
+      document.getElementById('scen-adr').textContent = s.adr;
+      document.getElementById('scen-krx').textContent = s.krx;
+      document.getElementById('scen-desc').textContent = s.desc;
+    }
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('bizArchitectureChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      const quarterlyConfig = {
+        type: 'bar',
+        data: {
+          labels: ['1Q25', '2Q25', '3Q25', '4Q25', '1Q26', '2Q26', '3Q26'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '单季营业收入 (万亿韩元 ₩T)',
+              data: [17.64, 22.23, 24.45, 32.83, 52.58, 79.32, 104.62],
+              backgroundColor: 'rgba(234, 0, 44, 0.82)',
+              borderRadius: 6,
+              barThickness: 24,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '单季营业利润 (万亿韩元 ₩T)',
+              data: [7.44, 9.21, 11.38, 19.17, 37.61, 60.54, 83.33],
+              borderColor: '#06B6D4',
+              backgroundColor: '#06B6D4',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.25,
+              yAxisID: 'y'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: {
+              min: 0,
+              max: 115,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '₩' + v + 'T' }
+            }
+          }
+        }
+      };
+
+      const segmentConfig = {
+        type: 'bar',
+        data: {
+          labels: ['AI HBM (HBM3E / HBM4)', '高端服务器与常规 DRAM (DDR5/SOCAMM)', '企业级 eSSD 与 NAND 闪存', '晶圆代工与 CIS 等其他'],
+          datasets: [
+            {
+              label: '3Q26 营收贡献估算拆解 (万亿韩元 ₩T，总计 ₩104.62T)',
+              data: [43.9, 29.3, 28.3, 3.1],
+              backgroundColor: ['#EA002C', '#F47721', '#06B6D4', '#94A3B8'],
+              borderRadius: 6,
+              barThickness: 30
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: { grid: { color: colors.grid }, ticks: { color: colors.text, font: { size: 11 }, callback: v => '₩' + v + 'T' } }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'quarterly' ? quarterlyConfig : segmentConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnQ = document.getElementById('btn-chart-evo');
+      const btnS = document.getElementById('btn-chart-split');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'quarterly') {
+        btnQ.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-skred-600 dark:text-skred-400 shadow-sm transition';
+        btnS.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '1Q25 – 3Q26 季度营收与营业利润狂飙轨迹 (万亿韩元 ₩T)';
+        subEl.textContent = '单季营收从 ₩17.64T 暴涨近 6 倍至 ₩104.62T，营业利润率从 42% 跃升至 80%';
+      } else {
+        btnS.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-navy-700 text-skred-600 dark:text-skred-400 shadow-sm transition';
+        btnQ.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '2026 Q3 核心产品矩阵营收贡献结构拆解 (₩104.62T)';
+        subEl.textContent = 'DRAM (含 HBM) 贡献约 70% 营收，Solidigm 超大容量 eSSD 驱动 NAND 高盈利放量';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('moatRadarChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            'HBM4 良率与 MR-MUF 封装',
+            'TSMC 3nm/CoWoS 协同度',
+            'NVIDIA Rubin 旗舰绑定度',
+            '单季营业利润率 (80%)',
+            '321层 QLC eSSD 存储深度'
+          ],
+          datasets: [
+            {
+              label: 'SK hynix (SKHY / 000660)',
+              data: [9.9, 9.8, 9.7, 9.9, 9.2],
+              borderColor: '#EA002C',
+              backgroundColor: 'rgba(234, 0, 44, 0.22)',
+              pointBackgroundColor: '#EA002C',
+              borderWidth: 2.5
+            },
+            {
+              label: 'Samsung Electronics (005930)',
+              data: [8.0, 7.6, 8.2, 7.5, 9.6],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.14)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: 'Micron Technology (MU)',
+              data: [8.6, 8.8, 8.5, 9.0, 8.4],
+              borderColor: '#10B981',
+              backgroundColor: 'rgba(16, 185, 129, 0.12)',
+              pointBackgroundColor: '#10B981',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('compMarginChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'SK hynix 3Q26 营业利润率 (OPM)',
+            'SK hynix 2026 HBM 全球份额',
+            'SK hynix Rubin HBM4 预计份额 (UBS)',
+            'Samsung 2026 HBM 全球份额',
+            'Micron 2026 HBM 全球份额'
+          ],
+          datasets: [{
+            label: '关键竞争与盈利指标 (%)',
+            data: [80.0, 54.0, 70.0, 30.0, 16.0],
+            backgroundColor: ['#EA002C', '#F47721', '#FB7185', '#3B82F6', '#10B981'],
+            borderRadius: 6,
+            barThickness: 20
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: {
+              max: 90,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValEvolutionChart() {
+      if (typeof Chart === 'undefined') return;
+      const canvas = document.getElementById('valEvolutionChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const colors = getChartColors();
+
+      if (valEvolutionChartInstance) valEvolutionChartInstance.destroy();
+      valEvolutionChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2023', 'FY2024', 'FY2025', 'FY2026 (9M实际)', 'FY2026E (全年)', 'FY2027E (基准)'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '营业收入 (万亿韩元 ₩T)',
+              data: [32.77, 66.19, 97.15, 236.51, 358.0, 485.0],
+              backgroundColor: 'rgba(234, 0, 44, 0.82)',
+              borderRadius: 5,
+              barThickness: 22,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '营业利润 (万亿韩元 ₩T)',
+              data: [-7.73, 23.47, 47.21, 181.49, 278.0, 390.0],
+              borderColor: '#06B6D4',
+              backgroundColor: '#06B6D4',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.25,
+              yAxisID: 'y'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, font: { size: 11 }, usePointStyle: true } }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: colors.text, font: { size: 11, weight: '600' } } },
+            y: {
+              position: 'left',
+              min: -20,
+              max: 520,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '₩' + v + 'T' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValEvolutionChart();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpaceX 深度研究报告：从航天运输巨头到太空与 AI 算力基础设施霸主</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter & Noto Sans SC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            space: {
+              950: '#070B14',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            starlink: {
+              500: '#06B6D4',
+              600: '#0891B2',
+            },
+            orbit: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 玻璃态卡片微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 导航激活状态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(59, 130, 246, 0.18) 0%, rgba(6, 182, 212, 0.05) 100%);
+      border-left: 3px solid #06B6D4;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-space-950 dark:text-slate-100 antialiased selection:bg-orbit-500 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/50 dark:bg-space-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-orbit-500 via-starlink-500 to-indigo-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-space-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-orbit-500 to-starlink-500 flex items-center justify-center font-bold text-white shadow">
+        SX
+      </div>
+      <div>
+        <div class="text-xs text-starlink-500 font-semibold tracking-wider uppercase">Institutional Equity Research</div>
+        <div class="text-sm font-bold leading-tight">SpaceX 深度商业与投资研报</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-space-800 hover:bg-space-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-space-800 hover:bg-space-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-space-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm" id="mobile-nav-list">
+          <li><a href="#sec-exec" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-space-800 hover:text-white">00. 执行摘要与核心指标</a></li>
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-space-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-space-800 hover:text-white">02. 行业地位与护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-space-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-space-800 hover:text-white">04. 财务健康度与估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-space-800 hover:text-white">05. 投资决策与风险配置</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>商业航天与卫星互联网深度研究组</p>
+        <p class="mt-1">数据更新周期：2026 Q4</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-72 bg-space-900 text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-6 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orbit-500 to-starlink-500 flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-orbit-500/20">
+            SX
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-starlink-500 bg-starlink-500/10 px-2 py-0.5 rounded">Deep Dive Report</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">SpaceX 深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+          商业航天运输 · 低轨卫星互联网 · 太空及 AI 算力基础设施全维度价值评估
+        </p>
+      </div>
+
+      <!-- 目录导航 -->
+      <div class="px-3 py-5">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">报告章节目录</div>
+        <nav id="desktop-nav" class="space-y-1 text-sm">
+          <a href="#sec-exec" data-target="sec-exec" class="nav-link active flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-space-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-starlink-500 mr-2">00</span>执行摘要与核心 KPI</span>
+          </a>
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-space-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-space-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-space-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-space-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2.5 rounded-r-lg text-slate-300 hover:bg-space-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与风险配置</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-5 border-t border-slate-800/80 bg-space-950/40 space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-space-800 hover:bg-space-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-starlink-500 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色研报模式</span>
+          <span class="hidden dark:inline">亮色机构模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-orbit-600 hover:bg-orbit-500 text-white text-xs font-semibold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-72 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           00. 报告概览与执行摘要 (Executive Summary)
+      ========================================================= -->
+      <section id="sec-exec" class="scroll-mt-20">
+        <!-- 顶部研报元信息条 -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex items-center space-x-2">
+            <span class="px-2.5 py-1 rounded-md bg-orbit-500/10 text-orbit-600 dark:text-orbit-400 font-semibold border border-orbit-500/20">深度覆盖报告 · 商业航天与 AI 算力基础设施</span>
+            <span>标的：Space Exploration Technologies Corp. (SpaceX)</span>
+          </div>
+          <div class="flex items-center space-x-4 font-mono">
+            <span>报告状态：最新覆盖</span>
+            <span>赛道定位：全球绝对龙头</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-space-900 via-space-800 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/60">
+          <!-- 背景装饰网格 -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#38bdf8 1px, transparent 1px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-starlink-500/20 border border-starlink-500/40 text-starlink-400 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-starlink-400 animate-pulse"></span>
+              <span>CORE THESIS · 从运载工具制造商跃迁为太空数字基建寡头</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              SpaceX 深度研究报告：从航天运输巨头到太空与 AI 算力基础设施霸主
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              SpaceX 已成功跨越单一火箭发射商的商业边界，构建起由<strong class="text-white">高频可复用运载体系（Falcon 9 / Starship）</strong>、
+              <strong class="text-starlink-400">全球低轨卫星宽带现金牛（Starlink）</strong>以及<strong class="text-orbit-400">新兴 AI 与在轨算力网络</strong>组成的全产业链闭环。
+              凭借近乎垄断的成本壁垒与先发轨位资源，公司正重塑全球航天与数字基础设施的估值边界。
+            </p>
+
+            <!-- 核心投资结论高亮条 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">商业模式跃迁</div>
+                <div class="text-white font-semibold">由“项目制硬件发射”转向“高黏性类 SaaS 订阅 + AI 算力租赁”</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">竞争壁垒深度</div>
+                <div class="text-white font-semibold">全球独一档的“火箭-卫星-算力”垂直整合与代际降维打击</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">配置战略定位</div>
+                <div class="text-starlink-400 font-semibold">太空经济与卫星互联网赛道无可替代的标配核心资产（Core Holding）</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4个核心指标 KPI 卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>全球发射市占率统治力</span>
+              <span class="p-1.5 rounded-lg bg-orbit-500/10 text-orbit-600 dark:text-orbit-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white">&gt;50%</span>
+              <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">美国市场 &gt;85%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              年发射频次占据全球半壁江山，工业化流水线打造绝对运力垄断。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>单次发射成本优势</span>
+              <span class="p-1.5 rounded-lg bg-starlink-500/10 text-starlink-600 dark:text-starlink-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white">1/5 ~ 1/10</span>
+              <span class="text-xs font-semibold text-starlink-600 dark:text-starlink-400 bg-starlink-500/10 px-2 py-0.5 rounded">对比传统军工</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Falcon 9 助推器常态化复用大幅摊薄边际成本，Starship 将进一步下探。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>Starlink 运营利润率</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-3xl font-extrabold text-slate-900 dark:text-white">~40%</span>
+              <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">规模效应凸显</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              活跃用户逼近千万量级，类 SaaS 订阅制贡献过半营收及绝大部分利润。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>三大核心增长引擎</span>
+              <span class="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3">
+              <span class="text-lg font-extrabold text-slate-900 dark:text-white leading-snug block">Starlink + Starship + AI算力</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              现金牛通信、次世代重型运力与高附加值 AI 算力基础设施三轮驱动。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           一、 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-orbit-600 dark:text-orbit-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">一、 业务与收入架构：三驾马车驱动结构重塑</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">结构演变：单一发射服务 → 太空与数字基础设施</span>
+        </div>
+
+        <!-- 交互式可视化面板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 左侧：营收结构演变图表 -->
+          <div class="lg:col-span-7 bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">SpaceX 业务营收贡献占比演变趋势</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Starlink 跨越盈亏平衡点后主导营收增长，AI 算力成为最新增量曲线</p>
+              </div>
+              <div class="inline-flex rounded-lg bg-slate-100 dark:bg-space-800 p-1 text-xs">
+                <button onclick="switchBizChart('revenue')" id="btn-chart-rev" class="px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-space-700 text-orbit-600 dark:text-white shadow-sm transition">营收占比演进</button>
+                <button onclick="switchBizChart('margin')" id="btn-chart-margin" class="px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">分部利润率对比</button>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="bizArchitectureChart"></canvas>
+            </div>
+          </div>
+
+          <!-- 右侧：结构性洞察要点 -->
+          <div class="lg:col-span-5 bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">商业架构核心拆解逻辑</h3>
+              <ul class="space-y-4 text-sm">
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-starlink-500/15 text-starlink-600 dark:text-starlink-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">内部运力消耗的报表映射</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      大量猎鹰9号发射任务用于部署内部星链星座（不计入外部合并营收），使得 Launch 板块在账面上表现为稳健底座，而真实经济价值转化为星链的长期订阅现金流。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-orbit-500/15 text-orbit-600 dark:text-orbit-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">高杠杆的边缘网络规模效应</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      在轨星座与地面关口站建成后，新增用户的边际服务成本极低，推动 Starlink 运营利润率迅速攀升至 ~40% 区间。
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <span class="w-6 h-6 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-semibold text-slate-900 dark:text-white">马斯克生态的算力共振</div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      依托地面数据中心基建、星间激光通信与 xAI / Grok 生态需求，高毛利的 GPU/算力租赁业务正打开估值上限。
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-500 dark:text-slate-400">核心利润支柱</span>
+              <span class="font-bold text-starlink-600 dark:text-starlink-400">Starlink 连接业务 (&gt;60% 利润贡献)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 三大业务分部详细卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 分部 1：Starlink -->
+          <div class="report-card bg-white dark:bg-space-900 rounded-2xl p-6 border-t-4 border-t-starlink-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-starlink-500/10 text-starlink-600 dark:text-starlink-400 text-xs font-bold">核心营收与现金牛</span>
+              <span class="text-xs font-mono text-slate-400">01 / CONNECTIVITY</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">连接业务（Starlink 星链）</h3>
+            <div class="mt-3 space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <p><strong class="text-slate-900 dark:text-white">业务模式：</strong>采用类 SaaS 的 B2C / B2B 订阅制服务，向全球偏远地区家庭、企业专线、远洋海事、民航客机及国防特种部门提供高速低延迟卫星宽带。</p>
+              <p><strong class="text-slate-900 dark:text-white">财务贡献：</strong>贡献公司过半以上的总营收及绝大部分营业利润。活跃用户逼近千万级别，叠加终端硬件成本持续下探，运营利润率高达约 40%。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">类 SaaS 订阅 ARR</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">航空/海事高 ARPU</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">星盾 Starshield</span>
+            </div>
+          </div>
+
+          <!-- 分部 2：Launch -->
+          <div class="report-card bg-white dark:bg-space-900 rounded-2xl p-6 border-t-4 border-t-orbit-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-orbit-500/10 text-orbit-600 dark:text-orbit-400 text-xs font-bold">稳健基建底座</span>
+              <span class="text-xs font-mono text-slate-400">02 / SPACE LAUNCH</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">太空业务（火箭发射与载人）</h3>
+            <div class="mt-3 space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <p><strong class="text-slate-900 dark:text-white">业务模式：</strong>面向全球商业卫星运营商、各国航天机构及 NASA / 美国国防部提供商业发射、国际空间站（ISS）货运及龙飞船（Dragon）载人航天任务。</p>
+              <p><strong class="text-slate-900 dark:text-white">财务定位：</strong>政府与国家安全发射合同体量大且现金流极其稳定；同时承担内部星链批量组网重任，充当集团“内部基建支撑者”与“外部高可靠履约者”。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">Falcon 9 / Heavy</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">NASA 载人/货运</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">Starship 商业化</span>
+            </div>
+          </div>
+
+          <!-- 分部 3：AI & Compute -->
+          <div class="report-card bg-white dark:bg-space-900 rounded-2xl p-6 border-t-4 border-t-indigo-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">新兴战略增量</span>
+              <span class="text-xs font-mono text-slate-400">03 / AI & COMPUTE</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">AI 与算力基础设施</h3>
+            <div class="mt-3 space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <p><strong class="text-slate-900 dark:text-white">业务模式：</strong>依托全球覆盖的低轨卫星星座、庞大的地面关口站及能源基础设施，深度协同马斯克生态（xAI、Grok、X），提供高附加值 AI 算力租赁与星地高速数据传输。</p>
+              <p><strong class="text-slate-900 dark:text-white">市场预期：</strong>随着大规模 GPU 算力集群商业化落地以及远期在轨边缘计算探索，该板块正成为资本市场重塑 SpaceX 估值模型的核心新叙事。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">GPU 算力租赁</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">xAI / Grok 协同</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-space-800 text-[11px] font-medium">在轨边缘算力</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           二、 行业地位与护城河 (Industry Position & Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-starlink-600 dark:text-starlink-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">二、 行业地位与护城河：四重壁垒构筑降维打击</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 垄断级先发优势)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重核心壁垒卡片网格 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 壁垒 1 -->
+            <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-orbit-500/15 text-orbit-600 dark:text-orbit-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">极致可复用技术与成本壁垒</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                猎鹰9号（Falcon 9）一级助推器实现超20次常态化高频复用，将单次发射成本压低至传统军工企业的 <strong>1/5 至 1/10</strong>。新一代“星舰”（Starship）指向完全可重复使用与百吨级运力，进一步拉大代际鸿沟。
+              </p>
+            </div>
+
+            <!-- 壁垒 2 -->
+            <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-starlink-500/15 text-starlink-600 dark:text-starlink-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">产能、高频发射与市占垄断</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                颠覆传统航天手工作坊模式，采用汽车级流水线工业化生产与数天级发射周转。年发射次数占全球 <strong>&gt;50%</strong>、美国国内 <strong>&gt;85%</strong>，高频飞行数据持续反哺极高的发射可靠性。
+              </p>
+            </div>
+
+            <!-- 壁垒 3 -->
+            <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">频谱与低轨星座先发优势</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Starlink 已部署数千颗在轨运行卫星，抢占了国际电信联盟（ITU）稀缺的近地轨道（LEO）位置与 Ku/Ka/V 黄金通信频段资源，“先登先占”规则构筑了极高的天然准入门槛。
+              </p>
+            </div>
+
+            <!-- 壁垒 4 -->
+            <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“火箭-卫星-算力”生态闭环</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                实现了从底层重型运载工具、中层激光星间通信网络到顶层终端应用与 AI 算力输出的无缝垂直整合。自有火箭发射自有卫星的飞轮效应，使单位组网成本远低于任何竞争对手。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：护城河多维雷达对比图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">护城河维度量化对比雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">SpaceX vs 传统军工巨头 vs 新兴商业航天平均水平（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           三、 同行竞争格局横向对比 (Competitive Landscape)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-orbit-600 dark:text-orbit-400">Section 03 · Global Competitive Landscape</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">三、 同行竞争格局横向对比：一超多强，追赶者断层</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-orbit-600 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('legacy')" data-filter="legacy" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-space-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">传统国家队/军工</button>
+            <button onclick="filterCompetitors('newspace')" data-filter="newspace" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-space-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">新兴商业航天</button>
+            <button onclick="filterCompetitors('leo')" data-filter="leo" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-space-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">低轨星座对手</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-space-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-space-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[180px]">竞争阵营与代表企业</th>
+                  <th class="py-4 px-4 min-w-[130px]">可复用技术进度</th>
+                  <th class="py-4 px-4 min-w-[130px]">发射成本水平</th>
+                  <th class="py-4 px-4 min-w-[140px]">组网/运力规模</th>
+                  <th class="py-4 px-4 min-w-[120px]">工程迭代周期</th>
+                  <th class="py-4 px-5 min-w-[240px]">核心优势与当前差距评估</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：SpaceX 基准 -->
+                <tr data-category="core" class="bg-orbit-500/5 dark:bg-orbit-500/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-orbit-600 text-white text-[10px] font-bold">行业基准</span>
+                      <span class="font-bold text-slate-900 dark:text-white">SpaceX</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Falcon 9 / Heavy / Starship / Starlink</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400">一级常态复用 / 全复用测试中</span>
+                  </td>
+                  <td class="py-4 px-4 font-bold text-emerald-600 dark:text-emerald-400">极低 (行业标杆 1x)</td>
+                  <td class="py-4 px-4 text-slate-900 dark:text-white font-semibold">数千颗在轨卫星 · 年发射百次级</td>
+                  <td class="py-4 px-4 text-slate-900 dark:text-white font-semibold">数周至数月级 (硬件敏捷迭代)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>绝对统治者：</strong>唯一实现“大运力可复用火箭 + 超大规模低轨星座 + 算力基建”商业闭环，领先追赶者数年至数个代际。
+                  </td>
+                </tr>
+
+                <!-- 行 2：传统国家队与军工巨头 -->
+                <tr data-category="legacy" class="hover:bg-slate-50 dark:hover:bg-space-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">传统军工与国家队</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">波音 / 洛马 (ULA) / 欧洲阿丽亚娜</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-500/10 text-rose-600 dark:text-rose-400">一次性为主 / 复用极低</span>
+                  </td>
+                  <td class="py-4 px-4 text-rose-600 dark:text-rose-400 font-semibold">极高 (SpaceX 的 5~10 倍)</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">年发射个位数至十余次</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">按年计算 (供应链冗长)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>痛点：</strong>依赖传统成本加成（Cost-Plus）模式，缺乏降本动力，商业发射市场份额已严重流失，主要依靠主权安全订单维系。
+                  </td>
+                </tr>
+
+                <!-- 行 3：美国新兴商业航天 -->
+                <tr data-category="newspace" class="hover:bg-slate-50 dark:hover:bg-space-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">欧美新兴商业航天</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Blue Origin / Rocket Lab</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">局部复用 / 回收验证期</span>
+                  </td>
+                  <td class="py-4 px-4 text-amber-600 dark:text-amber-400 font-semibold">中高 (规模效应尚未完全释放)</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">小型高频或重型首飞爬坡阶段</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">较快 (1~2年一代)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>差异化定位：</strong>Rocket Lab 在小型专享发射表现优异；Blue Origin 具备雄厚资金与 New Glenn 重型潜力，但总体发射体量与商用成熟度仍明显落后。
+                  </td>
+                </tr>
+
+                <!-- 行 4：国内商业航天头部梯队 -->
+                <tr data-category="newspace" class="hover:bg-slate-50 dark:hover:bg-space-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">中国商业航天头部梯队</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">中科宇航 / 蓝箭航天 / 星河动力等</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">垂直回收试验与首飞突破期</span>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300 font-semibold">中等 (具备制造供应链优势)</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">多轨道入轨验证 · 配合国家星座</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">快速追赶 (政策与资本双驱动)</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>追赶态势：</strong>在液氧甲烷发动机与中大型火箭入轨上取得关键突破，依托国内国家级低轨星座需求迎头赶上，但在大规模常态复用与总运力体量上仍有数年差距。
+                  </td>
+                </tr>
+
+                <!-- 行 5：低轨卫星互联网对手 -->
+                <tr data-category="leo" class="hover:bg-slate-50 dark:hover:bg-space-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">低轨卫星互联网竞争者</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Amazon Kuiper / Eutelsat OneWeb</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">依赖外部商业运力发射</span>
+                  </td>
+                  <td class="py-4 px-4 text-rose-600 dark:text-rose-400 font-semibold">组网发射成本显著高于星链</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">数百颗级 / 早期批量部署期</td>
+                  <td class="py-4 px-4 text-slate-600 dark:text-slate-300">受制于外部火箭排期</td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>核心短板：</strong>Amazon Kuiper 资金与云生态雄厚，OneWeb 聚焦 B2B，但缺乏自有低成本高频火箭，导致星座部署节奏与单位带宽成本短期难以撼动 Starlink。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 发射成本可视化对比条形图 -->
+        <div class="bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">单位有效载荷入轨成本指数对比（LEO 近地轨道基准）</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">以传统一次性重型火箭单位公斤入轨成本为 100 基准指数，展现可复用技术带来的成本坍缩</p>
+            </div>
+            <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Starship 远期目标将成本再降一个数量级</span>
+          </div>
+          <div class="relative h-56 w-full">
+            <canvas id="costComparisonChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           四、 财务健康度与估值体系 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-starlink-600 dark:text-starlink-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">四、 财务健康度与估值体系：内生造血与范式跃升</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">估值逻辑：硬件制造 → 订阅 SaaS → 太空算力基建</span>
+        </div>
+
+        <!-- 1. 财务健康度双支柱卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="report-card bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">盈利能力与自由现金流 (FCF)</h3>
+                <span class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">实现商业正循环与内生造血</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              得益于 Starlink 用户规模爆发所带来的高额边际利润（毛利率与运营利润率远超传统军工与电信运营商），SpaceX 整体<strong>净利润与自由现金流已成功转正</strong>。公司不再单纯依赖一级市场股权融资输血，已具备强悍的内部现金流反哺研发能力。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">资本开支 (Capex) 与财务杠杆</h3>
+                <span class="text-xs text-amber-600 dark:text-amber-400 font-semibold">重资产投入期的资本结构管理</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              围绕“星舰”（Starship）高频试飞、下一代 V3 卫星星座升级以及大规模 AI 数据中心基础设施建设，公司年度资本开支规模庞大。SpaceX 通过发行机构债券及定期股权要约等金融工具灵活管理资产负债表，保持了充足的流动性缓冲与财务弹性。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 估值体系演进三阶段阶梯图 -->
+        <div class="bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">SpaceX 估值体系三阶段跃迁演进模型</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">伴随业务重心向高毛利订阅及 AI 算力延伸，资本市场赋予的估值倍数与锚定逻辑持续升级</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+            <!-- 阶段 1 -->
+            <div class="p-5 rounded-xl bg-slate-50 dark:bg-space-800/60 border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-slate-500 dark:text-slate-400">STAGE 01 · 早期阶段</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-space-700 text-[11px] font-mono font-semibold">EV/EBITDA · P/S</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">硬件制造与火箭发射服务</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  市场将其对标传统航空航天与国防承包商，主要依据商业发射订单积压（Backlog）与单次发射毛利进行估值，估值倍数相对受限于重资产周期性。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500">
+                估值锚：发射订单市占率与降本曲线
+              </div>
+            </div>
+
+            <!-- 阶段 2 -->
+            <div class="p-5 rounded-xl bg-orbit-500/5 dark:bg-orbit-500/10 border border-orbit-500/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-orbit-600 dark:text-orbit-400">STAGE 02 · 成长主升浪</span>
+                  <span class="px-2 py-0.5 rounded bg-orbit-500/20 text-orbit-700 dark:text-orbit-300 text-[11px] font-mono font-semibold">ARR · DCF 现金流折现</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">高成长 SaaS / 全球电信平台</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  Starlink 营收反超发射业务后，市场引入高成长 SaaS 与平台型互联网估值框架，重点评估订阅用户净增、ARPU 值及长期自由现金流折现（DCF）。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-orbit-500/20 text-xs font-semibold text-orbit-600 dark:text-orbit-400">
+                估值锚：千万级订阅用户与 ~40% 运营利润率
+              </div>
+            </div>
+
+            <!-- 阶段 3 -->
+            <div class="p-5 rounded-xl bg-gradient-to-br from-starlink-500/10 to-indigo-500/10 border border-starlink-500/40 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-starlink-600 dark:text-starlink-400">STAGE 03 · 当前及远期叙事</span>
+                  <span class="px-2 py-0.5 rounded bg-starlink-500/20 text-starlink-700 dark:text-starlink-300 text-[11px] font-mono font-semibold">AI Infra + 远期期权</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">太空与数字算力基础设施运营商</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  伴随 AI 算力租赁商业化、手机直连（DTC）以及星舰开启深空经济，估值体系向“全球数字算力与太空基建垄断者”跃升，蕴含极高成长弹性与远期期权。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-starlink-500/20 text-xs font-semibold text-starlink-600 dark:text-starlink-400">
+                估值锚：AI 算力交付规模 + 太空咽喉垄断权
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 多空分歧对比面板 (Bull Case vs Bear Case) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Bull Case -->
+          <div class="bg-emerald-50/70 dark:bg-emerald-950/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center space-x-1.5 text-emerald-700 dark:text-emerald-400 font-bold text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                <span>乐观预期视角 (Bull Case)</span>
+              </span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">基础设施垄断溢价</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                <span><strong>人类通往太空的唯一“咽喉要道”：</strong>星舰完全复用成功后，将垄断未来十年全球绝大部分商业及科研有效载荷入轨。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                <span><strong>万亿级通信与算力空间：</strong>Starlink 叠加手机直连与 AI 算力基础设施，打开超越传统电信运营商数倍的 TAM（潜在市场总量）。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✓</span>
+                <span><strong>极强定价权与护城河：</strong>在竞争对手追上之前，已通过高利润率回收全部基建成本并构建起难以逾越的生态网络。</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Bear Case -->
+          <div class="bg-rose-50/70 dark:bg-rose-950/20 rounded-2xl p-6 border border-rose-200 dark:border-rose-800/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center space-x-1.5 text-rose-700 dark:text-rose-400 font-bold text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+                <span>谨慎担忧视角 (Bear Case)</span>
+              </span>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-500/15 text-rose-700 dark:text-rose-300">高估值与执行波动</span>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-600 font-bold mt-0.5">!</span>
+                <span><strong>高估值已透支部分远期预期：</strong>极高的隐含市值包含了对星舰、AI 算力及深空探索的高度乐观假设，安全边际依赖持续超预期交付。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-600 font-bold mt-0.5">!</span>
+                <span><strong>巨额 Capex 持续消耗现金：</strong>新一代卫星更迭与算力中心建设资本开支极其庞大，若宏观利率维持高位，高 Beta 资产易受流动性冲击。</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-rose-600 font-bold mt-0.5">!</span>
+                <span><strong>跨国监管与主权频谱博弈：</strong>各国电信牌照准入、数据本地化合规及主权国家自建星座可能限制部分区域市场渗透率。</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           五、 投资决策与风险配置分析 (Investment Decision & Risk)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-orbit-600 dark:text-orbit-400">Section 05 · Investment Decision & Risk Allocation</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">五、 投资决策与风险配置分析：核心逻辑与组合纪律</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">配置策略：高确定性核心底仓 + 动态基本面校准</span>
+        </div>
+
+        <!-- 1. 核心投资逻辑双引擎 -->
+        <div class="bg-gradient-to-r from-space-900 to-space-800 rounded-2xl p-6 text-white border border-slate-700 shadow-md">
+          <h3 class="text-base font-bold text-starlink-400 mb-4 flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>核心投资逻辑（Why Invest in SpaceX Ecosystem）</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white text-base mb-1.5">1. 赛道唯一性与不可替代垄断</div>
+              <p class="text-slate-300 leading-relaxed">
+                全球商业航天无可争议的定义者与基建垄断者，在可复用火箭与低轨星座领域拥有数年以上的代际领先优势，完整享受人类迈向太空经济时代的稀缺性红利。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="font-bold text-white text-base mb-1.5">2. 高成长第二与第三曲线兑现</div>
+              <p class="text-slate-300 leading-relaxed">
+                Starlink 高黏性订阅现金流已验证盈利模型，叠加正在加速落地的 AI 算力租赁与数据中心基础设施，赋予公司超越传统工业与电信巨头的指数级增长爆发力。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 三维风险矩阵与应对策略 -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">核心风险矩阵与机构应对策略</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- 风险 1 -->
+            <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">技术与研发风险</span>
+                  <span class="text-xs font-mono text-amber-500 font-semibold">影响度：高</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm">“星舰”复用稳定性与工程进度</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  Starship 后续高频试飞、助推器与飞船完全可重复使用及在轨燃料加注技术若遭遇重大工程挫折，将延缓新一代卫星批量部署与远期降本节奏。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                <strong class="text-orbit-600 dark:text-orbit-400">缓解缓冲：</strong>成熟的 Falcon 9 猎鹰系列已具备极高商业独立性，足以支撑当前星链正常运营与现金流产出。
+              </div>
+            </div>
+
+            <!-- 风险 2 -->
+            <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">宏观与流动性风险</span>
+                  <span class="text-xs font-mono text-amber-500 font-semibold">影响度：中高</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm">高 Beta 科技成长估值波动</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  作为包含高比例远期成长预期的科技资产，其二级市场及一级要约估值对全球无风险利率、科技板块风险偏好高度敏感，宏观紧缩期易出现估值震荡。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                <strong class="text-orbit-600 dark:text-orbit-400">缓解缓冲：</strong>内部正向自由现金流增强了抗周期能力，无需在市场低谷期被迫折价融资。
+              </div>
+            </div>
+
+            <!-- 风险 3 -->
+            <div class="report-card bg-white dark:bg-space-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">政策与地缘政治风险</span>
+                  <span class="text-xs font-mono text-amber-500 font-semibold">影响度：中高</span>
+                </div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm">国际频谱博弈与落地合规壁垒</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  业务高度涉及国家安全发射、FAA 环保与发射许可审批、ITU 频谱协调以及各主权国家的电信运营牌照准入，面临复杂的地缘与合规博弈。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+                <strong class="text-orbit-600 dark:text-orbit-400">缓解缓冲：</strong>深度绑定美国国防与 NASA 刚性需求，同时通过 B2B 航空/海事跨国漫游协议绕开部分地面限制。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 资产配置建议与基本面跟踪 KPI 交互看板 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- 仓位配置建议 -->
+          <div class="lg:col-span-5 bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">投资组合资产配置建议</h3>
+            <div class="space-y-4 text-xs sm:text-sm">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-space-800/70 border border-slate-200 dark:border-slate-700">
+                <div class="font-bold text-orbit-600 dark:text-orbit-400 mb-1">仓位定位：赛道标配核心底仓 / 卫星仓位</div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  鉴于其极高的竞争壁垒与长期复利潜力，建议在科技成长或硬科技主题组合中将其配置为<strong>商业航天与卫星互联网赛道的核心底仓</strong>；但考虑到远期期权占比较高且流动性受限，单标的配置比例需做好风险预算控制。
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-space-800/70 border border-slate-200 dark:border-slate-700">
+                <div class="font-bold text-starlink-600 dark:text-starlink-400 mb-1">操作纪律：以基本面兑现速度校准安全边际</div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  避免单纯因宏大叙事盲目追高，建议结合一级市场要约窗口及二级市场产业链映射标的，紧盯核心高频运营数据的季度兑现情况进行动态再平衡。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 核心基本面跟踪 KPI 核查清单 -->
+          <div class="lg:col-span-7 bg-white dark:bg-space-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">机构季度基本面跟踪 KPI 核查清单</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">点击勾选已验证的跟踪指标，实时评估基本面兑现进度</p>
+              </div>
+              <span id="kpi-progress-badge" class="px-2.5 py-1 rounded-full bg-orbit-500/10 text-orbit-600 dark:text-orbit-400 text-xs font-bold">已核查 2 / 4 项</span>
+            </div>
+
+            <div class="space-y-2.5 mt-4" id="kpi-checklist">
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-space-800/50 cursor-pointer transition">
+                <input type="checkbox" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-orbit-600 focus:ring-orbit-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">01. Starlink 活跃用户净增与高价值 B2B 渗透</span>
+                    <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">核心现金流锚</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">跟踪千万级用户突破节奏、航空/海事签约航司及船队数量、以及综合 ARPU 值变化。</p>
+                </div>
+              </label>
+
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-space-800/50 cursor-pointer transition">
+                <input type="checkbox" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-orbit-600 focus:ring-orbit-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">02. 单星制造成本与用户终端硬件毛利</span>
+                    <span class="text-[11px] font-mono text-starlink-600 dark:text-starlink-400 font-semibold">盈利弹性指标</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">监测新一代星链卫星单颗造价下降曲线，以及消费级终端天线实现硬件盈亏平衡后的利润率扩张。</p>
+                </div>
+              </label>
+
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-space-800/50 cursor-pointer transition">
+                <input type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-orbit-600 focus:ring-orbit-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">03. Starship 星舰完全复用与商业化载荷交付</span>
+                    <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold">代际突破催化剂</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">跟踪超重型助推器（Super Heavy）与飞船双回收稳定性、单次入轨有效载荷提升及发射周转天数。</p>
+                </div>
+              </label>
+
+              <label class="flex items-start space-x-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-space-800/50 cursor-pointer transition">
+                <input type="checkbox" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded text-orbit-600 focus:ring-orbit-500">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white">04. AI 算力基础设施合同交付与营收占比</span>
+                    <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">估值重塑新曲线</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">跟踪 GPU 算力集群部署规模、xAI 及外部企业算力租赁合同实际确认收入与利润率表现。</p>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>SpaceX 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>商业航天 · 低轨卫星互联网 · AI 算力基础设施</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公开行业资料、商业航天产业链调研及财务分析框架整理生成，旨在提供结构化的商业模式与投资逻辑参考。文中涉及的业务占比、利润率估算及成本指数用于反映行业结构性趋势，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合自身风险承受能力与独立尽职调查审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 主题切换 (亮色机构模式 <-> 深色护眼模式)
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与左侧导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      // 更新顶部阅读进度条
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      // 更新当前所在章节高亮
+      let currentId = 'sec-exec';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-starlink-500');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-starlink-500');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      // 更新按钮状态
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-orbit-600', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-space-800', 'text-slate-600', 'dark:text-slate-300', 'border');
+        } else {
+          btn.classList.remove('bg-orbit-600', 'text-white', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-space-800', 'text-slate-600', 'dark:text-slate-300', 'border');
+        }
+      });
+
+      // 筛选表格行（始终保留 SpaceX 行业基准行）
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category;
+        if (category === 'all' || rowCat === 'core' || rowCat === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. KPI 核查清单进度统计
+    // ==========================================
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${checkboxes.length} 项`;
+    }
+
+    // ==========================================
+    // 6. Chart.js 数据可视化初始化与交互
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let costChartInstance = null;
+    let currentBizMode = 'revenue';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.8)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.8)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      const revConfig = {
+        type: 'bar',
+        data: {
+          labels: ['早期发展阶段', '商业化拐点期', '当前成熟结构', '远期生态展望'],
+          datasets: [
+            {
+              label: '太空业务 (Launch 发射/载人)',
+              data: [88, 45, 32, 20],
+              backgroundColor: '#3B82F6',
+              borderRadius: 4,
+            },
+            {
+              label: '连接业务 (Starlink 星链订阅)',
+              data: [12, 53, 60, 55],
+              backgroundColor: '#06B6D4',
+              borderRadius: 4,
+            },
+            {
+              label: 'AI 与算力基础设施 (新兴增量)',
+              data: [0, 2, 8, 25],
+              backgroundColor: '#6366F1',
+              borderRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11 } }
+            },
+            y: {
+              stacked: true,
+              max: 100,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            }
+          }
+        }
+      };
+
+      const marginConfig = {
+        type: 'bar',
+        data: {
+          labels: ['Starlink 连接业务', 'Launch 外部商业发射', 'AI 算力与数据中心', '传统军工航天平均'],
+          datasets: [
+            {
+              label: '估算运营利润率 (%)',
+              data: [40, 26, 45, 11],
+              backgroundColor: ['#06B6D4', '#3B82F6', '#6366F1', '#94A3B8'],
+              borderRadius: 6,
+              barThickness: 36
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `估算运营利润率: ~${ctx.parsed.y}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11 } }
+            },
+            y: {
+              max: 60,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'revenue' ? revConfig : marginConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnRev = document.getElementById('btn-chart-rev');
+      const btnMargin = document.getElementById('btn-chart-margin');
+      if (mode === 'revenue') {
+        btnRev.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-space-700 text-orbit-600 dark:text-white shadow-sm transition';
+        btnMargin.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+      } else {
+        btnMargin.className = 'px-2.5 py-1 rounded-md font-semibold bg-white dark:bg-space-700 text-orbit-600 dark:text-white shadow-sm transition';
+        btnRev.className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '可复用与成本控制',
+            '高频发射与产能',
+            '轨位与频谱先发',
+            '全产业链生态闭环',
+            '商业化现金流造血'
+          ],
+          datasets: [
+            {
+              label: 'SpaceX',
+              data: [9.8, 9.7, 9.5, 9.6, 9.2],
+              borderColor: '#06B6D4',
+              backgroundColor: 'rgba(6, 182, 212, 0.22)',
+              pointBackgroundColor: '#06B6D4',
+              borderWidth: 2.5
+            },
+            {
+              label: '新兴商业航天头部',
+              data: [6.2, 5.5, 4.8, 5.0, 4.5],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.12)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: '传统军工航天巨头',
+              data: [2.5, 4.0, 5.5, 3.5, 6.0],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.12)',
+              pointBackgroundColor: '#94A3B8',
+              borderWidth: 1.5,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCostChart() {
+      const ctx = document.getElementById('costComparisonChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (costChartInstance) costChartInstance.destroy();
+      costChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            '传统一次性重型火箭 (行业基准)',
+            '现役中大型商业火箭 (部分回收)',
+            'Falcon 9 猎鹰9号 (常态化复用)',
+            'Starship 星舰 (完全可复用远期目标)'
+          ],
+          datasets: [{
+            label: '单位公斤入轨相对成本指数',
+            data: [100, 48, 16, 3],
+            backgroundColor: [
+              '#94A3B8',
+              '#64748B',
+              '#3B82F6',
+              '#06B6D4'
+            ],
+            borderRadius: 6,
+            barThickness: 24
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `相对成本指数: ${ctx.parsed.x} (传统一次性火箭 = 100)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 110,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 } }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCostChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initBizChart();
+      initRadarChart();
+      initCostChart();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>任天堂 Nintendo (NTDOY) 深度研究报告：从世代交替周期迈向 Switch 2 超级装机量与全娱乐 IP 生态帝国</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts: Inter + Noto Sans SC + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans SC', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#0B1120',
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            nintendo: {
+              300: '#FCA5A5',
+              400: '#F87171',
+              500: '#EF4444',
+              600: '#E60012',
+              700: '#B8000E',
+            },
+            accent: {
+              500: '#3B82F6',
+              600: '#2563EB',
+            },
+            teal: {
+              500: '#0D9488',
+              600: '#0F766E',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 自定义滚动条与机构研报细节排版 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    /* 打印友好优化 */
+    @media print {
+      #sidebar, #mobile-header, #theme-toggle-btn, .no-print {
+        display: none !important;
+      }
+      main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+      }
+      section {
+        break-inside: avoid;
+      }
+    }
+
+    /* 卡片悬浮微光 */
+    .report-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* 侧边导航激活态 */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(230, 0, 18, 0.28) 0%, rgba(239, 68, 68, 0.06) 100%);
+      border-left: 3px solid #E60012;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#0F172A] dark:bg-navy-950 dark:text-[#F1F5F9] antialiased selection:bg-nintendo-600 selection:text-white transition-colors duration-200">
+
+  <!-- 顶部全局阅读进度条 (Nintendo Iconic Crimson #E60012) -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-slate-200/70 dark:bg-navy-800">
+    <div id="reading-progress" class="h-full bg-gradient-to-r from-nintendo-600 via-nintendo-500 to-amber-500 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- 移动端顶部导航栏 -->
+  <header id="mobile-header" class="lg:hidden sticky top-0 z-40 bg-navy-900 text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-9 h-8 rounded-lg bg-gradient-to-br from-nintendo-600 to-nintendo-700 flex items-center justify-center font-extrabold text-white text-[11px] shadow border border-white/15">
+        NTDOY
+      </div>
+      <div>
+        <div class="text-[11px] text-nintendo-300 font-semibold tracking-wider uppercase">OTCMKTS: NTDOY / TYO: 7974</div>
+        <div class="text-sm font-bold leading-tight">任天堂深度投资研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-slate-300" aria-label="切换阅读主题">
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-navy-800 hover:bg-navy-700 text-white" aria-label="打开目录">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 移动端折叠抽屉菜单 -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden lg:hidden">
+    <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-72 max-w-[80vw] h-full bg-navy-900 text-slate-300 flex flex-col justify-between p-5 overflow-y-auto shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <span class="font-bold text-white text-base">NTDOY 研报目录导航</span>
+          <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <ul class="mt-4 space-y-1.5 text-sm">
+          <li><a href="#sec-biz" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">01. 业务与收入架构</a></li>
+          <li><a href="#sec-moat" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">02. 行业地位与四重护城河</a></li>
+          <li><a href="#sec-comp" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">03. 同行竞争格局横向对比</a></li>
+          <li><a href="#sec-fin" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">04. 财务健康度与估值体系</a></li>
+          <li><a href="#sec-inv" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">05. 投资决策与三情景推演</a></li>
+          <li><a href="#sec-kpi" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-lg hover:bg-navy-800 hover:text-white">06. 风险配置与季度跟踪 KPI</a></li>
+        </ul>
+      </div>
+      <div class="pt-4 border-t border-slate-800 text-xs text-slate-400">
+        <p>全球互动娱乐与消费品牌研究组</p>
+        <p class="mt-1">数据基准：2026年11月 (FY25 / FY26–27E)</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 桌面端左侧固定侧边导航栏 (宽 280px, Deep Navy #0F172A) -->
+  <aside id="sidebar" class="hidden lg:flex fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-300 flex-col justify-between border-r border-slate-800 z-30 select-none">
+    <div>
+      <!-- 机构品牌头 -->
+      <div class="p-5 border-b border-slate-800/80">
+        <div class="flex items-center space-x-3">
+          <div class="w-11 h-10 rounded-xl bg-gradient-to-br from-nintendo-600 to-nintendo-700 flex items-center justify-center text-white font-extrabold text-[11px] shadow-lg shadow-nintendo-600/30 border border-white/15">
+            NTDOY
+          </div>
+          <div>
+            <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-nintendo-300 bg-nintendo-600/20 px-2 py-0.5 rounded border border-nintendo-500/30">NTDOY / 7974.T</span>
+            <h2 class="text-white font-bold text-base mt-0.5 tracking-tight">任天堂深度研报</h2>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+          全球顶级第一方常青树 IP 护城河 · Switch 2 新硬件周期与全娱乐生态变现
+        </p>
+      </div>
+
+      <!-- 侧边栏关键财务与运营快照卡片 -->
+      <div class="px-5 py-3 bg-navy-950/85 border-b border-slate-800/80 space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">历史累计装机量</span>
+          <span class="font-mono font-bold text-white">1.52亿+ 台 <span class="text-nintendo-400">(Switch 2 接棒)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">净现金储备 (零负债)</span>
+          <span class="font-mono font-bold text-emerald-400">~¥2.2万亿+ <span class="text-slate-400">(~$14B+)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">NSO 付费会员规模</span>
+          <span class="font-mono font-bold text-amber-400">3,800万+ <span class="text-slate-400">(高留存订阅)</span></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">第一方软件毛利驱动</span>
+          <span class="font-mono font-bold text-teal-400">&gt;60% <span class="text-slate-400">(数字下载扩容)</span></span>
+        </div>
+        <div class="flex items-center justify-between pt-1 border-t border-slate-800/70">
+          <span class="text-slate-400">远期估值倍数</span>
+          <span class="font-mono font-bold text-nintendo-300">Fwd P/E ~19.5x · Ex-Cash ~14x</span>
+        </div>
+      </div>
+
+      <!-- 六个核心章节目录导航 -->
+      <div class="px-3 py-3 overflow-y-auto max-h-[calc(100vh-360px)]">
+        <div class="px-3 mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">核心研究章节 · 2026年11月</div>
+        <nav id="desktop-nav" class="space-y-1 text-[13px]">
+          <a href="#sec-biz" data-target="sec-biz" class="nav-link active flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-nintendo-400 mr-2">01</span>业务与收入架构</span>
+          </a>
+          <a href="#sec-moat" data-target="sec-moat" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">02</span>行业地位与四重护城河</span>
+          </a>
+          <a href="#sec-comp" data-target="sec-comp" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">03</span>同行竞争格局横向对比</span>
+          </a>
+          <a href="#sec-fin" data-target="sec-fin" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">04</span>财务健康度与估值体系</span>
+          </a>
+          <a href="#sec-inv" data-target="sec-inv" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">05</span>投资决策与三情景推演</span>
+          </a>
+          <a href="#sec-kpi" data-target="sec-kpi" class="nav-link flex items-center justify-between px-3 py-2 rounded-r-lg text-slate-300 hover:bg-navy-800/70 hover:text-white transition-all">
+            <span><span class="text-xs font-mono text-slate-500 mr-2">06</span>风险配置与季度跟踪 KPI</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 侧边栏底部工具栏 -->
+    <div class="p-4 border-t border-slate-800/80 bg-navy-950/50 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-slate-400">阅读模式切换</span>
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="w-3.5 h-3.5 text-nintendo-400 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <span class="dark:hidden">深色护眼模式</span>
+          <span class="hidden dark:inline">机构亮色模式</span>
+        </button>
+      </div>
+      <button onclick="window.print()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-nintendo-600 hover:bg-nintendo-700 text-white text-xs font-bold transition shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>打印 / 导出 PDF 研报</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="lg:ml-[280px] min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 py-8 lg:py-12 space-y-12">
+
+      <!-- =========================================================
+           顶部机构研报核心摘要 Hero 看板 (Executive Overview)
+      ========================================================= -->
+      <div class="space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-1 rounded-md bg-nintendo-600/15 text-nintendo-700 dark:text-nintendo-300 font-bold border border-nintendo-500/30">评级：强烈看多 / 全球数字娱乐顶级核心资产</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-200/70 dark:bg-navy-800 text-slate-700 dark:text-slate-300 font-medium">主线：Switch 2 超级周期 × &gt;60% 软件毛利飞轮 × 堡垒级净现金</span>
+          </div>
+          <div class="flex items-center space-x-3 font-mono">
+            <span>覆盖基准：2026年11月 (FY25 / FY26–27E)</span>
+            <span>OTCMKTS: NTDOY / TYO: 7974</span>
+          </div>
+        </div>
+
+        <!-- Hero 标题卡片 -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-[#221118] to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-slate-700/70">
+          <div class="absolute inset-0 opacity-15 pointer-events-none" style="background-image: radial-gradient(#E60012 1.2px, transparent 1.2px); background-size: 24px 24px;"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-nintendo-600/20 border border-nintendo-500/40 text-nintendo-300 text-xs font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-nintendo-500 animate-pulse"></span>
+              <span>CORE THESIS · 跨世代账户无缝迁移 + 全球最强第一方常青树 IP 护城河</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              任天堂 Nintendo (NTDOY) 深度研究报告：从世代交替周期迈向 Switch 2 超级装机量与全娱乐 IP 生态帝国
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-4xl leading-relaxed">
+              任天堂正站在新一轮十年级硬件与生态扩张的起点。依托初代 Switch 积累的 <strong class="text-white">1.52亿+ 台</strong>庞大历史装机基数与 <strong class="text-amber-400">3,800万+ NSO 付费会员</strong>，公司通过“Nintendo Account 统一账户体系 + 向下兼容（Backward Compatibility）”彻底打破了传统主机换代归零的周期魔咒，驱动 <strong class="text-nintendo-300">Switch 2</strong> 迎来史上最平滑的跨世代装机放量。随着数字版软件占比突破 50%+ 推动第一方软件毛利率稳居 <strong class="text-teal-400">&gt;60%</strong>，叠加超级任天堂世界主题乐园与《超级马力欧兄弟大电影》（票房 <strong class="text-white">$13.6亿</strong>）续作及塞尔达真人电影接力，坐拥 <strong class="text-emerald-400">~¥2.2万亿+（~$14B+）零负债净现金</strong>的任天堂正迎来业绩与估值的双重重估。
+            </p>
+
+            <!-- 核心投资结论三栏摘要 -->
+            <div class="mt-6 pt-6 border-t border-slate-700/80 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">打破主机换代归零魔咒</div>
+                <div class="text-white font-semibold">超 1 亿年度活跃玩家 + 向下兼容机制，使 Switch 2 首年软件搭载率与数字转化率远超前代</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">轻资产玩法创新与高毛利飞轮</div>
+                <div class="text-nintendo-300 font-semibold">“枯萎技术的水平思考”规避 3A 烧钱内卷，第一方软件毛利率 &gt;60%，常青树作品长卖 8 年+</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-3.5 border border-white/10">
+                <div class="text-slate-400 font-medium mb-1">堡垒级资产负债表 × 扣除现金低估值</div>
+                <div class="text-emerald-400 font-semibold">~¥2.2万亿+ 净现金占市值近三成，剔除净现金后核心娱乐业务隐含 Fwd EV/EBIT 仅 ~14x</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6个核心 KPI 卡片 (3x2 响应式网格) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- KPI 1 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>历史累计硬件装机量</span>
+              <span class="p-1.5 rounded-lg bg-nintendo-600/15 text-nintendo-600 dark:text-nintendo-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">1.52亿+ 台</span>
+              <span class="text-xs font-bold text-nintendo-600 dark:text-nintendo-300 bg-nintendo-600/15 px-2 py-0.5 rounded">Switch 2 接棒放量</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              初代 Switch 跻身人类史上最畅销游戏机前三，为 Switch 2 奠定海量核心换机基本盘。
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>第一方软件毛利率驱动</span>
+              <span class="p-1.5 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">&gt;60%</span>
+              <span class="text-xs font-bold text-teal-600 dark:text-teal-400 bg-teal-500/15 px-2 py-0.5 rounded">数字下载 + NSO 扩容</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              第一方大作长尾复购（常青树销量占比超 70%）叠加数字下载率跃升，持续拉高综合毛利率。
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>净现金及等价物储备</span>
+              <span class="p-1.5 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~¥2.2万亿+</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded">~$14B+ 零有息负债</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              日本企业界著名的“堡垒级”资产负债表，无惧硬件爬坡投入并支撑高比例分红与回购。
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>NSO 付费会员规模</span>
+              <span class="p-1.5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">3,800万+</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded">高频高粘性订阅</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              联机对战、云存档与 FC/SFC/N64/GBA 经典复古游戏库构筑高转换成本，平抑周期波动。
+            </p>
+          </div>
+
+          <!-- KPI 5 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>超级马力欧兄弟大电影票房</span>
+              <span class="p-1.5 rounded-lg bg-indigo-500/15 text-indigo-600 dark:text-indigo-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">$13.6亿</span>
+              <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/15 px-2 py-0.5 rounded">续作与塞尔达电影接力</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              全球影史最卖座游戏改编电影，验证 IP 跨媒介破圈能力并显著反哺主机与软件销量。
+            </p>
+          </div>
+
+          <!-- KPI 6 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>远期估值倍数 (Fwd P/E)</span>
+              <span class="p-1.5 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+            </div>
+            <div class="mt-3 flex items-baseline space-x-2">
+              <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono">~19.5x</span>
+              <span class="text-xs font-bold text-accent-600 dark:text-accent-400 bg-accent-500/15 px-2 py-0.5 rounded">Ex-Cash EV/EBIT ~14x</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              扣除巨额净现金储备后，核心 IP 与主机平台隐含估值倍数极具安全边际与修复空间。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           01. 业务与收入架构 (Business & Revenue Architecture)
+      ========================================================= -->
+      <section id="sec-biz" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-nintendo-600 dark:text-nintendo-400">Section 01 · Business & Revenue Architecture</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">01. 业务与收入架构：软硬一体飞轮、数字化转型与 IP 全娱乐破圈</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">收入结构：专用游戏机平台 (~92%) + IP/移动/乐园授权 (~8%)</span>
+        </div>
+
+        <!-- 三大核心业务引擎卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- 引擎 1：专用游戏机平台 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-nintendo-600 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-nintendo-600/15 text-nintendo-700 dark:text-nintendo-300 text-xs font-bold">核心营收引擎 · 占 ~92%</span>
+              <span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">硬件引流 × 软件变现</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Dedicated Video Game Platform（专用游戏机平台）</h3>
+            <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong>① 硬件装机放量：</strong>坚持硬件不亏损定价策略（与竞品补贴硬件不同），随着 Switch 2 接棒铺货，硬件收入重回高速扩张轨道；<br>
+              <strong>② 第一方与第三方软件：</strong>第一方软件占平台软件总销量逾 <strong>80%</strong>（《马力欧赛车》《塞尔达》《宝可梦》《动森》），几乎不打折且长尾销售长达 7–8 年，同时收取第三方发行商约 30% 平台权利金。
+            </p>
+          </div>
+
+          <!-- 引擎 2：数字化下载与 NSO 订阅生态 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-teal-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-teal-500/15 text-teal-600 dark:text-teal-400 text-xs font-bold">毛利扩张核心引擎</span>
+              <span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">数字占比 &gt;52% · 3,800万+ 会员</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Digital & NSO Subscription（数字下载与订阅生态）</h3>
+            <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong>① 数字版与 DLC 扩充票：</strong>eShop 数字下载率已由 Switch 初期的 17% 跃升至 <strong>52%+</strong>，省去卡带制造成本与零售渠道分成，直接将第一方软件毛利率推升至 <strong>&gt;60%–70%</strong>；<br>
+              <strong>② NSO 会员订阅制：</strong>逾 3,800 万付费订阅用户贡献高确定性经常性收入，“高级扩充包（Expansion Pack）”通过整合经典主机游戏库与大作 DLC 持续提升 ARPU 值。
+            </p>
+          </div>
+
+          <!-- 引擎 3：IP 跨媒介扩张 -->
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-amber-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="px-2.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-400 text-xs font-bold">破圈放大器 · 乘数效应</span>
+              <span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">乐园 × 电影 × 官方直营店</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">IP Expansion & Mobile（主题乐园、院线电影与授权）</h3>
+            <p class="mt-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              打破游戏机屏幕边界，构建类似迪士尼的立体娱乐飞轮：<strong>① 主题乐园：</strong>大阪、好莱坞及奥兰多“超级任天堂世界（Super Nintendo World）”持续爆满；<strong>② 影视矩阵：</strong>《超级马力欧兄弟大电影》狂揽 $13.6 亿票房并带动游戏逆势热卖，2026 马力欧电影续作与《塞尔达传说》真人电影接力上映；<strong>③ 线下触点：</strong>全球 Nintendo Official Stores 直营店与手游矩阵持续触达非主机新客群。
+            </p>
+          </div>
+        </div>
+
+        <!-- 交互式 Chart.js 双视图面板 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base" id="biz-chart-title">FY2021–FY2027E 营收规模演进（专用游戏机平台 vs. IP/移动收入）与营业利润率周期</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="biz-chart-sub">FY25 经历 Switch 1 末期过渡低谷后，FY26–FY27E 随 Switch 2 装机放量重回 ¥1.85万亿–¥2.10万亿高增周期</p>
+            </div>
+            <div class="inline-flex rounded-lg bg-slate-100 dark:bg-navy-800 p-1 text-xs no-print">
+              <button onclick="switchBizChart('trajectory')" id="btn-chart-traj" class="px-3 py-1.5 rounded-md font-semibold bg-white dark:bg-navy-700 text-nintendo-600 dark:text-nintendo-300 shadow-sm transition">FY21–FY27E 营收与营业利润率周期</button>
+              <button onclick="switchBizChart('digital')" id="btn-chart-digital" class="px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">软件数字化率跃升与收入结构拆解</button>
+            </div>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="bizArchitectureChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           02. 行业地位与护城河 (Industry Position & Economic Moat)
+      ========================================================= -->
+      <section id="sec-moat" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 02 · Industry Position & Economic Moat</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">02. 行业地位与四重核心护城河：常青树 IP 宇宙与非对称硬件哲学</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">护城河评级：极宽 (Wide Moat · 全球稀缺的跨越四代人文化消费图腾)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- 左侧：四重核心壁垒卡片网格 -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 壁垒 1 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-nintendo-600/15 text-nintendo-600 dark:text-nintendo-300 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">全球第一方顶级常青树 IP 矩阵</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                拥有马力欧（累计销量超 8.5 亿份）、宝可梦（全球第一吸金 IP）、塞尔达传说、动物森友会及喷射战士等跨越 40 年的殿堂级 IP。不同于西方游戏公司高度依赖“首发首月冲量”，任天堂第一方游戏具备罕见的<strong>多年长尾复购（Evergreen Sales）</strong>与零降价刚性。
+              </p>
+            </div>
+
+            <!-- 壁垒 2 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“枯萎技术的水平思考”与低沉没成本</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                传承横井军平与宫本茂的研发哲学：不参与 Sony/Microsoft 动辄数亿美元研发、硬件亏损补贴的算力军备竞赛，而是利用成熟高性价比芯片结合独创交互玩法（掌机主机一体化、Joy-Con 体感），实现<strong>硬件首日即盈利 + 高游戏开发 ROI</strong>。
+              </p>
+            </div>
+
+            <!-- 壁垒 3 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">合家欢社交垄断与向上兼容平滑迁移</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                在亲子家庭、女性玩家与线下客厅聚会场景占据近乎垄断地位，形成代际传承的消费习惯。Switch 2 全面支持前代实体与数字游戏向下兼容，并与 Nintendo Account 深度绑定，让超 1 亿活跃玩家无缝过渡至新世代。
+              </p>
+            </div>
+
+            <!-- 壁垒 4 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+              <div class="flex items-center space-x-2.5 mb-2.5">
+                <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="font-bold text-slate-900 dark:text-white text-sm">“乐园 + 电影 + 商店”跨媒介 IP 飞轮</h3>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                从“单纯游戏硬件厂商”蜕变为“以游戏为核心的全球综合娱乐 IP 集团”。主题乐园与院线大片不仅带来高毛利授权分成，更作为全球最高效的品牌广告，持续将非游戏人群转化为 Switch 2 硬件与软件购买者。
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：五维护城河量化雷达图 -->
+          <div class="lg:col-span-5 bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">全球互动娱乐巨头五维护城河量化雷达图</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Nintendo vs. 传统主机双雄 (PS/Xbox) vs. 移动与跨平台服务巨头（满分 10 分）</p>
+            <div class="relative h-72 w-full">
+              <canvas id="moatRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           03. 同行竞争格局横向对比 (Competitive Landscape Matrix)
+      ========================================================= -->
+      <section id="sec-comp" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-nintendo-600 dark:text-nintendo-400">Section 03 · Global Gaming & Entertainment Peer Matrix</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">03. 同行竞争格局横向对比：第一方盈利能力与资产安全垫遥遥领先</h2>
+          </div>
+          <!-- 交互式筛选按钮 -->
+          <div class="flex flex-wrap gap-1.5 text-xs no-print" id="comp-filter-group">
+            <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn active px-3 py-1.5 rounded-lg font-semibold bg-nintendo-600 text-white shadow-sm transition">全部阵营</button>
+            <button onclick="filterCompetitors('console')" data-filter="console" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">传统主机双雄</button>
+            <button onclick="filterCompetitors('platform')" data-filter="platform" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">移动与跨平台生态</button>
+            <button onclick="filterCompetitors('ip')" data-filter="ip" class="comp-filter-btn px-3 py-1.5 rounded-lg font-medium bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">IP 娱乐巨头</button>
+          </div>
+        </div>
+
+        <!-- 横向对比矩阵表格 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-100/80 dark:bg-navy-800/80 border-b border-slate-200 dark:border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                  <th class="py-4 px-5 min-w-[190px]">竞争主体与代码</th>
+                  <th class="py-4 px-4 min-w-[140px]">核心商业模式</th>
+                  <th class="py-4 px-4 min-w-[145px]">硬件 / 平台策略</th>
+                  <th class="py-4 px-4 min-w-[130px]">软件/业务营业利润率</th>
+                  <th class="py-4 px-4 min-w-[135px]">净现金与财务杠杆</th>
+                  <th class="py-4 px-5 min-w-[215px]">周期属性与核心优劣势</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-xs sm:text-sm" id="comp-table-body">
+                <!-- 行 1：Nintendo 行业基准 -->
+                <tr data-category="core" class="bg-nintendo-600/5 dark:bg-nintendo-600/10 font-medium">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center space-x-2">
+                      <span class="px-2 py-0.5 rounded bg-nintendo-600 text-white text-[10px] font-bold">研究标的</span>
+                      <span class="font-bold text-slate-900 dark:text-white">Nintendo (NTDOY)</span>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">软硬一体专属生态 + 顶级 IP</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-800 dark:text-slate-200">第一方买断 + NSO 订阅 + IP</td>
+                  <td class="py-4 px-4 text-slate-800 dark:text-slate-200">混合型掌主机 · 硬件正毛利</td>
+                  <td class="py-4 px-4 font-mono font-bold text-emerald-600 dark:text-emerald-400">~28%–33% (稳态)</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">~¥2.2万亿+ 净现金 (零债)</span>
+                  </td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>差异化护城河：</strong>第一方独占率超 80%，不卷高成本 3A 硬件亏损，跨世代账户迁移大幅平滑周期。
+                  </td>
+                </tr>
+
+                <!-- 行 2：Sony PlayStation -->
+                <tr data-category="console" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Sony Group - G&NS (SONY)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">PlayStation 高性能主机平台</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">第三方抽成 + PS Plus + 3A 大作</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">高算力客厅主机 · 初期低毛利</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~10%–13%</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/15 text-slate-600 dark:text-slate-400">集团适度净负债结构</span>
+                  </td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>对比启示：</strong>第三方 3A 生态极其强大，但受制于芯片硬件成本高昂与第一方 3A 研发费用飙升，营业利润率显著低于任天堂。
+                  </td>
+                </tr>
+
+                <!-- 行 3：Microsoft Xbox -->
+                <tr data-category="console platform" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Microsoft Gaming (MSFT)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Xbox + Game Pass + 动视暴雪</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">跨终端订阅制 + 多平台发行</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">放弃独占 · 云游戏与全平台铺开</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~14%–18% (剔除摊销)</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-500/15 text-accent-700 dark:text-accent-400">母公司 AAA 级超强资产负债表</span>
+                  </td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>对比启示：</strong>并购动视暴雪后转型为跨平台内容巨头，但放弃硬件独占削弱了主机硬件装机壁垒，与任天堂形成互补而非直接替代。
+                  </td>
+                </tr>
+
+                <!-- 行 4：Tencent / NetEase -->
+                <tr data-category="platform" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">Tencent / NetEase (0700 / NTES)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">全球移动与 PC 实时服务巨头</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">F2P 免费游玩 + 道具内购 (GaaS)</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">轻资产纯软件 · 依赖应用商店通道</td>
+                  <td class="py-4 px-4 font-mono text-emerald-600 dark:text-emerald-400 font-semibold">~26%–32%</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-500/15 text-teal-700 dark:text-teal-400">充沛净现金储备</span>
+                  </td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>对比启示：</strong>社交竞技网游印钞能力极强，但面临苹果/谷歌 30% 渠道税及内容监管波动；任天堂拥有自有封闭硬件入口且合家欢属性免疫监管争议。
+                  </td>
+                </tr>
+
+                <!-- 行 5：Walt Disney -->
+                <tr data-category="ip" class="hover:bg-slate-50 dark:hover:bg-navy-800/40 transition">
+                  <td class="py-4 px-5">
+                    <div class="font-bold text-slate-900 dark:text-white">The Walt Disney Co. (DIS)</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">全球传统影视与主题乐园霸主</div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">流媒体 + 院线 + 体验乐园 + 授权</td>
+                  <td class="py-4 px-4 text-slate-700 dark:text-slate-300">重资产乐园与影视内容投入</td>
+                  <td class="py-4 px-4 font-mono text-slate-700 dark:text-slate-300">~15%–17%</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400">约 $35B+ 净债务负担</span>
+                  </td>
+                  <td class="py-4 px-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <strong>对标锚点：</strong>任天堂常被称为“互动娱乐界的迪士尼”，但任天堂采取轻资产授权合作建乐园与拍电影，无需背负重资产资本开支与巨额债务。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 互动图表 3：全球头部游戏与 IP 娱乐巨头稳态营业利润率 (%) 与 ROIC (%) 横向对比 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">全球头部游戏与 IP 娱乐巨头稳态营业利润率（%）与投入资本回报率 ROIC（%）横向对比</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">任天堂凭借轻资产硬件设计与超高第一方软件占比，在主机阵营中实现断层领先的利润率与资本回报率</p>
+            </div>
+            <span class="text-xs font-semibold text-nintendo-600 dark:text-nintendo-300 bg-nintendo-600/15 px-2.5 py-1 rounded">稳态 ROIC 领跑全球主机行业</span>
+          </div>
+          <div class="relative h-64 w-full">
+            <canvas id="compMarginChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           04. 财务健康度与估值体系 (Financial Health & Valuation)
+      ========================================================= -->
+      <section id="sec-fin" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 04 · Financial Health & Valuation Framework</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">04. 财务健康度与估值体系：“堡垒级”净现金、股东回报与扣除现金估值重估</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">核心看点：~¥2.2万亿+ 净现金占市值 ~28% · Ex-Cash EV/EBIT 仅 ~14x</span>
+        </div>
+
+        <!-- 1. 财务健康度剖析三支柱卡片 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Fortress Balance Sheet</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">~¥2.2万亿+ 净现金与零有息负债壁垒</h3>
+            <div class="mt-2.5 text-2xl font-extrabold font-mono text-slate-900 dark:text-white">净现金 ~$14B+ · 负债率 0%</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              任天堂账面持有超 <strong>¥2.2万亿（约合 $140亿+）</strong>现金、存款及高流动性短期有价证券，且长期保持零有息负债。即便在经历完整世代交替的过渡年份，充沛的利息与投资收益也为净利润提供坚实的非经营性缓冲垫。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-nintendo-600 dark:text-nintendo-400 uppercase tracking-wider">Capital Allocation & FX</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">50% 派息率机制 + 外汇天然护城河</h3>
+            <div class="mt-2.5 text-2xl font-extrabold font-mono text-slate-900 dark:text-white">派息率 50% + 周期性回购</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              公司严格执行<strong>合并营业利润 33% 或合并净利润 50%（取较高者）</strong>的清晰分红政策，并结合机会性股票回购与拆股提升流动性；此外，任天堂海外营收占比高达 <strong>~78%</strong>（北美 ~44%、欧洲 ~25%），外币资产配置在日元汇率波动期提供了天然对冲。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="text-xs font-bold text-accent-600 dark:text-accent-400 uppercase tracking-wider">Ex-Cash Valuation Anchor</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1">扣除巨额现金后的机构级 EV/EBIT 视角</h3>
+            <div class="mt-2.5 text-2xl font-extrabold font-mono text-slate-900 dark:text-white">表观 P/E ~19.5x → Ex-Cash ~14x</div>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              由于账面净现金占总市值比例接近 <strong>25%–30%</strong>，单纯看表观市盈率会严重低估其内在性价比。扣除净现金储备后，Switch 2 放量周期对应的远期 <strong>Ex-Cash EV/EBIT 仅约 13.5x–14.5x</strong>，显著低于全球顶级消费 IP 与游戏同业（普遍 20x–25x）。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 交互图表 4：FY2022–FY2027E 自由现金流 (¥B) 与 Ex-Cash EV/EBIT 估值消化双轴图 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">FY2022–FY2027E 年度自由现金流（¥十亿）与扣除现金后远期 EV/EBIT（x）估值消化轨迹</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">随 Switch 2 软件搭载率攀升，年度自由现金流重回 ¥4,500亿–¥5,200亿高位，快速消化估值倍数</p>
+            </div>
+            <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">FY27E Ex-Cash EV/EBIT 降至 ~12.8x</span>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="valuationCycleChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           05. 投资决策与三情景推演 (Investment Thesis & Scenarios)
+      ========================================================= -->
+      <section id="sec-inv" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-nintendo-600 dark:text-nintendo-400">Section 05 · Investment Thesis & Scenario Matrix</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">05. 投资决策与三情景估值推演：把握 Switch 2 黄金放量窗口</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">组合定位：全球消费科技核心复利资产 · 兼具高确定性与强现金安全垫</span>
+        </div>
+
+        <!-- 核心看多理由 (Why Buy) 卡片 -->
+        <div class="bg-gradient-to-br from-navy-900 to-slate-800 text-white rounded-2xl p-6 sm:p-8 border border-slate-700 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full bg-nintendo-600/25 border border-nintendo-500/40 text-nintendo-300 text-xs font-bold">CORE BULL THESIS · 四大核心驱动催化剂</span>
+            <span class="text-xs font-mono text-slate-400">组合建议权重：全球科技/消费组合配置 4%–6%</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs sm:text-sm">
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="text-nintendo-300 font-bold mb-1.5">01 · Switch 2 首年超强装机爬坡与旗舰大作接力</div>
+              <p class="text-slate-300 leading-relaxed">
+                依托充足的早期备货产能与《马力欧赛车》新作、3D 马力欧、全新世代《宝可梦》及《密特罗德究极 4》护航，Switch 2 在上市后 12–18 个月内展现强劲装机爆发力，迅速打开高毛利软件变现漏斗。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="text-teal-300 font-bold mb-1.5">02 · 软件数字下载率与 NSO 高级会员双轮提效</div>
+              <p class="text-slate-300 leading-relaxed">
+                新世代硬件对高速存储与在线联机的更高依赖，将推动软件数字下载率稳步向 55%–60% 迈进，叠加 3,800 万+ NSO 会员续费扩容，结构性抬升全周期营业利润率中枢至 30%+。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="text-amber-300 font-bold mb-1.5">03 · 2026–2027 影游联动超级大年</div>
+              <p class="text-slate-300 leading-relaxed">
+                2026 年《超级马力欧兄弟大电影》续作上映及后续《塞尔达传说》真人电影推进，配合奥兰多环球影城“超级任天堂世界”新园区全年度运营，持续引爆全球范围 IP 消费热潮。
+              </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+              <div class="text-emerald-300 font-bold mb-1.5">04 · 日本公司治理改革下的股东回报释放潜力</div>
+              <p class="text-slate-300 leading-relaxed">
+                在东京证券交易所资本效率改革背景下，任天堂持有逾 ¥2.2万亿超额净现金，未来在保障研发之余进一步提升回购力度或优化政策性交叉持股的预期持续升温。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 三情景估值推演矩阵 (Bull / Base / Bear) -->
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-3">FY2027E 远期三情景估值推演矩阵（Bull / Base / Bear）</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- 乐观牛市 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-emerald-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold">乐观牛市 (Bull Case)</span>
+                  <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">概率：30%</span>
+                </div>
+                <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">FY27E 营业利润 ¥6,800亿+ <span class="text-xs font-normal text-slate-500">(Fwd P/E ~24x)</span></div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                  <strong>核心假设：</strong>Switch 2 装机量首 18 个月突破 <strong>2,800万台</strong>，第一方软件搭载率（Tie Ratio）超 4.5 份，数字版占比跃升至 <strong>58%</strong>，马力欧电影续作票房再破 $12亿+，综合营业利润率重返 <strong>32%+</strong>，估值向全球顶级奢侈/IP 平台看齐。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                驱动逻辑：戴维斯双击（超预期装机放量 + 利润率结构性上移）
+              </div>
+            </div>
+
+            <!-- 基准情景 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-nintendo-600 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2.5 py-0.5 rounded bg-nintendo-600/15 text-nintendo-700 dark:text-nintendo-300 text-xs font-bold">基准情景 (Base Case)</span>
+                  <span class="font-mono text-xs font-bold text-nintendo-600 dark:text-nintendo-300">概率：50%</span>
+                </div>
+                <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">FY27E 营业利润 ¥5,600亿 <span class="text-xs font-normal text-slate-500">(Fwd P/E ~20.5x)</span></div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                  <strong>核心假设：</strong>Switch 2 延续 Switch 1 稳健爬坡曲线（年销 1,800万–2,000万台），NSO 付费会员稳步增至 <strong>4,200万+</strong>，软件数字占比维持 53%–55%，公司综合营业利润率恢复至 <strong>27%–29%</strong>，实现高质量内生复利增长。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-nintendo-600 dark:text-nintendo-300">
+                驱动逻辑：世代切换顺利兑现 + 50% 高分红率持续回报股东
+              </div>
+            </div>
+
+            <!-- 悲观熊市 -->
+            <div class="report-card bg-white dark:bg-navy-900 rounded-2xl p-6 border-t-4 border-t-rose-500 border-x border-b border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2.5 py-0.5 rounded bg-rose-500/15 text-rose-600 dark:text-rose-400 text-xs font-bold">悲观熊市 (Bear Case)</span>
+                  <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">概率：20%</span>
+                </div>
+                <div class="text-xl font-extrabold font-mono text-slate-900 dark:text-white mt-2">FY27E 营业利润 ¥4,100亿 <span class="text-xs font-normal text-slate-500">(Fwd P/E ~15.5x)</span></div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed">
+                  <strong>核心假设：</strong>日元汇率大幅升值（如 USD/JPY 跌破 130）削弱海外汇兑收益，同时欧美消费疲软或硬件元器件成本上涨压低硬件毛利，导致 Switch 2 初期装机增速放缓至年销 1,300万台以下。
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400">
+                防守安全垫：~¥2.2万亿+ 净现金托底，下行空间极为有限
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           06. 风险配置与季度跟踪 KPI 核查清单 (Risk & KPI Checklist)
+      ========================================================= -->
+      <section id="sec-kpi" class="scroll-mt-20 space-y-6">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">Section 06 · Risk Allocation & Quarterly KPI Checklist</span>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">06. 风险配置与季度基本面跟踪 KPI 交互核查清单</h2>
+          </div>
+          <span class="text-xs text-slate-500 dark:text-slate-400">六大机构核心跟踪指标 · 勾选状态自动本地持久化</span>
+        </div>
+
+        <!-- 1. 四大核心风险因素与对冲机制 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold">01 · 日元大幅升值引发的汇兑逆风 (FX Headwind)</span>
+              <span class="text-xs font-mono text-rose-500 font-semibold">关注度：高</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">海外营收占比近 78% 对日元汇率的敏感性</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              任天堂超四分之三收入来自美元与欧元区；若日本央行持续加息或美日利差收窄导致日元大幅走强，将直接拉低折算后的日元报表营收与营业利润，并带来外币现金重估损失。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold">02 · 新硬件首年硬件毛利率承压与成本通胀</span>
+              <span class="text-xs font-mono text-amber-500 font-semibold">关注度：中高</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Switch 2 硬件BOM成本提升与销售结构变化</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              新主机上市初期，低毛利硬件在总营收中占比阶段性上升（而高毛利软件装机基数尚在积累），叠加定制芯片与屏幕成本，短期可能令集团综合毛利率呈现先抑后扬走势。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-xs font-bold">03 · 世代过渡期的软硬件青黄不接风险</span>
+              <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">第一方旗舰大作开发周期拉长与排期节奏</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              高清化开发对第一方团队产能提出更高要求；若核心《马力欧》《塞尔达》主线新作出现延期，可能影响特定季度的硬件换机转化斜率。
+            </p>
+          </div>
+
+          <div class="report-card bg-white dark:bg-navy-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-600 dark:text-teal-400 text-xs font-bold">04 · 碎片化移动娱乐与第三方 3A 竞争</span>
+              <span class="text-xs font-mono text-slate-500 font-semibold">关注度：中</span>
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">短视频、手游及 Steam Deck 等掌机对碎片时间的争夺</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+              Z 世代与 Alpha 世代娱乐时间高度碎片化，任天堂需通过强社交聚会属性、高质量第一方独占内容及跨媒介影视乐园体验持续锁住用户心智。
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. 季度基本面跟踪 KPI 交互核查清单 -->
+        <div class="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">任天堂季度财报核心 KPI 验真台</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">点击勾选最新季报已验证达标的指标，实时评估基本面兑现进度（状态自动保存至 localStorage）</p>
+            </div>
+            <div class="flex items-center space-x-2 no-print">
+              <span id="kpi-progress-badge" class="px-3 py-1 rounded-full bg-nintendo-600/15 text-nintendo-700 dark:text-nintendo-300 text-xs font-bold">已核查 4 / 6 项 (67%)</span>
+              <button onclick="resetKpiChecklist()" class="px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-navy-800 hover:bg-slate-300 dark:hover:bg-navy-700 text-xs font-medium text-slate-700 dark:text-slate-300 transition">重置清单</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mt-4" id="kpi-checklist">
+            <!-- KPI 1 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="ntdoy-kpi-1" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E60012] focus:ring-nintendo-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">1. Switch 2 季度硬件销量（Sell-Through）爬坡节奏</span>
+                  <span class="text-[11px] font-mono text-nintendo-600 dark:text-nintendo-300 font-semibold shrink-0">核心装机锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  跟踪 Switch 2 季度实际终端销量是否超越初代 Switch 同期爬坡曲线，以及供应链交付是否保持满产。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 2 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="ntdoy-kpi-2" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E60012] focus:ring-nintendo-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">2. 软件搭载率（Tie Ratio）与百万销量第一方阵营</span>
+                  <span class="text-[11px] font-mono text-teal-600 dark:text-teal-400 font-semibold shrink-0">软件印钞机指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查单季软件总销量、第一方独占软件占比（&gt;80%）以及护航旗舰新作的首周/首季百万级破圈表现。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 3 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="ntdoy-kpi-3" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E60012] focus:ring-nintendo-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">3. 软件数字化销售占比（Digital Sales Share ≥ 52%）</span>
+                  <span class="text-[11px] font-mono text-accent-600 dark:text-accent-400 font-semibold shrink-0">毛利率扩张锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  验证 eShop 数字版下载、DLC 扩充票及仅数字发行内容占专用平台软件总收入比例是否持续高于 52%。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 4 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="ntdoy-kpi-4" checked onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E60012] focus:ring-nintendo-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">4. NSO 付费会员净增与年度活跃玩家数</span>
+                  <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400 font-semibold shrink-0">跨世代留存锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  追踪年度活跃玩家（Annual Playing Users）是否稳居 1.1亿+ 高位，以及 NSO 会员突破 4,000 万大关进度。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 5 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="ntdoy-kpi-5" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E60012] focus:ring-nintendo-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">5. 综合营业利润率（Operating Margin）重返 27%+</span>
+                  <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold shrink-0">盈利质量锚</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  观察随着软件比例回升及研发广告费摊薄，单季营业利润率是否摆脱过渡期低谷并向 27%–30% 稳态收敛。
+                </p>
+              </div>
+            </label>
+
+            <!-- KPI 6 -->
+            <label class="flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-navy-800/50 cursor-pointer transition">
+              <input type="checkbox" id="ntdoy-kpi-6" onchange="updateKpiChecklist()" class="mt-1 w-4 h-4 rounded accent-[#E60012] focus:ring-nintendo-500">
+              <div class="flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">6. 年度派息指引上调与股票回购执行力度</span>
+                  <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold shrink-0">股东回报指标</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                  核查管理层全年营业利润指引上调幅度、50% 派息兑现及超额现金回购注销公告，评估 ROE 提升节奏。
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           页脚免责声明 (Disclaimer Footer)
+      ========================================================= -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 pb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-semibold text-slate-700 dark:text-slate-300">
+          <span>Nintendo Co., Ltd. (OTCMKTS: NTDOY / TYO: 7974) 深度商业与投资价值分析报告 · 机构研究框架版</span>
+          <span>数据基准：2026 年 11 月 (FY2025 财报及 FY26E–27E 市场一致预期)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>免责声明：</strong>本深度研究报告基于公司公开披露财报（有价证券报告书 / 决算短信）、全球主机与互动娱乐行业追踪数据及机构估值模型整理生成，旨在提供结构化的商业模式与投资逻辑参考。文中涉及的 FY2026E–FY2027E 营收与营业利润预测、Switch 2 装机与软件搭载率假设以及三情景估值推演均基于特定产业假设，不构成任何具体的证券买卖建议、要约或投资承诺。投资者在做出任何资产配置决策前，应结合汇率波动、硬件周期风险及自身风险承受能力审慎判断。
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- 交互逻辑与 Chart.js 可视化脚本 -->
+  <script>
+    // ==========================================
+    // 1. 亮色 / 深色模式切换（同步重绘所有 Chart.js 图表）
+    // ==========================================
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      updateChartsTheme();
+    }
+
+    // ==========================================
+    // 2. 移动端抽屉菜单切换
+    // ==========================================
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // ==========================================
+    // 3. 阅读进度条与侧边导航滚动联动高亮
+    // ==========================================
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('reading-progress').style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+
+      let currentId = 'sec-biz';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 160;
+        if (scrollTop >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const numSpan = link.querySelector('span span');
+        if (numSpan) {
+          numSpan.classList.remove('text-nintendo-400');
+          numSpan.classList.add('text-slate-500');
+        }
+        if (link.dataset.target === currentId) {
+          link.classList.add('active');
+          if (numSpan) {
+            numSpan.classList.remove('text-slate-500');
+            numSpan.classList.add('text-nintendo-400');
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 4. 同行竞争格局矩阵筛选器
+    // ==========================================
+    function filterCompetitors(category) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-nintendo-600', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.remove('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        } else {
+          btn.classList.remove('bg-nintendo-600', 'text-white', 'font-semibold', 'shadow-sm');
+          btn.classList.add('bg-white', 'dark:bg-navy-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'font-medium');
+        }
+      });
+
+      const rows = document.querySelectorAll('#comp-table-body tr');
+      rows.forEach(row => {
+        const rowCat = row.dataset.category || '';
+        if (category === 'all' || rowCat === 'core' || rowCat.includes(category)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================
+    // 5. KPI 核查清单状态持久化与计数更新
+    // ==========================================
+    const KPI_STORAGE_KEY = 'ntdoy_kpi_checklist_v1';
+
+    function loadKpiChecklist() {
+      try {
+        const saved = localStorage.getItem(KPI_STORAGE_KEY);
+        if (saved) {
+          const stateMap = JSON.parse(saved);
+          document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+            if (typeof stateMap[cb.id] === 'boolean') {
+              cb.checked = stateMap[cb.id];
+            }
+          });
+        }
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+      updateKpiChecklist();
+    }
+
+    function updateKpiChecklist() {
+      const checkboxes = document.querySelectorAll('#kpi-checklist input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      const stateMap = {};
+
+      checkboxes.forEach(cb => {
+        stateMap[cb.id] = cb.checked;
+        if (cb.checked) checkedCount++;
+      });
+
+      const pct = Math.round((checkedCount / total) * 100);
+      document.getElementById('kpi-progress-badge').textContent = `已核查 ${checkedCount} / ${total} 项 (${pct}%)`;
+
+      try {
+        localStorage.setItem(KPI_STORAGE_KEY, JSON.stringify(stateMap));
+      } catch (e) {
+        // 忽略存储权限异常
+      }
+    }
+
+    function resetKpiChecklist() {
+      document.querySelectorAll('#kpi-checklist input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      updateKpiChecklist();
+    }
+
+    // ==========================================
+    // 6. Chart.js 四大交互数据图表与主题自适应
+    // ==========================================
+    let bizChartInstance = null;
+    let radarChartInstance = null;
+    let compMarginChartInstance = null;
+    let valuationCycleChartInstance = null;
+    let currentBizMode = 'trajectory';
+
+    function getChartColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        text: isDark ? '#CBD5E1' : '#475569',
+        grid: isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngle: isDark ? 'rgba(71, 85, 105, 0.6)' : 'rgba(203, 213, 225, 0.85)'
+      };
+    }
+
+    function initBizChart() {
+      const ctx = document.getElementById('bizArchitectureChart').getContext('2d');
+      const colors = getChartColors();
+
+      // View A: FY2021–FY2027E Revenue (¥ Billion) Stacked + Operating Margin (%)
+      const trajConfig = {
+        type: 'bar',
+        data: {
+          labels: ['FY21', 'FY22', 'FY23', 'FY24', 'FY25 (过渡期)', 'FY26E (Switch 2)', 'FY27E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '专用游戏机平台营收 (¥十亿)',
+              data: [1700, 1639, 1549, 1577, 1180, 1740, 1980],
+              backgroundColor: '#E60012',
+              borderRadius: 4,
+              stack: 'rev',
+              barThickness: 28,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: 'IP 授权 / 移动 / 乐园营收 (¥十亿)',
+              data: [59, 56, 53, 95, 85, 115, 145],
+              backgroundColor: '#0D9488',
+              borderRadius: 4,
+              stack: 'rev',
+              barThickness: 28,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '综合营业利润率 Operating Margin (%)',
+              data: [36.4, 35.0, 31.5, 31.6, 23.8, 25.5, 28.2],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `${ctx.dataset.label}: ¥${ctx.parsed.y}B`
+                  : `综合营业利润率: ${ctx.parsed.y.toFixed(1)}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              stacked: true,
+              type: 'linear',
+              position: 'left',
+              max: 2400,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 15,
+              max: 42,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#F59E0B', font: { size: 11, weight: '600' }, callback: v => v + '%' }
+            }
+          }
+        }
+      };
+
+      // View B: Digital Software Share Trajectory & Revenue Breakdown
+      const digitalConfig = {
+        type: 'bar',
+        data: {
+          labels: [
+            '软件数字化销售占比 (FY18 → FY26E)',
+            '平台软件销量结构 (第一方 vs 第三方)',
+            '全球区域营收分布 (美洲 / 欧洲 / 日本 / 其他)'
+          ],
+          datasets: [
+            {
+              label: '主导比例 (数字化 54% / 第一方软件 81% / 美洲区 44%)',
+              data: [54, 81, 44],
+              backgroundColor: '#E60012',
+              borderRadius: 5,
+              barThickness: 28
+            },
+            {
+              label: '第二支柱 (实体卡带 46% / 第三方软件 19% / 欧洲区 25%)',
+              data: [46, 19, 25],
+              backgroundColor: '#0D9488',
+              borderRadius: 5,
+              barThickness: 28
+            },
+            {
+              label: '亚洲本土与新兴市场 (日本本土 21% + 亚太其他 10%)',
+              data: [0, 0, 31],
+              backgroundColor: '#3B82F6',
+              borderRadius: 5,
+              barThickness: 28
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label.split(' (')[0]}: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              max: 100,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      };
+
+      if (bizChartInstance) bizChartInstance.destroy();
+      bizChartInstance = new Chart(ctx, currentBizMode === 'trajectory' ? trajConfig : digitalConfig);
+    }
+
+    function switchBizChart(mode) {
+      currentBizMode = mode;
+      const btnTraj = document.getElementById('btn-chart-traj');
+      const btnDigital = document.getElementById('btn-chart-digital');
+      const titleEl = document.getElementById('biz-chart-title');
+      const subEl = document.getElementById('biz-chart-sub');
+
+      if (mode === 'trajectory') {
+        btnTraj.className = 'px-3 py-1.5 rounded-md font-semibold bg-white dark:bg-navy-700 text-nintendo-600 dark:text-nintendo-300 shadow-sm transition';
+        btnDigital.className = 'px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'FY2021–FY2027E 营收规模演进（专用游戏机平台 vs. IP/移动收入）与营业利润率周期';
+        subEl.textContent = 'FY25 经历 Switch 1 末期过渡低谷后，FY26–FY27E 随 Switch 2 装机放量重回 ¥1.85万亿–¥2.10万亿高增周期';
+      } else {
+        btnDigital.className = 'px-3 py-1.5 rounded-md font-semibold bg-white dark:bg-navy-700 text-nintendo-600 dark:text-nintendo-300 shadow-sm transition';
+        btnTraj.className = 'px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '软件数字化销售占比、第一方软件统治力与全球区域收入结构拆解';
+        subEl.textContent = '数字化软件占比稳定在 54%+，第一方软件贡献超 81% 销量，海外市场营收占比高达 79%';
+      }
+      initBizChart();
+    }
+
+    function initRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (radarChartInstance) radarChartInstance.destroy();
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            '第一方常青树 IP 跨代生命力',
+            '综合营业利润率与毛利韧性',
+            '硬件研发成本效率（不亏损补贴）',
+            '合家欢全年龄社交场景渗透',
+            '净现金安全垫与资产负债表健康度'
+          ],
+          datasets: [
+            {
+              label: 'Nintendo (NTDOY)',
+              data: [9.9, 9.4, 9.5, 9.8, 10.0],
+              borderColor: '#E60012',
+              backgroundColor: 'rgba(230, 0, 18, 0.22)',
+              pointBackgroundColor: '#E60012',
+              borderWidth: 2.5
+            },
+            {
+              label: '传统主机双雄 (Sony PS / Xbox)',
+              data: [7.8, 5.8, 5.4, 6.2, 7.2],
+              borderColor: '#3B82F6',
+              backgroundColor: 'rgba(59, 130, 246, 0.14)',
+              pointBackgroundColor: '#3B82F6',
+              borderWidth: 1.8
+            },
+            {
+              label: '移动与 PC 实时服务巨头 (Tencent / NetEase)',
+              data: [7.4, 8.8, 9.0, 6.8, 8.6],
+              borderColor: '#0D9488',
+              backgroundColor: 'rgba(13, 148, 136, 0.12)',
+              pointBackgroundColor: '#0D9488',
+              borderWidth: 1.6,
+              borderDash: [4, 4]
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 10,
+              ticks: { display: false, stepSize: 2 },
+              grid: { color: colors.grid },
+              angleLines: { color: colors.radarAngle },
+              pointLabels: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initCompMarginChart() {
+      const ctx = document.getElementById('compMarginChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (compMarginChartInstance) compMarginChartInstance.destroy();
+      compMarginChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            'Nintendo (NTDOY · 第一方独占+高数字占比)',
+            'Tencent / NetEase (移动与 PC 在线服务)',
+            'Walt Disney (DIS · 乐园+影视+流媒体)',
+            'Microsoft Gaming (MSFT · 订阅+跨平台发行)',
+            'Sony PlayStation (SONY · 高算力主机生态)'
+          ],
+          datasets: [
+            {
+              label: '稳态营业利润率 Operating Margin (%)',
+              data: [29.5, 29.0, 16.2, 16.0, 11.8],
+              backgroundColor: '#E60012',
+              borderRadius: 5,
+              barThickness: 16
+            },
+            {
+              label: '投入资本回报率 ROIC (%)',
+              data: [26.8, 22.5, 9.8, 13.5, 14.2],
+              backgroundColor: '#0D9488',
+              borderRadius: 5,
+              barThickness: 16
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11 }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              max: 35,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => v + '%' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initValuationCycleChart() {
+      const ctx = document.getElementById('valuationCycleChart').getContext('2d');
+      const colors = getChartColors();
+
+      if (valuationCycleChartInstance) valuationCycleChartInstance.destroy();
+      valuationCycleChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['FY2022', 'FY2023', 'FY2024', 'FY2025 (过渡期)', 'FY2026E', 'FY2027E'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '年度自由现金流 Free Cash Flow (¥十亿)',
+              data: [385, 360, 445, 240, 390, 495],
+              backgroundColor: '#10B981',
+              borderRadius: 6,
+              barThickness: 32,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: '扣除净现金后 EV/EBIT 倍数 (Ex-Cash x)',
+              data: [11.5, 12.2, 13.0, 18.8, 14.2, 12.8],
+              borderColor: '#E60012',
+              backgroundColor: '#E60012',
+              borderWidth: 3,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.25,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: colors.text, font: { size: 11, family: 'Inter' }, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y'
+                  ? `年度自由现金流 FCF: ¥${ctx.parsed.y}B`
+                  : `Ex-Cash EV/EBIT 倍数: ${ctx.parsed.y.toFixed(1)}x`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: colors.text, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              max: 600,
+              grid: { color: colors.grid },
+              ticks: { color: colors.text, font: { size: 11 }, callback: v => '¥' + v + 'B' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 8,
+              max: 24,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#E60012', font: { size: 11, weight: '600' }, callback: v => v.toFixed(1) + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValuationCycleChart();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadKpiChecklist();
+      initBizChart();
+      initRadarChart();
+      initCompMarginChart();
+      initValuationCycleChart();
+    });
+  </script>
+</body>
+</html>
