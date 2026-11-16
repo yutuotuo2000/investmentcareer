@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sea Limited (NYSE: SE) | 机构级深度股权研究与行业分析报告</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Google Fonts: Inter, Noto Sans SC, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '"Noto Sans SC"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            sea: {
+              orange: '#EE4D2D',
+              orangeDark: '#D73211',
+              orangeLight: '#FFF1EE',
+              navy: '#0F172A',
+              slateDark: '#0B1120',
+              green: '#00B14F',
+              blue: '#0284C7',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-canvas: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --border-subtle: #E2E8F0;
+      --brand-primary: #EE4D2D;
+      --brand-green: #00B14F;
+      --brand-blue: #0284C7;
+    }
+
+    html.dark {
+      --bg-canvas: #0B1120;
+      --bg-card: #111827;
+      --text-primary: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --border-subtle: #1E293B;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(238, 77, 45, 0.65);
+    }
+
+    /* Card Surface Elevation */
+    .report-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.875rem;
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
+      transition: all 0.2s ease;
+    }
+    html.dark .report-card {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Active Sidebar Nav Item */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(238, 77, 45, 0.22) 0%, rgba(238, 77, 45, 0.04) 100%);
+      border-left: 3px solid #EE4D2D;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    /* Print Styles for Clean Institutional PDF Export */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+      body {
+        background: #FFFFFF !important;
+        color: #0F172A !important;
+      }
+      #sidebar, #mobile-header, #reading-progress-container, .no-print {
+        display: none !important;
+      }
+      #main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .report-card {
+        background: #FFFFFF !important;
+        border: 1px solid #CBD5E1 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+        margin-bottom: 16px !important;
+      }
+      canvas {
+        max-height: 280px !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#EE4D2D]/20 selection:text-[#EE4D2D]">
+
+  <!-- Top Real-Time Reading Progress Bar -->
+  <div id="reading-progress-container" class="fixed top-0 left-0 right-0 z-50 h-1 bg-slate-200/60 dark:bg-slate-800/80">
+    <div id="reading-progress-bar" class="h-full bg-gradient-to-r from-[#EE4D2D] via-[#FF7337] to-[#00B14F] transition-all duration-100" style="width: 0%;"></div>
+  </div>
+
+  <!-- Mobile Top Header -->
+  <header id="mobile-header" class="lg:hidden fixed top-1 left-0 right-0 z-40 bg-[#0F172A]/95 backdrop-blur-md text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-lg bg-[#EE4D2D] flex items-center justify-center font-extrabold text-white tracking-tight shadow-md">SE</div>
+      <div>
+        <div class="text-sm font-bold leading-tight">Sea Limited <span class="text-xs font-mono text-orange-400">NYSE: SE</span></div>
+        <div class="text-[11px] text-slate-400">机构深度股权研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleDarkMode()" aria-label="切换深浅模式" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+        <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button onclick="toggleMobileDrawer()" aria-label="打开导航菜单" class="p-2 rounded-lg bg-[#EE4D2D] text-white font-medium text-xs flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        目录
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Overlay -->
+  <div id="drawer-overlay" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-40 hidden lg:hidden"></div>
+
+  <!-- Fixed 280px Deep Ocean Navy Sidebar -->
+  <aside id="sidebar" class="fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-200 border-r border-slate-800/90 z-50 flex flex-col justify-between overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+    <div class="p-5">
+      <!-- Brand Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#EE4D2D] to-[#D73211] flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-[#EE4D2D]/25">
+            SE
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-white text-base tracking-tight">Sea Limited</span>
+            </div>
+            <div class="flex items-center gap-1.5 mt-0.5">
+              <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-orange-400 border border-slate-700">NYSE: SE</span>
+              <span class="text-[11px] text-emerald-400 font-semibold">BUY / 增持</span>
+            </div>
+          </div>
+        </div>
+        <button onclick="toggleMobileDrawer()" class="lg:hidden text-slate-400 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Core Financial & Operational Snapshot Card -->
+      <div class="mt-4 rounded-xl bg-slate-900/90 border border-slate-800 p-3.5 shadow-inner">
+        <div class="flex items-center justify-between mb-2.5">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">核心财务与运营快照</span>
+          <span class="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>2025A / 2026E
+          </span>
+        </div>
+
+        <div class="space-y-2 text-xs tabular-nums">
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">2025A 集团总营收</span>
+            <span class="font-mono font-bold text-white">$22.1B <span class="text-emerald-400 text-[11px]">(+32.4%)</span></span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">2026E 共识营收</span>
+            <span class="font-mono font-bold text-orange-400">$28.3B <span class="text-slate-400 text-[11px]">(+28.1%)</span></span>
+          </div>
+          <div class="h-px bg-slate-800 my-1"></div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">Shopee 25A GMV</span>
+            <span class="font-mono font-semibold text-white">$126.4B <span class="text-emerald-400 text-[11px]">(+25.8%)</span></span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">Garena 25A 预订额</span>
+            <span class="font-mono font-semibold text-white">$2.74B <span class="text-emerald-400 text-[11px]">(+31.0%)</span></span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">Monee 信贷余额</span>
+            <span class="font-mono font-semibold text-white">$7.65B <span class="text-sky-400 text-[11px]">(NPL 1.2%)</span></span>
+          </div>
+          <div class="h-px bg-slate-800 my-1"></div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">集团 Adj. EBITDA</span>
+            <span class="font-mono font-bold text-emerald-400">$3.28B</span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">净现金及等价物</span>
+            <span class="font-mono font-semibold text-white">$10.4B</span>
+          </div>
+          <div class="pt-1.5 mt-1 border-t border-slate-800/80 flex justify-between items-center text-[11px] font-mono">
+            <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">Fwd P/E: <strong class="text-white">24.2x</strong></span>
+            <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">EV/EBITDA: <strong class="text-white">16.1x</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mt-5 space-y-1" aria-label="报告章节导航">
+        <div class="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-500">深度研究目录</div>
+        <a href="#sec-01" onclick="closeDrawerOnMobile()" class="nav-link active flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-[#EE4D2D] font-bold">01</span>
+          <span>业务架构与三驾马车闭环</span>
+        </a>
+        <a href="#sec-02" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-[#EE4D2D] font-bold">02</span>
+          <span>行业地位与四重核心护城河</span>
+        </a>
+        <a href="#sec-03" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-[#EE4D2D] font-bold">03</span>
+          <span>跨区域竞争格局横向矩阵</span>
+        </a>
+        <a href="#sec-04" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-[#EE4D2D] font-bold">04</span>
+          <span>财务质变与 SOTP 估值体系</span>
+        </a>
+        <a href="#sec-05" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-[#EE4D2D] font-bold">05</span>
+          <span>投资决策、三情景与风险剖析</span>
+        </a>
+        <a href="#sec-06" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-[#EE4D2D] font-bold">06</span>
+          <span>季度基本面跟踪 KPI 核查表</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Bottom Controls: Theme Toggle & Print PDF -->
+    <div class="p-4 border-t border-slate-800 bg-slate-950/60 space-y-2">
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="toggleDarkMode()" class="flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 dark:hidden text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <svg class="w-3.5 h-3.5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <span id="theme-label">深色护眼</span>
+        </button>
+        <button onclick="window.print()" class="flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-lg bg-[#EE4D2D] hover:bg-[#D73211] text-xs font-semibold text-white shadow-sm transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <span>导出 PDF</span>
+        </button>
+      </div>
+      <div class="text-[10px] text-center text-slate-500 font-mono">
+        INSTITUTIONAL EQUITY RESEARCH • SG
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="lg:ml-[280px] pt-20 lg:pt-8 pb-16 px-4 sm:px-6 lg:px-10 max-w-6xl mx-auto">
+
+    <!-- Institutional Report Hero Header -->
+    <div class="report-card p-6 sm:p-8 mb-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-[#EE4D2D]/10 via-[#00B14F]/5 to-transparent rounded-bl-full pointer-events-none"></div>
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-[#EE4D2D] text-white tracking-wide">INSTITUTIONAL COVERAGE</span>
+          <span class="px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">NYSE: SE • 新加坡总部</span>
+          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">评级：增持 (OUTPERFORM)</span>
+        </div>
+        <div class="text-xs font-mono text-slate-500 dark:text-slate-400">
+          报告基准期：2025A 业绩落地 & 2026E 盈利爆发周期
+        </div>
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-8">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+            Sea Limited (SE)：东南亚数字经济绝对霸主，三驾马车共振驱动盈利与估值双击
+          </h1>
+          <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            穿越东南亚电商补贴战与游戏周期低谷，Sea 已完成从“规模扩张”向“高质量规模化盈利”的结构性跃迁。依托 <strong class="text-[#EE4D2D]">Shopee</strong> 48%+ 市场份额与自建物流 SPX Express 的成本护城河、<strong class="text-[#0284C7]">Garena</strong>《Free Fire》长青现金流回暖，以及 <strong class="text-[#00B14F]">Monee</strong>（原 SeaMoney）依托电商场景的高 ROE 消费信贷爆发，集团进入自由现金流（FCF）指数级释放通道。
+          </p>
+        </div>
+
+        <div class="lg:col-span-4 bg-slate-50 dark:bg-slate-900/90 rounded-xl p-4 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">12–18个月基准目标价 (SOTP)</div>
+          <div class="mt-1 flex items-baseline gap-2.5 tabular-nums">
+            <span class="text-3xl sm:text-4xl font-extrabold font-mono text-[#EE4D2D]">$168.00</span>
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400">+32.5% 上行空间</span>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-2 text-xs tabular-nums">
+            <div>
+              <div class="text-slate-400">牛市情景 (Bull)</div>
+              <div class="font-mono font-bold text-slate-800 dark:text-slate-200">$205.00</div>
+            </div>
+            <div>
+              <div class="text-slate-400">熊市情景 (Bear)</div>
+              <div class="font-mono font-bold text-slate-800 dark:text-slate-200">$102.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top 4 Executive KPI Strip -->
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 tabular-nums">
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">2025A 集团总营收</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-slate-900 dark:text-white">$22.12B</div>
+          <div class="mt-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">YoY +32.4% (全面提速)</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">Shopee 综合 Take Rate</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-[#EE4D2D]">12.8%</div>
+          <div class="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">广告+佣金双轮驱动</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">Monee 信贷余额 / NPL</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-[#00B14F]">$7.65B</div>
+          <div class="mt-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">90天+不良率仅 1.2%</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">2026E 自由现金流 (FCF)</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-[#0284C7]">$3.95B</div>
+          <div class="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">净现金储备超 $10.4B</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 01: 业务与收入架构（三驾马车协同闭环） -->
+    <!-- ========================================================= -->
+    <section id="sec-01" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#EE4D2D] text-white font-mono font-bold text-sm">01</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">业务与收入架构：三驾马车生态协同闭环</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">电商高频流量变现、游戏高毛利现金牛与数字金融高 ROE 交叉变现飞轮</p>
+        </div>
+      </div>
+
+      <!-- Three Pillars Detailed Breakdown Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <!-- Pillar 1: Shopee -->
+        <div class="report-card p-5 border-t-4 border-t-[#EE4D2D]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#EE4D2D]">核心增长引擎 • ~68% 营收</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-[#EE4D2D]/10 text-[#EE4D2D] font-semibold">Shopee 电商</span>
+          </div>
+          <h3 class="mt-2 text-lg font-bold text-slate-900 dark:text-white">东南亚绝对龙头 + 巴西黑马</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            2025全年 GMV 突破 <strong>$126.4B</strong>（YoY +25.8%），稳居印尼、泰国、越南、马来西亚、新加坡及台湾第一。巴西市场连续多季度实现正贡献利润（Contribution Margin Positive），成为第二增长曲线。
+          </p>
+          <ul class="mt-3 space-y-1.5 text-xs text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 pt-3">
+            <li class="flex justify-between"><span>综合货币化率 (Take Rate)</span><strong class="font-mono text-slate-900 dark:text-white">12.8% (+160bps)</strong></li>
+            <li class="flex justify-between"><span>广告收入占 GMV 比例</span><strong class="font-mono text-[#EE4D2D]">~2.3% (持续爬坡)</strong></li>
+            <li class="flex justify-between"><span>SPX Express 自有履约占比</span><strong class="font-mono text-emerald-600 dark:text-emerald-400">&gt;70% (亚洲核心区)</strong></li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2: Garena -->
+        <div class="report-card p-5 border-t-4 border-t-[#0284C7]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#0284C7]">高毛利现金牛 • ~13% 营收</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-[#0284C7]/10 text-[#0284C7] font-semibold">Garena 娱乐</span>
+          </div>
+          <h3 class="mt-2 text-lg font-bold text-slate-900 dark:text-white">《Free Fire》长青复苏与新游管线</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            全球国民级战术竞技手游《Free Fire》通过轻量化包体适配新兴市场中低端机型，季度活跃用户（QAU）重返 <strong>6.5亿+</strong> 峰值区间，2025全年预订额（Bookings）强势反弹至 <strong>$2.74B</strong>。
+          </p>
+          <ul class="mt-3 space-y-1.5 text-xs text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 pt-3">
+            <li class="flex justify-between"><span>2025A Bookings 增速</span><strong class="font-mono text-emerald-600 dark:text-emerald-400">+31.0% YoY</strong></li>
+            <li class="flex justify-between"><span>Adj. EBITDA / Bookings 率</span><strong class="font-mono text-[#0284C7]">56.4% (极高利润率)</strong></li>
+            <li class="flex justify-between"><span>付费用户转化率 (PU Ratio)</span><strong class="font-mono text-slate-900 dark:text-white">~8.2%</strong></li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3: Monee (SeaMoney) -->
+        <div class="report-card p-5 border-t-4 border-t-[#00B14F]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#00B14F]">高ROE变现飞轮 • ~19% 营收</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-[#00B14F]/10 text-[#00B14F] font-semibold">Monee 金融</span>
+          </div>
+          <h3 class="mt-2 text-lg font-bold text-slate-900 dark:text-white">消费信贷爆发与数字银行矩阵</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            依托 Shopee 亿级买家与千万卖家高频交易数据，以近乎零边际获客成本推广 <strong>SPayLater</strong>（先买后付）及 <strong>BCL/SCL 现金贷</strong>，新加坡 MariBank 与印尼 SeaBank 存款规模突破 $4.5B。
+          </p>
+          <ul class="mt-3 space-y-1.5 text-xs text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 pt-3">
+            <li class="flex justify-between"><span>活跃信贷本金余额</span><strong class="font-mono text-slate-900 dark:text-white">$7.65B (+48% YoY)</strong></li>
+            <li class="flex justify-between"><span>90天+ 逾期不良率 (NPL)</span><strong class="font-mono text-[#00B14F]">1.2% (行业最优风控)</strong></li>
+            <li class="flex justify-between"><span>2025A 分部 Adj. EBITDA</span><strong class="font-mono text-emerald-600 dark:text-emerald-400">$1.12B+</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Interactive Dual-View Chart Card -->
+      <div class="report-card p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h3 id="sec1-chart-title" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+              2021–2026E 三大业务板块营收堆叠与集团 Adj. EBITDA 利润率演进
+            </h3>
+            <p id="sec1-chart-subtitle" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              单位：十亿美元 ($B) | 清晰呈现 2023 年盈利拐点后的营收加速与利润率扩张双升通道
+            </p>
+          </div>
+          <!-- View Switcher Buttons -->
+          <div class="inline-flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1 self-start sm:self-auto no-print">
+            <button id="btn-view-a" onclick="switchSec1Chart('A')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-[#EE4D2D] shadow-xs transition">
+              视图 A：集团营收与利润率
+            </button>
+            <button id="btn-view-b" onclick="switchSec1Chart('B')" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">
+              视图 B：GMV区域与信贷规模
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-5 relative h-[320px] sm:h-[360px] w-full">
+          <canvas id="sec1Chart"></canvas>
+        </div>
+
+        <!-- Analytical Takeaway Strip -->
+        <div id="sec1-insight-box" class="mt-4 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          <strong class="text-[#EE4D2D]">核心洞察：</strong> 2024–2026E 期间，Shopee 贡献集团约 70% 的增量营收，而 Monee 成为利润率贡献斜率最陡峭的板块（Adj. EBITDA 率超 28%），推动集团综合 Adj. EBITDA 率由 2022 年的负值稳步迈向 2026E 的 <strong>15.6%</strong>。
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 02: 行业地位与四重核心护城河 -->
+    <!-- ========================================================= -->
+    <section id="sec-02" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#EE4D2D] text-white font-mono font-bold text-sm">02</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">行业地位与四重核心护城河</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">为何国际巨头（TikTok Shop、Lazada、Temu）难以颠覆 Sea 的底层结构性壁垒</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left 7 Cols: 4 Moats Cards -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-[#EE4D2D]/10 text-[#EE4D2D] flex items-center justify-center font-mono font-bold text-sm mb-3">M1</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">碎片化多语言市场的本地化壁垒</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              东南亚涵盖 11 国、超 6.8 亿人口，语言、宗教、支付习惯及海关政策高度割裂。Shopee 深耕十年建立的本土运营团队、斋月/双十一本地大促心智及超 1,200 万活跃长尾中小卖家生态，构筑了极高的货架心智与搜索入口壁垒。
+            </p>
+          </div>
+
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-[#0284C7]/10 text-[#0284C7] flex items-center justify-center font-mono font-bold text-sm mb-3">M2</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">SPX Express 自建端到端履约护城河</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              东南亚岛屿众多、第三方物流基建薄弱。Sea 重资本投入建成的 <strong>SPX Express</strong> 覆盖数千个分拣中心与数万个自提点，将亚洲市场单票履约成本同比降低 <strong>15%–20%</strong>，次日达/两日达覆盖率遥遥领先，是盈利反转的第一功臣。
+            </p>
+          </div>
+
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-[#00B14F]/10 text-[#00B14F] flex items-center justify-center font-mono font-bold text-sm mb-3">M3</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">电商高频场景 + 数字金融风控闭环</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              东南亚银行卡渗透率不足 50%，传统征信缺失。Monee 凭借 Shopee 实时消费频次、收货地址稳定性及卖家流水数据训练专属 AI 风控模型，实现了 <strong>1.2% 的超低 90天+ NPL</strong>，同时 SPayLater 显著提升了电商客单价（AOV +25%）与复购率。
+            </p>
+          </div>
+
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center font-mono font-bold text-sm mb-3">M4</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Garena 现金牛反哺与资产负债表厚度</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Garena 每年稳定产生超 <strong>$15亿</strong> 经营现金流，叠加集团账面逾 <strong>$10.4B 净现金</strong>，使 Sea 在面对竞争对手发起阶段性补贴战时拥有充足弹药进行精准反击，而无需依赖外部股权稀释融资。
+            </p>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: 5-Dimension Quantitative Radar Chart -->
+        <div class="lg:col-span-5 report-card p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">五维竞争壁垒量化雷达图</h3>
+              <span class="text-[11px] font-mono text-slate-400">满分 10 分制</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              对比 Sea Limited、TikTok Shop、Lazada 与拉美龙头 MercadoLibre
+            </p>
+          </div>
+
+          <div class="my-3 relative h-[290px] w-full">
+            <canvas id="moatRadarChart"></canvas>
+          </div>
+
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/70 p-3 rounded-lg border border-slate-200/70 dark:border-slate-800">
+            <strong>雷达解读：</strong> Sea 在<span class="text-[#EE4D2D] font-semibold">东南亚履约密度 (9.4)</span>、<span class="text-[#EE4D2D] font-semibold">生态金融协同 (9.2)</span>与<span class="text-[#EE4D2D] font-semibold">本地化深度 (9.5)</span>三项核心指标上均位列第一，综合护城河均衡度媲美拉美王者 MercadoLibre。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 03: 同行竞争格局横向对比 -->
+    <!-- ========================================================= -->
+    <section id="sec-03" class="scroll-mt-24 mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 rounded-lg bg-[#EE4D2D] text-white font-mono font-bold text-sm">03</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">跨区域竞争格局横向对比矩阵</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">覆盖东南亚电商、拉美跨区域巨头及数字金融/游戏同业多维对标</p>
+          </div>
+        </div>
+
+        <!-- Interactive Category Filter Pills -->
+        <div class="flex flex-wrap gap-1.5 no-print" id="comp-filter-group">
+          <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#EE4D2D] text-white shadow-xs transition">
+            全部阵营 (6)
+          </button>
+          <button onclick="filterCompetitors('sea-ecom')" data-filter="sea-ecom" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#EE4D2D] transition">
+            东南亚电商对手
+          </button>
+          <button onclick="filterCompetitors('latam')" data-filter="latam" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#EE4D2D] transition">
+            拉美跨区域对手
+          </button>
+          <button onclick="filterCompetitors('fintech-game')" data-filter="fintech-game" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#EE4D2D] transition">
+            金融与游戏同业
+          </button>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix Table -->
+      <div class="report-card overflow-hidden mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-slate-100/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 font-semibold">
+                <th class="py-3.5 px-4 whitespace-nowrap">公司 / 平台</th>
+                <th class="py-3.5 px-4 whitespace-nowrap">核心覆盖市场</th>
+                <th class="py-3.5 px-4 whitespace-nowrap">商业模式定位</th>
+                <th class="py-3.5 px-4 whitespace-nowrap text-right">营收增速 (YoY)</th>
+                <th class="py-3.5 px-4 whitespace-nowrap text-right">Adj. EBITDA 率</th>
+                <th class="py-3.5 px-4 whitespace-nowrap">核心壁垒 / 优劣势</th>
+                <th class="py-3.5 px-4 whitespace-nowrap text-right">远期估值参考</th>
+              </tr>
+            </thead>
+            <tbody id="competitor-tbody" class="divide-y divide-slate-200/80 dark:divide-slate-800 tabular-nums">
+              <!-- Populated via JS for smooth filtering -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Peer Growth & Margin Bar Chart -->
+      <div class="report-card p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          <div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">新兴市场核心平台营收增速与利润率横向对标 (2025A/2026E)</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Sea Limited 在保持 ~30% 顶级增速的同时，盈利能力已迅速向拉美标杆 MercadoLibre 靠拢</p>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start">单位：%</span>
+        </div>
+        <div class="relative h-[280px] w-full">
+          <canvas id="peerBarChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 04: 财务健康度与 SOTP 估值体系 -->
+    <!-- ========================================================= -->
+    <section id="sec-04" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#EE4D2D] text-white font-mono font-bold text-sm">04</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">财务健康度与 SOTP（分部加总）估值体系</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">GAAP 净利润连续多季度稳健释放，三大板块独立重估释放隐含价值</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+        <!-- Left 7 Cols: SOTP Valuation Breakdown Table -->
+        <div class="lg:col-span-7 report-card p-5 sm:p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+              <div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">2026E 分部加总估值模型 (SOTP Valuation)</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">基于 6.18 亿完全稀释股本（ADS）测算</p>
+              </div>
+              <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono font-bold text-xs">
+                Target: $168.00 / ADS
+              </span>
+            </div>
+
+            <div class="mt-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs tabular-nums">
+                <thead>
+                  <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                    <th class="py-2.5 pr-2">业务板块</th>
+                    <th class="py-2.5 px-2">2026E 核心指标</th>
+                    <th class="py-2.5 px-2">估值方法与乘数</th>
+                    <th class="py-2.5 px-2 text-right">隐含估值 ($B)</th>
+                    <th class="py-2.5 pl-2 text-right">每股价值 ($)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80">
+                  <tr>
+                    <td class="py-3 pr-2 font-bold text-[#EE4D2D]">Shopee 电子商务</td>
+                    <td class="py-3 px-2 font-mono">GMV $154.0B<br><span class="text-[11px] text-slate-400">Adj. EBITDA $1.75B</span></td>
+                    <td class="py-3 px-2">0.40x EV/GMV<br><span class="text-[11px] text-slate-400">(对标 MELI 折价 45%)</span></td>
+                    <td class="py-3 px-2 text-right font-mono font-bold text-slate-900 dark:text-white">$61.60B</td>
+                    <td class="py-3 pl-2 text-right font-mono font-semibold text-slate-700 dark:text-slate-300">$99.68</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-2 font-bold text-[#00B14F]">Monee 数字金融</td>
+                    <td class="py-3 px-2 font-mono">Adj. EBITDA $1.48B<br><span class="text-[11px] text-slate-400">净利润 ~$1.05B</span></td>
+                    <td class="py-3 px-2">18.0x 2026E P/E<br><span class="text-[11px] text-slate-400">(参考 Nu / 金融科技)</span></td>
+                    <td class="py-3 px-2 text-right font-mono font-bold text-slate-900 dark:text-white">$18.90B</td>
+                    <td class="py-3 pl-2 text-right font-mono font-semibold text-slate-700 dark:text-slate-300">$30.58</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 pr-2 font-bold text-[#0284C7]">Garena 数字娱乐</td>
+                    <td class="py-3 px-2 font-mono">Bookings $3.05B<br><span class="text-[11px] text-slate-400">Adj. EBITDA $1.68B</span></td>
+                    <td class="py-3 px-2">8.5x EV/EBITDA<br><span class="text-[11px] text-slate-400">(成熟现金牛保守乘数)</span></td>
+                    <td class="py-3 px-2 text-right font-mono font-bold text-slate-900 dark:text-white">$14.28B</td>
+                    <td class="py-3 pl-2 text-right font-mono font-semibold text-slate-700 dark:text-slate-300">$23.11</td>
+                  </tr>
+                  <tr class="bg-slate-50/70 dark:bg-slate-800/40">
+                    <td class="py-3 pr-2 font-semibold text-slate-700 dark:text-slate-200">(+) 集团净现金储备</td>
+                    <td class="py-3 px-2 font-mono">总现金 $12.8B - 债务 $2.4B</td>
+                    <td class="py-3 px-2">1.0x 账面净现金</td>
+                    <td class="py-3 px-2 text-right font-mono font-bold text-emerald-600 dark:text-emerald-400">+$10.40B</td>
+                    <td class="py-3 pl-2 text-right font-mono font-semibold text-emerald-600 dark:text-emerald-400">+$16.83</td>
+                  </tr>
+                  <tr class="bg-slate-50/70 dark:bg-slate-800/40">
+                    <td class="py-3 pr-2 font-semibold text-slate-500">(-) 未分配总部开支</td>
+                    <td class="py-3 px-2 font-mono">年化 ~$0.14B</td>
+                    <td class="py-3 px-2">10.0x 资本化折减</td>
+                    <td class="py-3 px-2 text-right font-mono text-rose-500">-$1.36B</td>
+                    <td class="py-3 pl-2 text-right font-mono text-rose-500">-$2.20</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr class="border-t-2 border-slate-300 dark:border-slate-600 bg-[#EE4D2D]/5 font-bold text-sm">
+                    <td class="py-3 pr-2 text-slate-900 dark:text-white" colspan="3">合计合理股权价值 (Total Implied Equity Value)</td>
+                    <td class="py-3 px-2 text-right font-mono text-[#EE4D2D]">$103.82B</td>
+                    <td class="py-3 pl-2 text-right font-mono text-[#EE4D2D]">$168.00</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>估值安全边际提示：</strong> 即使给予 Garena 仅 8.5 倍低估值、Monee 18 倍市盈率，Shopee 隐含的 0.40x EV/GMV 仍显著低于拉美同业 MercadoLibre（约 0.85x–1.0x EV/GMV），随着 Shopee 营业利润率向 3%–4% 迈进，估值倍数具备显著重估空间。
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: FCF Explosion & Valuation Digestion Dual-Axis Chart -->
+        <div class="lg:col-span-5 report-card p-5 sm:p-6 flex flex-col justify-between">
+          <div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">2022–2026E 自由现金流爆发与估值消化</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              集团 FCF 指数级扩张驱动远期 EV/EBITDA 快速下探至 16x 区间
+            </p>
+          </div>
+
+          <div class="my-4 relative h-[285px] w-full">
+            <canvas id="fcfValuationChart"></canvas>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5 text-xs tabular-nums">
+            <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <div class="text-slate-500 dark:text-slate-400 text-[11px]">2025A → 2026E FCF 增长</div>
+              <div class="font-mono font-bold text-emerald-600 dark:text-emerald-400 text-sm mt-0.5">$2.92B → $3.95B (+35%)</div>
+            </div>
+            <div class="p-3 rounded-lg bg-sky-500/10 border border-sky-500/20">
+              <div class="text-slate-500 dark:text-slate-400 text-[11px]">净现金占当前市值比</div>
+              <div class="font-mono font-bold text-sky-600 dark:text-sky-400 text-sm mt-0.5">~13.3% (极强防御垫)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 05: 投资决策与三情景推演（Bull / Base / Bear） -->
+    <!-- ========================================================= -->
+    <section id="sec-05" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#EE4D2D] text-white font-mono font-bold text-sm">05</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">投资决策与三情景推演（Bull / Base / Bear）</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">12–18个月目标价概率加权推演与四大核心下行风险深度剖析</p>
+        </div>
+      </div>
+
+      <!-- Three Scenario Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 tabular-nums">
+        <!-- Bull Case -->
+        <div class="report-card p-5 border-t-4 border-t-emerald-500 relative">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">乐观情景 (BULL CASE)</span>
+            <span class="font-mono text-xs font-bold text-slate-500">概率权重：25%</span>
+          </div>
+          <div class="mt-3 flex items-baseline gap-2">
+            <span class="text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">$205.00</span>
+            <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">(+61.7%)</span>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <p><strong>核心假设：</strong> 东南亚竞争格局进一步出清，Shopee Take Rate 突破 13.8%，巴西实现规模化营业利润；《Free Fire》维持双位数 Bookings 增长且新游爆款落地；Monee 信贷余额突破 $10B 且 NPL 保持 1.3% 以内。</p>
+            <p class="text-emerald-700 dark:text-emerald-400 font-medium">触发催化剂：集团宣布启动 $15亿+ 股票回购计划；Shopee 连续两季 EBITDA 率超预期。</p>
+          </div>
+        </div>
+
+        <!-- Base Case -->
+        <div class="report-card p-5 border-t-4 border-t-[#EE4D2D] ring-2 ring-[#EE4D2D]/20 relative">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#EE4D2D]/15 text-[#EE4D2D]">基准情景 (BASE CASE)</span>
+            <span class="font-mono text-xs font-bold text-[#EE4D2D]">概率权重：55%</span>
+          </div>
+          <div class="mt-3 flex items-baseline gap-2">
+            <span class="text-3xl font-extrabold font-mono text-[#EE4D2D]">$168.00</span>
+            <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">(+32.5%)</span>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <p><strong>核心假设：</strong> Shopee 2026E GMV 稳健增长 20%–22%，Take Rate 维持 12.8%–13.2% 温和上升，SPX Express 单票成本继续下探；Garena 稳健贡献 $1.6B+ EBITDA；Monee 保持 35%+ 信贷增速。</p>
+            <p class="text-[#EE4D2D] font-medium">触发催化剂：2026 财年季度财报持续兑现 GAAP 净利润环比扩张与市场份额稳固。</p>
+          </div>
+        </div>
+
+        <!-- Bear Case -->
+        <div class="report-card p-5 border-t-4 border-t-rose-500 relative">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">悲观情景 (BEAR CASE)</span>
+            <span class="font-mono text-xs font-bold text-slate-500">概率权重：20%</span>
+          </div>
+          <div class="mt-3 flex items-baseline gap-2">
+            <span class="text-3xl font-extrabold font-mono text-rose-600 dark:text-rose-400">$102.00</span>
+            <span class="text-xs font-mono text-rose-500 font-semibold">(-19.6%)</span>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <p><strong>核心假设：</strong> TikTok Shop 与 Temu 在东南亚及巴西重启激进价格补贴战，迫使 Shopee 销售与营销费用率（S&M）大幅反弹；东南亚宏观消费疲软导致 Monee 90天+ NPL 攀升至 2.5% 以上。</p>
+            <p class="text-rose-600 dark:text-rose-400 font-medium">触发催化剂：Shopee 单季 Adj. EBITDA 重新转负，或印尼/巴西出台针对数字信贷的严厉利率上限新规。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Four Core Risk Deep-Dive Grid -->
+      <div class="report-card p-5 sm:p-6">
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4">四大核心下行风险深度剖析与缓释机制</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">1. 东南亚与巴西电商补贴战重启风险</span>
+              <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono font-semibold">高关注度</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              TikTok Shop 依托内容电商流量优势，Temu 以全托管低价跨境切入，若竞争对手牺牲利润率换取份额，可能阶段性压制 Shopee 佣金提价节奏。<strong>缓释因素：</strong>印尼等国对跨境低价倾销实施严格进口管制（如 $100 门槛），且 Shopee 货架复购与本土履约成本明显优于直播电商。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">2. 消费信贷周期波动与监管利率上限</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-semibold">中高关注</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              Monee 贷款余额已超 $7.6B，若东南亚中低收入群体可支配收入承压，或印尼 OJK 等监管机构进一步下调消费贷年化利率（APR）上限，将压缩净息差（NIM）。<strong>缓释因素：</strong>Monee 贷款平均久期极短（3–6个月），风控模型可按周动态收紧授信额度。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">3. 单一核心爆款《Free Fire》生命周期依赖</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-semibold">中等关注</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              Garena 超过 75% 的预订额仍源自运营逾 8 年的《Free Fire》，若玩家审美疲劳且自研新游未能接棒，游戏现金流可能面临自然衰减。<strong>缓释因素：</strong>游戏板块在集团整体估值占比已降至 ~14%，市场对其预期已高度保守。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">4. 新兴市场本币对美元汇率波动风险</span>
+              <span class="px-2 py-0.5 rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 font-mono font-semibold">常规宏观风险</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              Sea 以美元计价财务报表，而绝大部分收入源自印尼盾（IDR）、巴西雷亚尔（BRL）、泰铢（THB）及越南盾（VND）。美联储利率路径变化引发的新兴市场货币贬值会直接折损美元计价表观增速。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 06: 季度基本面跟踪 KPI 交互核查清单 -->
+    <!-- ========================================================= -->
+    <section id="sec-06" class="scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 rounded-lg bg-[#EE4D2D] text-white font-mono font-bold text-sm">06</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">季度基本面跟踪 KPI 交互核查清单</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">买方投研财报季跟踪框架（勾选状态自动本地持久化保存）</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 no-print">
+          <span id="kpi-progress-text" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+            已核查 0 / 6 项
+          </span>
+          <button onclick="resetChecklist()" class="text-xs text-slate-500 hover:text-[#EE4D2D] underline transition">
+            重置清单
+          </button>
+        </div>
+      </div>
+
+      <div class="report-card p-5 sm:p-6">
+        <div id="kpi-checklist-container" class="space-y-3">
+          <!-- Populated dynamically with localStorage sync -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Disclaimer -->
+    <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400 dark:text-slate-500 space-y-1">
+      <p>免责声明：本报告仅为机构级商业模式与股权研究框架展示，所有财务预测与估值模型基于公开信息及行业研究假设推演，不构成任何具体证券买卖要约或投资建议。</p>
+      <p class="font-mono">Sea Limited (NYSE: SE) Equity Research Dashboard • Built for Institutional Analysis</p>
+    </footer>
+  </main>
+
+  <script>
+    // =========================================================================
+    // 1. STATE & DATA REPOSITORY
+    // =========================================================================
+    let sec1ChartInstance = null;
+    let moatRadarChartInstance = null;
+    let peerBarChartInstance = null;
+    let fcfValuationChartInstance = null;
+    let currentSec1View = 'A';
+
+    // Competitor Matrix Dataset
+    const competitorsData = [
+      {
+        name: 'Sea Limited (Shopee/Monee)',
+        ticker: 'NYSE: SE',
+        category: ['sea-ecom', 'latam', 'fintech-game'],
+        highlight: true,
+        markets: '东南亚 6 国 + 台湾 + 巴西',
+        model: '货架电商 + 自建物流 + 消费金融 + 游戏',
+        growth: '+32.4%',
+        ebitdaMargin: '14.8%',
+        moat: '东南亚 48%+ 份额第一；SPX 自建物流单票成本最低；电商+金融风控闭环',
+        valuation: 'Fwd P/E 24.2x | EV/EBITDA 16.1x'
+      },
+      {
+        name: 'TikTok Shop (ByteDance)',
+        ticker: '非上市 / 字节跳动',
+        category: ['sea-ecom'],
+        highlight: false,
+        markets: '印尼、泰国、越南、马来、美欧',
+        model: '短视频/直播兴趣电商 + 达人带货',
+        growth: '+45.0%+',
+        ebitdaMargin: '微利 / 盈亏平衡',
+        moat: '极强内容流量分发算法与冲动消费转化；但退货率较高、货架复购与自建履约弱于 Shopee',
+        valuation: '母公司隐含 EV/EBITDA ~12x'
+      },
+      {
+        name: 'Lazada (Alibaba Intl)',
+        ticker: 'NYSE: BABA',
+        category: ['sea-ecom'],
+        highlight: false,
+        markets: '东南亚 6 国',
+        model: 'B2C 品牌商城 + 跨境电商业态',
+        growth: '+14.5%',
+        ebitdaMargin: '刚实现单季微利',
+        moat: '背靠阿里跨境供应链与品牌商资源；但本土化决策链条较长，东南亚份额被 Shopee 持续拉开',
+        valuation: 'AIDC 板块约 1.2x EV/Sales'
+      },
+      {
+        name: 'MercadoLibre',
+        ticker: 'NASDAQ: MELI',
+        category: ['latam'],
+        highlight: false,
+        markets: '巴西、墨西哥、阿根廷等拉美 18 国',
+        model: '拉美绝对电商龙头 + Mercado Pago 金融',
+        growth: '+34.0%',
+        ebitdaMargin: '16.5%',
+        moat: '拉美电商+金融生态标杆，壁垒极深；Shopee 巴西正以高性价比长尾商品差异化切入',
+        valuation: 'Fwd P/E 36.5x | EV/EBITDA 21.8x'
+      },
+      {
+        name: 'Nu Holdings (Nubank)',
+        ticker: 'NYSE: NU',
+        category: ['latam', 'fintech-game'],
+        highlight: false,
+        markets: '巴西、墨西哥、哥伦比亚',
+        model: '纯数字银行 + 信用卡与消费信贷',
+        growth: '+38.2%',
+        ebitdaMargin: '32.0% (ROE ~28%)',
+        moat: '超 1 亿拉美客户，极低获客成本；对标 Monee 数字银行及消费信贷业务估值锚',
+        valuation: 'Fwd P/E 21.5x | P/B 7.8x'
+      },
+      {
+        name: 'Grab Holdings',
+        ticker: 'NASDAQ: GRAB',
+        category: ['sea-ecom', 'fintech-game'],
+        highlight: false,
+        markets: '东南亚 8 国',
+        model: '网约车出行 + 外卖配送 + GXS 数字银行',
+        growth: '+18.5%',
+        ebitdaMargin: '11.2%',
+        moat: '东南亚本地生活即时配送龙头；在数字钱包与银行领域与 Monee 形成直接竞争',
+        valuation: 'EV/EBITDA 24.5x'
+      }
+    ];
+
+    // Quarterly KPI Checklist Items
+    const kpiChecklistItems = [
+      {
+        id: 'kpi-1',
+        category: 'Shopee 增长与份额',
+        title: 'Shopee 季度 GMV 同比增速 ≥ 20% 且核心市场（印尼/泰国/巴西）份额稳固',
+        benchmark: '2025A 基准：+25.8% YoY | 警戒线：< 15% YoY'
+      },
+      {
+        id: 'kpi-2',
+        category: 'Shopee 货币化率',
+        title: 'Shopee 综合 Take Rate 维持 12.5%+ 向上趋势，高毛利广告收入占 GMV 比例持续提升',
+        benchmark: '2025A 基准：12.8%（广告占比 ~2.3%）'
+      },
+      {
+        id: 'kpi-3',
+        category: '物流降本护城河',
+        title: 'SPX Express 自有物流履约占比超 70%，亚洲市场单票履约成本环比继续下降',
+        benchmark: '核心指标：Shopee 单位经济效益 (UE) 每单贡献利润持续扩大'
+      },
+      {
+        id: 'kpi-4',
+        category: 'Garena 现金流引擎',
+        title: 'Garena 季度预订额（Bookings）保持正增长，Adj. EBITDA / Bookings 率稳守 52% 以上',
+        benchmark: '2025A 基准：Bookings $2.74B | 利润率 56.4%'
+      },
+      {
+        id: 'kpi-5',
+        category: 'Monee 信贷与风控',
+        title: 'Monee 贷款本金余额增速 ≥ 30%，且 90天+ 逾期不良率（NPL）严格控制在 1.5% 以内',
+        benchmark: '2025A 基准：余额 $7.65B | 90天+ NPL 1.2%'
+      },
+      {
+        id: 'kpi-6',
+        category: '集团盈利与现金流',
+        title: '集团连续实现 GAAP 净利润正增长，自由现金流（FCF）转化率维持高位且净现金持续增厚',
+        benchmark: '2025A 基准：Adj. EBITDA $3.28B | 净现金 $10.4B'
+      }
+    ];
+
+    // =========================================================================
+    // 2. THEME & NAVIGATION INTERACTIVITY
+    // =========================================================================
+    function getThemeColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        isDark,
+        textColor: isDark ? '#CBD5E1' : '#475569',
+        titleColor: isDark ? '#F8FAFC' : '#0F172A',
+        gridColor: isDark ? 'rgba(51, 65, 85, 0.45)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngleColor: isDark ? 'rgba(71, 85, 105, 0.5)' : 'rgba(203, 213, 225, 0.8)'
+      };
+    }
+
+    function toggleDarkMode() {
+      const htmlEl = document.documentElement;
+      htmlEl.classList.toggle('dark');
+      const isDark = htmlEl.classList.contains('dark');
+      localStorage.setItem('se_report_theme', isDark ? 'dark' : 'light');
+      document.getElementById('theme-label').textContent = isDark ? '亮色模式' : '深色护眼';
+      renderAllCharts();
+    }
+
+    function toggleMobileDrawer() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('drawer-overlay');
+      const isClosed = sidebar.classList.contains('-translate-x-full');
+      if (isClosed) {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    function closeDrawerOnMobile() {
+      if (window.innerWidth < 1024) {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('drawer-overlay').classList.add('hidden');
+      }
+    }
+
+    // Scroll Progress & Active Section Highlighting
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('reading-progress-bar').style.width = `${progress}%`;
+
+      const sections = ['sec-01', 'sec-02', 'sec-03', 'sec-04', 'sec-05', 'sec-06'];
+      let currentId = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 160) {
+          currentId = id;
+        }
+      }
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // =========================================================================
+    // 3. CHART.JS VISUALIZATIONS
+    // =========================================================================
+    function switchSec1Chart(view) {
+      currentSec1View = view;
+      const btnA = document.getElementById('btn-view-a');
+      const btnB = document.getElementById('btn-view-b');
+      const titleEl = document.getElementById('sec1-chart-title');
+      const subEl = document.getElementById('sec1-chart-subtitle');
+      const insightEl = document.getElementById('sec1-insight-box');
+
+      if (view === 'A') {
+        btnA.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-[#EE4D2D] shadow-xs transition';
+        btnB.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '2021–2026E 三大业务板块营收堆叠与集团 Adj. EBITDA 利润率演进';
+        subEl.textContent = '单位：十亿美元 ($B) | 清晰呈现 2023 年盈利拐点后的营收加速与利润率扩张双升通道';
+        insightEl.innerHTML = '<strong class="text-[#EE4D2D]">核心洞察：</strong> 2024–2026E 期间，Shopee 贡献集团约 70% 的增量营收，而 Monee 成为利润率贡献斜率最陡峭的板块（Adj. EBITDA 率超 28%），推动集团综合 Adj. EBITDA 率由 2022 年的负值稳步迈向 2026E 的 <strong>15.6%</strong>。';
+      } else {
+        btnB.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-[#EE4D2D] shadow-xs transition';
+        btnA.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = 'Shopee GMV 区域结构（东南亚 vs 巴西）与 Monee 信贷余额扩张';
+        subEl.textContent = '单位：十亿美元 ($B) | 巴西市场占比稳步提升，Monee 信贷资产规模呈指数级扩容';
+        insightEl.innerHTML = '<strong class="text-[#00B14F]">生态飞轮洞察：</strong> 2021–2026E 期间，Shopee 巴西 GMV 占比从不足 4% 跃升至 <strong>13.5%+</strong> 且实现正向盈利；同期 Monee 活跃信贷余额从 $1.5B 扩张至 <strong>$10.2B (2026E)</strong>，形成高粘性双引擎。';
+      }
+      renderSec1Chart();
+    }
+
+    function renderSec1Chart() {
+      const ctx = document.getElementById('sec1Chart').getContext('2d');
+      const theme = getThemeColors();
+      if (sec1ChartInstance) sec1ChartInstance.destroy();
+
+      if (currentSec1View === 'A') {
+        sec1ChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['2021A', '2022A', '2023A', '2024A', '2025A', '2026E'],
+            datasets: [
+              {
+                label: 'Shopee 电子商务 ($B)',
+                data: [5.1, 7.3, 9.0, 12.4, 15.1, 19.3],
+                backgroundColor: '#EE4D2D',
+                borderRadius: 4,
+                stack: 'rev',
+                yAxisID: 'y'
+              },
+              {
+                label: 'Monee 数字金融 ($B)',
+                data: [0.5, 1.2, 1.8, 2.4, 4.1, 5.8],
+                backgroundColor: '#00B14F',
+                borderRadius: 4,
+                stack: 'rev',
+                yAxisID: 'y'
+              },
+              {
+                label: 'Garena 数字娱乐 ($B)',
+                data: [4.3, 3.9, 2.2, 1.9, 2.9, 3.2],
+                backgroundColor: '#0284C7',
+                borderRadius: 4,
+                stack: 'rev',
+                yAxisID: 'y'
+              },
+              {
+                label: '集团 Adj. EBITDA 利润率 (%)',
+                data: [-5.9, -7.1, 9.2, 11.8, 14.8, 15.6],
+                type: 'line',
+                borderColor: '#F59E0B',
+                backgroundColor: '#F59E0B',
+                borderWidth: 3,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                tension: 0.3,
+                yAxisID: 'y1'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { color: theme.textColor, font: { family: 'Inter, Noto Sans SC', size: 12 }, usePointStyle: true }
+              },
+              tooltip: {
+                backgroundColor: '#0F172A',
+                titleFont: { family: 'JetBrains Mono', size: 12 },
+                bodyFont: { family: 'Inter, Noto Sans SC', size: 12 }
+              }
+            },
+            scales: {
+              x: {
+                stacked: true,
+                grid: { display: false },
+                ticks: { color: theme.textColor, font: { family: 'JetBrains Mono', weight: '600' } }
+              },
+              y: {
+                stacked: true,
+                position: 'left',
+                title: { display: true, text: '营业收入 ($B)', color: theme.textColor, font: { size: 11 } },
+                grid: { color: theme.gridColor },
+                ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => '$' + v + 'B' }
+              },
+              y1: {
+                position: 'right',
+                min: -12,
+                max: 22,
+                title: { display: true, text: 'Adj. EBITDA 率 (%)', color: '#F59E0B', font: { size: 11 } },
+                grid: { drawOnChartArea: false },
+                ticks: { color: '#F59E0B', font: { family: 'JetBrains Mono' }, callback: v => v + '%' }
+              }
+            }
+          }
+        });
+      } else {
+        sec1ChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['2021A', '2022A', '2023A', '2024A', '2025A', '2026E'],
+            datasets: [
+              {
+                label: 'Shopee 亚洲核心市场 GMV ($B)',
+                data: [60.2, 68.5, 71.2, 89.4, 110.2, 133.2],
+                backgroundColor: '#EE4D2D',
+                borderRadius: 4,
+                stack: 'gmv',
+                yAxisID: 'y'
+              },
+              {
+                label: 'Shopee 巴西及拉美 GMV ($B)',
+                data: [2.3, 5.0, 7.3, 11.1, 16.2, 20.8],
+                backgroundColor: '#FB923C',
+                borderRadius: 4,
+                stack: 'gmv',
+                yAxisID: 'y'
+              },
+              {
+                label: 'Monee 活跃信贷余额 ($B)',
+                data: [1.5, 2.1, 3.1, 5.1, 7.65, 10.2],
+                type: 'line',
+                borderColor: '#00B14F',
+                backgroundColor: 'rgba(0, 177, 79, 0.15)',
+                fill: true,
+                borderWidth: 3,
+                pointRadius: 5,
+                tension: 0.3,
+                yAxisID: 'y1'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { color: theme.textColor, font: { family: 'Inter, Noto Sans SC', size: 12 }, usePointStyle: true }
+              }
+            },
+            scales: {
+              x: {
+                stacked: true,
+                grid: { display: false },
+                ticks: { color: theme.textColor, font: { family: 'JetBrains Mono', weight: '600' } }
+              },
+              y: {
+                stacked: true,
+                position: 'left',
+                title: { display: true, text: 'Shopee GMV ($B)', color: theme.textColor, font: { size: 11 } },
+                grid: { color: theme.gridColor },
+                ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => '$' + v + 'B' }
+              },
+              y1: {
+                position: 'right',
+                title: { display: true, text: 'Monee 信贷余额 ($B)', color: '#00B14F', font: { size: 11 } },
+                grid: { drawOnChartArea: false },
+                ticks: { color: '#00B14F', font: { family: 'JetBrains Mono' }, callback: v => '$' + v + 'B' }
+              }
+            }
+          }
+        });
+      }
+    }
+
+    function renderMoatRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const theme = getThemeColors();
+      if (moatRadarChartInstance) moatRadarChartInstance.destroy();
+
+      moatRadarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['履约物流密度', '生态金融协同', '本地化运营深度', '现金流造血能力', '跨区域扩张潜力'],
+          datasets: [
+            {
+              label: 'Sea Limited (SE)',
+              data: [9.4, 9.2, 9.5, 8.9, 8.6],
+              borderColor: '#EE4D2D',
+              backgroundColor: 'rgba(238, 77, 45, 0.22)',
+              borderWidth: 2.5,
+              pointBackgroundColor: '#EE4D2D'
+            },
+            {
+              label: 'MercadoLibre (MELI)',
+              data: [9.3, 9.5, 9.4, 9.2, 7.2],
+              borderColor: '#0284C7',
+              backgroundColor: 'rgba(2, 132, 199, 0.12)',
+              borderWidth: 2,
+              pointBackgroundColor: '#0284C7'
+            },
+            {
+              label: 'TikTok Shop',
+              data: [6.8, 6.2, 7.6, 7.8, 9.1],
+              borderColor: '#00B14F',
+              backgroundColor: 'rgba(0, 177, 79, 0.10)',
+              borderWidth: 2,
+              borderDash: [4, 4],
+              pointBackgroundColor: '#00B14F'
+            },
+            {
+              label: 'Lazada (Alibaba)',
+              data: [7.9, 6.5, 7.1, 6.4, 6.5],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.08)',
+              borderWidth: 1.5,
+              pointBackgroundColor: '#94A3B8'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: theme.textColor, font: { size: 11, family: 'Inter, Noto Sans SC' }, boxWidth: 12, padding: 10 }
+            }
+          },
+          scales: {
+            r: {
+              min: 4,
+              max: 10,
+              ticks: { stepSize: 2, display: false },
+              grid: { color: theme.gridColor },
+              angleLines: { color: theme.radarAngleColor },
+              pointLabels: { color: theme.titleColor, font: { size: 11, weight: '600', family: 'Inter, Noto Sans SC' } }
+            }
+          }
+        }
+      });
+    }
+
+    function renderPeerBarChart() {
+      const ctx = document.getElementById('peerBarChart').getContext('2d');
+      const theme = getThemeColors();
+      if (peerBarChartInstance) peerBarChartInstance.destroy();
+
+      peerBarChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Sea Limited (SE)', 'MercadoLibre (MELI)', 'Nu Holdings (NU)', 'Grab Holdings (GRAB)', 'Lazada (BABA Intl)'],
+          datasets: [
+            {
+              label: '营收同比增速 YoY (%)',
+              data: [32.4, 34.0, 38.2, 18.5, 14.5],
+              backgroundColor: '#EE4D2D',
+              borderRadius: 5
+            },
+            {
+              label: 'Adj. EBITDA 利润率 (%)',
+              data: [14.8, 16.5, 32.0, 11.2, 2.8],
+              backgroundColor: '#0284C7',
+              borderRadius: 5
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { color: theme.textColor, font: { size: 12, family: 'Inter, Noto Sans SC' }, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: theme.textColor, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              grid: { color: theme.gridColor },
+              ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => v + '%' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderFcfValuationChart() {
+      const ctx = document.getElementById('fcfValuationChart').getContext('2d');
+      const theme = getThemeColors();
+      if (fcfValuationChartInstance) fcfValuationChartInstance.destroy();
+
+      fcfValuationChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['2022A', '2023A', '2024A', '2025A', '2026E'],
+          datasets: [
+            {
+              label: '自由现金流 FCF ($B)',
+              data: [-1.15, 1.38, 2.15, 2.92, 3.95],
+              backgroundColor: ctx => (ctx.raw < 0 ? '#F43F5E' : '#00B14F'),
+              borderRadius: 5,
+              yAxisID: 'y'
+            },
+            {
+              label: '远期 EV/EBITDA 倍数 (x)',
+              data: [42.0, 28.5, 22.4, 18.6, 16.1],
+              type: 'line',
+              borderColor: '#EE4D2D',
+              backgroundColor: '#EE4D2D',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.3,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { color: theme.textColor, font: { size: 11, family: 'Inter, Noto Sans SC' }, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: theme.textColor, font: { family: 'JetBrains Mono', weight: '600' } }
+            },
+            y: {
+              position: 'left',
+              grid: { color: theme.gridColor },
+              ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => '$' + v + 'B' }
+            },
+            y1: {
+              position: 'right',
+              min: 10,
+              max: 48,
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#EE4D2D', font: { family: 'JetBrains Mono' }, callback: v => v + 'x' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderAllCharts() {
+      renderSec1Chart();
+      renderMoatRadarChart();
+      renderPeerBarChart();
+      renderFcfValuationChart();
+    }
+
+    // =========================================================================
+    // 4. COMPETITOR MATRIX FILTERING
+    // =========================================================================
+    function filterCompetitors(filterKey) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === filterKey) {
+          btn.className = 'comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#EE4D2D] text-white shadow-xs transition';
+        } else {
+          btn.className = 'comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#EE4D2D] transition';
+        }
+      });
+
+      const tbody = document.getElementById('competitor-tbody');
+      const filtered = filterKey === 'all'
+        ? competitorsData
+        : competitorsData.filter(item => item.category.includes(filterKey));
+
+      tbody.innerHTML = filtered.map(item => `
+        <tr class="${item.highlight ? 'bg-[#EE4D2D]/5 dark:bg-[#EE4D2D]/10 font-medium' : 'hover:bg-slate-50 dark:hover:bg-slate-800/40'} transition">
+          <td class="py-3.5 px-4 whitespace-nowrap">
+            <div class="font-bold ${item.highlight ? 'text-[#EE4D2D]' : 'text-slate-900 dark:text-white'}">${item.name}</div>
+            <div class="text-[11px] font-mono text-slate-400">${item.ticker}</div>
+          </td>
+          <td class="py-3.5 px-4 text-xs text-slate-600 dark:text-slate-300 max-w-[160px]">${item.markets}</td>
+          <td class="py-3.5 px-4 text-xs text-slate-600 dark:text-slate-300 max-w-[170px]">${item.model}</td>
+          <td class="py-3.5 px-4 text-right font-mono font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">${item.growth}</td>
+          <td class="py-3.5 px-4 text-right font-mono font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap">${item.ebitdaMargin}</td>
+          <td class="py-3.5 px-4 text-xs text-slate-600 dark:text-slate-300 min-w-[220px] leading-relaxed">${item.moat}</td>
+          <td class="py-3.5 px-4 text-right font-mono text-xs text-slate-700 dark:text-slate-300 whitespace-nowrap">${item.valuation}</td>
+        </tr>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 5. QUARTERLY KPI CHECKLIST WITH LOCALSTORAGE
+    // =========================================================================
+    const STORAGE_KEY_KPI = 'se_quarterly_kpi_checklist_v1';
+
+    function loadChecklistState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY_KPI);
+        return saved ? JSON.parse(saved) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveChecklistState(state) {
+      try {
+        localStorage.setItem(STORAGE_KEY_KPI, JSON.stringify(state));
+      } catch (e) {
+        // Ignore storage quota errors
+      }
+    }
+
+    function toggleChecklistItem(id) {
+      const state = loadChecklistState();
+      state[id] = !state[id];
+      saveChecklistState(state);
+      renderChecklist();
+    }
+
+    function resetChecklist() {
+      saveChecklistState({});
+      renderChecklist();
+    }
+
+    function renderChecklist() {
+      const state = loadChecklistState();
+      const container = document.getElementById('kpi-checklist-container');
+      let checkedCount = 0;
+
+      container.innerHTML = kpiChecklistItems.map(item => {
+        const isChecked = !!state[item.id];
+        if (isChecked) checkedCount++;
+        return `
+          <label onclick="toggleChecklistItem('${item.id}')" class="flex items-start gap-3.5 p-3.5 rounded-xl border cursor-pointer transition select-none ${
+            isChecked
+              ? 'bg-emerald-500/5 border-emerald-500/40 dark:bg-emerald-950/25'
+              : 'bg-slate-50/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 hover:border-[#EE4D2D]/60'
+          }">
+            <div class="mt-0.5 w-5 h-5 rounded-md flex items-center justify-center border transition shrink-0 ${
+              isChecked
+                ? 'bg-[#00B14F] border-[#00B14F] text-white'
+                : 'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600'
+            }">
+              ${isChecked ? '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>' : ''}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#EE4D2D]/10 text-[#EE4D2D]">${item.category}</span>
+                <span class="text-xs sm:text-sm font-semibold ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'}">
+                  ${item.title}
+                </span>
+              </div>
+              <div class="mt-1 text-xs font-mono text-slate-500 dark:text-slate-400">
+                ${item.benchmark}
+              </div>
+            </div>
+          </label>
+        `;
+      }).join('');
+
+      document.getElementById('kpi-progress-text').textContent = `已核查 ${checkedCount} / ${kpiChecklistItems.length} 项`;
+    }
+
+    // =========================================================================
+    // 6. INITIALIZATION ON WINDOW LOAD
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      // Restore saved theme if dark
+      const savedTheme = localStorage.getItem('se_report_theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-label').textContent = '亮色模式';
+      }
+
+      filterCompetitors('all');
+      renderChecklist();
+      renderAllCharts();
+    });
+  </script>
+</body>
+</html>

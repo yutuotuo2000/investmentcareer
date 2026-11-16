@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chubb Limited (NYSE: CB) | 机构级深度股权研究与行业分析报告</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Google Fonts: Inter, Noto Sans SC, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '"Noto Sans SC"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            chubb: {
+              royal: '#1E3A8A',
+              royalLight: '#2563EB',
+              amber: '#B45309',
+              amberBright: '#D97706',
+              navy: '#0F172A',
+              emerald: '#059669'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-canvas: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --border-subtle: #E2E8F0;
+      --brand-royal: #1E3A8A;
+      --brand-amber: #B45309;
+    }
+
+    html.dark {
+      --bg-canvas: #0B1120;
+      --bg-card: #111827;
+      --text-primary: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --border-subtle: #1E293B;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(180, 83, 9, 0.65);
+    }
+
+    /* Report Card Surface */
+    .report-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 0.875rem;
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
+      transition: all 0.2s ease;
+    }
+    html.dark .report-card {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Active Sidebar Nav Item */
+    .nav-link.active {
+      background: linear-gradient(90deg, rgba(217, 119, 6, 0.24) 0%, rgba(30, 58, 138, 0.12) 100%);
+      border-left: 3px solid #D97706;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    /* Print Styles for Clean Institutional PDF Export */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+      body {
+        background: #FFFFFF !important;
+        color: #0F172A !important;
+      }
+      #sidebar, #mobile-header, #reading-progress-container, .no-print {
+        display: none !important;
+      }
+      #main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .report-card {
+        background: #FFFFFF !important;
+        border: 1px solid #CBD5E1 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+        margin-bottom: 16px !important;
+      }
+      canvas {
+        max-height: 280px !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#B45309]/20 selection:text-[#B45309]">
+
+  <!-- Top Real-Time Reading Progress Bar (#B45309) -->
+  <div id="reading-progress-container" class="fixed top-0 left-0 right-0 z-50 h-1 bg-slate-200/70 dark:bg-slate-800/80">
+    <div id="reading-progress-bar" class="h-full bg-gradient-to-r from-[#1E3A8A] via-[#B45309] to-[#D97706] transition-all duration-100" style="width: 0%;"></div>
+  </div>
+
+  <!-- Mobile Top Header -->
+  <header id="mobile-header" class="lg:hidden fixed top-1 left-0 right-0 z-40 bg-[#0F172A]/95 backdrop-blur-md text-white border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#B45309] flex items-center justify-center font-extrabold text-white tracking-tight shadow-md border border-amber-400/30">CB</div>
+      <div>
+        <div class="text-sm font-bold leading-tight">Chubb Limited <span class="text-xs font-mono text-amber-400">NYSE: CB</span></div>
+        <div class="text-[11px] text-slate-400">安达保险 • 机构深度研究报告</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleDarkMode()" aria-label="切换深浅模式" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+        <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+      <button onclick="toggleMobileDrawer()" aria-label="打开导航菜单" class="p-2 rounded-lg bg-[#B45309] text-white font-medium text-xs flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        目录
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Overlay -->
+  <div id="drawer-overlay" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-40 hidden lg:hidden"></div>
+
+  <!-- Fixed 280px Deep Ocean Navy Sidebar (#0F172A) -->
+  <aside id="sidebar" class="fixed top-0 left-0 bottom-0 w-[280px] bg-[#0F172A] text-slate-200 border-r border-slate-800/90 z-50 flex flex-col justify-between overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+    <div class="p-5">
+      <!-- Brand Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1E3A8A] via-[#1D4ED8] to-[#B45309] flex items-center justify-center text-white font-extrabold text-base shadow-lg border border-amber-400/30">
+            CB
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-white text-base tracking-tight">Chubb Limited</span>
+            </div>
+            <div class="flex items-center gap-1.5 mt-0.5">
+              <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-amber-400 border border-slate-700">NYSE: CB</span>
+              <span class="text-[11px] text-emerald-400 font-semibold">BUY / 增持</span>
+            </div>
+          </div>
+        </div>
+        <button onclick="toggleMobileDrawer()" class="lg:hidden text-slate-400 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Core Financial & Underwriting Snapshot Card -->
+      <div class="mt-4 rounded-xl bg-slate-900/95 border border-slate-800 p-3.5 shadow-inner">
+        <div class="flex items-center justify-between mb-2.5">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">核心财务与承保快照</span>
+          <span class="inline-flex items-center gap-1 text-[10px] font-mono text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
+            S&P: AA 评级
+          </span>
+        </div>
+
+        <div class="space-y-2 text-xs tabular-nums">
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">总市值 (Market Cap)</span>
+            <span class="font-mono font-bold text-white">~$115.4B</span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">P&C 综合成本率</span>
+            <span class="font-mono font-bold text-emerald-400">86.6% <span class="text-[10px] text-slate-400">(行业最优)</span></span>
+          </div>
+          <div class="h-px bg-slate-800 my-1"></div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">Core Operating ROE</span>
+            <span class="font-mono font-semibold text-white">~14.2%</span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">有形股本回报 ROTE</span>
+            <span class="font-mono font-semibold text-amber-400">~21.5%</span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">净保费收入 (NWP)</span>
+            <span class="font-mono font-semibold text-white">~$52.4B</span>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <span class="text-slate-400">投资组合 / 再投资率</span>
+            <span class="font-mono font-semibold text-sky-400">$150B+ / 5.1%+</span>
+          </div>
+          <div class="h-px bg-slate-800 my-1"></div>
+          <div class="pt-0.5 flex justify-between items-center text-[11px] font-mono">
+            <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">Fwd P/E: <strong class="text-white">11.5x</strong></span>
+            <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">P/TBV: <strong class="text-white">1.9x</strong></span>
+          </div>
+          <div class="text-[10px] text-center text-amber-400/90 bg-amber-950/40 border border-amber-800/40 rounded py-1 font-medium">
+            ★ 连续 30+ 年股息增长（标普股息贵族）
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mt-5 space-y-1" aria-label="报告章节导航">
+        <div class="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-500">深度研究目录</div>
+        <a href="#sec-01" onclick="closeDrawerOnMobile()" class="nav-link active flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-amber-400 font-bold">01</span>
+          <span>业务架构与六大分部拆解</span>
+        </a>
+        <a href="#sec-02" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-amber-400 font-bold">02</span>
+          <span>行业地位与四重核心护城河</span>
+        </a>
+        <a href="#sec-03" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-amber-400 font-bold">03</span>
+          <span>全球同行竞争格局横向矩阵</span>
+        </a>
+        <a href="#sec-04" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-amber-400 font-bold">04</span>
+          <span>财务健康度与复利估值体系</span>
+        </a>
+        <a href="#sec-05" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-amber-400 font-bold">05</span>
+          <span>三情景估值推演与风险矩阵</span>
+        </a>
+        <a href="#sec-06" onclick="closeDrawerOnMobile()" class="nav-link flex items-center gap-2.5 px-3 py-2.5 rounded-r-lg text-xs text-slate-300 hover:bg-slate-800/70 hover:text-white transition">
+          <span class="font-mono text-amber-400 font-bold">06</span>
+          <span>季度核心 KPI 交互核查台</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Bottom Controls: Theme Toggle & Print PDF -->
+    <div class="p-4 border-t border-slate-800 bg-slate-950/60 space-y-2">
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="toggleDarkMode()" class="flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition">
+          <svg class="w-3.5 h-3.5 dark:hidden text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <svg class="w-3.5 h-3.5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <span id="theme-label">深色护眼</span>
+        </button>
+        <button onclick="window.print()" class="flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-lg bg-[#B45309] hover:bg-[#92400E] text-xs font-semibold text-white shadow-sm transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <span>导出 PDF</span>
+        </button>
+      </div>
+      <div class="text-[10px] text-center text-slate-500 font-mono">
+        GLOBAL P&C EQUITY RESEARCH • ZURICH / NY
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="lg:ml-[280px] pt-20 lg:pt-8 pb-16 px-4 sm:px-6 lg:px-10 max-w-6xl mx-auto">
+
+    <!-- Institutional Report Hero Header -->
+    <div class="report-card p-6 sm:p-8 mb-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-[#1E3A8A]/10 via-[#B45309]/8 to-transparent rounded-bl-full pointer-events-none"></div>
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-[#1E3A8A] text-white tracking-wide">INSTITUTIONAL COVERAGE</span>
+          <span class="px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">NYSE: CB • 瑞士苏黎世总部</span>
+          <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-[#B45309] dark:text-amber-400 border border-amber-200 dark:border-amber-800/60">评级：增持 / 核心配置 (OUTPERFORM)</span>
+        </div>
+        <div class="text-xs font-mono text-slate-500 dark:text-slate-400">
+          报告基准：全球最大上市财险巨头 • 复利防御典范
+        </div>
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-8">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+            安达保险 Chubb Limited (CB)：极致承保纪律与 $150B 浮存金双轮驱动的百年复利机器
+          </h1>
+          <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            作为全球市值最大的上市财产与意外伤害保险（P&C）公司，Chubb 凭借跨越保险周期的 <strong class="text-[#1E3A8A] dark:text-blue-400">86.6% 顶级综合成本率</strong>（Combined Ratio）、北美商业险与超高净值个人险（Masterpiece）的统治力，叠加 <strong class="text-[#B45309] dark:text-amber-400">5.1%+ 固定收益再投资收益率</strong> 与控股华泰保险带来的亚洲高增长引擎，构建了全市场罕见的“低波动、高 ROTE（~21.5%）、持续净值复利”护城河。
+          </p>
+        </div>
+
+        <div class="lg:col-span-4 bg-slate-50 dark:bg-slate-900/90 rounded-xl p-4 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">12–18个月基准目标价 (Base Target)</div>
+          <div class="mt-1 flex items-baseline gap-2.5 tabular-nums">
+            <span class="text-3xl sm:text-4xl font-extrabold font-mono text-[#1E3A8A] dark:text-blue-400">$298.00</span>
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400">+9% (总回报 ~11%)</span>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-2 text-xs tabular-nums">
+            <div>
+              <div class="text-slate-400">乐观情景 (Bull)</div>
+              <div class="font-mono font-bold text-emerald-600 dark:text-emerald-400">$335.00 (+22%)</div>
+            </div>
+            <div>
+              <div class="text-slate-400">悲观情景 (Bear)</div>
+              <div class="font-mono font-bold text-rose-600 dark:text-rose-400">$235.00 (-14%)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top 4 Executive KPI Strip -->
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 tabular-nums">
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">P&C 综合成本率</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">86.6%</div>
+          <div class="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">承保利润率高达 13.4%</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">核心有形股本回报 (ROTE)</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-[#1E3A8A] dark:text-blue-400">21.5%</div>
+          <div class="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">Core ROE 稳定 ~14.2%</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">净保费收入 (NWP)</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-slate-900 dark:text-white">$52.4B</div>
+          <div class="mt-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">全球 54 国多元保费池</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/70">
+          <div class="text-xs text-slate-500 dark:text-slate-400">投资组合与再投资率</div>
+          <div class="mt-1 text-xl sm:text-2xl font-extrabold font-mono text-[#B45309] dark:text-amber-400">$150B+</div>
+          <div class="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-300">新购债券收益率 ~5.1%+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 01: 业务与收入架构（承保利润与浮存金投资双引擎） -->
+    <!-- ========================================================= -->
+    <section id="sec-01" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#1E3A8A] text-white font-mono font-bold text-sm">01</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">业务与收入架构：承保利润与浮存金投资双引擎</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">六大全球报告分部协同运作，兼顾欧美现金牛稳定性与亚洲新兴市场成长性</p>
+        </div>
+      </div>
+
+      <!-- Six Operating Segments Grid (3x2) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        <!-- Segment 1 -->
+        <div class="report-card p-4 border-t-4 border-t-[#1E3A8A]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#1E3A8A] dark:text-blue-400">第一大核心 • ~41% NWP</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-[#1E3A8A]/10 text-[#1E3A8A] dark:text-blue-300 font-semibold">CR ~83.5%</span>
+          </div>
+          <h3 class="mt-1.5 text-base font-bold text-slate-900 dark:text-white">1. 北美商业险 (NA Commercial)</h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            集团最大利润压舱石，覆盖大型跨国企业、中型市场（Middle Market）及中小微企业的财产、责任、金融责任及网络风险险种，具备极强的定制化核保与费率定价主导权。
+          </p>
+        </div>
+
+        <!-- Segment 2 -->
+        <div class="report-card p-4 border-t-4 border-t-[#0284C7]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#0284C7]">海外增长支柱 • ~26% NWP</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-[#0284C7]/10 text-[#0284C7] font-semibold">CR ~85.2%</span>
+          </div>
+          <h3 class="mt-1.5 text-base font-bold text-slate-900 dark:text-white">2. 海外一般保险 (Overseas General)</h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            业务横跨亚太、欧洲、英国及拉丁美洲 50 余国，涵盖商业财产险、意外与健康险（A&H）及个人消费险，是公司向高增速新兴市场渗透的核心载体。
+          </p>
+        </div>
+
+        <!-- Segment 3 -->
+        <div class="report-card p-4 border-t-4 border-t-[#B45309]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-[#B45309] dark:text-amber-400">超高净值护城河 • ~13% NWP</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-amber-500/10 text-[#B45309] dark:text-amber-400 font-semibold">Masterpiece</span>
+          </div>
+          <h3 class="mt-1.5 text-base font-bold text-slate-900 dark:text-white">3. 北美个人险 (NA Personal P&C)</h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            旗舰品牌 <strong>Chubb Masterpiece®</strong> 统治北美高净值与超高净值（HNW/UHNW）豪宅、艺术品、游艇及私人收藏品保险市场，客户年度续保率常年高于 95%。
+          </p>
+        </div>
+
+        <!-- Segment 4 -->
+        <div class="report-card p-4 border-t-4 border-t-emerald-600">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">亚洲长坡厚雪 • ~12% NWP</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold">华泰并表</span>
+          </div>
+          <h3 class="mt-1.5 text-base font-bold text-slate-900 dark:text-white">4. 人寿保险 (Life Insurance)</h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            聚焦亚太区高利润保障型寿险（韩国、泰国、越南、印尼、台湾等），并通过持有逾 <strong>85% 股权控股中国华泰保险集团</strong>，锁定长期内含价值（EV）复利。
+          </p>
+        </div>
+
+        <!-- Segment 5 -->
+        <div class="report-card p-4 border-t-4 border-t-indigo-600">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400">全美市占第一 • ~6% NWP</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold">Rain & Hail</span>
+          </div>
+          <h3 class="mt-1.5 text-base font-bold text-slate-900 dark:text-white">5. 北美农业险 (NA Agricultural)</h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            旗下 <strong>Rain and Hail</strong> 为全美最大农作物保险承保商，依托联邦农作物保险计划（MPCI）分担机制，与金融市场周期高度低相关，提供优质分散化收益。
+          </p>
+        </div>
+
+        <!-- Segment 6 -->
+        <div class="report-card p-4 border-t-4 border-t-slate-600">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-600 dark:text-slate-300">逆周期调节器 • ~2% NWP</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-500/10 text-slate-600 dark:text-slate-300 font-semibold">Chubb Tempest Re</span>
+          </div>
+          <h3 class="mt-1.5 text-base font-bold text-slate-900 dark:text-white">6. 全球再保险 (Global Reinsurance)</h3>
+          <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            通过 <strong>Chubb Tempest Re</strong> 面向全球直保公司提供巨灾及特种再保险保障，在再保险费率硬市场（Hard Market）周期中灵活扩大承保敞口捕捉超额利差。
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Dual-View Chart Card -->
+      <div class="report-card p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h3 id="sec1-chart-title" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+              2021–2026E 净保费收入 (NWP) 扩张与综合成本率 (Combined Ratio) 剪刀差
+            </h3>
+            <p id="sec1-chart-subtitle" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              单位：十亿美元 ($B) 与百分比 (%) | 保费持续双位数稳健增长的同时，综合成本率稳定压制在 86%–87% 黄金区间
+            </p>
+          </div>
+          <!-- View Switcher Buttons -->
+          <div class="inline-flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1 self-start sm:self-auto no-print">
+            <button id="btn-view-a" onclick="switchSec1Chart('A')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-[#1E3A8A] dark:text-amber-400 shadow-xs transition">
+              视图 A：NWP 增长与综合成本率
+            </button>
+            <button id="btn-view-b" onclick="switchSec1Chart('B')" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">
+              视图 B：六大分部保费与承保利润率
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-5 relative h-[320px] sm:h-[360px] w-full">
+          <canvas id="sec1Chart"></canvas>
+        </div>
+
+        <!-- Analytical Takeaway Strip -->
+        <div id="sec1-insight-box" class="mt-4 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          <strong class="text-[#1E3A8A] dark:text-blue-400">承保剪刀差解析：</strong> 2021–2026E 期间，Chubb 净保费收入（NWP）由 $37.9B 稳步攀升至 <strong>$56.2B (2026E)</strong>，与此同时 P&C 综合成本率始终控制在 <strong>86.5%–89.1%</strong>（显著低于 100% 盈亏线），意味着公司无需依赖投资收益即可每年仅靠承保端创造超 <strong>$60亿</strong> 税前承保利润。
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 02: 行业地位与四重核心护城河 -->
+    <!-- ========================================================= -->
+    <section id="sec-02" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#1E3A8A] text-white font-mono font-bold text-sm">02</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">行业地位与四重核心护城河</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Chubb 如何在同质化严重的传统保险业中创造超越同业 800–1000bps 的长期承保超额收益</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left 7 Cols: 4 Moats Cards -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-[#1E3A8A]/10 text-[#1E3A8A] dark:text-blue-400 flex items-center justify-center font-mono font-bold text-sm mb-3">M1</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">极致严苛的承保纪律与周期定价权</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              CEO Evan Greenberg 确立了“宁可舍弃保费规模、绝不牺牲承保利润”的铁律。依靠数十年积累的精算数据库，Chubb 在软市场果断收缩低收益敞口，在硬市场迅速提价，跨周期稳定维持 <strong>85%–88%</strong> 综合成本率（行业均值 96%–99%）。
+            </p>
+          </div>
+
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-[#B45309]/10 text-[#B45309] dark:text-amber-400 flex items-center justify-center font-mono font-bold text-sm mb-3">M2</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">54国全球化牌照网络与高净值壁垒</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              拥有全球最完整的跨国企业保险服务网络（Multinational Program），能为世界 500 强跨国公司提供全球保单无缝合规出单；同时北美 Masterpiece 在超高净值个人客群中拥有近乎垄断的理赔口碑与高转换成本。
+            </p>
+          </div>
+
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-emerald-600/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-mono font-bold text-sm mb-3">M3</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">亚洲结构性增长引擎（华泰+亚太寿险）</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              通过收购 Cigna 亚太业务及增持控股<strong>中国华泰保险集团（&gt;85%股权）</strong>，Chubb 亚洲区保费占比已提升至约 <strong>20%</strong>，成为欧美成熟财险巨头中唯一拥有高成长亚洲寿险与健康险第二曲线的稀缺标的。
+            </p>
+          </div>
+
+          <div class="report-card p-5">
+            <div class="w-9 h-9 rounded-lg bg-sky-600/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-mono font-bold text-sm mb-3">M4</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">$150B+ 浮存金与高利率票息重置红利</h3>
+            <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              投资组合规模超 <strong>$1,500 亿美元</strong>（85%+ 为平均评级 A 级的高流动性投资级债券），久期约 4.5–5 年。随着早期低息存量债券逐步到期，资金持续以 <strong>5.1%+</strong> 新购收益率再投资，推动税前净投资收益（NII）突破 <strong>$6.5B/年</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: 5-Dimension Quantitative Radar Chart -->
+        <div class="lg:col-span-5 report-card p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">五维护城河量化对比雷达图</h3>
+              <span class="text-[11px] font-mono text-slate-400">满分 10 分制</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              对比 Chubb (CB)、传统美系财险同行与区域性保险公司
+            </p>
+          </div>
+
+          <div class="my-3 relative h-[290px] w-full">
+            <canvas id="moatRadarChart"></canvas>
+          </div>
+
+          <div class="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/70 p-3 rounded-lg border border-slate-200/70 dark:border-slate-800">
+            <strong>雷达解读：</strong> Chubb 在<span class="text-[#1E3A8A] dark:text-blue-400 font-semibold">承保定价纪律 (9.7)</span>、<span class="text-[#B45309] dark:text-amber-400 font-semibold">全球多币种牌照 (9.5)</span>与<span class="text-[#1E3A8A] dark:text-blue-400 font-semibold">亚洲增长期权 (9.0)</span>三大维度全面领先传统美系同行，真正实现“全天候”稳健复利。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 03: 同行竞争格局横向对比 -->
+    <!-- ========================================================= -->
+    <section id="sec-03" class="scroll-mt-24 mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 rounded-lg bg-[#1E3A8A] text-white font-mono font-bold text-sm">03</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">全球同行竞争格局横向对比矩阵</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">对标美欧日七大顶级保险集团的承保效率、有形股本回报（ROTE）与估值水平</p>
+          </div>
+        </div>
+
+        <!-- Interactive Category Filter Pills -->
+        <div class="flex flex-wrap gap-1.5 no-print" id="comp-filter-group">
+          <button onclick="filterCompetitors('all')" data-filter="all" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#1E3A8A] text-white shadow-xs transition">
+            全部阵营 (7)
+          </button>
+          <button onclick="filterCompetitors('commercial')" data-filter="commercial" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#1E3A8A] transition">
+            商业P&C龙头
+          </button>
+          <button onclick="filterCompetitors('personal')" data-filter="personal" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#1E3A8A] transition">
+            综合财险与个人险
+          </button>
+          <button onclick="filterCompetitors('global')" data-filter="global" class="comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#1E3A8A] transition">
+            全球多元化险企
+          </button>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix Table -->
+      <div class="report-card overflow-hidden mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-slate-100/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 font-semibold">
+                <th class="py-3.5 px-4 whitespace-nowrap">保险集团</th>
+                <th class="py-3.5 px-4 whitespace-nowrap">业务重心与区域</th>
+                <th class="py-3.5 px-4 whitespace-nowrap text-right">综合成本率 (CR)</th>
+                <th class="py-3.5 px-4 whitespace-nowrap text-right">核心 ROTE</th>
+                <th class="py-3.5 px-4 whitespace-nowrap">核心壁垒 / 优劣势</th>
+                <th class="py-3.5 px-4 whitespace-nowrap text-right">远期估值参考</th>
+              </tr>
+            </thead>
+            <tbody id="competitor-tbody" class="divide-y divide-slate-200/80 dark:divide-slate-800 tabular-nums">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Peer Combined Ratio & ROTE Horizontal/Grouped Bar Chart -->
+      <div class="report-card p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          <div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">近五年平均综合成本率（越低越优）与核心 ROTE 横向对比</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Chubb 在保持低波动商业险主导的前提下，实现了媲美高频车险巨头 Progressive 的 21%+ ROTE</p>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start">注：综合成本率 &lt; 100% 为承保盈利</span>
+        </div>
+        <div class="relative h-[290px] w-full">
+          <canvas id="peerBarChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 04: 财务健康度与估值体系（承保+投资复利模型） -->
+    <!-- ========================================================= -->
+    <section id="sec-04" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#1E3A8A] text-white font-mono font-bold text-sm">04</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">财务健康度与估值体系（承保 + 投资复利模型）</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">拆解有形账面价值（TBVPS）持续复利增长机制与 P/TBV 估值溢价合理性</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+        <!-- Left 6 Cols: Financial Health & Valuation Premium Pillars -->
+        <div class="lg:col-span-6 report-card p-5 sm:p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">为什么市场给予 Chubb 持续 P/TBV 估值溢价？</h3>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-[#B45309] dark:text-amber-400 font-mono font-bold text-xs">P/TBV ~1.9x</span>
+            </div>
+
+            <div class="mt-4 space-y-3.5 text-xs">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/75 border border-slate-200/80 dark:border-slate-800">
+                <div class="flex justify-between items-center font-bold text-slate-900 dark:text-white mb-1">
+                  <span>1. 高质量 ROTE 支撑估值锚（Gordon Growth 模型）</span>
+                  <span class="font-mono text-[#1E3A8A] dark:text-blue-400">ROTE ~21.5%</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  根据金融股经典估值公式 <code class="font-mono text-[11px] bg-slate-200/70 dark:bg-slate-800 px-1 rounded">P/TBV = (ROTE - g) / (COE - g)</code>，在股本成本（COE）约 9.5%、长期内生增长率 g 约 4.5% 的假设下，21.5% 的可持续 ROTE 对应合理 P/TBV 估值高达 <strong>2.0x–2.2x</strong>，显著高于 ROTE 仅 11%–14% 的 AIG（~1.1x）与 Travelers（~1.6x）。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/75 border border-slate-200/80 dark:border-slate-800">
+                <div class="flex justify-between items-center font-bold text-slate-900 dark:text-white mb-1">
+                  <span>2. 卓越的巨灾损失（CAT Losses）吸收与再保缓冲</span>
+                  <span class="font-mono text-emerald-600 dark:text-emerald-400">标普 AA 评级</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  即便在北美飓风及全球严重对流风暴（SCS）高发年份，Chubb 凭借严格的单一地域风险敞口限额与多层巨灾再保安排，将巨灾损失对综合成本率的拖累控制在 <strong>3.5–4.5 个百分点</strong>以内，从未出现年度承保亏损。
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/75 border border-slate-200/80 dark:border-slate-800">
+                <div class="flex justify-between items-center font-bold text-slate-900 dark:text-white mb-1">
+                  <span>3. 股东回报纪律：股息贵族 + 逆周期股票回购</span>
+                  <span class="font-mono text-[#B45309] dark:text-amber-400">年化回购 ~$2.5B+</span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  连续 31 年上调现金股息（股息率 ~1.4%），同时每年利用超额自由资本回购约 2%–2.5% 流通股，持续增厚每股核心营业收益（Core Operating EPS）与每股有形净资产（TBVPS）。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Valuation Summary Strip -->
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 grid grid-cols-3 gap-2 text-center tabular-nums">
+            <div class="p-2 rounded-lg bg-[#1E3A8A]/5 dark:bg-blue-950/30">
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">2026E Core EPS</div>
+              <div class="font-mono font-bold text-sm text-[#1E3A8A] dark:text-blue-400">$24.85</div>
+            </div>
+            <div class="p-2 rounded-lg bg-amber-500/5 dark:bg-amber-950/30">
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">2026E TBVPS</div>
+              <div class="font-mono font-bold text-sm text-[#B45309] dark:text-amber-400">$156.80</div>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-500/5 dark:bg-emerald-950/30">
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">目标估值倍数</div>
+              <div class="font-mono font-bold text-sm text-emerald-600 dark:text-emerald-400">12.0x P/E | 1.9x P/TBV</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 6 Cols: Dual-Axis Compounding Chart (Core EPS & TBVPS) -->
+        <div class="lg:col-span-6 report-card p-5 sm:p-6 flex flex-col justify-between">
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">2021–2026E 核心营业 EPS 与每股有形账面价值 (TBVPS) 复利演进</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              承保利润 + 高票息净投资收益驱动 Core Operating EPS 5年复合增速（CAGR）超 14%
+            </p>
+          </div>
+
+          <div class="my-4 relative h-[320px] w-full">
+            <canvas id="compoundingChart"></canvas>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/75 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <strong>复利轨迹验证：</strong> 2022 年美债收益率快速上行曾短暂造成账面未实现债券浮亏（AOCI 波动），但随着债券自然持有到期以及承保+投资双重现金流高速积累，Chubb 的每股有形账面价值（TBVPS）在 2023–2026E 迎来强劲的“戴维斯双击”修复与创新高。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 05: 三情景估值推演与投资决策矩阵 -->
+    <!-- ========================================================= -->
+    <section id="sec-05" class="scroll-mt-24 mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-2.5 py-1 rounded-lg bg-[#1E3A8A] text-white font-mono font-bold text-sm">05</span>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">三情景估值推演与投资决策矩阵（Bull / Base / Bear）</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">基于 2026E 核心营业 EPS 与有形账面价值（TBVPS）的 12–18 个月概率加权目标价</p>
+        </div>
+      </div>
+
+      <!-- Three Scenario Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 tabular-nums">
+        <!-- Bull Case -->
+        <div class="report-card p-5 border-t-4 border-t-emerald-600">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">乐观情景 (BULL CASE)</span>
+            <span class="font-mono text-xs font-bold text-slate-500">概率权重：25%</span>
+          </div>
+          <div class="mt-3 flex items-baseline gap-2">
+            <span class="text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">$335.00</span>
+            <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">(+22.0% 上行)</span>
+          </div>
+          <div class="mt-1 text-[11px] font-mono text-slate-400">对应 13.0x 2026E P/E | 2.1x P/TBV</div>
+          <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <p><strong>核心假设：</strong> 商业险巨灾及责任险费率硬周期延续，P&C 综合成本率进一步优化至 84.5% 以内；美联储维持中性偏高利率使 NII 突破 $7.2B；华泰保险及亚太寿险保费实现 18%+ 高增长。</p>
+            <p class="text-emerald-700 dark:text-emerald-400 font-medium">估值逻辑：ROTE 突破 23%，估值倍数向北美高盈利标杆进一步扩张。</p>
+          </div>
+        </div>
+
+        <!-- Base Case -->
+        <div class="report-card p-5 border-t-4 border-t-[#1E3A8A] ring-2 ring-[#1E3A8A]/20 dark:ring-blue-500/20">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#1E3A8A]/10 text-[#1E3A8A] dark:text-blue-400">基准情景 (BASE CASE)</span>
+            <span class="font-mono text-xs font-bold text-[#1E3A8A] dark:text-blue-400">概率权重：55%</span>
+          </div>
+          <div class="mt-3 flex items-baseline gap-2">
+            <span class="text-3xl font-extrabold font-mono text-[#1E3A8A] dark:text-blue-400">$298.00</span>
+            <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">(+9% / 总回报~11%)</span>
+          </div>
+          <div class="mt-1 text-[11px] font-mono text-slate-400">对应 12.0x 2026E P/E | 1.9x P/TBV</div>
+          <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <p><strong>核心假设：</strong> 全球净保费收入（NWP）维持 7%–9% 稳健增长，P&C 综合成本率稳定在 86.5% 基准线；新购债券收益率维持 4.8%–5.1% 区间继续拉高组合平均票息；全年股票回购约 $2.5B。</p>
+            <p class="text-[#1E3A8A] dark:text-blue-400 font-medium">估值逻辑：稳健兑现双位数 EPS 复利增长，作为机构组合压舱石贡献确定性回报。</p>
+          </div>
+        </div>
+
+        <!-- Bear Case -->
+        <div class="report-card p-5 border-t-4 border-t-rose-600">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400">悲观情景 (BEAR CASE)</span>
+            <span class="font-mono text-xs font-bold text-slate-500">概率权重：20%</span>
+          </div>
+          <div class="mt-3 flex items-baseline gap-2">
+            <span class="text-3xl font-extrabold font-mono text-rose-600 dark:text-rose-400">$235.00</span>
+            <span class="text-xs font-mono text-rose-500 font-semibold">(-14.2% 下行)</span>
+          </div>
+          <div class="mt-1 text-[11px] font-mono text-slate-400">对应 10.2x 2026E P/E | 1.5x P/TBV</div>
+          <div class="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <p><strong>核心假设：</strong> 北美遭遇历史级超大飓风与加州山火双重巨灾冲击，叠加社会通胀（诉讼核赔上升）导致事故年度赔付率恶化，综合成本率上行至 91%+；宏观降息超预期压缩再投资收益率。</p>
+            <p class="text-rose-600 dark:text-rose-400 font-medium">防御底线：即便在悲观情景下，1.5x P/TBV 仍具备极强的账面净值与股息回购托底。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Four Core Risk Deep-Dive Grid -->
+      <div class="report-card p-5 sm:p-6">
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4">四大核心下行风险深度剖析与风控缓释</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">1. 气候变化导致的极端巨灾（CAT）频发风险</span>
+              <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 font-mono font-semibold">核心行业风险</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              全球变暖导致北美飓风、严重对流风暴（SCS）及山火发生频率与单次损失金额上升，可能引发单季巨灾赔付超预算。<strong>缓释机制：</strong>Chubb 每年动态重估巨灾模型并持续上调高风险地区保费与免赔额，同时高度分散的全球地域组合有效平滑单一区域冲击。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">2. 社会通胀（Social Inflation）与长尾责任险准备金补提</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono font-semibold">中高关注</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              美国司法诉讼激进度上升、陪审团天价判赔（Nuclear Verdicts）及医疗通胀推高了商业责任险（Casualty）理赔成本。<strong>缓释机制：</strong>Chubb 连续多年保持正向准备金释放（Favorable Prior Period Development），精算准备金计提历来显著保守于同业。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">3. 降息周期对浮存金再投资收益率的边际影响</span>
+              <span class="px-2 py-0.5 rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 font-mono font-semibold">利率敏感度</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              若未来无风险利率大幅回落，新购固定收益债券的再投资票息将有所下移。<strong>缓释机制：</strong>由于当前投资组合账面平均收益率（约 4.6%）仍低于现行市场新购收益率（5.1%+），即便小幅降息，未来 18–24 个月内 NII 仍具正向抬升惯性。
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-900 dark:text-white text-sm">4. 亚洲业务整合及新兴市场汇率/监管波动</span>
+              <span class="px-2 py-0.5 rounded bg-slate-500/10 text-slate-600 dark:text-slate-300 font-mono font-semibold">跨境运营风险</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+              控股华泰保险集团及拓展亚太寿险业务受当地偿付能力监管、资本跨境流动及亚洲货币汇率波动影响。<strong>缓释机制：</strong>亚洲多国布局高度分散，且 Chubb 拥有丰富的跨国险企合规治理经验。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 06: 季度核心 KPI 交互核查台 -->
+    <!-- ========================================================= -->
+    <section id="sec-06" class="scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 rounded-lg bg-[#1E3A8A] text-white font-mono font-bold text-sm">06</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">季度核心 KPI 交互核查台</h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">买方投研财报季跟踪框架（勾选状态通过 localStorage 自动本地持久化保存）</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 no-print">
+          <span id="kpi-progress-text" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+            已核查 0 / 6 项
+          </span>
+          <button onclick="resetChecklist()" class="text-xs text-slate-500 hover:text-[#B45309] underline transition">
+            重置清单
+          </button>
+        </div>
+      </div>
+
+      <div class="report-card p-5 sm:p-6">
+        <div id="kpi-checklist-container" class="space-y-3">
+          <!-- Populated dynamically with localStorage sync -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Disclaimer -->
+    <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400 dark:text-slate-500 space-y-1">
+      <p>免责声明：本报告仅为机构级商业模式与股权研究框架展示，所有财务预测与估值推演基于公开披露数据及精算行业研究假设，不构成任何具体证券买卖要约或投资建议。</p>
+      <p class="font-mono">Chubb Limited (NYSE: CB) Institutional Equity Research • Built for Portfolio Management</p>
+    </footer>
+  </main>
+
+  <script>
+    // =========================================================================
+    // 1. STATE & DATA REPOSITORY
+    // =========================================================================
+    let sec1ChartInstance = null;
+    let moatRadarChartInstance = null;
+    let peerBarChartInstance = null;
+    let compoundingChartInstance = null;
+    let currentSec1View = 'A';
+
+    // Global P&C / Multi-Line Peers Dataset
+    const competitorsData = [
+      {
+        name: 'Chubb Limited (安达保险)',
+        ticker: 'NYSE: CB',
+        category: ['commercial', 'personal', 'global'],
+        highlight: true,
+        focus: '北美商业/高净值个人险 + 亚洲寿险/财险 (54国)',
+        combinedRatio: '86.6%',
+        rote: '21.5%',
+        moat: '全球最大上市财险巨头；跨周期 85%–88% 顶级承保纪律；$150B 浮存金 + 控股华泰保险亚洲增长引擎',
+        valuation: 'Fwd P/E 11.5x | P/TBV 1.9x'
+      },
+      {
+        name: 'The Travelers Companies',
+        ticker: 'NYSE: TRV',
+        category: ['commercial', 'personal'],
+        highlight: false,
+        focus: '美国本土商业险 + 个人车险/家财险',
+        combinedRatio: '92.4%',
+        rote: '16.8%',
+        moat: '美国本土中型商业险渠道深厚；但个人车险及北美天气巨灾波动性高于 Chubb，缺乏亚洲成长敞口',
+        valuation: 'Fwd P/E 11.2x | P/TBV 1.7x'
+      },
+      {
+        name: 'Progressive Corporation',
+        ticker: 'NYSE: PGR',
+        category: ['personal'],
+        highlight: false,
+        focus: '美国个人车险龙头 + 商业车险',
+        combinedRatio: '88.8%',
+        rote: '28.5%',
+        moat: 'UBI 车联网大数据定价能力全美第一，周转极快；但业务高度集中于美国车险单一赛道',
+        valuation: 'Fwd P/E 16.8x | P/TBV 5.2x'
+      },
+      {
+        name: 'American International Group',
+        ticker: 'NYSE: AIG',
+        category: ['commercial', 'global'],
+        highlight: false,
+        focus: '全球商业财产与特殊风险保险',
+        combinedRatio: '91.8%',
+        rote: '11.4%',
+        moat: '剥离 Corebridge 寿险后聚焦纯财险，承保质量显著改善；但历史包袱及 ROTE 仍明显落后于 Chubb',
+        valuation: 'Fwd P/E 10.8x | P/TBV 1.1x'
+      },
+      {
+        name: 'The Allstate Corporation',
+        ticker: 'NYSE: ALL',
+        category: ['personal'],
+        highlight: false,
+        focus: '美国个人车险与家财险',
+        combinedRatio: '94.5%',
+        rote: '15.2%',
+        moat: '拥有庞大的专属代理人网络与品牌知名度；但对美国个人车险赔付通胀及家财险巨灾敏感度极高',
+        valuation: 'Fwd P/E 9.8x | P/TBV 2.1x'
+      },
+      {
+        name: 'Zurich Insurance Group',
+        ticker: 'SIX: ZURN',
+        category: ['commercial', 'global'],
+        highlight: false,
+        focus: '欧洲商业险 + 美国 Farmers 管理费模式',
+        combinedRatio: '93.2%',
+        rote: '22.0%',
+        moat: '瑞士高股息蓝筹（股息率 ~5%），Farmers 轻资产管理费模式稳定；但保费内生增速低于 Chubb',
+        valuation: 'Fwd P/E 13.5x | P/TBV 2.5x'
+      },
+      {
+        name: 'Tokio Marine Holdings',
+        ticker: 'TYO: 8766',
+        category: ['commercial', 'global'],
+        highlight: false,
+        focus: '日本财险龙头 + 美国特种险 (Philadelphia/HCC)',
+        combinedRatio: '91.5%',
+        rote: '16.5%',
+        moat: '成功通过海外并购实现全球化，持续减持政策性交叉持股释放资本；但受日本本土自然灾害影响较大',
+        valuation: 'Fwd P/E 12.8x | P/TBV 1.8x'
+      }
+    ];
+
+    // Quarterly KPI Checklist Items
+    const kpiChecklistItems = [
+      {
+        id: 'cb-kpi-1',
+        category: '核心承保效率',
+        title: 'P&C 综合成本率（Combined Ratio）维持在 87.5% 以内，持续跑赢行业均值 800bps+',
+        benchmark: '基准线：86.6% | 警戒线：连续两季 > 90.0%'
+      },
+      {
+        id: 'cb-kpi-2',
+        category: '剔除巨灾基本盘',
+        title: '不含巨灾的事故年度综合成本率（EX-CAT Accident Year Combined Ratio）稳定在 83.5% 左右',
+        benchmark: '核心指标：剔除天气扰动后，反映真实费率定价与赔付控制力'
+      },
+      {
+        id: 'cb-kpi-3',
+        category: '费率与损失通胀剪刀差',
+        title: '北美及全球商业险续保费率涨幅（Renewal Rate Change）持续覆盖或高于损失成本趋势（Loss Cost Trend）',
+        benchmark: '观察重点：责任险（Casualty）针对社会通胀的提价幅度'
+      },
+      {
+        id: 'cb-kpi-4',
+        category: '浮存金再投资收益',
+        title: '税前净投资收益（Adjusted Net Investment Income, NII）季度环比稳步攀升，新购债券收益率维持 4.8%–5.2%',
+        benchmark: '基准线：单季 NII > $1.65B（年化 > $6.6B）'
+      },
+      {
+        id: 'cb-kpi-5',
+        category: '亚洲高成长引擎',
+        title: '海外一般保险（尤其亚太区）及人寿保险（含华泰保险）按固定汇率计价净保费增速保持双位数（10%+）',
+        benchmark: '核心指标：亚太区保费占比及新业务价值（VNB）扩张节奏'
+      },
+      {
+        id: 'cb-kpi-6',
+        category: '复利与股东回报',
+        title: '每股有形账面价值（TBVPS）季度环比持续正增长，且季度股票回购与股息派发符合年化 $3.5B+ 节奏',
+        benchmark: '基准线：Core Operating ROTE 稳守 20% 以上'
+      }
+    ];
+
+    // =========================================================================
+    // 2. THEME & NAVIGATION INTERACTIVITY
+    // =========================================================================
+    function getThemeColors() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return {
+        isDark,
+        textColor: isDark ? '#CBD5E1' : '#475569',
+        titleColor: isDark ? '#F8FAFC' : '#0F172A',
+        gridColor: isDark ? 'rgba(51, 65, 85, 0.45)' : 'rgba(226, 232, 240, 0.85)',
+        radarAngleColor: isDark ? 'rgba(71, 85, 105, 0.5)' : 'rgba(203, 213, 225, 0.8)'
+      };
+    }
+
+    function toggleDarkMode() {
+      const htmlEl = document.documentElement;
+      htmlEl.classList.toggle('dark');
+      const isDark = htmlEl.classList.contains('dark');
+      localStorage.setItem('cb_report_theme', isDark ? 'dark' : 'light');
+      document.getElementById('theme-label').textContent = isDark ? '亮色模式' : '深色护眼';
+      renderAllCharts();
+    }
+
+    function toggleMobileDrawer() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('drawer-overlay');
+      const isClosed = sidebar.classList.contains('-translate-x-full');
+      if (isClosed) {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    function closeDrawerOnMobile() {
+      if (window.innerWidth < 1024) {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('drawer-overlay').classList.add('hidden');
+      }
+    }
+
+    // Scroll Progress & Active Section Highlighting
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('reading-progress-bar').style.width = `${progress}%`;
+
+      const sections = ['sec-01', 'sec-02', 'sec-03', 'sec-04', 'sec-05', 'sec-06'];
+      let currentId = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 160) {
+          currentId = id;
+        }
+      }
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // =========================================================================
+    // 3. CHART.JS VISUALIZATIONS
+    // =========================================================================
+    function switchSec1Chart(view) {
+      currentSec1View = view;
+      const btnA = document.getElementById('btn-view-a');
+      const btnB = document.getElementById('btn-view-b');
+      const titleEl = document.getElementById('sec1-chart-title');
+      const subEl = document.getElementById('sec1-chart-subtitle');
+      const insightEl = document.getElementById('sec1-insight-box');
+
+      if (view === 'A') {
+        btnA.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-[#1E3A8A] dark:text-amber-400 shadow-xs transition';
+        btnB.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '2021–2026E 净保费收入 (NWP) 扩张与综合成本率 (Combined Ratio) 剪刀差';
+        subEl.textContent = '单位：十亿美元 ($B) 与百分比 (%) | 保费持续双位数稳健增长的同时，综合成本率稳定压制在 86%–87% 黄金区间';
+        insightEl.innerHTML = '<strong class="text-[#1E3A8A] dark:text-blue-400">承保剪刀差解析：</strong> 2021–2026E 期间，Chubb 净保费收入（NWP）由 $37.9B 稳步攀升至 <strong>$56.2B (2026E)</strong>，与此同时 P&C 综合成本率始终控制在 <strong>86.5%–89.1%</strong>（显著低于 100% 盈亏线），意味着公司无需依赖投资收益即可每年仅靠承保端创造超 <strong>$60亿</strong> 税前承保利润。';
+      } else {
+        btnB.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-[#1E3A8A] dark:text-amber-400 shadow-xs transition';
+        btnA.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+        titleEl.textContent = '六大核心业务分部净保费收入 ($B) 与综合成本率对比';
+        subEl.textContent = '北美商业险贡献最大体量与承保利润，海外一般保险与寿险（含华泰）提供高增速引擎';
+        insightEl.innerHTML = '<strong class="text-[#B45309] dark:text-amber-400">分部结构洞察：</strong> 北美商业险（$21.5B NWP，综合成本率 83.5%）与海外一般保险（$13.6B NWP，综合成本率 85.2%）合计贡献近七成保费与超八成承保利润，搭配人寿保险（$6.3B NWP，华泰并表）形成跨周期均衡配置。';
+      }
+      renderSec1Chart();
+    }
+
+    function renderSec1Chart() {
+      const ctx = document.getElementById('sec1Chart').getContext('2d');
+      const theme = getThemeColors();
+      if (sec1ChartInstance) sec1ChartInstance.destroy();
+
+      if (currentSec1View === 'A') {
+        sec1ChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['2021A', '2022A', '2023A', '2024A', '2025A', '2026E'],
+            datasets: [
+              {
+                label: 'P&C 财险净保费收入 ($B)',
+                data: [35.4, 38.8, 41.9, 44.8, 46.1, 49.2],
+                backgroundColor: '#1E3A8A',
+                borderRadius: 4,
+                stack: 'nwp',
+                yAxisID: 'y'
+              },
+              {
+                label: '人寿保险净保费收入 ($B)',
+                data: [2.5, 3.1, 5.5, 6.1, 6.3, 7.0],
+                backgroundColor: '#0284C7',
+                borderRadius: 4,
+                stack: 'nwp',
+                yAxisID: 'y'
+              },
+              {
+                label: 'P&C 综合成本率 Combined Ratio (%)',
+                data: [89.1, 87.6, 86.5, 86.6, 86.6, 86.4],
+                type: 'line',
+                borderColor: '#D97706',
+                backgroundColor: '#D97706',
+                borderWidth: 3,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                tension: 0.3,
+                yAxisID: 'y1'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { color: theme.textColor, font: { family: 'Inter, Noto Sans SC', size: 12 }, usePointStyle: true }
+              },
+              tooltip: {
+                backgroundColor: '#0F172A',
+                titleFont: { family: 'JetBrains Mono', size: 12 },
+                bodyFont: { family: 'Inter, Noto Sans SC', size: 12 }
+              }
+            },
+            scales: {
+              x: {
+                stacked: true,
+                grid: { display: false },
+                ticks: { color: theme.textColor, font: { family: 'JetBrains Mono', weight: '600' } }
+              },
+              y: {
+                stacked: true,
+                position: 'left',
+                title: { display: true, text: '净保费收入 NWP ($B)', color: theme.textColor, font: { size: 11 } },
+                grid: { color: theme.gridColor },
+                ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => '$' + v + 'B' }
+              },
+              y1: {
+                position: 'right',
+                min: 80,
+                max: 96,
+                title: { display: true, text: '综合成本率 % (越低越优)', color: '#D97706', font: { size: 11 } },
+                grid: { drawOnChartArea: false },
+                ticks: { color: '#D97706', font: { family: 'JetBrains Mono' }, callback: v => v + '%' }
+              }
+            }
+          }
+        });
+      } else {
+        sec1ChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['北美商业险', '海外一般保险', '北美个人险', '人寿保险(含华泰)', '北美农业险', '全球再保险'],
+            datasets: [
+              {
+                label: '净保费收入 NWP ($B)',
+                data: [21.5, 13.6, 6.8, 6.3, 3.1, 1.1],
+                backgroundColor: ['#1E3A8A', '#0284C7', '#B45309', '#059669', '#4F46E5', '#475569'],
+                borderRadius: 5,
+                yAxisID: 'y'
+              },
+              {
+                label: '分部综合成本率 (%)',
+                data: [83.5, 85.2, 88.4, null, 91.2, 84.0],
+                type: 'line',
+                borderColor: '#D97706',
+                backgroundColor: '#D97706',
+                borderWidth: 3,
+                pointRadius: 5,
+                spanGaps: true,
+                yAxisID: 'y1'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { color: theme.textColor, font: { family: 'Inter, Noto Sans SC', size: 12 }, usePointStyle: true }
+              }
+            },
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { color: theme.textColor, font: { size: 11, weight: '600' } }
+              },
+              y: {
+                position: 'left',
+                title: { display: true, text: '净保费收入 ($B)', color: theme.textColor, font: { size: 11 } },
+                grid: { color: theme.gridColor },
+                ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => '$' + v + 'B' }
+              },
+              y1: {
+                position: 'right',
+                min: 78,
+                max: 98,
+                title: { display: true, text: '分部综合成本率 (%)', color: '#D97706', font: { size: 11 } },
+                grid: { drawOnChartArea: false },
+                ticks: { color: '#D97706', font: { family: 'JetBrains Mono' }, callback: v => v + '%' }
+              }
+            }
+          }
+        });
+      }
+    }
+
+    function renderMoatRadarChart() {
+      const ctx = document.getElementById('moatRadarChart').getContext('2d');
+      const theme = getThemeColors();
+      if (moatRadarChartInstance) moatRadarChartInstance.destroy();
+
+      moatRadarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['承保定价纪律', '全球多币种牌照', '高净值客户壁垒', '亚洲增长期权', '浮存金投资效率'],
+          datasets: [
+            {
+              label: 'Chubb Limited (CB)',
+              data: [9.7, 9.5, 9.6, 9.0, 9.2],
+              borderColor: '#1E3A8A',
+              backgroundColor: 'rgba(30, 58, 138, 0.24)',
+              borderWidth: 2.5,
+              pointBackgroundColor: '#B45309'
+            },
+            {
+              label: '传统美系财险同行 (TRV/AIG)',
+              data: [8.1, 7.2, 7.5, 6.2, 8.3],
+              borderColor: '#D97706',
+              backgroundColor: 'rgba(217, 119, 6, 0.14)',
+              borderWidth: 2,
+              pointBackgroundColor: '#D97706'
+            },
+            {
+              label: '区域性中小保险公司',
+              data: [7.0, 4.5, 6.0, 5.5, 7.1],
+              borderColor: '#94A3B8',
+              backgroundColor: 'rgba(148, 163, 184, 0.10)',
+              borderWidth: 1.5,
+              borderDash: [4, 4],
+              pointBackgroundColor: '#94A3B8'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: theme.textColor, font: { size: 11, family: 'Inter, Noto Sans SC' }, boxWidth: 12, padding: 10 }
+            }
+          },
+          scales: {
+            r: {
+              min: 4,
+              max: 10,
+              ticks: { stepSize: 2, display: false },
+              grid: { color: theme.gridColor },
+              angleLines: { color: theme.radarAngleColor },
+              pointLabels: { color: theme.titleColor, font: { size: 11, weight: '600', family: 'Inter, Noto Sans SC' } }
+            }
+          }
+        }
+      });
+    }
+
+    function renderPeerBarChart() {
+      const ctx = document.getElementById('peerBarChart').getContext('2d');
+      const theme = getThemeColors();
+      if (peerBarChartInstance) peerBarChartInstance.destroy();
+
+      peerBarChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Chubb (CB)', 'Progressive (PGR)', 'Tokio Marine', 'AIG', 'Travelers (TRV)', 'Zurich (ZURN)', 'Allstate (ALL)'],
+          datasets: [
+            {
+              label: '近5年平均综合成本率 % (越低越优)',
+              data: [87.1, 89.2, 91.5, 92.4, 93.1, 93.4, 95.8],
+              backgroundColor: '#1E3A8A',
+              borderRadius: 5,
+              yAxisID: 'y'
+            },
+            {
+              label: '核心有形股本回报 ROTE (%)',
+              data: [21.5, 28.5, 16.5, 11.4, 16.8, 22.0, 15.2],
+              backgroundColor: '#D97706',
+              borderRadius: 5,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { color: theme.textColor, font: { size: 12, family: 'Inter, Noto Sans SC' }, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: theme.textColor, font: { size: 11, weight: '600' } }
+            },
+            y: {
+              position: 'left',
+              min: 80,
+              max: 100,
+              title: { display: true, text: '综合成本率 %', color: '#1E3A8A', font: { size: 11 } },
+              grid: { color: theme.gridColor },
+              ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => v + '%' }
+            },
+            y1: {
+              position: 'right',
+              min: 0,
+              max: 35,
+              title: { display: true, text: '核心 ROTE %', color: '#D97706', font: { size: 11 } },
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#D97706', font: { family: 'JetBrains Mono' }, callback: v => v + '%' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderCompoundingChart() {
+      const ctx = document.getElementById('compoundingChart').getContext('2d');
+      const theme = getThemeColors();
+      if (compoundingChartInstance) compoundingChartInstance.destroy();
+
+      compoundingChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['2021A', '2022A', '2023A', '2024A', '2025A', '2026E'],
+          datasets: [
+            {
+              label: '核心营业每股收益 Core Operating EPS ($)',
+              data: [12.56, 15.13, 19.80, 22.51, 23.40, 24.85],
+              backgroundColor: '#1E3A8A',
+              borderRadius: 5,
+              yAxisID: 'y'
+            },
+            {
+              label: '每股有形账面价值 TBVPS ($)',
+              data: [90.2, 76.5, 98.4, 118.6, 138.2, 156.8],
+              type: 'line',
+              borderColor: '#D97706',
+              backgroundColor: 'rgba(217, 119, 6, 0.14)',
+              fill: true,
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.3,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { color: theme.textColor, font: { size: 11, family: 'Inter, Noto Sans SC' }, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: theme.textColor, font: { family: 'JetBrains Mono', weight: '600' } }
+            },
+            y: {
+              position: 'left',
+              title: { display: true, text: 'Core EPS ($)', color: theme.textColor, font: { size: 11 } },
+              grid: { color: theme.gridColor },
+              ticks: { color: theme.textColor, font: { family: 'JetBrains Mono' }, callback: v => '$' + v }
+            },
+            y1: {
+              position: 'right',
+              min: 60,
+              max: 175,
+              title: { display: true, text: 'TBVPS ($)', color: '#D97706', font: { size: 11 } },
+              grid: { drawOnChartArea: false },
+              ticks: { color: '#D97706', font: { family: 'JetBrains Mono' }, callback: v => '$' + v }
+            }
+          }
+        }
+      });
+    }
+
+    function renderAllCharts() {
+      renderSec1Chart();
+      renderMoatRadarChart();
+      renderPeerBarChart();
+      renderCompoundingChart();
+    }
+
+    // =========================================================================
+    // 4. COMPETITOR MATRIX FILTERING
+    // =========================================================================
+    function filterCompetitors(filterKey) {
+      document.querySelectorAll('.comp-filter-btn').forEach(btn => {
+        if (btn.dataset.filter === filterKey) {
+          btn.className = 'comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#1E3A8A] text-white shadow-xs transition';
+        } else {
+          btn.className = 'comp-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-[#1E3A8A] transition';
+        }
+      });
+
+      const tbody = document.getElementById('competitor-tbody');
+      const filtered = filterKey === 'all'
+        ? competitorsData
+        : competitorsData.filter(item => item.category.includes(filterKey));
+
+      tbody.innerHTML = filtered.map(item => `
+        <tr class="${item.highlight ? 'bg-[#1E3A8A]/5 dark:bg-blue-950/30 font-medium' : 'hover:bg-slate-50 dark:hover:bg-slate-800/40'} transition">
+          <td class="py-3.5 px-4 whitespace-nowrap">
+            <div class="font-bold ${item.highlight ? 'text-[#1E3A8A] dark:text-blue-400' : 'text-slate-900 dark:text-white'}">${item.name}</div>
+            <div class="text-[11px] font-mono text-slate-400">${item.ticker}</div>
+          </td>
+          <td class="py-3.5 px-4 text-xs text-slate-600 dark:text-slate-300 max-w-[180px]">${item.focus}</td>
+          <td class="py-3.5 px-4 text-right font-mono font-bold ${item.highlight ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-800 dark:text-slate-200'} whitespace-nowrap">${item.combinedRatio}</td>
+          <td class="py-3.5 px-4 text-right font-mono font-semibold text-[#B45309] dark:text-amber-400 whitespace-nowrap">${item.rote}</td>
+          <td class="py-3.5 px-4 text-xs text-slate-600 dark:text-slate-300 min-w-[230px] leading-relaxed">${item.moat}</td>
+          <td class="py-3.5 px-4 text-right font-mono text-xs text-slate-700 dark:text-slate-300 whitespace-nowrap">${item.valuation}</td>
+        </tr>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 5. QUARTERLY KPI CHECKLIST WITH LOCALSTORAGE
+    // =========================================================================
+    const STORAGE_KEY_KPI = 'cb_quarterly_kpi_checklist_v1';
+
+    function loadChecklistState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY_KPI);
+        return saved ? JSON.parse(saved) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveChecklistState(state) {
+      try {
+        localStorage.setItem(STORAGE_KEY_KPI, JSON.stringify(state));
+      } catch (e) {
+        // Ignore storage errors
+      }
+    }
+
+    function toggleChecklistItem(id) {
+      const state = loadChecklistState();
+      state[id] = !state[id];
+      saveChecklistState(state);
+      renderChecklist();
+    }
+
+    function resetChecklist() {
+      saveChecklistState({});
+      renderChecklist();
+    }
+
+    function renderChecklist() {
+      const state = loadChecklistState();
+      const container = document.getElementById('kpi-checklist-container');
+      let checkedCount = 0;
+
+      container.innerHTML = kpiChecklistItems.map(item => {
+        const isChecked = !!state[item.id];
+        if (isChecked) checkedCount++;
+        return `
+          <label onclick="toggleChecklistItem('${item.id}')" class="flex items-start gap-3.5 p-3.5 rounded-xl border cursor-pointer transition select-none ${
+            isChecked
+              ? 'bg-emerald-500/5 border-emerald-500/40 dark:bg-emerald-950/25'
+              : 'bg-slate-50/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 hover:border-[#1E3A8A]/60'
+          }">
+            <div class="mt-0.5 w-5 h-5 rounded-md flex items-center justify-center border transition shrink-0 ${
+              isChecked
+                ? 'bg-[#1E3A8A] border-[#1E3A8A] text-white'
+                : 'bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600'
+            }">
+              ${isChecked ? '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>' : ''}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#1E3A8A]/10 text-[#1E3A8A] dark:text-blue-400">${item.category}</span>
+                <span class="text-xs sm:text-sm font-semibold ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'}">
+                  ${item.title}
+                </span>
+              </div>
+              <div class="mt-1 text-xs font-mono text-slate-500 dark:text-slate-400">
+                ${item.benchmark}
+              </div>
+            </div>
+          </label>
+        `;
+      }).join('');
+
+      document.getElementById('kpi-progress-text').textContent = `已核查 ${checkedCount} / ${kpiChecklistItems.length} 项`;
+    }
+
+    // =========================================================================
+    // 6. INITIALIZATION ON WINDOW LOAD
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('cb_report_theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-label').textContent = '亮色模式';
+      }
+
+      filterCompetitors('all');
+      renderChecklist();
+      renderAllCharts();
+    });
+  </script>
+</body>
+</html>
